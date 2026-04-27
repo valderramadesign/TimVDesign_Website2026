@@ -1,0 +1,386 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────
+   Base resets
+───────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #000;
+    background: #fff;
+    overflow-x: hidden;
+  }
+
+  /* Hide native cursor on pointer devices — replaced by Cursor.jsx */
+  @media (pointer: fine) {
+    *, *::before, *::after {
+      cursor: none !important;
+    }
+  }
+
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; border: none; background: none; }
+  input, textarea { font-family: inherit; outline: none; }
+}
+
+/* ─────────────────────────────────────────────
+   Preloader — mirrors Metalab's Preloader component
+   24 numbered grid cells (12 left, 12 right),
+   corner markers, staggered reveal, then exit.
+───────────────────────────────────────────── */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: #000;
+  display: flex;
+  overflow: hidden;
+  transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.preloader--exiting {
+  opacity: 0;
+  transform: scale(1.04);
+  pointer-events: none;
+}
+
+/* LCP stamp — nearly invisible name, matches Metalab's data-lcp element */
+.preloader-lcp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  z-index: 1;
+  font-size: 18vw;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-family: "Inter", sans-serif;
+  width: 100vw;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  opacity: 0.018;
+  overflow: hidden;
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Two halves of the grid */
+.preloader-side {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  position: relative;
+  z-index: 2;
+}
+
+/* Individual grid cell */
+.grid-box {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 10px 12px;
+  overflow: hidden;
+}
+
+/* Corner position markers — the four "L"-shaped tick marks Metalab shows */
+.grid-corner {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  pointer-events: none;
+}
+
+.grid-corner--tl {
+  top: 5px;
+  left: 5px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
+}
+.grid-corner--tr {
+  top: 5px;
+  right: 5px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  border-right: 1px solid rgba(255, 255, 255, 0.25);
+}
+.grid-corner--bl {
+  bottom: 5px;
+  left: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
+}
+.grid-corner--br {
+  bottom: 5px;
+  right: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  border-right: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* Number label in each cell */
+.grid-number {
+  font-family: "Inter", -apple-system, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.28);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─────────────────────────────────────────────
+   Custom cursor — mirrors Metalab's Cursor component
+   SVG circles animate on hover/drag states.
+───────────────────────────────────────────── */
+@media (pointer: fine) {
+  .cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    pointer-events: none;
+    width: 80px;
+    height: 80px;
+    will-change: transform;
+    transition: opacity 0.3s ease;
+  }
+
+  .cursor-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  /* Text container — "Hover" and "Drag" labels */
+  .cursor-text-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 1;
+  }
+
+  .cursor-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #000;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   Page transition portal — four edge rectangles +
+   four rounded SVG corner pieces.
+   Mirrors Metalab's PageTransitionPortal component.
+───────────────────────────────────────────── */
+.pt-portal {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  pointer-events: none;
+  color: #000;
+}
+
+/* Edge rectangles — slide in from each side */
+.pt-rect {
+  position: absolute;
+  background-color: currentColor;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pt-rect--top    { top: 0; left: 0; right: 0; height: 50.5%; transform: translateY(-100%); }
+.pt-rect--bottom { bottom: 0; left: 0; right: 0; height: 50.5%; transform: translateY(100%); }
+.pt-rect--left   { top: 0; bottom: 0; left: 0; width: 50.5%; transform: translateX(-100%); }
+.pt-rect--right  { top: 0; bottom: 0; right: 0; width: 50.5%; transform: translateX(100%); }
+
+.pt-portal--active .pt-rect--top    { transform: translateY(0); }
+.pt-portal--active .pt-rect--bottom { transform: translateY(0); }
+.pt-portal--active .pt-rect--left   { transform: translateX(0); }
+.pt-portal--active .pt-rect--right  { transform: translateX(0); }
+
+.pt-portal--uncovering .pt-rect {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0.05s;
+}
+.pt-portal--uncovering .pt-rect--top    { transform: translateY(-100%); }
+.pt-portal--uncovering .pt-rect--bottom { transform: translateY(100%); }
+.pt-portal--uncovering .pt-rect--left   { transform: translateX(-100%); }
+.pt-portal--uncovering .pt-rect--right  { transform: translateX(100%); }
+
+/* Corner SVG pieces — 60px squares at each corner */
+.pt-corner {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  color: currentColor;
+  transition: opacity 0.35s ease;
+}
+
+.pt-corner-inner {
+  width: 100%;
+  height: 100%;
+}
+
+.pt-corner-inner svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.pt-corner--tl { top: 50%; left: 50%; transform: translate(-100%, -100%); }
+.pt-corner--tr { top: 50%; right: 50%; transform: translate(100%, -100%); }
+.pt-corner--br { bottom: 50%; right: 50%; transform: translate(100%, 100%); }
+.pt-corner--bl { bottom: 50%; left: 50%; transform: translate(-100%, 100%); }
+
+/* Corners are invisible when panels are retracted */
+.pt-portal:not(.pt-portal--active) .pt-corner { opacity: 0; }
+.pt-portal--active .pt-corner { opacity: 1; }
+.pt-portal--uncovering .pt-corner { opacity: 0; transition-delay: 0s; }
+
+/* ─────────────────────────────────────────────
+   Hero — mirrors Metalab's HomepageHero component
+   Full-viewport, dark overlay, title + description
+   positioned separately at bottom of viewport.
+───────────────────────────────────────────── */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 600px;
+  background-color: #000;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* Dark overlay — intensity controlled by --overlay-opacity CSS var */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, var(--overlay-opacity, 0.4));
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Background image / video area */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(
+    ellipse at 60% 40%,
+    #1a1a1a 0%,
+    #0a0a0a 60%,
+    #000 100%
+  );
+}
+
+/* Title container — bottom-left, large, split two lines */
+.hero-title-container {
+  position: relative;
+  z-index: 2;
+  padding: 0 2.5rem 3rem;
+}
+
+@media (min-width: 768px) {
+  .hero-title-container {
+    padding: 0 3.5rem 4rem;
+  }
+}
+
+.hero-title {
+  font-size: clamp(52px, 9vw, 130px);
+  font-weight: 500;
+  color: #fff;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Second title line — Metalab gives it a separate class for potential animation */
+.hero-title-line2 {
+  display: block;
+}
+
+/* Description container — separate positioning, below title visually */
+.hero-description-container {
+  position: relative;
+  z-index: 2;
+  padding: 0 2.5rem 3.5rem;
+  max-width: 520px;
+}
+
+@media (min-width: 768px) {
+  .hero-description-container {
+    padding: 0 3.5rem 5rem;
+    max-width: 600px;
+  }
+}
+
+.hero-description {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
+}
+
+/* ─────────────────────────────────────────────
+   Content reveal — content fades in after preloader
+───────────────────────────────────────────── */
+.content-revealed {
+  animation: contentReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes contentReveal {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─────────────────────────────────────────────
+   Utilities
+───────────────────────────────────────────── */
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
