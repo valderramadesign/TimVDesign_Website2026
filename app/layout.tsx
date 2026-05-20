@@ -30,9 +30,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preload" as="video" href="/WomanPhoneShopping.mp4" type="video/mp4" />
-      </head>
       <body
         className={`${leagueSpartan.variable} ${jetbrainsMono.variable} bg-black antialiased`}
         suppressHydrationWarning

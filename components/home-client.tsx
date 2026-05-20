@@ -137,13 +137,13 @@ export default function HomeClient() {
                 >
                   <div className="flex flex-col gap-[32px] items-end">
                     <div className="text-right">
-                      <p className="text-white font-semibold leading-none font-serif" style={{ fontSize: "72px" }}>
+                      <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "72px" }}>
                         208%
                       </p>
                       <p className="text-white/70 text-[18px] font-light mt-2">Increase in conversion</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-white font-semibold leading-none font-serif" style={{ fontSize: "72px" }}>
+                      <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "72px" }}>
                         $598M/mo.
                       </p>
                       <p className="text-white/70 text-[18px] font-light mt-2">Trending total purchase volume</p>
@@ -195,13 +195,13 @@ export default function HomeClient() {
                 >
                   <div className="flex flex-col gap-[32px] items-end">
                     <div className="text-right">
-                      <p className="text-white font-semibold leading-none font-serif" style={{ fontSize: "72px" }}>
+                      <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "72px" }}>
                         61%
                       </p>
                       <p className="text-white/70 text-[18px] font-light mt-2">Increase in conversion</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-white font-semibold leading-none font-serif" style={{ fontSize: "72px" }}>
+                      <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "72px" }}>
                         $2.3/mo.
                       </p>
                       <p className="text-white/70 text-[18px] font-light mt-2">Average savings</p>
@@ -252,7 +252,7 @@ export default function HomeClient() {
                 >
                   <div className="flex flex-col gap-[32px] items-end">
                     <div className="text-right">
-                      <p className="text-white font-semibold leading-none font-serif" style={{ fontSize: "72px" }}>
+                      <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "72px" }}>
                         257%
                       </p>
                       <p className="text-white/70 text-[18px] font-light mt-2">Increase in efficiency</p>

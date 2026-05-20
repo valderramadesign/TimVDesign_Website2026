@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
+import NextCaseStudyTicker from "@/components/ui/next-case-study-ticker";
 import logo from "@/components/images/Logo.png";
+import montlyInvoicingHeroOnTable from "@/components/images/Monthly invoicing Images/MontlyInvoicingHeroScreen_OnTable.png";
 
 import daySchedule from "@/components/images/Teacher'sApp/DaySchedule.png";
 
@@ -273,6 +275,48 @@ export default function SoloPage() {
               </Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Next Case Study section */}
+      <section className="relative w-full bg-black overflow-hidden pt-[78px] pb-[200px]">
+        <NextCaseStudyTicker color="#066c84" />
+
+        {/* Cards row */}
+        <div className="relative flex gap-[200px] items-center justify-center">
+          {/* PayPal card */}
+          <Link href="/work/paypal" className="flex flex-col gap-[27px] items-start w-[437px]">
+            <div className="relative w-[437px] h-[666px] rounded-[30px] overflow-hidden shrink-0">
+              <img
+                src="/images/next-case-studies/paypal-hero.jpg"
+                alt="PayPal case study"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </div>
+            <p className="font-serif text-[64px] text-white leading-[72px] tracking-[-0.64px]">
+              PayPal
+            </p>
+          </Link>
+
+          {/* Meta card */}
+          <Link href="/work/meta" className="flex flex-col gap-[27px] items-start w-[671px]">
+            <div
+              className="relative rounded-[30px] overflow-hidden w-full"
+              style={{ aspectRatio: "824 / 606" }}
+            >
+              <div className="absolute h-full top-0" style={{ left: "-3.69%", width: "130.67%" }}>
+                <Image
+                  src={montlyInvoicingHeroOnTable}
+                  alt="Meta case study"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
+            <p className="font-serif text-[64px] text-white leading-[72px] tracking-[-0.64px] w-full">
+              Meta
+            </p>
+          </Link>
         </div>
       </section>
     </main>

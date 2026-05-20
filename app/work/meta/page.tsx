@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import NextCaseStudyTicker from "@/components/ui/next-case-study-ticker";
 import logo from "@/components/images/Logo.png";
 import { CardStack, type CardStackItem } from "@/components/ui/card-stack";
 import { AnimatedImpactRow } from "@/components/ui/animated-impact-row";
@@ -363,6 +364,44 @@ export default function MetaPage() {
             />
           </div>
         </ImageSpotlight>
+      </section>
+      {/* Next Case Studies */}
+      <section className="relative w-full bg-black overflow-hidden flex flex-col items-center justify-center pb-[200px] pt-[78px]">
+        <NextCaseStudyTicker color="#5f7611" />
+
+        <div className="flex gap-[200px] items-center justify-center relative">
+          {/* PayPal */}
+          <Link href="/work/paypal" className="flex flex-col gap-[27px] items-start w-[437px]">
+            <div className="h-[666px] w-[437px] relative shrink-0 rounded-[30px] overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                alt="PayPal case study"
+                src="/images/next-case-studies/paypal-hero.jpg"
+                className="absolute pointer-events-none object-cover"
+                style={{ width: 1183, maxWidth: "none", height: "100%", left: -385 }}
+              />
+            </div>
+            <p className="font-serif text-[64px] leading-[72px] text-white tracking-[-0.64px]">
+              PayPal
+            </p>
+          </Link>
+
+          {/* Solo */}
+          <Link href="/work/DailyReportingApp" className="flex flex-col gap-[27px] items-start w-[437px]">
+            <div className="h-[666px] w-[438px] relative rounded-[30px] shrink-0 overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                alt=""
+                src="/images/next-case-studies/solo-phone.png"
+                className="absolute max-w-none pointer-events-none"
+                style={{ height: "113.36%", left: "-0.03%", top: "-6.61%", width: "129.28%" }}
+              />
+            </div>
+            <p className="font-serif text-[64px] leading-[72px] text-white tracking-[-0.64px]">
+              Reporting App
+            </p>
+          </Link>
+        </div>
       </section>
     </main>
   );

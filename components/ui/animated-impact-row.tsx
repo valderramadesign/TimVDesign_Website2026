@@ -36,7 +36,7 @@ export function AnimatedImpactRow({
               className="absolute left-0 top-0 h-full bg-[#230808] rounded-l-[20px] flex items-center px-6 overflow-hidden"
               style={{ width: `calc(${todayPct}% + 15px)` }}
             >
-              <span className="font-[family-name:var(--font-league-spartan)] text-[40px] text-white leading-none whitespace-nowrap">
+              <span className="font-serif font-normal text-[40px] text-white leading-none whitespace-nowrap">
                 {todayLabel}
               </span>
             </div>
@@ -47,7 +47,7 @@ export function AnimatedImpactRow({
               animate={{ width: inView ? `${futurePct - todayPct}%` : 0 }}
               transition={{ duration: 1.4, ease: [0.25, 0.1, 0.25, 1], delay: 0.15 }}
             >
-              <span className="font-[family-name:var(--font-league-spartan)] text-[40px] text-black leading-none whitespace-nowrap">
+              <span className="font-serif font-normal text-[40px] text-black leading-none whitespace-nowrap">
                 {futureLabel}
               </span>
             </motion.div>
@@ -55,7 +55,7 @@ export function AnimatedImpactRow({
         </div>
         {sublabel && (
           <p
-            className="mt-3 text-right font-[family-name:var(--font-league-spartan)] text-[24px] text-[#cef252] tracking-[-0.24px]"
+            className="mt-3 text-right font-serif font-normal text-[24px] text-[#cef252] tracking-[-0.24px]"
             style={{ width: `calc(10px + ${futurePct}%)` }}
           >
             {sublabel}

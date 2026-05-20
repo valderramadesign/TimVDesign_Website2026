@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import NextCaseStudyTicker from "@/components/ui/next-case-study-ticker";
 import Logo from "@/components/ui/logo";
 import VideoOverlay from "@/components/ui/video-overlay";
 import ScrollFade from "@/components/ui/scroll-fade";
@@ -9,7 +10,7 @@ import { AnimatedImpactRow } from "@/components/ui/animated-impact-row";
 import ImageSpotlight from "@/components/ui/image-spotlight";
 import competition from "@/components/images/paypal1-competition.png";
 import montlyInvoicingHeroOnTable from "@/components/images/Monthly invoicing Images/MontlyInvoicingHeroScreen_OnTable.png";
-import phoneWithApp from "@/components/images/Teacher'sApp/PhoneWithApp.png";
+import phoneWithAppRollover from "@/components/images/Teacher'sApp/PhoneWithApp_Rollover.png";
 import workflow from "@/components/images/WorkflowDiagram.svg";
 import circleLg from "@/components/images/paypal1-circle-lg.png";
 import squareBottomLeft from "@/components/images/SquareBottomLeft.png";
@@ -32,6 +33,49 @@ export const metadata = {
 };
 
 const leagueSpartan = "var(--font-league-spartan)";
+
+function ImpactCard({
+  art,
+  product,
+  amount,
+  prefix = "$",
+  suffix,
+  decimals = 0,
+  label,
+}: {
+  art: React.ReactNode;
+  product: string;
+  amount: number;
+  prefix?: string;
+  suffix: string;
+  decimals?: number;
+  label: string;
+}) {
+  return (
+    <div
+      className="flex flex-col items-start gap-[4px] text-white"
+      style={{ fontFamily: "var(--font-league-spartan)" }}
+    >
+      {art}
+      <p className="mt-[8px] text-[32px] font-light leading-[42px] tracking-[-0.32px]">
+        {product}
+      </p>
+      <div className="mt-[10px] flex items-baseline gap-[16px]">
+        <p className="font-serif text-[64px] font-normal leading-none tracking-[-0.64px] whitespace-nowrap">
+          <CounterNumber
+            to={amount}
+            prefix={prefix}
+            suffix={suffix}
+            decimals={decimals}
+          />
+        </p>
+        <p className="text-[24px] font-normal leading-none tracking-[-0.24px]">
+          {label}
+        </p>
+      </div>
+    </div>
+  );
+}
 
 export default function PayPal1CaseStudy() {
   return (
@@ -244,13 +288,13 @@ export default function PayPal1CaseStudy() {
           {/* Bottom Right: closing copy */}
           <ScrollFade direction="right" className="flex flex-col justify-center gap-[56px] pl-[24px]" style={{ fontFamily: leagueSpartan }}>
             <div>
-              <p className="font-serif text-[72px] font-semibold leading-none">208%</p>
+              <p className="font-serif text-[72px] font-normal leading-none">208%</p>
               <p className="mt-1 text-[18px] font-light">
                 Increase in conversion
               </p>
             </div>
             <div>
-              <p className="font-serif text-[72px] font-semibold leading-none">
+              <p className="font-serif text-[72px] font-normal leading-none">
                 $598M/mo.
               </p>
               <p className="mt-1 text-[18px] font-light">
@@ -310,14 +354,14 @@ export default function PayPal1CaseStudy() {
             </h2>
             <div className="flex w-full flex-col gap-[46px]">
               <div className="flex w-[200px] flex-col gap-[5px] text-white">
-                <p className="font-serif text-[72px] font-semibold leading-none">2.3%</p>
+                <p className="font-serif text-[72px] font-normal leading-none">2.3%</p>
                 <p className="text-[18px] font-light leading-none">
                   Increase in conversion
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
               <div className="flex w-[408px] flex-col gap-[5px] text-white">
-                <p className="font-serif text-[72px] font-semibold leading-none">$167M</p>
+                <p className="font-serif text-[72px] font-normal leading-none">$167M</p>
                 <p className="text-[18px] font-light leading-none">
                   Annual iRev
                 </p>
@@ -361,14 +405,14 @@ export default function PayPal1CaseStudy() {
             </h2>
             <div className="flex w-full flex-col gap-[46px]">
               <div className="flex w-[200px] flex-col gap-[5px] text-white">
-                <p className="font-serif text-[72px] font-semibold leading-none">6.3%</p>
+                <p className="font-serif text-[72px] font-normal leading-none">6.3%</p>
                 <p className="text-[18px] font-light leading-none">
                   Increase in conversion
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
               <div className="flex w-[408px] flex-col gap-[5px] text-white">
-                <p className="font-serif text-[72px] font-semibold leading-none">$316M</p>
+                <p className="font-serif text-[72px] font-normal leading-none">$316M</p>
                 <p className="text-[18px] font-light leading-none">
                   Annual iRev
                 </p>
@@ -392,14 +436,14 @@ export default function PayPal1CaseStudy() {
             </h2>
             <div className="flex w-full flex-col gap-[46px]">
               <div className="flex w-[200px] flex-col gap-[5px] text-white">
-                <p className="font-serif text-[72px] font-semibold leading-none">3.1%</p>
+                <p className="font-serif text-[72px] font-normal leading-none">3.1%</p>
                 <p className="text-[18px] font-light leading-none">
                   Increase in conversion
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
               <div className="flex w-[408px] flex-col gap-[5px] text-white">
-                <p className="font-serif text-[72px] font-semibold leading-none">$233M</p>
+                <p className="font-serif text-[72px] font-normal leading-none">$233M</p>
                 <p className="text-[18px] font-light leading-none">
                   Annual iRev
                 </p>
@@ -443,14 +487,14 @@ export default function PayPal1CaseStudy() {
             </h2>
             <div className="flex w-full flex-col gap-[46px]">
               <div className="flex w-[200px] flex-col gap-[5px] text-white">
-                <p className="font-serif text-[72px] font-semibold leading-none">5.3%</p>
+                <p className="font-serif text-[72px] font-normal leading-none">5.3%</p>
                 <p className="text-[18px] font-light leading-none">
                   Increase in conversion
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
               <div className="flex w-[408px] flex-col gap-[5px] text-white">
-                <p className="font-serif text-[72px] font-semibold leading-none">$68M</p>
+                <p className="font-serif text-[72px] font-normal leading-none">$68M</p>
                 <p className="text-[18px] font-light leading-none">
                   Annual iRev
                 </p>
@@ -474,14 +518,14 @@ export default function PayPal1CaseStudy() {
             </h2>
             <div className="flex w-full flex-col gap-[46px]">
               <div className="flex w-[200px] flex-col gap-[5px] text-white">
-                <p className="font-serif text-[72px] font-semibold leading-none">78%</p>
+                <p className="font-serif text-[72px] font-normal leading-none">78%</p>
                 <p className="text-[18px] font-light leading-none">
                   Increase in conversion
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
               <div className="flex w-[408px] flex-col gap-[5px] text-white">
-                <p className="font-serif text-[72px] font-semibold leading-none">$110M</p>
+                <p className="font-serif text-[72px] font-normal leading-none">$110M</p>
                 <p className="text-[18px] font-light leading-none">
                   Average monthly TPV
                 </p>
@@ -503,20 +547,17 @@ export default function PayPal1CaseStudy() {
       </section>
 
       {/* Overall Impact */}
-      <div className="px-[250px] mt-[150px]">
-        <div className="h-px w-full bg-white/30" />
-      </div>
       <section
-        className="bg-black px-[24px] pt-[50px] pb-[150px] flex flex-col items-center"
+        className="bg-black max-w-[1600px] w-full mx-auto px-[37px] pt-[120px] pb-[150px]"
         style={{ fontFamily: leagueSpartan }}
       >
-        <div className="w-full max-w-[1600px]">
+        <div>
         <p className="text-[18px] font-light leading-[28px] tracking-[-0.18px] text-white">
           OVERALL IMPACT
         </p>
-        <div className="mt-[16px] flex flex-col gap-[143px]">
+        <div className="mt-[16px] flex flex-col gap-[73px]">
           {/* US Credit */}
-          <div className="flex flex-col gap-[105px]">
+          <div className="flex flex-col gap-[42px]">
             <h2 className="font-serif text-[64px] leading-none text-white">
               US Credit
             </h2>
@@ -558,7 +599,7 @@ export default function PayPal1CaseStudy() {
           </div>
 
           {/* UK Credit */}
-          <div className="flex flex-col gap-[105px]">
+          <div className="flex flex-col gap-[42px]">
             <h2 className="font-serif text-[64px] leading-none text-white">
               UK Credit
             </h2>
@@ -590,7 +631,7 @@ export default function PayPal1CaseStudy() {
                   to={784}
                   prefix="$"
                   suffix="M/yr."
-                  className="font-serif text-[96px] font-semibold leading-[72px] tracking-[-0.96px] whitespace-nowrap"
+                  className="font-serif text-[96px] font-normal leading-[72px] tracking-[-0.96px] whitespace-nowrap"
                 />
               </div>
             </div>
@@ -598,24 +639,10 @@ export default function PayPal1CaseStudy() {
         </div>
         </div>
       </section>
-      <div className="px-[250px]">
-        <div className="h-px bg-white/30 mb-[50px]" />
-      </div>
 
       {/* Next Case Studies */}
       <section className="relative w-full overflow-hidden bg-black pb-[200px] pt-[78px]">
-        {/* Watermark */}
-        <p
-          className="pointer-events-none absolute left-[29px] select-none text-[#4d2d8d]"
-          style={{
-            fontFamily: leagueSpartan,
-            fontSize: "250px",
-            lineHeight: "1",
-            top: "296px",
-          }}
-        >
-          Next Case Study.
-        </p>
+        <NextCaseStudyTicker color="#4d2d8d" />
 
         <div className="relative flex items-center justify-center gap-[200px]">
           {/* Meta */}
@@ -625,11 +652,11 @@ export default function PayPal1CaseStudy() {
                 src={montlyInvoicingHeroOnTable}
                 alt="Meta case study preview"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                 sizes="671px"
               />
             </div>
-            <p className="font-serif text-[64px] leading-[72px] tracking-[-0.64px] text-white">
+            <p className="font-serif text-[64px] leading-[72px] tracking-[-0.64px] text-white transition-opacity duration-300 group-hover:opacity-70">
               Meta
             </p>
           </Link>
@@ -638,63 +665,19 @@ export default function PayPal1CaseStudy() {
           <Link href="/work/DailyReportingApp" className="group flex w-[437px] shrink-0 flex-col gap-[27px]">
             <div className="relative h-[666px] w-full overflow-hidden rounded-[30px]">
               <Image
-                src={phoneWithApp}
+                src={phoneWithAppRollover}
                 alt="Solo case study preview"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                 sizes="437px"
               />
             </div>
-            <p className="font-serif text-[64px] leading-[72px] tracking-[-0.64px] text-white">
-              Solo
+            <p className="font-serif text-[64px] leading-[72px] tracking-[-0.64px] text-white transition-opacity duration-300 group-hover:opacity-70">
+              Reporting App
             </p>
           </Link>
         </div>
       </section>
     </main>
-  );
-}
-
-
-function ImpactCard({
-  art,
-  product,
-  amount,
-  prefix = "$",
-  suffix,
-  decimals = 0,
-  label,
-}: {
-  art: React.ReactNode;
-  product: string;
-  amount: number;
-  prefix?: string;
-  suffix: string;
-  decimals?: number;
-  label: string;
-}) {
-  return (
-    <div
-      className="flex flex-col items-start gap-[4px] text-white"
-      style={{ fontFamily: "var(--font-league-spartan)" }}
-    >
-      {art}
-      <p className="mt-[8px] text-[32px] font-light leading-[42px] tracking-[-0.32px]">
-        {product}
-      </p>
-      <div className="mt-[10px] flex items-baseline gap-[16px]">
-        <p className="font-serif text-[64px] font-semibold leading-none tracking-[-0.64px] whitespace-nowrap">
-          <CounterNumber
-            to={amount}
-            prefix={prefix}
-            suffix={suffix}
-            decimals={decimals}
-          />
-        </p>
-        <p className="text-[24px] font-normal leading-none tracking-[-0.24px]">
-          {label}
-        </p>
-      </div>
-    </div>
   );
 }

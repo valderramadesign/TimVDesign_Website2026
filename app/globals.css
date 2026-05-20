@@ -13,3 +13,8 @@
   --font-serif: "Libertinus Serif Display", ui-serif, Georgia, serif;
   --font-mono: ui-monospace, monospace;
 }
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
