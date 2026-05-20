@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Libertinus Serif Display";
+  src: url("/fonts/LibertinusSerif_OTF/LibertinusSerifDisplay-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: var(--font-league-spartan), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Libertinus Serif Display", ui-serif, Georgia, serif;
+  --font-mono: ui-monospace, monospace;
+}
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
