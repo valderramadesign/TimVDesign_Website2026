@@ -108,33 +108,29 @@ export default function HomeClient() {
         {/* Main homepage content — compresses as resume opens */}
         <div className="flex-1 min-w-0 relative min-h-screen">
           {/* Background */}
-          {showPayPal ? (
-            <div className="absolute inset-0 z-[-10] bg-black">
-              <video
-                src="/WomanPhoneShopping.mp4"
-                autoPlay loop muted playsInline suppressHydrationWarning
-                className="absolute inset-0 w-full h-full object-cover opacity-50"
-              />
-            </div>
-          ) : showMeta ? (
-            <div className="absolute inset-0 z-[-10] bg-black">
-              <video
-                src="/CreditCardDeclineMOV.mp4"
-                autoPlay loop muted playsInline suppressHydrationWarning
-                className="absolute inset-0 w-full h-full object-cover opacity-30"
-              />
-            </div>
-          ) : showSolo ? (
-            <div className="absolute inset-0 z-[-10] bg-black">
-              <video
-                src="/videos/TeacherRecordingActivity/TeacherRecordingActivity.mp4"
-                autoPlay loop muted playsInline suppressHydrationWarning
-                className="absolute inset-0 w-full h-full object-cover opacity-30"
-              />
-            </div>
-          ) : (
-            <LiquidMetalBackground />
-          )}
+          {!showPayPal && !showMeta && !showSolo && <LiquidMetalBackground />}
+          {/* All 3 video backgrounds always in the DOM so they preload immediately */}
+          <div className={`absolute inset-0 z-[-10] bg-black ${showPayPal ? "opacity-100" : "opacity-0"}`}>
+            <video
+              src="/WomanPhoneShopping.mp4"
+              autoPlay loop muted playsInline preload="auto" suppressHydrationWarning
+              className="absolute inset-0 w-full h-full object-cover opacity-50"
+            />
+          </div>
+          <div className={`absolute inset-0 z-[-10] bg-black ${showMeta ? "opacity-100" : "opacity-0"}`}>
+            <video
+              src="/CreditCardDeclineMOV.mp4"
+              autoPlay loop muted playsInline preload="auto" suppressHydrationWarning
+              className="absolute inset-0 w-full h-full object-cover opacity-30"
+            />
+          </div>
+          <div className={`absolute inset-0 z-[-10] bg-black ${showSolo ? "opacity-100" : "opacity-0"}`}>
+            <video
+              src="/videos/TeacherRecordingActivity/TeacherRecordingActivity.mp4"
+              autoPlay loop muted playsInline preload="auto" suppressHydrationWarning
+              className="absolute inset-0 w-full h-full object-cover opacity-30"
+            />
+          </div>
 
           <main className="relative z-10 flex flex-col justify-between p-[24px] h-screen">
             <div className="flex flex-col">
@@ -239,7 +235,7 @@ export default function HomeClient() {
                     exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <Image src={metaRollover} alt="Meta" className="w-full h-full object-cover" />
+                    <Image src={metaRollover} alt="Meta" className="w-full h-full object-cover" priority />
                   </motion.div>
                 </motion.div>
               )}
@@ -335,7 +331,7 @@ export default function HomeClient() {
               Selected work
             </p>
             <ul className="flex flex-col gap-4 sm:gap-5">
-              {MOBILE_CARDS.map((card) => (
+              {MOBILE_CARDS.map((card, i) => (
                 <li key={card.id}>
                   <Link
                     href={card.href}
@@ -349,6 +345,7 @@ export default function HomeClient() {
                         sizes="(max-width: 768px) 100vw, 720px"
                         className="object-cover"
                         style={{ objectPosition: card.objectPosition }}
+                        priority={i < 2}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                       <div className="absolute left-5 top-5 rounded-full bg-black/60 px-3 py-1 text-xs text-white/90 backdrop-blur-md">

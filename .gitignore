@@ -7,3 +7,4 @@ dist
 .vite/
 components/videos/.claude/
 .claude
+.vercel

@@ -34,6 +34,7 @@ export default function HeroVideo({ src }: { src: string }) {
       autoPlay
       muted
       playsInline
+      preload="auto"
       suppressHydrationWarning
       className="absolute inset-0 h-full w-full object-cover"
     />

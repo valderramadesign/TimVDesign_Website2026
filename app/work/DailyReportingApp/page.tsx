@@ -85,6 +85,7 @@ export default function SoloPage() {
           loop
           muted
           playsInline
+          preload="auto"
           className="w-full h-auto object-cover"
         />
       </section>
@@ -121,6 +122,7 @@ export default function SoloPage() {
           loop
           muted
           playsInline
+          preload="auto"
           className="w-full h-auto object-cover"
         />
         <div
