@@ -6,3 +6,4 @@ dist
 .env*
 .vite/
 components/videos/.claude/
+.claude

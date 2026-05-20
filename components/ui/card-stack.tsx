@@ -25,6 +25,9 @@ export type CardStackProps<T extends CardStackItem> = {
   maxVisible?: number;
   cardWidth?: number;
   cardHeight?: number;
+  mobileCardWidth?: number;
+  mobileCardHeight?: number;
+  mobileMaxVisible?: number;
   overlap?: number;
   spreadDeg?: number;
   perspectivePx?: number;
@@ -45,6 +48,18 @@ export type CardStackProps<T extends CardStackItem> = {
   renderCard?: (item: T, state: { active: boolean }) => React.ReactNode;
 };
 
+function useIsMobile(breakpoint = 1024) {
+  const [isMobile, setIsMobile] = React.useState(false);
+  React.useEffect(() => {
+    const mq = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, [breakpoint]);
+  return isMobile;
+}
+
 function wrapIndex(n: number, len: number) {
   if (len <= 0) return 0;
   return ((n % len) + len) % len;
@@ -60,14 +75,17 @@ function signedOffset(i: number, active: number, len: number, loop: boolean) {
 export function CardStack<T extends CardStackItem>({
   items,
   initialIndex = 0,
-  maxVisible = 7,
-  cardWidth = 520,
-  cardHeight = 320,
+  maxVisible: maxVisibleProp = 7,
+  cardWidth: cardWidthProp = 520,
+  cardHeight: cardHeightProp = 320,
+  mobileCardWidth,
+  mobileCardHeight,
+  mobileMaxVisible,
   overlap = 0.48,
-  spreadDeg = 48,
+  spreadDeg: spreadDegProp = 48,
   perspectivePx = 1100,
-  depthPx = 140,
-  tiltXDeg = 12,
+  depthPx: depthPxProp = 140,
+  tiltXDeg: tiltXDegProp = 12,
   activeLiftPx = 22,
   activeScale = 1.03,
   inactiveScale = 0.94,
@@ -83,7 +101,15 @@ export function CardStack<T extends CardStackItem>({
   renderCard,
 }: CardStackProps<T>) {
   const reduceMotion = useReducedMotion();
+  const isMobile = useIsMobile();
   const len = items.length;
+
+  const cardWidth = isMobile && mobileCardWidth ? mobileCardWidth : cardWidthProp;
+  const cardHeight = isMobile && mobileCardHeight ? mobileCardHeight : cardHeightProp;
+  const maxVisible = isMobile && mobileMaxVisible ? mobileMaxVisible : maxVisibleProp;
+  const spreadDeg = isMobile && mobileMaxVisible === 1 ? 0 : spreadDegProp;
+  const depthPx = isMobile && mobileMaxVisible === 1 ? 0 : depthPxProp;
+  const tiltXDeg = isMobile && mobileMaxVisible === 1 ? 0 : tiltXDegProp;
 
   const [active, setActive] = React.useState(() =>
     wrapIndex(initialIndex, len),

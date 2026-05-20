@@ -36,6 +36,18 @@ function signedOffset(i: number, active: number, len: number) {
   return Math.abs(alt) < Math.abs(raw) ? alt : raw;
 }
 
+function useIsMobile(breakpoint = 1024) {
+  const [isMobile, setIsMobile] = React.useState(false);
+  React.useEffect(() => {
+    const mq = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, [breakpoint]);
+  return isMobile;
+}
+
 export function ActivityFlowCarousel({
   items,
   title,
@@ -45,6 +57,7 @@ export function ActivityFlowCarousel({
   className,
 }: Props) {
   const reduceMotion = useReducedMotion();
+  const isMobile = useIsMobile();
   const len = items.length;
   const [active, setActive] = React.useState(0);
   const [hovering, setHovering] = React.useState(false);
@@ -66,9 +79,10 @@ export function ActivityFlowCarousel({
 
   if (!len) return null;
 
-  // Phone aspect ~ 9:19.5 — fix a card size and let CSS scale stage on small screens.
-  const cardWidth = 320;
-  const cardHeight = 680;
+  // Phone aspect ~ 9:19.5 — shrink card on mobile so neighbors don't overflow.
+  const cardWidth = isMobile ? 220 : 320;
+  const cardHeight = isMobile ? 468 : 680;
+  const maxAbs = isMobile ? 0 : 2;
 
   return (
     <div
@@ -114,13 +128,13 @@ export function ActivityFlowCarousel({
             {items.map((item, i) => {
               const off = signedOffset(i, active, len);
               const abs = Math.abs(off);
-              if (abs > 2) return null;
+              if (abs > maxAbs) return null;
 
               const isActive = abs === 0;
               const x = off * (cardWidth * 0.62);
               const scale = isActive ? 1 : 0.78 - (abs - 1) * 0.08;
-              const rotateY = off === 0 ? 0 : off > 0 ? -22 : 22;
-              const z = -abs * 160;
+              const rotateY = isMobile ? 0 : off === 0 ? 0 : off > 0 ? -22 : 22;
+              const z = isMobile ? 0 : -abs * 160;
               const blurPx = isActive ? 0 : Math.min(10, 4 + abs * 3);
               const opacity = abs <= 1 ? 1 : 0.35;
               const zIndex = 100 - abs;
@@ -167,7 +181,7 @@ export function ActivityFlowCarousel({
                       src={item.src}
                       alt={item.alt}
                       fill
-                      sizes="320px"
+                      sizes={isMobile ? "220px" : "320px"}
                       className="object-cover"
                       draggable={false}
                       priority={isActive}
@@ -183,7 +197,7 @@ export function ActivityFlowCarousel({
           type="button"
           onClick={prev}
           aria-label="Previous screen"
-          className="absolute left-[24px] top-1/2 z-[200] -translate-y-1/2 flex h-[52px] w-[52px] items-center justify-center rounded-full border border-white/15 bg-white/5 text-white backdrop-blur-md transition-colors hover:bg-white/10 hover:border-white/30"
+          className="absolute left-3 lg:left-[24px] top-1/2 z-[200] -translate-y-1/2 flex h-11 w-11 lg:h-[52px] lg:w-[52px] items-center justify-center rounded-full border border-white/15 bg-white/5 text-white backdrop-blur-md transition-colors hover:bg-white/10 hover:border-white/30"
         >
           <ChevronLeft className="h-6 w-6" />
         </button>
@@ -191,7 +205,7 @@ export function ActivityFlowCarousel({
           type="button"
           onClick={next}
           aria-label="Next screen"
-          className="absolute right-[24px] top-1/2 z-[200] -translate-y-1/2 flex h-[52px] w-[52px] items-center justify-center rounded-full border border-white/15 bg-white/5 text-white backdrop-blur-md transition-colors hover:bg-white/10 hover:border-white/30"
+          className="absolute right-3 lg:right-[24px] top-1/2 z-[200] -translate-y-1/2 flex h-11 w-11 lg:h-[52px] lg:w-[52px] items-center justify-center rounded-full border border-white/15 bg-white/5 text-white backdrop-blur-md transition-colors hover:bg-white/10 hover:border-white/30"
         >
           <ChevronRight className="h-6 w-6" />
         </button>

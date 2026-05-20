@@ -17,10 +17,10 @@ export default function NextCaseStudyTicker({ color }: NextCaseStudyTickerProps)
           animation: "ticker-scroll 13.5s linear infinite",
           willChange: "transform",
           fontFamily: "var(--font-league-spartan)",
-          fontSize: "250px",
+          fontSize: "clamp(96px, 24vw, 250px)",
           lineHeight: "1",
           color,
-          paddingTop: "306px",
+          paddingTop: "clamp(80px, 30vw, 306px)",
         }}
       >
         {/* Duplicate for seamless loop */}

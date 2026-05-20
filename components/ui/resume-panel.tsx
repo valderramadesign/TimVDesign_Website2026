@@ -4,7 +4,7 @@ const jb = "var(--font-jetbrains-mono)";
 
 export default function ResumePanel() {
   return (
-    <div className="h-screen w-[717px] overflow-y-auto overflow-x-hidden bg-[#fcf5e0] shrink-0">
+    <div className="lg:h-screen w-full lg:w-[717px] overflow-y-auto overflow-x-hidden bg-[#fcf5e0] shrink-0">
       {/* Editor-window line-number styling — CSS counter per <p> */}
       <style>{`
         .resume-editor { counter-reset: line; }

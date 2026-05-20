@@ -34,8 +34,8 @@ export default function SoloPage() {
   return (
     <main className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* Top section */}
-      <section className="w-full bg-black p-[24px]">
-        <div className="flex flex-col gap-[62px]">
+      <section className="w-full bg-black p-5 lg:p-[24px]">
+        <div className="flex flex-col gap-10 lg:gap-[62px]">
           <header className="flex w-full items-center justify-between shrink-0">
             <Link
               href="/"
@@ -49,28 +49,28 @@ export default function SoloPage() {
             </Link>
           </header>
 
-          <div className="flex w-[1335px] max-w-full flex-col gap-[14px]" style={{ fontFamily: leagueSpartan }}>
+          <div className="flex w-full lg:w-[1335px] max-w-full flex-col gap-[14px]" style={{ fontFamily: leagueSpartan }}>
             <p className="text-[18px] font-light leading-none">Rapid App Innovation</p>
-            <h1 className="font-serif text-[96px] leading-[96px] tracking-[-0.015em]">
+            <h1 className="font-serif text-[clamp(40px,10vw,96px)] lg:text-[96px] leading-[1.04] lg:leading-[96px] tracking-[-0.015em]">
               Streamlining and Automating Daily Reporting
             </h1>
           </div>
 
-          <div className="flex w-full items-start gap-[184px] py-[42px]" style={{ fontFamily: leagueSpartan }}>
-            <div className="flex w-[861px] max-w-full flex-col gap-[14px]">
+          <div className="flex w-full flex-col lg:flex-row items-start gap-10 lg:gap-[184px] py-0 lg:py-[42px]" style={{ fontFamily: leagueSpartan }}>
+            <div className="flex w-full lg:w-[861px] max-w-full flex-col gap-[14px]">
               <p className="text-[18px] font-light leading-none">My Role</p>
-              <p className="text-[32px] font-light leading-[42px]">
+              <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">
                 Research, design, and development Replit, Claude, and Chat GPT
               </p>
             </div>
-            <div className="flex items-start gap-[80px] ml-auto">
+            <div className="flex flex-col sm:flex-row items-start gap-8 sm:gap-[80px] lg:ml-auto">
               <div className="flex flex-col gap-[14px]">
                 <p className="text-[18px] font-light leading-none">Timeline</p>
-                <p className="text-[32px] font-light leading-[42px]">3 weeks</p>
+                <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">3 weeks</p>
               </div>
               <div className="flex flex-col gap-[14px]">
                 <p className="text-[18px] font-light leading-none">Platforms</p>
-                <p className="text-[32px] font-light leading-[42px]">Mobile</p>
+                <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">Mobile</p>
               </div>
             </div>
           </div>
@@ -90,10 +90,10 @@ export default function SoloPage() {
       </section>
 
       {/* Introduction / Problem */}
-      <section className="w-full px-[24px] pt-[24px] pb-[125px]" style={{ fontFamily: leagueSpartan }}>
+      <section className="w-full px-5 lg:px-[24px] pt-10 lg:pt-[24px] pb-16 lg:pb-[125px]" style={{ fontFamily: leagueSpartan }}>
         <div className="flex w-full max-w-[1539px] flex-col gap-[14px]">
           <p className="text-[18px] font-light leading-none">Problem</p>
-          <div className="text-[48px] font-light leading-[56px] space-y-[56px]">
+          <div className="text-[clamp(20px,4.5vw,48px)] lg:text-[48px] font-light leading-[1.2] lg:leading-[56px] space-y-8 lg:space-y-[56px]">
             <p>
               Schools need a more efficient, scalable way to document and communicate each child&rsquo;s daily activities without relying on a labor-intensive end-of-day reporting process. Parents need timely visibility into their child&rsquo;s school day so they feel informed, reassured, and confident about their child&rsquo;s safety and well-being.
             </p>
@@ -114,7 +114,7 @@ export default function SoloPage() {
       </section>
 
       {/* Meeting Movie — interview image + caption */}
-      <section className="w-full flex flex-col items-end gap-[24px] pt-[167px] pb-[200px]">
+      <section className="w-full flex flex-col lg:items-end gap-6 lg:gap-[24px] pt-16 lg:pt-[167px] pb-24 lg:pb-[200px]">
         <video
           src="/videos/TeacherAppInterview.mp4"
           autoPlay
@@ -124,10 +124,10 @@ export default function SoloPage() {
           className="w-full h-auto object-cover"
         />
         <div
-          className="flex flex-col items-start pr-[24px]"
+          className="flex flex-col items-start px-5 lg:px-0 lg:pr-[24px]"
           style={{ fontFamily: leagueSpartan }}
         >
-          <div className="w-[466px] text-[18px] font-light text-white leading-[21px] space-y-[21px]">
+          <div className="w-full max-w-[466px] lg:w-[466px] text-[18px] font-light text-white leading-[21px] space-y-[21px]">
             <p>
               Used ChatGPT to develop a detailed research plan, then carried it out by interviewing teachers and school owners. I also used ChatGPT to synthesize the findings into clear takeaways that informed multiple design solutions.
             </p>
@@ -146,15 +146,15 @@ export default function SoloPage() {
       </section>
 
       {/* Competitive Analysis */}
-      <section className="w-full flex flex-col items-end pb-[200px]">
-        <div className="flex w-[1476px] max-w-full flex-col gap-[157px] pr-[24px]">
+      <section className="w-full flex flex-col lg:items-end pb-24 lg:pb-[200px]">
+        <div className="flex w-full max-w-[1476px] flex-col gap-16 lg:gap-[157px] px-5 lg:px-0 lg:pr-[24px]">
           <div className="flex flex-col gap-[14px] w-full max-w-[1279px]" style={{ fontFamily: leagueSpartan }}>
             <p className="text-[18px] font-light leading-none">Competitive analysis</p>
-            <div className="text-[32px] font-light leading-[42px] w-full max-w-[700px]">
+            <div className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px] w-full max-w-[700px]">
               <p>
                 Competitive analysis with ChatGPT and Claude Cowork. These were some high-level quick takeaways.
               </p>
-              <ul className="list-disc pl-[48px]">
+              <ul className="list-disc pl-8 lg:pl-[48px]">
                 <li>Fast teacher logging</li>
                 <li>Strong parent communication</li>
                 <li>Bulk actions for efficiency</li>
@@ -175,7 +175,7 @@ export default function SoloPage() {
               className="object-cover"
               aria-hidden
             />
-            <div className="relative z-10 w-full h-full flex items-center justify-center px-[114px] py-[109px]">
+            <div className="relative z-10 w-full h-full flex items-center justify-center px-6 lg:px-[114px] py-6 lg:py-[109px]">
               <a
                 href="/Competitive Analysis - Children Activity Apps.pdf"
                 target="_blank"
@@ -196,16 +196,15 @@ export default function SoloPage() {
       </section>
 
       {/* ActivityFlow carousel */}
-      <section className="w-full pb-[200px] pt-[40px]">
+      <section className="w-full pb-24 lg:pb-[200px] pt-10 lg:pt-[40px]">
         <ActivityFlowCarousel items={activityFlowItems} />
       </section>
 
       {/* End — yellow-hand panel + closing copy */}
-      <section className="w-full flex items-start gap-[24px] pb-[120px] pr-[24px]">
+      <section className="w-full flex flex-col lg:flex-row items-start gap-10 lg:gap-[24px] pb-20 lg:pb-[120px] px-5 lg:px-0 lg:pr-[24px]">
         {/* Left: yellow background + phone + QR code */}
         <div
-          className="relative shrink-0 overflow-hidden"
-          style={{ width: "985px", height: "1230px" }}
+          className="relative w-full lg:w-[985px] aspect-[985/1230] lg:aspect-auto lg:h-[1230px] lg:shrink-0 overflow-hidden"
         >
           <Image
             src={backgroundHandYellow}
@@ -214,8 +213,8 @@ export default function SoloPage() {
             className="object-cover"
             aria-hidden
           />
-          <div className="relative z-10 w-full h-full flex items-start justify-center pt-[92px]">
-            <div className="relative" style={{ width: "450px", height: "943.792px" }}>
+          <div className="relative z-10 w-full h-full flex items-start justify-center pt-[7%] lg:pt-[92px]">
+            <div className="relative w-[46%] lg:w-[450px] aspect-[450/944] lg:aspect-auto lg:h-[943.792px]">
               <Image
                 src={home}
                 alt="App home screen"
@@ -225,8 +224,7 @@ export default function SoloPage() {
             </div>
           </div>
           <div
-            className="absolute z-20"
-            style={{ width: "146px", height: "145px", right: "24px", bottom: "24px" }}
+            className="absolute z-20 w-[15%] lg:w-[146px] aspect-square lg:aspect-auto lg:h-[145px] right-[2.5%] lg:right-[24px] bottom-[2.5%] lg:bottom-[24px]"
           >
             <Image
               src={qrCode}
@@ -245,7 +243,7 @@ export default function SoloPage() {
           <div className="flex flex-col gap-[32px] w-full">
             <div className="flex flex-col gap-[14px] text-white">
               <p className="text-[18px] font-light leading-none">Things I did:</p>
-              <ul className="text-[32px] font-light leading-[42px] list-disc pl-[48px] space-y-[42px]">
+              <ul className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px] list-disc pl-6 lg:pl-[48px] space-y-6 lg:space-y-[42px]">
                 <li>
                   Automate activity reporting through a simple teacher workflow that allows staff to select an activity, choose the child or children involved, and add a note when needed. Once submitted, the update is automatically logged in each child&rsquo;s activity feed for parents to view.
                 </li>
@@ -260,15 +258,13 @@ export default function SoloPage() {
                 </li>
               </ul>
             </div>
-            <div className="flex h-[61px] items-center pl-[42px]">
+            <div className="flex items-center lg:pl-[42px]">
               <Link
                 href="/"
-                className="inline-flex items-center justify-center rounded-full bg-[#484848] px-[30px] py-[16px] text-[32px] font-normal whitespace-nowrap text-white transition-colors duration-150 hover:bg-[#606060]"
+                className="inline-flex items-center justify-center rounded-full bg-[#484848] px-6 lg:px-[30px] py-3 lg:py-[16px] text-xl lg:text-[32px] font-normal whitespace-nowrap text-white transition-colors duration-150 hover:bg-[#606060]"
                 style={{
                   fontFamily: leagueSpartan,
                   lineHeight: 1,
-                  paddingTop: "18px",
-                  paddingBottom: "14px",
                 }}
               >
                 More work
@@ -279,27 +275,27 @@ export default function SoloPage() {
       </section>
 
       {/* Next Case Study section */}
-      <section className="relative w-full bg-black overflow-hidden pt-[78px] pb-[200px]">
+      <section className="relative w-full bg-black overflow-hidden pt-16 lg:pt-[78px] pb-24 lg:pb-[200px]">
         <NextCaseStudyTicker color="#066c84" />
 
         {/* Cards row */}
-        <div className="relative flex gap-[200px] items-center justify-center">
+        <div className="relative flex flex-col lg:flex-row items-center lg:justify-center gap-12 lg:gap-[200px] px-5 lg:px-0">
           {/* PayPal card */}
-          <Link href="/work/paypal" className="flex flex-col gap-[27px] items-start w-[437px]">
-            <div className="relative w-[437px] h-[666px] rounded-[30px] overflow-hidden shrink-0">
+          <Link href="/work/paypal" className="group flex w-full max-w-[437px] lg:w-[437px] flex-col gap-4 lg:gap-[27px] items-start">
+            <div className="relative aspect-[437/666] w-full lg:w-[437px] lg:h-[666px] rounded-[30px] overflow-hidden lg:shrink-0">
               <img
                 src="/images/next-case-studies/paypal-hero.jpg"
                 alt="PayPal case study"
                 className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
-            <p className="font-serif text-[64px] text-white leading-[72px] tracking-[-0.64px]">
+            <p className="font-serif text-[clamp(36px,9vw,64px)] lg:text-[64px] text-white leading-[1.1] lg:leading-[72px] tracking-[-0.64px]">
               PayPal
             </p>
           </Link>
 
           {/* Meta card */}
-          <Link href="/work/meta" className="flex flex-col gap-[27px] items-start w-[671px]">
+          <Link href="/work/meta" className="group flex w-full max-w-[671px] lg:w-[671px] flex-col gap-4 lg:gap-[27px] items-start">
             <div
               className="relative rounded-[30px] overflow-hidden w-full"
               style={{ aspectRatio: "824 / 606" }}
@@ -313,7 +309,7 @@ export default function SoloPage() {
                 />
               </div>
             </div>
-            <p className="font-serif text-[64px] text-white leading-[72px] tracking-[-0.64px] w-full">
+            <p className="font-serif text-[clamp(36px,9vw,64px)] lg:text-[64px] text-white leading-[1.1] lg:leading-[72px] tracking-[-0.64px] w-full">
               Meta
             </p>
           </Link>
