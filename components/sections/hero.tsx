@@ -24,7 +24,7 @@ export default function Hero({ title, titleKey, showTagline = true }: HeroProps)
           <motion.h1
             key={titleKey ?? (typeof title === "string" ? title : "default")}
             className="flex-1 min-w-0 text-white leading-[0.96] tracking-[-0.015em] not-italic font-serif"
-            style={{ fontSize: "96px" }}
+            style={{ fontSize: "77px" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

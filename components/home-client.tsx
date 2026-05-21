@@ -156,25 +156,25 @@ export default function HomeClient() {
               {showPayPal && (
                 <motion.div
                   key="paypal-panel"
-                  className="absolute top-[139px] right-[69px] z-[5] flex items-center gap-[50px]"
+                  className="absolute top-[139px] right-[69px] z-[5] flex items-center gap-[40px]"
                   initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
                   <motion.div
-                    className="w-[438px] shrink-0"
+                    className="w-[350px] shrink-0"
                     initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                     transition={{ duration: 0.35, delay: 0.25 }}
                   >
-                    <div className="flex flex-col gap-[32px] items-end">
+                    <div className="flex flex-col gap-[26px] items-end">
                       <div className="text-right">
-                        <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "72px" }}>208%</p>
+                        <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>208%</p>
                         <p className="text-white/70 text-[18px] font-light mt-2">Increase in conversion</p>
                       </div>
                       <div className="text-right">
-                        <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "72px" }}>$598M/mo.</p>
+                        <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>$598M/mo.</p>
                         <p className="text-white/70 text-[18px] font-light mt-2">Trending total purchase volume</p>
                       </div>
-                      <p className="text-white/80 text-[24px] font-light leading-[30px] text-right">
+                      <p className="text-white/80 text-[19px] font-light leading-[24px] text-right">
                         Led the design strategy for a CEO-prioritized PayPal initiative
                         to optimize 6 credit products across the United States and United
                         Kingdom, improving conversion, total purchase volume, and revenue
@@ -184,7 +184,7 @@ export default function HomeClient() {
                   </motion.div>
 
                   <motion.div
-                    className="w-[438px] shrink-0"
+                    className="w-[350px] shrink-0"
                     initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
                     animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
                     exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
@@ -201,25 +201,25 @@ export default function HomeClient() {
               {showMeta && (
                 <motion.div
                   key="meta-panel"
-                  className="absolute top-[138px] right-[69px] z-[5] flex items-center gap-[50px]"
+                  className="absolute top-[148px] right-[69px] z-[5] flex items-center gap-[40px]"
                   initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
                   <motion.div
-                    className="w-[438px] shrink-0"
+                    className="w-[350px] shrink-0"
                     initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                     transition={{ duration: 0.35, delay: 0.25 }}
                   >
-                    <div className="flex flex-col gap-[32px] items-end">
+                    <div className="flex flex-col gap-[26px] items-end">
                       <div className="text-right">
-                        <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "72px" }}>61%</p>
+                        <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>61%</p>
                         <p className="text-white/70 text-[18px] font-light mt-2">Increase in conversion</p>
                       </div>
                       <div className="text-right">
-                        <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "72px" }}>$2.3/mo.</p>
+                        <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>$2.3/mo.</p>
                         <p className="text-white/70 text-[18px] font-light mt-2">Average savings</p>
                       </div>
-                      <p className="text-white/80 text-[24px] font-light leading-[30px] text-right">
+                      <p className="text-white/80 text-[19px] font-light leading-[24px] text-right">
                         Increased high-spend advertiser adoption by optimizing banner
                         messaging and placement, simplifying the flow (9 → 3 screens)
                         to lift conversion from 32% to 93%, and enabling automatic
@@ -229,7 +229,7 @@ export default function HomeClient() {
                   </motion.div>
 
                   <motion.div
-                    className="w-[670px] h-[492px] shrink-0 rounded-[30px] overflow-hidden"
+                    className="w-[536px] h-[394px] shrink-0 rounded-[30px] overflow-hidden"
                     initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
                     animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
                     exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
@@ -246,21 +246,21 @@ export default function HomeClient() {
               {showSolo && (
                 <motion.div
                   key="solo-panel"
-                  className="absolute top-[143px] right-[93px] z-[5] flex items-center gap-[50px]"
+                  className="absolute top-[143px] right-[93px] z-[5] flex items-center gap-[40px]"
                   initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
                   <motion.div
-                    className="w-[438px] shrink-0"
+                    className="w-[350px] shrink-0"
                     initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                     transition={{ duration: 0.35, delay: 0.25 }}
                   >
-                    <div className="flex flex-col gap-[32px] items-end">
+                    <div className="flex flex-col gap-[26px] items-end">
                       <div className="text-right">
-                        <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "72px" }}>257%</p>
+                        <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>257%</p>
                         <p className="text-white/70 text-[18px] font-light mt-2">Increase in efficiency</p>
                       </div>
-                      <p className="text-white/80 text-[24px] font-light leading-[30px] text-right">
+                      <p className="text-white/80 text-[19px] font-light leading-[24px] text-right">
                         Designed and developed an end-to-end mobile app that
                         automates daily school activity reporting, gives parents
                         real-time visibility into their child&apos;s day, and
@@ -273,7 +273,7 @@ export default function HomeClient() {
                   </motion.div>
 
                   <motion.div
-                    className="w-[362px] h-[582px] shrink-0 rounded-[30px] overflow-hidden"
+                    className="w-[290px] h-[466px] shrink-0 rounded-[30px] overflow-hidden"
                     initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
                     animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
                     exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
