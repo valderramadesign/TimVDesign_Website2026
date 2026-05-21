@@ -103,7 +103,7 @@ export default function ResumePanel() {
               <span className="text-[#7c8896]">what I do</span>
               <span className="text-black">=</span>
               <span className="text-[#fd0]">{`{`}</span>
-              <span className="text-black">&quot;I turn complex customer, business, and technical problems into clear product direction using an AI-first workflow.&quot;</span>
+              <span className="text-black">&quot;I turn complex customer, business, and technical problems into clear product direction. I use an AI workflow with tools such as Figma, Claude, Replit, and ChatGPT for a more efficient and effective delivery process.&quot;</span>
               <span className="text-[#fd0]">{`}`}</span>
             </p>
 
@@ -140,7 +140,7 @@ export default function ResumePanel() {
               <div className="text-[14px] leading-[21px] text-black">
                 <p className="mb-0">
                   <span className="text-[#fd0]">{`{`}</span>
-                  &quot;Led design strategy to reduce checkout payment friction through credential sharing and autopay, <span style={{ background: "rgba(255,180,0,0.3)", borderRadius: "2px" }}>increasing iRev by 6.3% and a boost in credential coverage of 36%</span>.
+                  &quot;Led design strategy to reduce checkout payment friction through credential sharing and autopay, <span style={{ background: "rgba(255,180,0,0.3)", borderRadius: "2px" }}>increasing iRev by 6.3% and a boost in credential coverage of 36%</span> using Metamate AI.&quot;
                   <span className="text-[#fd0]">{`}`}</span>
                 </p>
                 <p>
@@ -175,7 +175,7 @@ export default function ResumePanel() {
                 </p>
                 <p>
                   <span className="text-[#fd0]">{`{`}</span>
-                  &quot;Provided mentorship and strategic guidance to senior designers, upholding high design standards while driving scalable, data-informed solutions; introduced innovative concepts and process improvements to elevate team-wide design quality and maturity.&quot;
+                  &quot;Provided mentorship and strategic guidance to senior designers, upholding high design standards while driving scalable, data-informed solutions; introduced innovative AI-workflow improvements to elevate team-wide design quality and maturity.&quot;
                   <span className="text-[#fd0]">{`}`}</span>
                 </p>
               </div>
@@ -209,6 +209,54 @@ export default function ResumePanel() {
                   <span className="text-[#fd0]">{`}`}</span>
                 </p>
               </div>
+            </div>
+
+            {/* Education */}
+            <div className="flex flex-col gap-[14px] w-full">
+              <p className="text-[14px] leading-[21px]">
+                <span className="text-[#7c8896]">Education</span>
+                <span className="text-black">=</span>
+                <span className="text-[#e5652a]">Nielsen Norman Group</span>
+                <span>{` `}</span>
+                <span className="text-[#fd0]">{`{`}</span>
+                <span className="text-black">&quot;Master Certificate&quot;</span>
+                <span className="text-[#fd0]">{`}`}</span>
+                <span>{` `}</span>
+                <span className="text-[#00b0d8]">Human Computer Interaction</span>
+              </p>
+              <p className="text-[14px] leading-[21px]">
+                <span className="text-[#7c8896]">Education</span>
+                <span className="text-black">=</span>
+                <span className="text-[#e5652a]">Academy of Art University</span>
+                <span>{` `}</span>
+                <span className="text-[#fd0]">{`{`}</span>
+                <span className="text-black">&quot;Bachelors in Fine Arts&quot;</span>
+                <span className="text-[#fd0]">{`}`}</span>
+                <span>{` `}</span>
+                <span className="text-[#00b0d8]">Major in Graphic Design</span>
+              </p>
+              <p className="text-[14px] leading-[21px]">
+                <span className="text-[#7c8896]">Education</span>
+                <span className="text-black">=</span>
+                <span className="text-[#e5652a]">De La Salle University</span>
+                <span>{` `}</span>
+                <span className="text-[#fd0]">{`{`}</span>
+                <span className="text-black">&quot;Bachelors in Arts and Science&quot;</span>
+                <span className="text-[#fd0]">{`}`}</span>
+                <span>{` `}</span>
+                <span className="text-[#00b0d8]">Major in Business Marketing</span>
+              </p>
+            </div>
+
+            {/* Skills */}
+            <div className="flex flex-col gap-[14px] w-full">
+              <p className="text-[14px] leading-[21px]">
+                <span className="text-[#7c8896]">Expert level skills</span>
+                <span className="text-black">=</span>
+                <span className="text-[#fd0]">{`{`}</span>
+                <span className="text-black">&quot;Figma, AI design process (Claude, Antigravity, ChatGPT, Replit, etc.), systems thinking for both mobile (Android/iOS) and web, UX and interaction design, visual design and design systems mastery, user research and insight synthesis, stakeholder communication and influence, leadership and mentorship, cross-functional collaboration, decision-making and prioritization.&quot;</span>
+                <span className="text-[#fd0]">{`}`}</span>
+              </p>
             </div>
 
           </div>
