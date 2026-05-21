@@ -163,7 +163,7 @@ export default function PayPal1CaseStudy() {
               Paying with a credit card is seamless and nearly instant, while using a PayPal installment credit product requires customers to complete a rigorous, multi-step application at every checkout. This added friction disrupts the purchase flow, hurting conversion, repeat usage, and adoption of one of PayPal&apos;s key revenue-driving products.
               <br />
               <br />
-              In this case study, I&apos;ll highlight our Pay in 4 product, which experienced the most impactful changes.
+              While this CEO-prioritized initiative optimized six credit products across the United States and United Kingdom, this case study highlights Pay in 4, which saw the most significant product and design changes.
             </p>
           </div>
         </ScrollFade>
@@ -178,8 +178,8 @@ export default function PayPal1CaseStudy() {
           >
             <p className="text-sm lg:text-[18px] font-light">Competitive analysis</p>
             <p className="w-full lg:w-[1279px] max-w-full text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
-              Pay in 4, our top installment product, faced tough competition. We
-              analyzed competitor screens and combined insights with our research
+              Pay in 4, a top installment product, faced tough competition. We
+              analyzed competitor screens and combined insights with research
               to create the most streamlined flow for returning customers.
             </p>
           </ScrollFade>
@@ -337,7 +337,7 @@ export default function PayPal1CaseStudy() {
                 className="inline-flex items-center rounded-full bg-[#484848] px-6 lg:px-[30px] py-3 lg:py-[16px] text-lg lg:text-[32px] font-normal leading-none whitespace-nowrap text-white transition-colors duration-150 hover:bg-[#606060]"
                 style={{ fontFamily: "var(--font-league-spartan)" }}
               >
-                More work
+                Back to homepage
               </Link>
               <a
                 href="https://www.figma.com/proto/D9bFYkGXUZiIliqQ8Fyvv2/Pi4-Prototype-Ai?node-id=30102-13987&p=f&viewport=-1816%2C-1683%2C0.06&t=iwyrQi9R85uJhpV1-8&scaling=scale-down&content-scaling=fixed&starting-point-node-id=30102%3A13987&page-id=18168%3A28543&hotspot-hints=0&disable-default-keyboard-nav=1&hide-ui=1"
@@ -361,9 +361,12 @@ export default function PayPal1CaseStudy() {
             className="flex w-full lg:w-[688px] lg:shrink-0 flex-col items-start gap-10 lg:gap-[92px]"
             style={{ fontFamily: leagueSpartan }}
           >
-            <h2 className="font-serif text-[clamp(40px,10vw,64px)] lg:text-[64px] leading-none text-white">
-              Pay Monthly
-            </h2>
+            <div className="flex flex-col gap-4 lg:gap-[64px]">
+              <p className="font-light text-[18px] leading-normal text-white" style={{ fontFamily: leagueSpartan }}>Overall impact</p>
+              <h2 className="font-serif text-[clamp(40px,10vw,64px)] lg:text-[64px] leading-none text-white">
+                Pay Monthly
+              </h2>
+            </div>
             <div className="flex w-full flex-col gap-8 lg:gap-[46px]">
               <div className="flex w-full lg:w-[200px] flex-col gap-[5px] text-white">
                 <p className="font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">2.3%</p>
@@ -564,10 +567,7 @@ export default function PayPal1CaseStudy() {
         style={{ fontFamily: leagueSpartan }}
       >
         <div>
-        <p className="text-sm lg:text-[18px] font-light leading-[28px] tracking-[-0.18px] text-white">
-          OVERALL IMPACT
-        </p>
-        <div className="mt-4 lg:mt-[16px] flex flex-col gap-12 lg:gap-[73px]">
+        <div className="flex flex-col gap-12 lg:gap-[73px]">
           {/* US Credit */}
           <div className="flex flex-col gap-8 lg:gap-[42px]">
             <h2 className="font-serif text-[clamp(40px,10vw,64px)] lg:text-[64px] leading-none text-white">
@@ -674,7 +674,7 @@ export default function PayPal1CaseStudy() {
           </Link>
 
           {/* Solo */}
-          <Link href="/work/DailyReportingApp" className="group flex w-full max-w-[437px] lg:w-[437px] lg:shrink-0 flex-col gap-4 lg:gap-[27px]">
+          <Link href="/work/MsSunshineApp" className="group flex w-full max-w-[437px] lg:w-[437px] lg:shrink-0 flex-col gap-4 lg:gap-[27px]">
             <div className="relative aspect-[437/666] lg:aspect-auto lg:h-[666px] w-full overflow-hidden rounded-2xl lg:rounded-[30px]">
               <Image
                 src={phoneWithAppRollover}
@@ -684,8 +684,8 @@ export default function PayPal1CaseStudy() {
                 sizes="(max-width: 1024px) 100vw, 437px"
               />
             </div>
-            <p className="font-serif text-[clamp(36px,9vw,64px)] lg:text-[64px] leading-[1.1] lg:leading-[72px] tracking-[-0.64px] text-white transition-opacity duration-300 group-hover:opacity-70">
-              Reporting App
+            <p className="font-serif text-[clamp(36px,9vw,64px)] lg:text-[64px] leading-[1.1] lg:leading-[72px] tracking-[-0.64px] text-white transition-opacity duration-300 group-hover:opacity-70 whitespace-nowrap">
+              Ms. Sunshine App
             </p>
           </Link>
         </div>

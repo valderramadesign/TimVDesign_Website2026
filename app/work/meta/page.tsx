@@ -335,7 +335,7 @@ export default function MetaPage() {
                 className="inline-flex items-center justify-center rounded-full bg-[#484848] px-6 lg:px-[30px] py-3 lg:py-[16px] text-xl lg:text-[32px] font-normal whitespace-nowrap text-white transition-colors duration-150 hover:bg-[#606060]"
                 style={{ fontFamily: "var(--font-league-spartan)", lineHeight: 1 }}
               >
-                More work
+                Back to homepage
               </Link>
               <a
                 href="https://www.figma.com/proto/LO1NMWmDmQ6TcWvLxsARqK/MI-Onboarding-Prototype?node-id=1-54809&viewport=348%2C433%2C0.25&t=ptwstdDv4kXxMR8m-8&scaling=contain&content-scaling=fixed&page-id=0%3A1&hide-ui=1"
@@ -392,7 +392,7 @@ export default function MetaPage() {
           </Link>
 
           {/* Solo */}
-          <Link href="/work/DailyReportingApp" className="group flex w-full max-w-[437px] lg:w-[437px] flex-col gap-4 lg:gap-[27px] items-start">
+          <Link href="/work/MsSunshineApp" className="group flex w-full max-w-[437px] lg:w-[437px] flex-col gap-4 lg:gap-[27px] items-start">
             <div className="aspect-[437/666] w-full lg:h-[666px] lg:w-[438px] relative rounded-[30px] lg:shrink-0 overflow-hidden">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -402,8 +402,8 @@ export default function MetaPage() {
                 style={{ height: "113.36%", left: "-0.03%", top: "-6.61%", width: "129.28%" }}
               />
             </div>
-            <p className="font-serif text-[clamp(36px,9vw,64px)] lg:text-[64px] leading-[1.1] lg:leading-[72px] text-white tracking-[-0.64px]">
-              Reporting App
+            <p className="font-serif text-[clamp(36px,9vw,64px)] lg:text-[64px] leading-[1.1] lg:leading-[72px] text-white tracking-[-0.64px] whitespace-nowrap">
+              Ms. Sunshine App
             </p>
           </Link>
         </div>

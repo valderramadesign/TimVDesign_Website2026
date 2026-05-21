@@ -41,8 +41,8 @@ const MOBILE_CARDS = [
   },
   {
     id: "solo",
-    href: "/work/DailyReportingApp",
-    label: "Solo",
+    href: "/work/MsSunshineApp",
+    label: "Ms. Sunshine App",
     eyebrow: "Rapid App Innovation",
     title: "Daily Reporting App for Teachers",
     metric: "257%",
@@ -126,7 +126,7 @@ export default function HomeClient() {
           </div>
           <div className={`absolute inset-0 z-[-10] bg-black ${showSolo ? "opacity-100" : "opacity-0"}`}>
             <video
-              src="/videos/TeacherRecordingActivity/TeacherRecordingActivity.mp4"
+              src="/videos/TeacherRecordingActivity/TeacherRecordingActivity2.mp4"
               autoPlay loop muted playsInline preload="auto" suppressHydrationWarning
               className="absolute inset-0 w-full h-full object-cover opacity-30"
             />
@@ -175,10 +175,10 @@ export default function HomeClient() {
                         <p className="text-white/70 text-[18px] font-light mt-2">Trending total purchase volume</p>
                       </div>
                       <p className="text-white/80 text-[24px] font-light leading-[30px] text-right">
-                        Partnering with the Checkout team, we collapsed the three-page
-                        Pay in 4 application into a single screen and surfaced key
-                        &apos;how it works&apos; details earlier in the flow, lifting
-                        conversion and overall purchase volume.
+                        Led the design strategy for a CEO-prioritized PayPal initiative
+                        to optimize 6 credit products across the United States and United
+                        Kingdom, improving conversion, total purchase volume, and revenue
+                        across the full portfolio.
                       </p>
                     </div>
                   </motion.div>

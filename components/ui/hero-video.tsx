@@ -32,6 +32,7 @@ export default function HeroVideo({ src }: { src: string }) {
       ref={videoRef}
       src={src}
       autoPlay
+      loop
       muted
       playsInline
       preload="auto"
