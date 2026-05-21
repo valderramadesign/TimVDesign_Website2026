@@ -206,7 +206,7 @@ export default function SoloPage() {
       <section className="w-full flex flex-col lg:flex-row items-start gap-10 lg:gap-[24px] pb-20 lg:pb-[120px] px-5 lg:px-0 lg:pr-[24px]">
         {/* Left: yellow background + phone + QR code */}
         <div
-          className="relative w-full lg:w-[985px] aspect-[985/1230] lg:aspect-auto lg:h-[1230px] lg:shrink-0 overflow-hidden"
+          className="relative w-full lg:w-[45%] aspect-[985/1230] lg:shrink-0 overflow-hidden"
         >
           <Image
             src={backgroundHandYellow}
@@ -215,8 +215,8 @@ export default function SoloPage() {
             className="object-cover"
             aria-hidden
           />
-          <div className="relative z-10 w-full h-full flex items-start justify-center pt-[7%] lg:pt-[92px]">
-            <div className="relative w-[46%] lg:w-[450px] aspect-[450/944] lg:aspect-auto lg:h-[943.792px]">
+          <div className="relative z-10 w-full h-full flex items-start justify-center pt-[7%]">
+            <div className="relative w-[46%] aspect-[450/944]">
               <Image
                 src={home}
                 alt="App home screen"
@@ -226,7 +226,7 @@ export default function SoloPage() {
             </div>
           </div>
           <div
-            className="absolute z-20 w-[15%] lg:w-[146px] aspect-square lg:aspect-auto lg:h-[145px] right-[2.5%] lg:right-[24px] bottom-[2.5%] lg:bottom-[24px]"
+            className="absolute z-20 w-[15%] aspect-square right-[2.5%] bottom-[2.5%]"
           >
             <Image
               src={qrCode}
@@ -245,7 +245,7 @@ export default function SoloPage() {
           <div className="flex flex-col gap-4 sm:gap-6 lg:gap-[32px] w-full">
             <div className="flex flex-col gap-[14px] text-white">
               <p className="text-[18px] font-light leading-none">Things I did:</p>
-              <ul className="text-[clamp(20px,4.5vw,32px)] font-light leading-[1.32] list-disc pl-6 lg:pl-[48px] space-y-4 sm:space-y-6 lg:space-y-[42px]">
+              <ul className="text-[clamp(18px,2.2vw,22px)] font-light leading-[1.32] list-disc pl-6 lg:pl-[36px] space-y-4 sm:space-y-5 lg:space-y-[24px]">
                 <li>
                   Automate activity reporting through a simple teacher workflow that allows staff to select an activity, choose the child or children involved, and add a note when needed. Once submitted, the update is automatically logged in each child&rsquo;s activity feed for parents to view.
                 </li>
@@ -263,7 +263,7 @@ export default function SoloPage() {
             <div className="flex items-center lg:pl-[42px]">
               <Link
                 href="/"
-                className="inline-flex items-center justify-center rounded-full bg-[#484848] px-6 lg:px-[30px] py-3 lg:py-[16px] text-xl lg:text-[32px] font-normal whitespace-nowrap text-white transition-colors duration-150 hover:bg-[#606060]"
+                className="inline-flex items-center justify-center rounded-full bg-[#484848] px-6 lg:px-[24px] py-3 lg:py-[14px] text-xl lg:text-[22px] font-normal whitespace-nowrap text-white transition-colors duration-150 hover:bg-[#606060]"
                 style={{
                   fontFamily: leagueSpartan,
                   lineHeight: 1,
