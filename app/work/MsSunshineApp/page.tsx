@@ -239,13 +239,13 @@ export default function SoloPage() {
 
         {/* Right: closing copy */}
         <div
-          className="flex flex-col items-start min-w-0 w-full max-w-[740px]"
+          className="flex flex-col items-start min-w-0 w-full lg:max-h-[1230px] lg:overflow-hidden"
           style={{ fontFamily: leagueSpartan }}
         >
-          <div className="flex flex-col gap-[32px] w-full">
+          <div className="flex flex-col gap-4 sm:gap-6 lg:gap-[32px] w-full">
             <div className="flex flex-col gap-[14px] text-white">
               <p className="text-[18px] font-light leading-none">Things I did:</p>
-              <ul className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px] list-disc pl-6 lg:pl-[48px] space-y-6 lg:space-y-[42px]">
+              <ul className="text-[clamp(20px,4.5vw,32px)] font-light leading-[1.32] list-disc pl-6 lg:pl-[48px] space-y-4 sm:space-y-6 lg:space-y-[42px]">
                 <li>
                   Automate activity reporting through a simple teacher workflow that allows staff to select an activity, choose the child or children involved, and add a note when needed. Once submitted, the update is automatically logged in each child&rsquo;s activity feed for parents to view.
                 </li>
