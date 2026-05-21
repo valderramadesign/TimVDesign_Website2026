@@ -239,7 +239,7 @@ export default function SoloPage() {
 
         {/* Right: closing copy */}
         <div
-          className="flex flex-col items-start min-w-0 w-full lg:max-h-[1230px] lg:overflow-hidden"
+          className="flex flex-col items-start min-w-0 w-full"
           style={{ fontFamily: leagueSpartan }}
         >
           <div className="flex flex-col gap-4 sm:gap-6 lg:gap-[32px] w-full">
