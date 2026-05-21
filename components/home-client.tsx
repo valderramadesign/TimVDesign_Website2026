@@ -201,7 +201,7 @@ export default function HomeClient() {
               {showMeta && (
                 <motion.div
                   key="meta-panel"
-                  className="absolute top-[208px] right-[69px] z-[5] flex items-center gap-[50px]"
+                  className="absolute top-[138px] right-[69px] z-[5] flex items-center gap-[50px]"
                   initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
