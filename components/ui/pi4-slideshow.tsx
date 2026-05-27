@@ -12,8 +12,9 @@ import step8 from "@/components/videos/Pi4_Slideshow/SlideShowImages/Step 8.png"
 import step9 from "@/components/videos/Pi4_Slideshow/SlideShowImages/Step 9.png";
 import step10 from "@/components/videos/Pi4_Slideshow/SlideShowImages/Step 10.png";
 import step11 from "@/components/videos/Pi4_Slideshow/SlideShowImages/Step 11.png";
+import step12 from "@/components/videos/Pi4_Slideshow/SlideShowImages/Step 12.png";
 
-const slides = [step1, step2, step3, step4, step5, step6, step7, step8, step9, step10, step11];
+const slides = [step1, step2, step3, step4, step5, step6, step7, step8, step9, step10, step11, step12];
 
 export default function Pi4Slideshow() {
   const [current, setCurrent] = useState(0);

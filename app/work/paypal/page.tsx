@@ -228,7 +228,7 @@ export default function PayPal1CaseStudy() {
               Because PayPal UI 4.0 was not available for this initiative, we
               often had to create components ourselves. This required several
               rounds of iteration and review before the components were approved
-              by all stakeholders.
+              by all stakeholders. Using Figma First Draft AI to fast track over 40 iterations.
             </p>
           </ScrollFade>
         </div>
@@ -298,39 +298,49 @@ export default function PayPal1CaseStudy() {
           <VideoOverlay />
 
           {/* Bottom Right: closing copy */}
-          <ScrollFade direction="right" className="flex flex-col justify-center gap-10 lg:gap-[56px] pl-0 lg:pl-[24px]" style={{ fontFamily: leagueSpartan }}>
-            <div>
-              <p className="font-serif text-[clamp(48px,11vw,72px)] lg:text-[72px] font-normal leading-none">208%</p>
-              <p className="mt-1 text-sm lg:text-[18px] font-light">
-                Increase in conversion
-              </p>
-            </div>
-            <div>
-              <p className="font-serif text-[clamp(48px,11vw,72px)] lg:text-[72px] font-normal leading-none">
-                $598M/mo.
-              </p>
-              <p className="mt-1 text-sm lg:text-[18px] font-light">
-                Trending total purchase volume
-              </p>
-            </div>
-            <div className="flex flex-col gap-[14px]">
-              <p className="text-sm lg:text-[18px] font-light">What did I do?</p>
-              <ul className="ml-[24px] flex list-disc flex-col gap-4 lg:gap-[24px] text-base lg:text-[24px] font-light leading-[1.5] lg:leading-[1.4]">
-                <li>
-                  Drove cross-functional collaboration across Content, Product,
-                  and leadership to optimize onboarding and purchase flows for
-                  six credit products in the new PayPal checkout, contributing
-                  ~$784M to PayPal&apos;s bottom line.
-                </li>
-                <li>
-                  Reduced the Pay in 4 funnel from three steps to one across
-                  U.S. and U.K. markets, removing friction and improving the
-                  experience for repeat users.
-                </li>
-              </ul>
+          <ScrollFade direction="right" className="flex flex-col justify-between gap-6 lg:gap-8 pl-0 lg:pl-[24px]" style={{ fontFamily: leagueSpartan }}>
+            <div className="flex flex-col gap-6 lg:gap-8">
+              {/* Stats side by side */}
+              <div className="flex flex-row gap-8 lg:gap-12">
+                <div>
+                  <p className="font-serif text-[clamp(40px,9vw,72px)] lg:text-[72px] font-normal leading-none">208%</p>
+                  <p className="mt-1 text-sm lg:text-[18px] font-light">
+                    Increase in conversion
+                  </p>
+                </div>
+                <div>
+                  <p className="font-serif text-[clamp(40px,9vw,72px)] lg:text-[72px] font-normal leading-none">
+                    $598M/mo.
+                  </p>
+                  <p className="mt-1 text-sm lg:text-[18px] font-light">
+                    Trending total purchase volume
+                  </p>
+                </div>
+              </div>
+
+              {/* What did I do */}
+              <div className="flex flex-col gap-[14px]">
+                <p className="text-sm lg:text-[18px] font-light">What did I do?</p>
+                <ul className="ml-[24px] flex list-disc flex-col gap-3 lg:gap-[18px] text-base lg:text-[24px] font-light leading-[1.5] lg:leading-[1.4]">
+                  <li>
+                    This was a fast-paced project with many deliverables. I used Figma&apos;s AI tools and ChatGPT to accelerate discovery, unify content across products, and critique designs before stakeholder and team reviews.
+                  </li>
+                  <li>
+                    Drove cross-functional collaboration across Content, Product,
+                    and leadership to optimize onboarding and purchase flows for
+                    six credit products in the new PayPal checkout, contributing
+                    ~$784M to PayPal&apos;s bottom line.
+                  </li>
+                  <li>
+                    Reduced the Pay in 4 funnel from three steps to one across
+                    U.S. and U.K. markets, removing friction and improving the
+                    experience for repeat users.
+                  </li>
+                </ul>
+              </div>
             </div>
 
-            {/* CTAs */}
+            {/* CTAs — pinned to bottom of cell */}
             <div className="flex flex-wrap items-center gap-3 lg:gap-[25px]">
               <Link
                 href="/"
