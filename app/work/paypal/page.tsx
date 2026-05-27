@@ -288,7 +288,7 @@ export default function PayPal1CaseStudy() {
               width="866"
               height="846"
               scrolling="no"
-              allowTransparency
+
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-0 w-[866px] h-[846px] origin-center scale-[0.4] sm:scale-[0.55] md:scale-[0.7] lg:scale-100"
               style={{ display: "block", background: "transparent" }}
             />
@@ -340,7 +340,7 @@ export default function PayPal1CaseStudy() {
                 Back to homepage
               </Link>
               <a
-                href="https://www.figma.com/proto/D9bFYkGXUZiIliqQ8Fyvv2/Pi4-Prototype-Ai?node-id=30102-13987&p=f&viewport=-1816%2C-1683%2C0.06&t=iwyrQi9R85uJhpV1-8&scaling=scale-down&content-scaling=fixed&starting-point-node-id=30102%3A13987&page-id=18168%3A28543&hotspot-hints=0&disable-default-keyboard-nav=1&hide-ui=1"
+                href="https://pay-in4-prototype-cdgo3u6dn-valderramadesign-4260s-projects.vercel.app"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center rounded-full border border-[#919191] px-6 lg:px-[30px] py-3 lg:py-[16px] text-lg lg:text-[32px] font-normal leading-none whitespace-nowrap text-white transition-colors duration-150 hover:border-white"
