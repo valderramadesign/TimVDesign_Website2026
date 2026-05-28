@@ -372,7 +372,7 @@ export default function PayPal1CaseStudy() {
             style={{ fontFamily: leagueSpartan }}
           >
             <div className="flex flex-col gap-4 lg:gap-[64px]">
-              <p className="font-light text-[18px] leading-normal text-white" style={{ fontFamily: leagueSpartan }}>Overall impact</p>
+              <p className="font-light text-[18px] leading-normal text-white" style={{ fontFamily: leagueSpartan }}>Overall Impact</p>
               <h2 className="font-serif text-[clamp(40px,10vw,64px)] lg:text-[64px] leading-none text-white">
                 Pay Monthly
               </h2>
