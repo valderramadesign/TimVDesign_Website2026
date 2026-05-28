@@ -188,7 +188,7 @@ export function CardStack<T extends CardStackItem>({
     >
       <div
         className="relative w-full"
-        style={{ height: Math.max(380, cardHeight + 80) }}
+        style={{ height: cardHeight + (isMobile && mobileMaxVisible === 1 ? 16 : 80) }}
         tabIndex={0}
         onKeyDown={onKeyDown}
       >

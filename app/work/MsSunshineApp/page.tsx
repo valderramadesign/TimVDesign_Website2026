@@ -60,7 +60,7 @@ export default function SoloPage() {
             <div className="flex w-full lg:w-[861px] max-w-full flex-col gap-[14px]">
               <p className="text-[18px] font-light leading-none">My Role</p>
               <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">
-                Research, design, and development Replit, Claude, and Chat GPT
+                Research with ChatGPT and Claude, design with Google Stitch and Figma, and develop in Replit.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row items-start gap-8 sm:gap-[80px] lg:ml-auto">
@@ -115,7 +115,7 @@ export default function SoloPage() {
       </section>
 
       {/* Meeting Movie — interview image + caption */}
-      <section className="w-full flex flex-col lg:items-end gap-6 lg:gap-[24px] pt-16 lg:pt-[167px] pb-24 lg:pb-[200px]">
+      <section className="w-full flex flex-col lg:items-end gap-6 lg:gap-[24px] pt-16 lg:pt-[167px] pb-12 lg:pb-[100px]">
         <video
           src="/videos/TeacherInterview/TeacherAppInterview_3.mp4"
           autoPlay
@@ -148,13 +148,13 @@ export default function SoloPage() {
       </section>
 
       {/* Competitive Analysis */}
-      <section className="w-full flex flex-col lg:items-end pb-24 lg:pb-[200px]">
-        <div className="flex w-full max-w-[1476px] flex-col gap-16 lg:gap-[157px] px-5 lg:px-0 lg:pr-[24px]">
+      <section className="w-full flex flex-col lg:items-end pb-[67px] lg:pb-[140px]">
+        <div className="flex w-full max-w-[1476px] flex-col gap-[45px] lg:gap-[110px] px-5 lg:px-0 lg:pr-[24px]">
           <div className="flex flex-col gap-[14px] w-full max-w-[1279px]" style={{ fontFamily: leagueSpartan }}>
-            <p className="text-[18px] font-light leading-none">Competitive analysis</p>
+            <p className="text-[18px] font-light leading-none">Competitive Analysis</p>
             <div className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px] w-full max-w-[700px]">
               <p>
-                Competitive analysis with ChatGPT and Claude Cowork. These were some high-level quick takeaways.
+                Using ChatGPT and Claude for competitive analysis, these were the key takeaways: (For details click on document below)
               </p>
               <ul className="list-disc pl-8 lg:pl-[48px]">
                 <li>Fast teacher logging</li>
@@ -198,7 +198,7 @@ export default function SoloPage() {
       </section>
 
       {/* ActivityFlow carousel */}
-      <section className="w-full pb-24 lg:pb-[200px] pt-10 lg:pt-[40px]">
+      <section className="w-full pb-24 lg:pb-[200px] pt-7 lg:pt-[28px]">
         <ActivityFlowCarousel items={activityFlowItems} />
       </section>
 
@@ -244,8 +244,14 @@ export default function SoloPage() {
         >
           <div className="flex flex-col gap-4 sm:gap-6 lg:gap-[32px] w-full">
             <div className="flex flex-col gap-[14px] text-white">
-              <p className="text-[18px] font-light leading-none">Things I did:</p>
+              <p className="text-[18px] font-light leading-none">Things I Did:</p>
               <ul className="text-[clamp(18px,2.2vw,22px)] font-light leading-[1.32] list-disc pl-6 lg:pl-[36px] space-y-4 sm:space-y-5 lg:space-y-[24px]">
+                <li>
+                  Leveraged AI tools including Google Stitch and Figma First Draft to accelerate early design exploration, using a ChatGPT-generated product requirements document informed by competitive analysis.
+                </li>
+                <li>
+                  Once concepts were validated with the client, I used Figma and Replit to rapidly iterate designs into an MVP for client testing, then continued iterating on the product based on feedback from the client and other test users.
+                </li>
                 <li>
                   Automate activity reporting through a simple teacher workflow that allows staff to select an activity, choose the child or children involved, and add a note when needed. Once submitted, the update is automatically logged in each child&rsquo;s activity feed for parents to view.
                 </li>
@@ -255,9 +261,7 @@ export default function SoloPage() {
                 <li>
                   In the parent portal, parents can only view their own child&rsquo;s feed and communicate with teachers in real time through comments on activity updates, with notifications sent for each reply.
                 </li>
-                <li>
-                  Using screens and components created in Figma, I created a fully functional MVP with Replit for client testing that allows staff to log activities, manage students and items, and communicate across teacher and parent versions on different mobile devices, then continued iterating on the product based on feedback from the client and other test users.
-                </li>
+
               </ul>
             </div>
             <div className="flex items-center lg:pl-[42px]">
@@ -269,7 +273,7 @@ export default function SoloPage() {
                   lineHeight: 1,
                 }}
               >
-                Back to homepage
+                Back to Homepage
               </Link>
             </div>
           </div>

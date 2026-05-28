@@ -176,7 +176,7 @@ export default function PayPal1CaseStudy() {
             className="flex flex-col gap-[14px] pb-10 lg:pb-[157px]"
             style={{ fontFamily: leagueSpartan }}
           >
-            <p className="text-sm lg:text-[18px] font-light">Competitive analysis</p>
+            <p className="text-sm lg:text-[18px] font-light">Competitive Analysis</p>
             <p className="w-full lg:w-[1279px] max-w-full text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
               Pay in 4, a top installment product, faced tough competition. We
               analyzed competitor screens and combined insights with research
@@ -320,7 +320,7 @@ export default function PayPal1CaseStudy() {
 
               {/* What did I do */}
               <div className="flex flex-col gap-[14px]">
-                <p className="text-sm lg:text-[18px] font-light">What did I do?</p>
+                <p className="text-sm lg:text-[18px] font-light">Things I Did:</p>
                 <ul className="ml-[24px] flex list-disc flex-col gap-3 lg:gap-[18px] text-base lg:text-[24px] font-light leading-[1.5] lg:leading-[1.4]">
                   <li>
                     This was a fast-paced project with many deliverables. I used Figma&apos;s AI tools and ChatGPT to accelerate discovery, unify content across products, and critique designs before stakeholder and team reviews.
@@ -347,7 +347,7 @@ export default function PayPal1CaseStudy() {
                 className="inline-flex items-center rounded-full bg-[#484848] px-6 lg:px-[30px] py-3 lg:py-[16px] text-lg lg:text-[32px] font-normal leading-none whitespace-nowrap text-white transition-colors duration-150 hover:bg-[#606060]"
                 style={{ fontFamily: "var(--font-league-spartan)" }}
               >
-                Back to homepage
+                Back to Homepage
               </Link>
               <a
                 href="https://pay-in4-prototype-cdgo3u6dn-valderramadesign-4260s-projects.vercel.app"

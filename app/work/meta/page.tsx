@@ -204,6 +204,7 @@ export default function MetaPage() {
       </section>
 
       <section className="w-full pb-24 lg:pb-[310px] px-5 lg:px-8">
+        <p className="text-center text-[18px] font-light mb-[13px] lg:mb-[17px]" style={{ fontFamily: leagueSpartan }}>Old 9-Step Onboarding Flow</p>
         <CardStack
           items={oldFlowItems}
           cardWidth={520}
@@ -287,13 +288,13 @@ export default function MetaPage() {
         </div>
       </section>
 
-      <section className="w-full flex justify-center pb-20 lg:pb-32 px-5 lg:px-8">
+      <section className="w-full flex justify-center pb-[117px] lg:pb-[185px] px-5 lg:px-8">
         <div className="w-full max-w-[1417px]">
           <MiNewFlowSlideshow />
         </div>
       </section>
 
-      <section className="w-full grid grid-cols-1 lg:grid-cols-2 gap-7 px-5 lg:px-7 pb-20 lg:pb-32 max-w-[1857px] mx-auto">
+      <section className="w-full grid grid-cols-1 lg:grid-cols-2 gap-7 px-5 lg:px-7 pb-24 lg:pb-[154px] max-w-[1857px] mx-auto">
         <div className="flex flex-col gap-10 lg:gap-12">
           <div
             className="relative h-[320px] sm:h-[420px] lg:h-[512px] rounded-[8px] overflow-hidden flex items-center justify-center"
@@ -316,7 +317,7 @@ export default function MetaPage() {
 
           <div className="flex flex-col gap-10 lg:gap-[56px]" style={{ fontFamily: leagueSpartan }}>
             <div className="flex flex-col gap-[14px]">
-              <p className="text-[18px] font-light">Things I did:</p>
+              <p className="text-[18px] font-light">Things I Did:</p>
               <ul className="ml-[24px] flex list-disc flex-col gap-4 lg:gap-[24px] text-lg lg:text-[24px] font-light leading-[1.4]">
                 <li>
                   Collaborate with the Content team to optimize banner copy for stronger value articulation and resonance with high-spend advertisers.
@@ -325,7 +326,7 @@ export default function MetaPage() {
                   Partner with cross-functional teams to surface the banner in higher-traffic areas, increasing visibility among high-spend advertisers.
                 </li>
                 <li>
-                  Simplified the application experience (9 → 3 screens) with backend engineers, boosting conversion from 32% to 93%.
+                  Simplified the application experience with Metamate AI (9 → 3 screens), boosting conversion from 32% to 93%.
                 </li>
               </ul>
             </div>
@@ -335,7 +336,7 @@ export default function MetaPage() {
                 className="inline-flex items-center justify-center rounded-full bg-[#484848] px-6 lg:px-[30px] py-3 lg:py-[16px] text-xl lg:text-[32px] font-normal whitespace-nowrap text-white transition-colors duration-150 hover:bg-[#606060]"
                 style={{ fontFamily: "var(--font-league-spartan)", lineHeight: 1 }}
               >
-                Back to homepage
+                Back to Homepage
               </Link>
               <a
                 href="https://montly-invoicing-prototype.vercel.app/"
@@ -350,7 +351,7 @@ export default function MetaPage() {
           </div>
         </div>
 
-        <ImageSpotlight config={{ className: 'rounded-[8px] bg-[#6425b5] min-h-[520px] sm:min-h-[720px] lg:min-h-[1116px] w-full', spotlightSize: 104 }}>
+        <ImageSpotlight config={{ className: 'rounded-[8px] bg-[#6425b5] w-full', spotlightSize: 104 }}>
           <Image
             src={imgPsychedelicBackground}
             alt=""
@@ -358,7 +359,7 @@ export default function MetaPage() {
             className="object-cover"
             aria-hidden
           />
-          <div className="relative z-10 flex items-start justify-center pt-12 lg:pt-40 px-4 w-full h-full">
+          <div className="relative z-10 flex items-start justify-center pt-10 lg:pt-16 pb-10 lg:pb-16 px-4 w-full h-full">
             <Image
               src={singlePage}
               alt="Monthly invoicing single page"
