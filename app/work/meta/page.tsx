@@ -338,7 +338,7 @@ export default function MetaPage() {
                 Back to homepage
               </Link>
               <a
-                href="https://www.figma.com/proto/LO1NMWmDmQ6TcWvLxsARqK/MI-Onboarding-Prototype?node-id=1-54809&viewport=348%2C433%2C0.25&t=ptwstdDv4kXxMR8m-8&scaling=contain&content-scaling=fixed&page-id=0%3A1&hide-ui=1"
+                href="https://montly-invoicing-prototype.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-full border border-[#919191] px-6 lg:px-[30px] py-3 lg:py-[16px] text-xl lg:text-[32px] font-normal whitespace-nowrap text-white transition-colors duration-150 hover:border-white"
