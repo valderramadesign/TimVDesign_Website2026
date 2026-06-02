@@ -1,4 +1,5 @@
 import Link from "next/link";
+import phoneWithAppRollover from "@/components/images/Teacher'sApp/PhoneWithApp_Rollover.png";
 import Image from "next/image";
 import NextCaseStudyTicker from "@/components/ui/next-case-study-ticker";
 import logo from "@/components/images/Logo.png";
@@ -395,12 +396,12 @@ export default function MetaPage() {
           {/* Solo */}
           <Link href="/work/MsSunshineApp" className="group flex w-full max-w-[437px] lg:w-[437px] flex-col gap-4 lg:gap-[27px] items-start">
             <div className="aspect-[437/666] w-full lg:h-[666px] lg:w-[438px] relative rounded-[30px] lg:shrink-0 overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                alt=""
-                src="/images/next-case-studies/solo-phone.png"
-                className="absolute max-w-none pointer-events-none"
-                style={{ height: "113.36%", left: "-0.03%", top: "-6.61%", width: "129.28%" }}
+              <Image
+                src={phoneWithAppRollover}
+                alt="Ms. Sunshine App case study preview"
+                fill
+                className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                sizes="(max-width: 1024px) 100vw, 437px"
               />
             </div>
             <p className="font-serif text-[clamp(36px,9vw,64px)] lg:text-[64px] leading-[1.1] lg:leading-[72px] text-white tracking-[-0.64px] whitespace-nowrap">

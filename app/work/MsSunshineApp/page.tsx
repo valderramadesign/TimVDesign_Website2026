@@ -8,7 +8,7 @@ import daySchedule from "@/components/images/Teacher'sApp/DaySchedule.png";
 
 import competitiveAnalysisCover from "@/components/images/Teacher'sApp/CompetitiveAnalysisCover.png";
 import middleCopyVideoBg from "@/components/images/Teacher'sApp/AppFlow/MiddleCopyVideoBg.png";
-import home from "@/components/images/Teacher'sApp/AppFlow/Home.png";
+import home from "@/components/images/Teacher'sApp/NewHomeScreenV2.png";
 import backgroundHandYellow from "@/components/images/Teacher'sApp/AppFlow/BackgroundhandYellow.png";
 import qrCode from "@/components/images/Teacher'sApp/QR_Code.png";
 import activityFlow1 from "@/components/images/Teacher'sApp/AppFlow/ActivityFlow1.png";
@@ -199,6 +199,7 @@ export default function SoloPage() {
 
       {/* ActivityFlow carousel */}
       <section className="w-full pb-24 lg:pb-[200px] pt-7 lg:pt-[28px]">
+        <p className="text-[18px] font-light leading-none px-5 lg:px-[24px] mb-[3px] text-center">Initial MVP for UXR</p>
         <ActivityFlowCarousel items={activityFlowItems} />
       </section>
 
