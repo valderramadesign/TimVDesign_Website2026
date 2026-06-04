@@ -65,7 +65,7 @@ export default function ResumePanel() {
         >
 
           {/* Contact Info */}
-          <div className="flex flex-col gap-[10px] p-[24px] w-full">
+          <div className="flex flex-col gap-[10px] px-[24px] pt-[24px] w-full">
             <p className="text-[32px] leading-normal">
               <span className="text-black">Tim</span>
               <span className="text-[#7c8896]">othy </span>
@@ -118,10 +118,34 @@ export default function ResumePanel() {
               <span className="text-black">&quot;Seeking a leadership role driving product vision and design strategy, aligning user needs with business goals, mentoring teams, and elevating design quality across the organization.&quot;</span>
               <span className="text-[#fd0]">{`}`}</span>
             </p>
+
           </div>
 
           {/* Jobs */}
           <div className="flex flex-col gap-[14px] items-start px-[24px] w-full">
+
+            {/* Career Break */}
+            <div className="flex flex-col gap-[14px] w-full">
+              <p className="text-[14px] leading-[21px]">
+                <span className="text-[#7c8896]">9/2025–12/2025</span>
+                <span className="text-black">=</span>
+                <span className="text-[#e5652a]">Career Break</span>
+              </p>
+              <div className="text-[14px] leading-[21px] text-black">
+                <p className="mb-0">
+                  <span className="text-[#fd0]">{`{`}</span>
+                  &quot;Took a short career break to recover from sports injury surgery after temporarily losing use of my right arm; cleared by doctor on{` `}
+                  <span style={yellowHL}>February 3, 2026</span>.&quot;
+                  <span className="text-[#fd0]">{`}`}</span>
+                </p>
+                <p>
+                  <span className="text-[#fd0]">{`{`}</span>
+                  &quot;Used the transition period to upgrade my{` `}
+                  <span style={blueHL}>AI-enabled design workflow across research synthesis, product framing, critique and UX writing with ChatGPT, as well as rapid ideation, prototyping, and design-to-code exploration using Replit, Claude, Figma AI-tools, and Google Stitch</span>.&quot;
+                  <span className="text-[#fd0]">{`}`}</span>
+                </p>
+              </div>
+            </div>
 
             {/* Meta FinTech */}
             <div className="flex flex-col gap-[14px] w-full">
@@ -156,29 +180,6 @@ export default function ResumePanel() {
                   &quot;Used{` `}
                   <span style={blueHL}>Figma, Metamate AI, ChatGPT, and Claude</span>{` `}
                   to accelerate scenario modeling, UX copy exploration, edge-case analysis, design critique, and stakeholder storytelling across checkout trust, billing comprehension, autopay enrollment, and payment-failure flows.&quot;
-                  <span className="text-[#fd0]">{`}`}</span>
-                </p>
-              </div>
-            </div>
-
-            {/* Career Break */}
-            <div className="flex flex-col gap-[14px] w-full">
-              <p className="text-[14px] leading-[21px]">
-                <span className="text-[#7c8896]">9/2025–12/2025</span>
-                <span className="text-black">=</span>
-                <span className="text-[#e5652a]">Career Break</span>
-              </p>
-              <div className="text-[14px] leading-[21px] text-black">
-                <p className="mb-0">
-                  <span className="text-[#fd0]">{`{`}</span>
-                  &quot;Took a short career break to recover from sports injury surgery after temporarily losing use of my right arm; cleared by doctor on{` `}
-                  <span style={yellowHL}>February 3, 2026</span>.&quot;
-                  <span className="text-[#fd0]">{`}`}</span>
-                </p>
-                <p>
-                  <span className="text-[#fd0]">{`{`}</span>
-                  &quot;Used the transition period to upgrade my{` `}
-                  <span style={blueHL}>AI-enabled design workflow across research synthesis, product framing, critique and UX writing with ChatGPT, as well as rapid ideation, prototyping, and design-to-code exploration using Replit, Claude, Figma AI-tools, and Google Stitch</span>.&quot;
                   <span className="text-[#fd0]">{`}`}</span>
                 </p>
               </div>
@@ -255,7 +256,10 @@ export default function ResumePanel() {
               </div>
             </div>
 
-            {/* Education */}
+          </div>
+
+          {/* Education */}
+          <div className="flex flex-col gap-[14px] items-start px-[24px] w-full">
             <div className="flex flex-col gap-[14px] w-full">
               <p className="text-[14px] leading-[21px]">
                 <span className="text-[#7c8896]">Education</span>
@@ -291,8 +295,10 @@ export default function ResumePanel() {
                 <span className="text-[#00b0d8]">Business Marketing</span>
               </p>
             </div>
+          </div>
 
-            {/* Skills */}
+          {/* Skills */}
+          <div className="flex flex-col gap-[14px] items-start px-[24px] w-full">
             <div className="flex flex-col gap-[14px] w-full">
               <p className="text-[14px] leading-[21px]">
                 <span className="text-[#7c8896]">skills.leadership</span>
@@ -318,7 +324,6 @@ export default function ResumePanel() {
                 <span className="text-[#fd0]">{`}`}</span>
               </p>
             </div>
-
           </div>
         </div>
       </div>
