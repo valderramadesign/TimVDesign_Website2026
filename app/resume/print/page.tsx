@@ -55,7 +55,7 @@ export default function ResumePrintPage() {
               <span className="text-[#7c8896]">{`>`}</span>
             </a>
             <span className="text-[#7c8896]">{` <`}</span>
-            <span className="text-black">San Mateo,CA</span>
+            <span className="text-black">San Mateo, CA</span>
             <span className="text-[#7c8896]">{`>`}</span>
             <span className="text-[#7c8896]">{` <`}</span>
             <span className="text-black">US Citizen</span>
@@ -94,14 +94,35 @@ export default function ResumePrintPage() {
             <span className="text-[#fd0]">{`}`}</span>
           </p>
 
-          <p className="leading-[17px]" style={{ fontSize: 12 }}>
-            <span className="text-[#7c8896]">9/2025-12/2025 Career Break: </span>
-            <span className="text-[#e5652a]">Lost use of my right arm temporarily from sport injury surgery. Cleared by doctor Feb 3, 2026.</span>
-          </p>
         </div>
 
         {/* Jobs */}
         <div className="flex flex-col gap-[8px] items-start px-[12px] w-full">
+
+          {/* Valderrama Design */}
+          <div className="flex flex-col gap-[6px] w-full">
+            <p className="leading-[17px]" style={{ fontSize: 12 }}>
+              <span className="text-[#7c8896]">2/2026–Current : Valderrama Design</span>
+              <span className="text-black">=</span>
+              <span className="text-[#e5652a]">Principal Product Designer</span>
+              <span>{` `}</span>
+              <span className="text-[#7c8896]">:</span>
+              <span>{` `}</span>
+              <span className="text-[#00b0d8]">Freelance</span>
+            </p>
+            <div className="text-black" style={{ fontSize: 12 }}>
+              <p className="mb-0 leading-[17px]">
+                <span className="text-[#fd0]">{`{`}</span>
+                &quot;Returned to full professional capacity in February 2026 after surgery and rehabilitation, building an AI-assisted product design workflow with Figma Make, ChatGPT, Claude, and Replit across strategy, interface design, prototyping, and app development.&quot;
+                <span className="text-[#fd0]">{`}`}</span>
+              </p>
+              <p className="leading-[17px]">
+                <span className="text-[#fd0]">{`{`}</span>
+                &quot;Designed and developed an AI-powered preschool activity reporting app for Sunshine Little House of Learning, automating real-time parent updates and end-of-day summaries while <span style={{ background: "rgba(255,180,0,0.3)", borderRadius: "2px" }}>saving the head teacher approximately 2 hours per day</span>.&quot;
+                <span className="text-[#fd0]">{`}`}</span>
+              </p>
+            </div>
+          </div>
 
           {/* Meta */}
           <div className="flex flex-col gap-[6px] w-full">

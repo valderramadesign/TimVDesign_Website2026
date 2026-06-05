@@ -92,7 +92,9 @@ export default function PayPal1CaseStudy() {
             >
               Menu
             </Link>
-            <Logo />
+            <Link href="/" aria-label="Home">
+              <Logo />
+            </Link>
           </header>
 
           {/* Title block */}
@@ -576,7 +578,6 @@ export default function PayPal1CaseStudy() {
         className="bg-black max-w-[1600px] w-full mx-auto px-5 lg:px-[37px] pt-20 lg:pt-[120px] pb-24 lg:pb-[150px]"
         style={{ fontFamily: leagueSpartan }}
       >
-        <div>
         <div className="flex flex-col gap-12 lg:gap-[73px]">
           {/* US Credit */}
           <div className="flex flex-col gap-8 lg:gap-[42px]">
@@ -658,7 +659,6 @@ export default function PayPal1CaseStudy() {
               </div>
             </div>
           </div>
-        </div>
         </div>
       </section>
 
