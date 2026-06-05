@@ -115,7 +115,7 @@ export default function ResumePanel() {
               <span className="text-[#7c8896]">Next role</span>
               <span className="text-black">=</span>
               <span className="text-[#fd0]">{`{`}</span>
-              <span className="text-black">&quot;Seeking a leadership role driving product vision and design strategy, aligning user needs with business goals, mentoring teams, and elevating design quality across the organization.&quot;</span>
+              <span className="text-black">&quot;Seeking a senior product design role leading end-to-end UX initiatives that optimize customer experience, drive business impact, mentor designers, and elevate product quality—while using{` `}<span style={blueHL}>AI-assisted workflows to accelerate research, ideation, prototyping, and design execution</span>.&quot;</span>
               <span className="text-[#fd0]">{`}`}</span>
             </p>
 
@@ -129,7 +129,7 @@ export default function ResumePanel() {
               <p className="text-[14px] leading-[21px]">
                 <span className="text-[#7c8896]">2/2026–Current : Valderrama Design</span>
                 <span className="text-black">=</span>
-                <span className="text-[#e5652a]">Product Designer</span>
+                <span className="text-[#e5652a]">Principal Product Designer</span>
                 <span>{` `}</span>
                 <span className="text-[#7c8896]">:</span>
                 <span>{` `}</span>
