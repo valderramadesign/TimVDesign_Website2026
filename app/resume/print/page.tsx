@@ -81,9 +81,8 @@ export default function ResumePrintPage() {
 
         {/* Summary */}
         <div style={{ marginBottom: 20 }}>
-          <Section label="Summary" />
           <p style={{ fontSize: 10, lineHeight: "15px", margin: 0 }}>
-            Design leader with 20+ years of experience (9+ in UX) specializing in complex, platform-scale products. I turn ambiguous customer, business, and technical problems into clear product direction using an AI-first workflow. Seeking a senior product design role leading end-to-end UX initiatives that optimize customer value, mentor designers, and elevate design quality across the organization.
+            Product designer with 9+ years in UX, specializing in simplifying complex product experiences, improving business outcomes, and using AI-assisted workflows to accelerate and strengthen the design process from discovery through delivery.
           </p>
         </div>
 
