@@ -124,24 +124,31 @@ export default function ResumePanel() {
           {/* Jobs */}
           <div className="flex flex-col gap-[14px] items-start px-[24px] w-full">
 
-            {/* Career Break */}
+            {/* Valderrama Design */}
             <div className="flex flex-col gap-[14px] w-full">
               <p className="text-[14px] leading-[21px]">
-                <span className="text-[#7c8896]">9/2025–12/2025</span>
+                <span className="text-[#7c8896]">2/2026–Current : Valderrama Design</span>
                 <span className="text-black">=</span>
-                <span className="text-[#e5652a]">Career Break</span>
+                <span className="text-[#e5652a]">Product Designer</span>
+                <span>{` `}</span>
+                <span className="text-[#7c8896]">:</span>
+                <span>{` `}</span>
+                <span className="text-[#00b0d8]">Freelance</span>
               </p>
               <div className="text-[14px] leading-[21px] text-black">
                 <p className="mb-0">
                   <span className="text-[#fd0]">{`{`}</span>
-                  &quot;Took a short career break to recover from sports injury surgery after temporarily losing use of my right arm; cleared by doctor on{` `}
-                  <span style={yellowHL}>February 3, 2026</span>.&quot;
+                  &quot;Returned to full professional capacity in February 2026 after surgery and rehabilitation for a sports injury, using the transition period to build an{` `}
+                  <span style={blueHL}>AI-assisted product design workflow with Figma Make, ChatGPT, Claude, and Replit</span>{` `}
+                  across strategy, interface design, prototyping, and app development.&quot;
                   <span className="text-[#fd0]">{`}`}</span>
                 </p>
                 <p>
                   <span className="text-[#fd0]">{`{`}</span>
-                  &quot;Used the transition period to upgrade my{` `}
-                  <span style={blueHL}>AI-enabled design workflow across research synthesis, product framing, critique and UX writing with ChatGPT, as well as rapid ideation, prototyping, and design-to-code exploration using Replit, Claude, Figma AI-tools, and Google Stitch</span>.&quot;
+                  &quot;Designed and developed an{` `}
+                  <span style={blueHL}>AI-powered preschool activity reporting app</span>{` `}
+                  for Sunshine Little House of Learning, automating real-time parent updates and end-of-day summaries while{` `}
+                  <span style={yellowHL}>saving the head teacher approximately 2 hours per day</span>.&quot;
                   <span className="text-[#fd0]">{`}`}</span>
                 </p>
               </div>
