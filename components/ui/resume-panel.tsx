@@ -138,9 +138,7 @@ export default function ResumePanel() {
               <div className="text-[14px] leading-[21px] text-black">
                 <p className="mb-0">
                   <span className="text-[#fd0]">{`{`}</span>
-                  &quot;Returned to full professional capacity in February 2026 after surgery and rehabilitation for a sports injury, using the transition period to build an{` `}
-                  <span style={blueHL}>AI-assisted product design workflow with Figma Make, ChatGPT, Claude, and Replit</span>{` `}
-                  across strategy, interface design, prototyping, and app development.&quot;
+                  &quot;Returned to full professional capacity in February 2026 after surgery and rehabilitation for a sports injury, using the transition period to deepen expertise in AI-assisted product design workflows across strategy, interface design, prototyping, and app development.&quot;
                   <span className="text-[#fd0]">{`}`}</span>
                 </p>
                 <p>

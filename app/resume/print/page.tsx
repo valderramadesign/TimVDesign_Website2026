@@ -113,7 +113,7 @@ export default function ResumePrintPage() {
             <div className="text-black" style={{ fontSize: 12 }}>
               <p className="mb-0 leading-[17px]">
                 <span className="text-[#fd0]">{`{`}</span>
-                &quot;Returned to full professional capacity in February 2026 after surgery and rehabilitation, building an AI-assisted product design workflow with Figma Make, ChatGPT, Claude, and Replit across strategy, interface design, prototyping, and app development.&quot;
+                &quot;Returned to full professional capacity in February 2026 after surgery and rehabilitation for a sports injury, using the transition period to deepen expertise in AI-assisted product design workflows across strategy, interface design, prototyping, and app development.&quot;
                 <span className="text-[#fd0]">{`}`}</span>
               </p>
               <p className="leading-[17px]">
