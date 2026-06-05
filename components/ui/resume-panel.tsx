@@ -138,7 +138,9 @@ export default function ResumePanel() {
               <div className="text-[14px] leading-[21px] text-black">
                 <p className="mb-0">
                   <span className="text-[#fd0]">{`{`}</span>
-                  &quot;Returned to full professional capacity in February 2026 after surgery and rehabilitation for a sports injury, using the transition period to deepen expertise in AI-assisted product design workflows across strategy, interface design, prototyping, and app development.&quot;
+                  &quot;Returned to full professional capacity in February 2026 after surgery and rehabilitation for a sports injury, using the transition period to deepen expertise in{` `}
+                  <span style={blueHL}>AI-assisted product design workflows</span>
+                  {` `}across strategy, interface design, prototyping, and app development.&quot;
                   <span className="text-[#fd0]">{`}`}</span>
                 </p>
                 <p>
@@ -178,13 +180,6 @@ export default function ResumePanel() {
                   &quot;Designed solutions to reduce ad billing credit card costs by promoting Monthly Invoicing and optimizing the{` `}
                   <span style={blueHL}>AI- and automation-driven application flow</span>;{` `}
                   <span style={yellowHL}>increased conversion by 41% and delivered an estimated 20% annual savings</span> in credit card fees.&quot;
-                  <span className="text-[#fd0]">{`}`}</span>
-                </p>
-                <p>
-                  <span className="text-[#fd0]">{`{`}</span>
-                  &quot;Used{` `}
-                  <span style={blueHL}>Figma, Metamate AI, ChatGPT, and Claude</span>{` `}
-                  to accelerate scenario modeling, UX copy exploration, edge-case analysis, design critique, and stakeholder storytelling across checkout trust, billing comprehension, autopay enrollment, and payment-failure flows.&quot;
                   <span className="text-[#fd0]">{`}`}</span>
                 </p>
               </div>
