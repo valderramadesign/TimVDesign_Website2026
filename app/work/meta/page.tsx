@@ -231,15 +231,16 @@ export default function MetaPage() {
         />
       </section>
 
-      <section className="px-5 lg:px-[37px] pt-12 pb-20 lg:pb-32 w-full flex lg:justify-end">
-        <div className="max-w-[480px] font-light text-[18px] leading-[1.4] space-y-8 text-white" style={{ fontFamily: leagueSpartan }}>
-          <div className="space-y-3">
+      <section className="px-5 lg:px-[37px] pt-12 pb-20 lg:pb-[220px] w-full flex lg:justify-end">
+        <div className="w-full lg:max-w-[1000px] flex flex-col lg:flex-row gap-8 lg:gap-12 font-light text-[18px] leading-[1.4] text-white" style={{ fontFamily: leagueSpartan }}>
+          <div className="space-y-3 lg:max-w-[480px]">
             <p className="text-white/60">Requirements &amp; Discovery</p>
             <p>
               I used Metamate to consolidate inputs from Data Science, Product, Engineering, and Finance into a single problem definition: where the 9-step onboarding flow was leaking users, which fields caused confusion, and which screens could merge. This turned four stakeholder perspectives into one prioritized opportunity list.
             </p>
           </div>
-          <div className="space-y-3">
+          <div className="hidden lg:block w-px bg-white/15 self-stretch" />
+          <div className="space-y-3 lg:max-w-[480px]">
             <p className="text-white/60">Research Synthesis</p>
             <p>
               User research showed that combining screens improved completion confidence and that the account-selection dialog was a major drop-off point. I used Metamate to synthesize findings into design directions and acceptance criteria &mdash; effectively a working PRD the team could align on quickly.
@@ -295,12 +296,14 @@ export default function MetaPage() {
         </div>
       </section>
 
-      <section className="w-full px-5 lg:px-[37px] pb-12 lg:pb-[80px]">
-        <div className="flex w-full max-w-[1279px] flex-col gap-[14px]" style={{ fontFamily: leagueSpartan }}>
-          <p className="text-[18px] font-light">Execution &amp; Iteration</p>
-          <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">
-            Working from that spec, I rebuilt onboarding from 9 screens to 3, using Metamate to draft and pressure-test flows and to refine banner copy with Content for stronger value articulation. Each iteration was reviewed against the eligibility, awareness, and conversion targets.
-          </p>
+      <section className="w-full flex justify-center px-5 lg:px-8 pb-12 lg:pb-[80px]">
+        <div className="w-full max-w-[1417px] lg:pl-[9.3%] lg:pr-[9.33%]">
+          <div className="flex w-full max-w-[1279px] flex-col gap-[14px]" style={{ fontFamily: leagueSpartan }}>
+            <p className="text-[18px] font-light">Execution &amp; Iteration</p>
+            <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">
+              Working from that spec, I rebuilt onboarding from 9 screens to 3, using Metamate to draft and pressure-test flows and to refine banner copy with Content for stronger value articulation. Each iteration was reviewed against the eligibility, awareness, and conversion targets.
+            </p>
+          </div>
         </div>
       </section>
 
