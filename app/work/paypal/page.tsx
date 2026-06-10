@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import NextCaseStudyTicker from "@/components/ui/next-case-study-ticker";
-import Logo from "@/components/ui/logo";
+import CaseStudyTopBar from "@/components/ui/case-study-top-bar";
 import VideoOverlay from "@/components/ui/video-overlay";
 import ScrollFade from "@/components/ui/scroll-fade";
 import HeroVideo from "@/components/ui/hero-video";
@@ -83,23 +83,10 @@ function ImpactCard({
 export default function PayPal1CaseStudy() {
   return (
     <main className="bg-black text-white">
+      <CaseStudyTopBar />
       {/* Top: nav, title, specs (above hero image) */}
-      <section className="w-full bg-black p-5 lg:p-[24px]">
+      <section className="w-full bg-black px-5 pb-5 lg:px-[24px] lg:pb-[24px]">
         <div className="flex flex-col gap-10 lg:gap-[62px]">
-          {/* Navigation */}
-          <header className="flex w-full items-center justify-between shrink-0">
-            <Link
-              href="/"
-              className="rounded-full border border-transparent bg-[#484848] px-4 py-2 text-base font-normal leading-none whitespace-nowrap text-white transition-colors duration-150 hover:border-white"
-              style={{ fontFamily: "var(--font-league-spartan)" }}
-            >
-              Menu
-            </Link>
-            <Link href="/" aria-label="Home">
-              <Logo />
-            </Link>
-          </header>
-
           {/* Title block */}
           <ScrollFade direction="left" once={true}>
             <div
@@ -737,7 +724,7 @@ export default function PayPal1CaseStudy() {
       </section>
 
       {/* Next Case Studies */}
-      <section className="relative w-full overflow-hidden bg-black pb-24 lg:pb-[200px] pt-12 lg:pt-[78px]">
+      <section id="next-case-study-section" className="relative w-full overflow-hidden bg-black pb-24 lg:pb-[200px] pt-12 lg:pt-[78px]">
         <NextCaseStudyTicker color="#4d2d8d" />
 
         <div className="relative flex flex-col lg:flex-row items-center lg:justify-center gap-12 lg:gap-[200px] px-5 lg:px-0">

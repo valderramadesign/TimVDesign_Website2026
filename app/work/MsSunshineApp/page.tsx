@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import NextCaseStudyTicker from "@/components/ui/next-case-study-ticker";
-import logo from "@/components/images/Logo.png";
+import CaseStudyTopBar from "@/components/ui/case-study-top-bar";
 import montlyInvoicingHeroOnTable from "@/components/images/Monthly invoicing Images/MontlyInvoicingHeroScreen_OnTable.png";
 
 import daySchedule from "@/components/images/Teacher'sApp/DaySchedule.png";
@@ -33,21 +33,10 @@ const activityFlowItems = [
 export default function SoloPage() {
   return (
     <main className="min-h-screen bg-black text-white overflow-x-hidden">
+      <CaseStudyTopBar />
       {/* Top section */}
-      <section className="w-full bg-black p-5 lg:p-[24px]">
+      <section className="w-full bg-black px-5 pb-5 lg:px-[24px] lg:pb-[24px]">
         <div className="flex flex-col gap-10 lg:gap-[62px]">
-          <header className="flex w-full items-center justify-between shrink-0">
-            <Link
-              href="/"
-              className="rounded-full border border-transparent bg-[#484848] px-4 py-2 text-base font-normal leading-none whitespace-nowrap text-white transition-colors duration-150 hover:border-white"
-              style={{ fontFamily: leagueSpartan }}
-            >
-              Menu
-            </Link>
-            <Link href="/" aria-label="Home">
-              <Image src={logo} alt="TiM.V" width={69} height={29} />
-            </Link>
-          </header>
 
           <div className="flex w-full lg:w-[1335px] max-w-full flex-col gap-[14px]" style={{ fontFamily: leagueSpartan }}>
             <p className="text-[18px] font-light leading-none">Rapid App Innovation</p>
@@ -291,7 +280,7 @@ export default function SoloPage() {
       </section>
 
       {/* Next Case Study section */}
-      <section className="relative w-full bg-black overflow-hidden pt-16 lg:pt-[78px] pb-24 lg:pb-[200px]">
+      <section id="next-case-study-section" className="relative w-full bg-black overflow-hidden pt-16 lg:pt-[78px] pb-24 lg:pb-[200px]">
         <NextCaseStudyTicker color="#066c84" />
 
         {/* Cards row */}

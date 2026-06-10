@@ -1,8 +1,8 @@
 import Link from "next/link";
+import CaseStudyTopBar from "@/components/ui/case-study-top-bar";
 import phoneWithAppRollover from "@/components/images/Teacher'sApp/PhoneWithApp_Rollover.png";
 import Image from "next/image";
 import NextCaseStudyTicker from "@/components/ui/next-case-study-ticker";
-import logo from "@/components/images/Logo.png";
 import { CardStack, type CardStackItem } from "@/components/ui/card-stack";
 import { AnimatedImpactRow } from "@/components/ui/animated-impact-row";
 import MiNewFlowSlideshow from "@/components/ui/mi-new-flow-slideshow";
@@ -138,21 +138,9 @@ const leagueSpartan = "var(--font-league-spartan)";
 export default function MetaPage() {
   return (
     <main className="min-h-screen bg-black text-white overflow-x-hidden">
-      <section className="w-full bg-black p-5 lg:p-[24px]">
+      <CaseStudyTopBar />
+      <section className="w-full bg-black px-5 pb-5 lg:px-[24px] lg:pb-[24px]">
         <div className="flex flex-col gap-10 lg:gap-[62px]">
-          <header className="flex w-full items-center justify-between shrink-0">
-            <Link
-              href="/"
-              className="rounded-full border border-transparent bg-[#484848] px-4 py-2 text-base font-normal leading-none whitespace-nowrap text-white transition-colors duration-150 hover:border-white"
-              style={{ fontFamily: "var(--font-league-spartan)" }}
-            >
-              Menu
-            </Link>
-            <Link href="/" aria-label="Home">
-              <Image src={logo} alt="TiM.V" width={69} height={29} />
-            </Link>
-          </header>
-
           <div className="flex w-full lg:w-[1335px] max-w-full flex-col gap-[14px]" style={{ fontFamily: leagueSpartan }}>
             <p className="text-[18px] font-light leading-none">
               Driving the Shift to Monthly Invoicing
@@ -391,7 +379,7 @@ export default function MetaPage() {
         </ImageSpotlight>
       </section>
       {/* Next Case Studies */}
-      <section className="relative w-full bg-black overflow-hidden flex flex-col items-center justify-center pb-24 lg:pb-[200px] pt-16 lg:pt-[78px]">
+      <section id="next-case-study-section" className="relative w-full bg-black overflow-hidden flex flex-col items-center justify-center pb-24 lg:pb-[200px] pt-16 lg:pt-[78px]">
         <NextCaseStudyTicker color="#5f7611" />
 
         <div className="flex flex-col lg:flex-row items-center lg:justify-center gap-12 lg:gap-[200px] relative px-5 lg:px-0">
