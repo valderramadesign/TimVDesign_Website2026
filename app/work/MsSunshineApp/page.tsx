@@ -66,7 +66,7 @@ export default function SoloPage() {
             <div className="flex flex-col sm:flex-row items-start gap-8 sm:gap-[80px] lg:ml-auto">
               <div className="flex flex-col gap-[14px]">
                 <p className="text-[18px] font-light leading-none">Timeline</p>
-                <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">3 weeks</p>
+                <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">2 months</p>
               </div>
               <div className="flex flex-col gap-[14px]">
                 <p className="text-[18px] font-light leading-none">Platforms</p>
