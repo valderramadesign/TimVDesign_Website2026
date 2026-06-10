@@ -210,7 +210,7 @@ export default function SoloPage() {
         <div className="flex flex-col items-center gap-[14px] px-5 lg:px-[24px] mb-8 lg:mb-10 text-center">
           <p className="text-[18px] font-light leading-none">Design &amp; Prototype</p>
           <p className="text-[clamp(18px,2.2vw,22px)] font-light leading-[1.32] max-w-[700px]">
-            From the PRD, I used Google Stitch and Figma First Draft to accelerate early exploration, then refined an MVP in Figma for usability testing.
+            From the PRD, I used Google Stitch and Figma First Draft to accelerate early exploration, then refined an MVP in Figma and Replit for usability testing.
           </p>
         </div>
         <ActivityFlowCarousel items={activityFlowItems} />
@@ -260,7 +260,7 @@ export default function SoloPage() {
             <div className="flex flex-col gap-[14px] text-white">
               <p className="text-[18px] font-light leading-none">Build &amp; Iteration</p>
               <p className="text-[clamp(18px,2.2vw,22px)] font-light leading-[1.32]">
-                Once concepts were validated with the client, I used Replit to turn designs into a working build, then iterated on real feedback from the client and test users. The shipped MVP, a 257% efficiency gain over manual end-of-day reporting, does the following:
+                Once concepts were validated with the client, I used Replit to turn designs into a working build, then iterated on real feedback from the client and test users. The shipped app, a tremendous efficiency gain over manual end-of-day reporting, does the following:
               </p>
               <ul className="text-[clamp(18px,2.2vw,22px)] font-light leading-[1.32] list-disc pl-6 lg:pl-[36px] space-y-4 sm:space-y-5 lg:space-y-[24px]">
                 <li>
