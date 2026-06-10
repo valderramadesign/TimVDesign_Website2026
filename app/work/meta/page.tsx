@@ -166,7 +166,7 @@ export default function MetaPage() {
             <div className="flex w-full lg:w-[861px] max-w-full flex-col gap-[14px]">
               <p className="text-[18px] font-light leading-none">My Role</p>
               <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">
-                Using an AI first workflow with Metamate AI, I partnered with engineering, finance, and cross-functional design teams to drive broader adoption of Monthly Invoicing.
+                Partnered with engineering, finance, and cross-functional design teams to drive adoption of Monthly Invoicing &mdash; running an AI-first workflow with Metamate AI from discovery through handoff.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row items-start gap-8 sm:gap-[80px] lg:ml-auto">
@@ -232,13 +232,19 @@ export default function MetaPage() {
       </section>
 
       <section className="px-5 lg:px-[37px] pt-12 pb-20 lg:pb-32 w-full flex lg:justify-end">
-        <div className="max-w-[480px] font-light text-[18px] leading-[1.4] space-y-4 text-white" style={{ fontFamily: leagueSpartan }}>
-          <p>
-            I met with Data Science, Product, Engineering, and Finance to evaluate the current onboarding workflow and identify optimization opportunities. We found that the application flow created unnecessary friction through excessive steps and unclear fields. User research also showed that combining screens could improve usability and increase completion confidence.
-          </p>
-          <p>
-            Additionally, the account-selection dialog introduced interaction friction, with many admins struggling to add their advertising account during onboarding.
-          </p>
+        <div className="max-w-[480px] font-light text-[18px] leading-[1.4] space-y-8 text-white" style={{ fontFamily: leagueSpartan }}>
+          <div className="space-y-3">
+            <p className="text-white/60">Requirements &amp; Discovery</p>
+            <p>
+              I used Metamate to consolidate inputs from Data Science, Product, Engineering, and Finance into a single problem definition: where the 9-step onboarding flow was leaking users, which fields caused confusion, and which screens could merge. This turned four stakeholder perspectives into one prioritized opportunity list.
+            </p>
+          </div>
+          <div className="space-y-3">
+            <p className="text-white/60">Research Synthesis</p>
+            <p>
+              User research showed that combining screens improved completion confidence and that the account-selection dialog was a major drop-off point. I used Metamate to synthesize findings into design directions and acceptance criteria &mdash; effectively a working PRD the team could align on quickly.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -289,6 +295,15 @@ export default function MetaPage() {
         </div>
       </section>
 
+      <section className="w-full px-5 lg:px-[37px] pb-12 lg:pb-[80px]">
+        <div className="flex w-full max-w-[1279px] flex-col gap-[14px]" style={{ fontFamily: leagueSpartan }}>
+          <p className="text-[18px] font-light">Execution &amp; Iteration</p>
+          <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">
+            Working from that spec, I rebuilt onboarding from 9 screens to 3, using Metamate to draft and pressure-test flows and to refine banner copy with Content for stronger value articulation. Each iteration was reviewed against the eligibility, awareness, and conversion targets.
+          </p>
+        </div>
+      </section>
+
       <section className="w-full flex justify-center pb-[117px] lg:pb-[185px] px-5 lg:px-8">
         <div className="w-full max-w-[1417px]">
           <MiNewFlowSlideshow />
@@ -321,13 +336,13 @@ export default function MetaPage() {
               <p className="text-[18px] font-light">Things I Did:</p>
               <ul className="ml-[24px] flex list-disc flex-col gap-4 lg:gap-[24px] text-lg lg:text-[24px] font-light leading-[1.4]">
                 <li>
-                  Collaborate with the Content team to optimize banner copy for stronger value articulation and resonance with high-spend advertisers.
+                  Ran an AI-first (Metamate) workflow from cross-functional discovery to delivery.
                 </li>
                 <li>
-                  Partner with cross-functional teams to surface the banner in higher-traffic areas, increasing visibility among high-spend advertisers.
+                  Simplified the application from 9 &rarr; 3 screens, lifting conversion from 39% to 97%.
                 </li>
                 <li>
-                  Simplified the application experience with Metamate AI (9 → 3 screens), boosting conversion from 32% to 93%.
+                  Partnered with Content on banner copy and with teams to surface it in higher-traffic areas, expanding eligibility (27%&rarr;67%) and awareness (8%&rarr;41%) toward ~$20M/yr in projected savings.
                 </li>
               </ul>
             </div>

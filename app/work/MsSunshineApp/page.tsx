@@ -60,7 +60,7 @@ export default function SoloPage() {
             <div className="flex w-full lg:w-[861px] max-w-full flex-col gap-[14px]">
               <p className="text-[18px] font-light leading-none">My Role</p>
               <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">
-                Research with ChatGPT and Claude, design with Google Stitch and Figma, and develop in Replit.
+                Solo end-to-end AI workflow: research with ChatGPT and Claude, PRD generation with ChatGPT, design with Google Stitch and Figma, build with Replit &mdash; concept to tested MVP in 3 weeks.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row items-start gap-8 sm:gap-[80px] lg:ml-auto">
@@ -130,19 +130,17 @@ export default function SoloPage() {
           style={{ fontFamily: leagueSpartan }}
         >
           <div className="w-full max-w-[466px] lg:w-[466px] text-[18px] font-light text-white leading-[21px] space-y-[21px]">
+            <p className="text-white/60">Research &amp; Synthesis</p>
             <p>
-              Used ChatGPT to develop a detailed research plan, then carried it out by interviewing teachers and school owners. I also used ChatGPT to synthesize the findings into clear takeaways that informed multiple design solutions.
+              I used ChatGPT to build a detailed research plan, then ran interviews with teachers and school owners. ChatGPT synthesized the findings into five clear needs:
             </p>
-            <div>
-              <p>These are what I gathered from participants:</p>
-              <ul className="list-disc pl-[27px]">
-                <li>Fast, simple logging</li>
-                <li>Better parent communication</li>
-                <li>Bulk actions for multiple children</li>
-                <li>Flexible editing and deletion</li>
-                <li>Stronger child record management</li>
-              </ul>
-            </div>
+            <ul className="list-disc pl-[27px]">
+              <li>Fast, simple logging</li>
+              <li>Better parent communication</li>
+              <li>Bulk actions for multiple children</li>
+              <li>Flexible editing and deletion</li>
+              <li>Stronger child-record management</li>
+            </ul>
           </div>
         </div>
       </section>
@@ -154,7 +152,7 @@ export default function SoloPage() {
             <p className="text-[18px] font-light leading-none">Competitive Analysis</p>
             <div className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px] w-full max-w-[700px]">
               <p>
-                Using ChatGPT and Claude for competitive analysis, these were the key takeaways: (For details click on document below)
+                Using ChatGPT and Claude, I ran a structured teardown of children&rsquo;s activity and school apps (full analysis linked below). Key patterns:
               </p>
               <ul className="list-disc pl-8 lg:pl-[48px]">
                 <li>Fast teacher logging</li>
@@ -197,9 +195,24 @@ export default function SoloPage() {
         </div>
       </section>
 
-      {/* ActivityFlow carousel */}
-      <section className="w-full pb-24 lg:pb-[200px] pt-7 lg:pt-[28px]">
-        <p className="text-[18px] font-light leading-none px-5 lg:px-[24px] mb-[3px] text-center">Initial MVP for UXR</p>
+      {/* PRD & build plan */}
+      <section className="w-full px-5 lg:px-[24px] pb-[67px] lg:pb-[140px]" style={{ fontFamily: leagueSpartan }}>
+        <div className="flex w-full max-w-[1279px] flex-col gap-[14px]">
+          <p className="text-[18px] font-light leading-none">PRD &amp; Build Plan</p>
+          <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px] w-full max-w-[700px]">
+            I turned research and competitive insights into a ChatGPT-generated product requirements document, which became the single source of truth for scope, user roles (teacher / head teacher / parent), and the MVP feature set.
+          </p>
+        </div>
+      </section>
+
+      {/* Design & prototype — ActivityFlow carousel */}
+      <section className="w-full pb-24 lg:pb-[200px] pt-7 lg:pt-[28px]" style={{ fontFamily: leagueSpartan }}>
+        <div className="flex flex-col items-center gap-[14px] px-5 lg:px-[24px] mb-8 lg:mb-10 text-center">
+          <p className="text-[18px] font-light leading-none">Design &amp; Prototype</p>
+          <p className="text-[clamp(18px,2.2vw,22px)] font-light leading-[1.32] max-w-[700px]">
+            From the PRD, I used Google Stitch and Figma First Draft to accelerate early exploration, then refined an MVP in Figma for usability testing.
+          </p>
+        </div>
         <ActivityFlowCarousel items={activityFlowItems} />
       </section>
 
@@ -245,16 +258,13 @@ export default function SoloPage() {
         >
           <div className="flex flex-col gap-4 sm:gap-6 lg:gap-[32px] w-full">
             <div className="flex flex-col gap-[14px] text-white">
-              <p className="text-[18px] font-light leading-none">Things I Did:</p>
+              <p className="text-[18px] font-light leading-none">Build &amp; Iteration</p>
+              <p className="text-[clamp(18px,2.2vw,22px)] font-light leading-[1.32]">
+                Once concepts were validated with the client, I used Replit to turn designs into a working build, then iterated on real feedback from the client and test users. The shipped MVP, a 257% efficiency gain over manual end-of-day reporting, does the following:
+              </p>
               <ul className="text-[clamp(18px,2.2vw,22px)] font-light leading-[1.32] list-disc pl-6 lg:pl-[36px] space-y-4 sm:space-y-5 lg:space-y-[24px]">
                 <li>
-                  Leveraged AI tools including Google Stitch and Figma First Draft to accelerate early design exploration, using a ChatGPT-generated product requirements document informed by competitive analysis.
-                </li>
-                <li>
-                  Once concepts were validated with the client, I used Figma and Replit to rapidly iterate designs into an MVP for client testing, then continued iterating on the product based on feedback from the client and other test users.
-                </li>
-                <li>
-                  Automate activity reporting through a simple teacher workflow that allows staff to select an activity, choose the child or children involved, and add a note when needed. Once submitted, the update is automatically logged in each child&rsquo;s activity feed for parents to view.
+                  Automates activity reporting through a simple teacher workflow that allows staff to select an activity, choose the child or children involved, and add a note when needed. Once submitted, the update is automatically logged in each child&rsquo;s activity feed for parents to view.
                 </li>
                 <li>
                   Triggered by the check-out action, the app automatically generates an AI-powered end-of-day summary of the child&rsquo;s activities. The head teacher can review and edit the summary as needed before it is shared with parents.
@@ -262,7 +272,6 @@ export default function SoloPage() {
                 <li>
                   In the parent portal, parents can only view their own child&rsquo;s feed and communicate with teachers in real time through comments on activity updates, with notifications sent for each reply.
                 </li>
-
               </ul>
             </div>
             <div className="flex items-center lg:pl-[42px]">

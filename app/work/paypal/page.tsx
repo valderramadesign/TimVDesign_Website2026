@@ -121,7 +121,7 @@ export default function PayPal1CaseStudy() {
               <div className="flex w-full lg:w-[861px] max-w-full flex-col gap-[14px]">
                 <p className="text-sm lg:text-[18px] font-light leading-none">My Role</p>
                 <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
-                  This initiative, driven from the highest levels, aimed to completely redesign the PayPal checkout experience. I led the redesign of all US and UK credit products, ensuring they were optimized for the new framework and delivered a seamless user experience.
+                  Led the redesign of all six US and UK PayPal credit products for the new checkout framework. I ran the project on an AI-assisted workflow &mdash; using ChatGPT and Figma&apos;s AI tools at each stage &mdash; to move from discovery to stakeholder-ready designs in 1.5 months across six products.
                 </p>
               </div>
             </ScrollFade>
@@ -170,6 +170,19 @@ export default function PayPal1CaseStudy() {
           </div>
         </ScrollFade>
 
+        {/* Requirements & discovery */}
+        <ScrollFade direction="left">
+          <div
+            className="mt-16 lg:mt-[125px] flex w-full max-w-[1279px] flex-col gap-[14px]"
+            style={{ fontFamily: leagueSpartan }}
+          >
+            <p className="text-sm lg:text-[18px] font-light">Requirements &amp; Discovery</p>
+            <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
+              With six products, four stakeholder groups, and no available PayPal UI 4.0 components, I used ChatGPT to structure the problem space &mdash; mapping each product&apos;s funnel, success metrics, and the constraints unique to US vs. UK credit regulation &mdash; so kickoff started from sharp, prioritized questions rather than a blank page.
+            </p>
+          </div>
+        </ScrollFade>
+
         {/* Analysis */}
         <div className="mt-16 lg:mt-[125px] lg:-mr-[37px] flex w-full lg:w-[calc(100%+37px)] flex-col overflow-hidden">
           {/* Text aligned to movie's left edge via calc(100% - 1524px) */}
@@ -180,9 +193,7 @@ export default function PayPal1CaseStudy() {
           >
             <p className="text-sm lg:text-[18px] font-light">Competitive Analysis</p>
             <p className="w-full lg:w-[1279px] max-w-full text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
-              Pay in 4, a top installment product, faced tough competition. We
-              analyzed competitor screens and combined insights with research
-              to create the most streamlined flow for returning customers.
+              I fed competitor installment flows into ChatGPT for a structured teardown &mdash; step counts, friction points, and patterns for returning users &mdash; and combined those takeaways with internal research to define the leanest possible Pay in 4 flow.
             </p>
           </ScrollFade>
 
@@ -218,22 +229,37 @@ export default function PayPal1CaseStudy() {
             />
           </div>
           <ScrollFade direction="right">
-            <p
-              className="w-full lg:w-[339px] text-sm lg:text-[18px] font-light leading-[1.5] lg:leading-[1.4]"
+            <div
+              className="flex w-full lg:w-[339px] flex-col gap-[14px]"
               style={{ fontFamily: leagueSpartan }}
             >
-              The biggest challenge was coordinating across a large group of
-              stakeholders, including my immediate team, cross-functional
-              partners, product owners, and leadership.
-              <br />
-              <br />
-              Because PayPal UI 4.0 was not available for this initiative, we
-              often had to create components ourselves. This required several
-              rounds of iteration and review before the components were approved
-              by all stakeholders. Using Figma First Draft AI to fast track over 40 iterations.
-            </p>
+              <p className="text-sm lg:text-[18px] font-light text-white/60">
+                Design System Gap &rarr; Build Plan
+              </p>
+              <p className="text-sm lg:text-[18px] font-light leading-[1.5] lg:leading-[1.4]">
+                Because PayPal UI 4.0 wasn&apos;t ready, my team had to build
+                components ourselves. I used Figma First Draft to generate
+                first-pass components and layouts, then refined them against
+                PayPal&apos;s standards &mdash; fast-tracking 40+ iterations
+                through stakeholder review instead of designing each from
+                scratch.
+              </p>
+            </div>
           </ScrollFade>
         </div>
+
+        {/* Execution & iteration */}
+        <ScrollFade direction="left">
+          <div
+            className="mt-16 lg:mt-[125px] flex w-full max-w-[1279px] flex-col gap-[14px]"
+            style={{ fontFamily: leagueSpartan }}
+          >
+            <p className="text-sm lg:text-[18px] font-light">Execution &amp; Iteration</p>
+            <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
+              I reduced the Pay in 4 funnel from three steps to one across both markets, using ChatGPT to unify content across all six products and to critique flows for friction and accessibility before team and leadership reviews &mdash; so review time went to decisions, not cleanup.
+            </p>
+          </div>
+        </ScrollFade>
 
         {/* Hero video */}
         <div className="mt-16 lg:mt-[157px] relative aspect-[16/10] lg:aspect-auto lg:h-[1034px] w-[calc(100%+40px)] lg:w-[calc(100%+74px)] -mx-5 lg:-mx-[37px] overflow-hidden pb-12 lg:pb-[100px]">
@@ -325,18 +351,18 @@ export default function PayPal1CaseStudy() {
                 <p className="text-sm lg:text-[18px] font-light">Things I Did:</p>
                 <ul className="ml-[24px] flex list-disc flex-col gap-3 lg:gap-[18px] text-base lg:text-[24px] font-light leading-[1.5] lg:leading-[1.4]">
                   <li>
-                    This was a fast-paced project with many deliverables. I used Figma&apos;s AI tools and ChatGPT to accelerate discovery, unify content across products, and critique designs before stakeholder and team reviews.
+                    Ran an AI-assisted discovery-to-handoff workflow across six
+                    credit products, contributing ~$784M to PayPal&apos;s bottom
+                    line.
                   </li>
                   <li>
-                    Drove cross-functional collaboration across Content, Product,
-                    and leadership to optimize onboarding and purchase flows for
-                    six credit products in the new PayPal checkout, contributing
-                    ~$784M to PayPal&apos;s bottom line.
+                    Used ChatGPT to accelerate discovery, competitive synthesis,
+                    and content unification; used Figma First Draft to generate
+                    and iterate 40+ component drafts.
                   </li>
                   <li>
-                    Reduced the Pay in 4 funnel from three steps to one across
-                    U.S. and U.K. markets, removing friction and improving the
-                    experience for repeat users.
+                    Cut the Pay in 4 funnel from three steps to one (US + UK),
+                    driving a 208% increase in conversion.
                   </li>
                 </ul>
               </div>
