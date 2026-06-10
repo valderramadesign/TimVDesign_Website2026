@@ -13,6 +13,9 @@ import montlyInvoicingHeroOnTable from "@/components/images/Monthly invoicing Im
 import phoneWithAppRollover from "@/components/images/Teacher'sApp/PhoneWithApp_Rollover.png";
 import workflow from "@/components/images/WorkflowDiagram.svg";
 import circleLg from "@/components/images/paypal1-circle-lg.png";
+import prdImage from "@/components/images/PRD.png";
+import productMetricsImage from "@/components/images/ProductMetrics.png";
+import folderStructureImage from "@/components/images/FolderStructure.png";
 import squareBottomLeft from "@/components/images/SquareBottomLeft.png";
 import flow1 from "@/components/images/1StepFlow_1.png";
 import flow2 from "@/components/images/1StepFlow_2.png";
@@ -114,7 +117,7 @@ export default function PayPal1CaseStudy() {
 
           {/* Project specs */}
           <div
-            className="flex flex-col lg:flex-row w-full items-start gap-10 lg:gap-[184px] py-6 lg:py-[42px]"
+            className="flex flex-col lg:flex-row w-full items-start gap-10 lg:gap-[64px] py-6 lg:py-[42px]"
             style={{ fontFamily: leagueSpartan }}
           >
             <ScrollFade direction="left" once={true}>
@@ -133,7 +136,7 @@ export default function PayPal1CaseStudy() {
                     1.5 months
                   </p>
                 </div>
-                <div className="flex w-full sm:w-[486px] flex-col gap-[14px]">
+                <div className="flex w-full sm:w-[486px] lg:w-[260px] flex-col gap-[14px]">
                   <p className="text-sm lg:text-[18px] font-light leading-none">Platforms</p>
                   <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
                     iOS/Android mobile and desktop
@@ -171,24 +174,89 @@ export default function PayPal1CaseStudy() {
         </ScrollFade>
 
         {/* Requirements & discovery */}
-        <ScrollFade direction="left">
-          <div
-            className="mt-16 lg:mt-[125px] flex w-full max-w-[1279px] flex-col gap-[14px]"
+        <div className="mt-24 lg:mt-[200px] flex flex-col items-center gap-10 lg:flex-row lg:items-center lg:gap-[60px]">
+          {/* PRD artifact */}
+          <ScrollFade
+            direction="left"
+            className="relative aspect-square w-full max-w-[360px] shrink-0 overflow-hidden rounded-full lg:w-[19vw] lg:max-w-[386px]"
+          >
+            <Image
+              src={prdImage}
+              alt="Product requirements document"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 360px, 386px"
+            />
+          </ScrollFade>
+
+          {/* Copy */}
+          <ScrollFade
+            direction="left"
+            className="flex w-full flex-col gap-[14px] lg:w-[29vw] lg:max-w-[538px]"
             style={{ fontFamily: leagueSpartan }}
           >
             <p className="text-sm lg:text-[18px] font-light">Requirements &amp; Discovery</p>
             <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
-              With six products, four stakeholder groups, and no available PayPal UI 4.0 components, I used ChatGPT to structure the problem space &mdash; mapping each product&apos;s funnel, success metrics, and the constraints unique to US vs. UK credit regulation &mdash; so kickoff started from sharp, prioritized questions rather than a blank page.
+              With six product teams, leadership, and cross-functional feedback, I used ChatGPT to structure the problem space based on meeting notes for each stakeholder team &mdash; mapping each product&apos;s funnel, success metrics, and the constraints unique to US vs. UK credit regulation &mdash; so kickoff started from sharp, prioritized questions rather than a blank page.
             </p>
-          </div>
-        </ScrollFade>
+          </ScrollFade>
 
-        {/* Analysis */}
-        <div className="mt-16 lg:mt-[125px] lg:-mr-[37px] flex w-full lg:w-[calc(100%+37px)] flex-col overflow-hidden">
-          {/* Text aligned to movie's left edge via calc(100% - 1524px) */}
+          {/* Product metrics */}
           <ScrollFade
             direction="right"
-            className="flex flex-col gap-[14px] pb-10 lg:pb-[157px]"
+            className="relative aspect-square w-full max-w-[360px] shrink-0 overflow-hidden rounded-full lg:w-[19vw] lg:max-w-[386px]"
+          >
+            <Image
+              src={productMetricsImage}
+              alt="Product success metrics and funnel"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 360px, 386px"
+            />
+          </ScrollFade>
+
+          {/* Folder structure */}
+          <ScrollFade
+            direction="right"
+            className="relative aspect-square w-full max-w-[360px] shrink-0 overflow-hidden rounded-full lg:w-[19vw] lg:max-w-[386px]"
+          >
+            <Image
+              src={folderStructureImage}
+              alt="Project folder structure"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 360px, 386px"
+            />
+          </ScrollFade>
+        </div>
+
+        {/* Analysis */}
+        <div className="mt-24 lg:mt-[200px] lg:-mr-[37px] flex w-full lg:w-[calc(100%+37px)] flex-col gap-10 overflow-hidden lg:items-end lg:gap-[61px]">
+          {/* 3D UI Reveal animation — flush to right edge */}
+          <div className="hidden lg:order-1 lg:block lg:w-[1524px]">
+            <iframe
+              src="/compositions/ui-3d-reveal.html"
+              width="1524"
+              height="916"
+              scrolling="no"
+              className="block border-0"
+              style={{ height: "916px" }}
+            />
+          </div>
+
+          {/* Mobile fallback — still image of competitor analysis */}
+          <div className="order-1 -mx-5 lg:hidden">
+            <Image
+              src={competition}
+              alt="Pay in 4 competitive analysis"
+              className="w-full h-auto"
+            />
+          </div>
+
+          {/* Text — aligned to the graphic's left edge on desktop */}
+          <ScrollFade
+            direction="right"
+            className="order-2 flex flex-col gap-[14px] lg:w-[1524px]"
             style={{ fontFamily: leagueSpartan }}
           >
             <p className="text-sm lg:text-[18px] font-light">Competitive Analysis</p>
@@ -196,31 +264,11 @@ export default function PayPal1CaseStudy() {
               I fed competitor installment flows into ChatGPT for a structured teardown &mdash; step counts, friction points, and patterns for returning users &mdash; and combined those takeaways with internal research to define the leanest possible Pay in 4 flow.
             </p>
           </ScrollFade>
-
-          {/* 3D UI Reveal animation — flush to right edge */}
-          <div className="hidden lg:flex justify-end">
-            <iframe
-              src="/compositions/ui-3d-reveal.html"
-              width="1524"
-              height="916"
-              scrolling="no"
-              className="block shrink-0 border-0"
-              style={{ height: "916px" }}
-            />
-          </div>
-          {/* Mobile fallback — still image of competitor analysis */}
-          <div className="lg:hidden -mx-5 mt-2">
-            <Image
-              src={competition}
-              alt="Pay in 4 competitive analysis"
-              className="w-full h-auto"
-            />
-          </div>
         </div>
 
         {/* Workflow + commentary */}
-        <div className="mt-16 lg:mt-[100px] flex flex-col lg:flex-row items-start lg:justify-end gap-10 lg:gap-[71px]">
-          <div className="relative aspect-[1240/940] w-full lg:aspect-auto lg:h-[940px] lg:w-[1240px] lg:max-w-full">
+        <div className="mt-24 lg:mt-[200px] flex flex-col lg:flex-row items-start lg:items-end lg:justify-end gap-10 lg:gap-[71px]">
+          <div className="relative aspect-[1246/895] w-full lg:w-[1240px] lg:max-w-full">
             <Image
               src={workflow}
               alt="Workflow diagram"
@@ -248,10 +296,15 @@ export default function PayPal1CaseStudy() {
           </ScrollFade>
         </div>
 
+        {/* Hero video */}
+        <div className="mt-24 lg:mt-[200px] relative aspect-[16/10] lg:aspect-auto lg:h-[1034px] w-[calc(100%+40px)] lg:w-[calc(100%+74px)] -mx-5 lg:-mx-[37px] overflow-hidden">
+          <HeroVideo src="/videos/HeroPayPal1_Video.mp4" />
+        </div>
+
         {/* Execution & iteration */}
         <ScrollFade direction="left">
           <div
-            className="mt-16 lg:mt-[125px] flex w-full max-w-[1279px] flex-col gap-[14px]"
+            className="mt-10 lg:mt-[61px] flex w-full max-w-[1279px] flex-col gap-[14px]"
             style={{ fontFamily: leagueSpartan }}
           >
             <p className="text-sm lg:text-[18px] font-light">Execution &amp; Iteration</p>
@@ -261,15 +314,10 @@ export default function PayPal1CaseStudy() {
           </div>
         </ScrollFade>
 
-        {/* Hero video */}
-        <div className="mt-16 lg:mt-[157px] relative aspect-[16/10] lg:aspect-auto lg:h-[1034px] w-[calc(100%+40px)] lg:w-[calc(100%+74px)] -mx-5 lg:-mx-[37px] overflow-hidden pb-12 lg:pb-[100px]">
-          <HeroVideo src="/videos/HeroPayPal1_Video.mp4" />
-        </div>
-
       </section>
 
       {/* Impact graphs */}
-      <section className="mt-20 lg:mt-[160px] max-w-[1600px] w-full pb-24 lg:pb-[200px] mx-auto px-5 lg:px-[37px]">
+      <section className="mt-24 lg:mt-[200px] max-w-[1600px] w-full pb-24 lg:pb-[200px] mx-auto px-5 lg:px-[37px]">
           <p className="font-light text-sm lg:text-[18px] mb-6 lg:mb-8" style={{ fontFamily: leagueSpartan }}>Impact</p>
           <div className="grid grid-cols-[100px_1fr] lg:grid-cols-[280px_1fr] gap-4 lg:gap-12 mb-4 lg:mb-6">
             <div />
