@@ -142,7 +142,7 @@ export default function MetaPage() {
       <section className="w-full bg-black px-5 pb-5 lg:px-[24px] lg:pb-[24px]">
         <div className="flex flex-col gap-10 lg:gap-[62px]">
           <div className="flex w-full lg:w-[1335px] max-w-full flex-col gap-[14px]" style={{ fontFamily: leagueSpartan }}>
-            <p className="text-[18px] font-light leading-none">
+            <p className="text-[18px] font-light leading-none text-white/60">
               Driving the Shift to Monthly Invoicing
             </p>
             <h1 className="font-serif text-[clamp(36px,9vw,96px)] lg:text-[96px] leading-[1.04] lg:leading-[96px] tracking-[-0.015em]">
@@ -152,18 +152,18 @@ export default function MetaPage() {
 
           <div className="flex w-full flex-col lg:flex-row items-start gap-10 lg:gap-[184px] py-0 lg:py-[42px]" style={{ fontFamily: leagueSpartan }}>
             <div className="flex w-full lg:w-[861px] max-w-full flex-col gap-[14px]">
-              <p className="text-[18px] font-light leading-none">My Role</p>
+              <p className="text-[18px] font-light leading-none text-white/60">My Role</p>
               <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">
                 Partnered with engineering, finance, and cross-functional design teams to drive adoption of Monthly Invoicing &mdash; running an AI-first workflow with Metamate AI from discovery through handoff.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row items-start gap-8 sm:gap-[80px] lg:ml-auto">
               <div className="flex flex-col gap-[14px]">
-                <p className="text-[18px] font-light leading-none">Timeline</p>
+                <p className="text-[18px] font-light leading-none text-white/60">Timeline</p>
                 <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">1.5 months</p>
               </div>
               <div className="flex flex-col gap-[14px]">
-                <p className="text-[18px] font-light leading-none">Platforms</p>
+                <p className="text-[18px] font-light leading-none text-white/60">Platforms</p>
                 <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">Desktop</p>
               </div>
             </div>
@@ -185,7 +185,7 @@ export default function MetaPage() {
 
       <section className="relative w-full px-5 lg:px-[37px] pt-10 lg:pt-[36px] pb-16 lg:pb-[125px]">
         <div className="flex w-full max-w-[1563px] flex-col gap-[14px]" style={{ fontFamily: leagueSpartan }}>
-          <p className="text-[18px] font-light">Problem</p>
+          <p className="text-[18px] font-light text-white/60">Problem</p>
           <p className="text-[clamp(20px,4.5vw,48px)] lg:text-[48px] font-light leading-[1.3]">
             High-spend advertisers risk costly campaign pauses from card failures and funding gaps. Monthly Invoicing helps prevent disruptions while reducing Meta&rsquo;s credit card processing costs, currently $2.46B annually and projected to reach $4.2B. Increasing adoption is expected to save at least $20M annually.
           </p>
@@ -287,7 +287,7 @@ export default function MetaPage() {
       <section className="w-full flex justify-center px-5 lg:px-8 pb-12 lg:pb-[80px]">
         <div className="w-full max-w-[1417px] lg:pl-[9.3%] lg:pr-[9.33%]">
           <div className="flex w-full max-w-[1279px] flex-col gap-[14px]" style={{ fontFamily: leagueSpartan }}>
-            <p className="text-[18px] font-light">Execution &amp; Iteration</p>
+            <p className="text-[18px] font-light text-white/60">Execution &amp; Iteration</p>
             <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">
               Working from that spec, I rebuilt onboarding from 9 screens to 3, using Metamate to draft and pressure-test flows and to refine banner copy with Content for stronger value articulation. Each iteration was reviewed against the eligibility, awareness, and conversion targets.
             </p>

@@ -39,7 +39,7 @@ export default function SoloPage() {
         <div className="flex flex-col gap-10 lg:gap-[62px]">
 
           <div className="flex w-full lg:w-[1335px] max-w-full flex-col gap-[14px]" style={{ fontFamily: leagueSpartan }}>
-            <p className="text-[18px] font-light leading-none">Rapid App Innovation</p>
+            <p className="text-[18px] font-light leading-none text-white/60">Rapid App Innovation</p>
             <h1 className="font-serif text-[clamp(40px,10vw,96px)] lg:text-[96px] leading-[1.04] lg:leading-[96px] tracking-[-0.015em]">
               Streamlining and Automating Daily Reporting
             </h1>
@@ -47,18 +47,18 @@ export default function SoloPage() {
 
           <div className="flex w-full flex-col lg:flex-row items-start gap-10 lg:gap-[184px] py-0 lg:py-[42px]" style={{ fontFamily: leagueSpartan }}>
             <div className="flex w-full lg:w-[861px] max-w-full flex-col gap-[14px]">
-              <p className="text-[18px] font-light leading-none">My Role</p>
+              <p className="text-[18px] font-light leading-none text-white/60">My Role</p>
               <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">
                 Solo end-to-end AI workflow: research with ChatGPT and Claude, PRD generation with ChatGPT, design with Google Stitch and Figma, build with Replit &mdash; concept to tested MVP in 3 weeks.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row items-start gap-8 sm:gap-[80px] lg:ml-auto">
               <div className="flex flex-col gap-[14px]">
-                <p className="text-[18px] font-light leading-none">Timeline</p>
+                <p className="text-[18px] font-light leading-none text-white/60">Timeline</p>
                 <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">2 months</p>
               </div>
               <div className="flex flex-col gap-[14px]">
-                <p className="text-[18px] font-light leading-none">Platforms</p>
+                <p className="text-[18px] font-light leading-none text-white/60">Platforms</p>
                 <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">Mobile</p>
               </div>
             </div>
@@ -82,7 +82,7 @@ export default function SoloPage() {
       {/* Introduction / Problem */}
       <section className="w-full px-5 lg:px-[24px] pt-10 lg:pt-[24px] pb-16 lg:pb-[125px]" style={{ fontFamily: leagueSpartan }}>
         <div className="flex w-full max-w-[1539px] flex-col gap-[14px]">
-          <p className="text-[18px] font-light leading-none">Problem</p>
+          <p className="text-[18px] font-light leading-none text-white/60">Problem</p>
           <div className="text-[clamp(20px,4.5vw,48px)] lg:text-[48px] font-light leading-[1.2] lg:leading-[56px] space-y-8 lg:space-y-[56px]">
             <p>
               Schools need a more efficient, scalable way to document and communicate each child&rsquo;s daily activities without relying on a labor-intensive end-of-day reporting process. Parents need timely visibility into their child&rsquo;s school day so they feel informed, reassured, and confident about their child&rsquo;s safety and well-being.
@@ -135,59 +135,57 @@ export default function SoloPage() {
       </section>
 
       {/* Competitive Analysis */}
-      <section className="w-full flex flex-col lg:items-end pb-[67px] lg:pb-[140px]">
-        <div className="flex w-full max-w-[1476px] flex-col gap-[45px] lg:gap-[110px] px-5 lg:px-0 lg:pr-[24px]">
-          <div className="flex flex-col gap-[14px] w-full max-w-[1279px]" style={{ fontFamily: leagueSpartan }}>
-            <p className="text-[18px] font-light leading-none">Competitive Analysis</p>
-            <div className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px] w-full max-w-[700px]">
-              <p>
-                Using ChatGPT and Claude, I ran a structured teardown of children&rsquo;s activity and school apps (full analysis linked below). Key patterns:
-              </p>
-              <ul className="list-disc pl-8 lg:pl-[48px]">
-                <li>Fast teacher logging</li>
-                <li>Strong parent communication</li>
-                <li>Bulk actions for efficiency</li>
-                <li>Simple but flexible workflows</li>
-                <li>Clear end-of-day summaries</li>
-              </ul>
-            </div>
+      <section className="w-full flex flex-col lg:items-end gap-[45px] lg:gap-[110px] pb-[67px] lg:pb-[140px]">
+        <div className="flex flex-col gap-[14px] w-full max-w-[1476px] px-5 lg:pl-0 lg:pr-[24px]" style={{ fontFamily: leagueSpartan }}>
+          <p className="text-[18px] font-light leading-none text-white/60">Competitive Analysis</p>
+          <div className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px] w-full max-w-[700px]">
+            <p>
+              Using ChatGPT and Claude, I ran a structured teardown of children&rsquo;s activity and school apps (full analysis linked below). Key patterns:
+            </p>
+            <ul className="list-disc pl-8 lg:pl-[48px]">
+              <li>Fast teacher logging</li>
+              <li>Strong parent communication</li>
+              <li>Bulk actions for efficiency</li>
+              <li>Simple but flexible workflows</li>
+              <li>Clear end-of-day summaries</li>
+            </ul>
           </div>
+        </div>
 
-          <div
-            className="relative w-full max-w-[1476px] aspect-[1476/916] overflow-hidden flex items-center justify-center"
-            style={{ backgroundColor: "#91dfdf" }}
-          >
-            <Image
-              src={middleCopyVideoBg}
-              alt=""
-              fill
-              className="object-cover"
-              aria-hidden
-            />
-            <div className="relative z-10 w-full h-full flex items-center justify-center px-6 lg:px-[114px] py-6 lg:py-[109px]">
-              <a
-                href="/Competitive Analysis - Children Activity Apps.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full h-full"
-              >
-                <Image
-                  src={competitiveAnalysisCover}
-                  alt="Competitive analysis cover — Children Activity & School Activity Apps"
-                  className="rounded-[10px] w-full h-full object-cover opacity-95 cursor-pointer"
-                  width={1248}
-                  height={698}
-                />
-              </a>
-            </div>
+        <div
+          className="relative w-full max-w-[1476px] aspect-[1476/916] overflow-hidden flex items-center justify-center"
+          style={{ backgroundColor: "#91dfdf" }}
+        >
+          <Image
+            src={middleCopyVideoBg}
+            alt=""
+            fill
+            className="object-cover"
+            aria-hidden
+          />
+          <div className="relative z-10 w-full h-full flex items-center justify-center px-6 lg:px-[114px] py-6 lg:py-[109px]">
+            <a
+              href="/Competitive Analysis - Children Activity Apps.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full h-full"
+            >
+              <Image
+                src={competitiveAnalysisCover}
+                alt="Competitive analysis cover — Children Activity & School Activity Apps"
+                className="rounded-[10px] w-full h-full object-cover opacity-95 cursor-pointer"
+                width={1248}
+                height={698}
+              />
+            </a>
           </div>
         </div>
       </section>
 
       {/* PRD & build plan */}
-      <section className="w-full px-5 lg:px-[24px] pb-[67px] lg:pb-[140px]" style={{ fontFamily: leagueSpartan }}>
-        <div className="flex w-full max-w-[1279px] flex-col gap-[14px]">
-          <p className="text-[18px] font-light leading-none">PRD &amp; Build Plan</p>
+      <section className="w-full flex flex-col lg:items-end pb-[84px] lg:pb-[175px]" style={{ fontFamily: leagueSpartan }}>
+        <div className="flex w-full lg:max-w-[748px] flex-col gap-[14px] px-5 lg:px-[24px]">
+          <p className="text-[18px] font-light leading-none text-white/60">PRD &amp; Build Plan</p>
           <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px] w-full max-w-[700px]">
             I turned research and competitive insights into a ChatGPT-generated product requirements document, which became the single source of truth for scope, user roles (teacher / head teacher / parent), and the MVP feature set.
           </p>
@@ -197,7 +195,7 @@ export default function SoloPage() {
       {/* Design & prototype — ActivityFlow carousel */}
       <section className="w-full pb-24 lg:pb-[200px] pt-7 lg:pt-[28px]" style={{ fontFamily: leagueSpartan }}>
         <div className="flex flex-col items-center gap-[14px] px-5 lg:px-[24px] mb-8 lg:mb-10 text-center">
-          <p className="text-[18px] font-light leading-none">Design &amp; Prototype</p>
+          <p className="text-[18px] font-light leading-none text-white/60">Design &amp; Prototype</p>
           <p className="text-[clamp(18px,2.2vw,22px)] font-light leading-[1.32] max-w-[700px]">
             From the PRD, I used Google Stitch and Figma First Draft to accelerate early exploration, then refined an MVP in Figma and Replit for usability testing.
           </p>
@@ -247,7 +245,7 @@ export default function SoloPage() {
         >
           <div className="flex flex-col gap-4 sm:gap-6 lg:gap-[32px] w-full">
             <div className="flex flex-col gap-[14px] text-white">
-              <p className="text-[18px] font-light leading-none">Build &amp; Iteration</p>
+              <p className="text-[18px] font-light leading-none text-white/60">Build &amp; Iteration</p>
               <p className="text-[clamp(18px,2.2vw,22px)] font-light leading-[1.32]">
                 Once concepts were validated with the client, I used Replit to turn designs into a working build, then iterated on real feedback from the client and test users. The shipped app, a tremendous efficiency gain over manual end-of-day reporting, does the following:
               </p>

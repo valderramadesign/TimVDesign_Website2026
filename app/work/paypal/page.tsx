@@ -93,7 +93,7 @@ export default function PayPal1CaseStudy() {
               className="flex w-full lg:w-[1335px] max-w-full flex-col gap-[14px]"
               style={{ fontFamily: leagueSpartan }}
             >
-              <p className="text-sm lg:text-[18px] font-light leading-none">
+              <p className="text-sm lg:text-[18px] font-light leading-none text-white/60">
                 Reducing Friction
               </p>
               <h1 className="font-serif leading-[1.02] lg:leading-[96px] tracking-[-0.015em] text-[clamp(36px,9vw,96px)] lg:text-[96px]">
@@ -109,7 +109,7 @@ export default function PayPal1CaseStudy() {
           >
             <ScrollFade direction="left" once={true}>
               <div className="flex w-full lg:w-[861px] max-w-full flex-col gap-[14px]">
-                <p className="text-sm lg:text-[18px] font-light leading-none">My Role</p>
+                <p className="text-sm lg:text-[18px] font-light leading-none text-white/60">My Role</p>
                 <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
                   Led the redesign of all six US and UK PayPal credit products for the new checkout framework. I ran the project on an AI-assisted workflow &mdash; using ChatGPT and Figma&apos;s AI tools at each stage &mdash; to move from discovery to stakeholder-ready designs in 1.5 months across six products.
                 </p>
@@ -118,13 +118,13 @@ export default function PayPal1CaseStudy() {
             <ScrollFade direction="right" once={true} className="lg:ml-auto w-full lg:w-auto">
               <div className="flex flex-col sm:flex-row items-start gap-6 sm:gap-10 lg:gap-[80px]">
                 <div className="flex flex-col gap-[14px]">
-                  <p className="text-sm lg:text-[18px] font-light leading-none">Timeline</p>
+                  <p className="text-sm lg:text-[18px] font-light leading-none text-white/60">Timeline</p>
                   <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
                     1.5 months
                   </p>
                 </div>
                 <div className="flex w-full sm:w-[486px] lg:w-[260px] flex-col gap-[14px]">
-                  <p className="text-sm lg:text-[18px] font-light leading-none">Platforms</p>
+                  <p className="text-sm lg:text-[18px] font-light leading-none text-white/60">Platforms</p>
                   <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
                     iOS/Android mobile and desktop
                   </p>
@@ -150,7 +150,7 @@ export default function PayPal1CaseStudy() {
             className="flex w-full max-w-[1563px] flex-col gap-[14px]"
             style={{ fontFamily: leagueSpartan }}
           >
-            <p className="text-sm lg:text-[18px] font-light">Problem</p>
+            <p className="text-sm lg:text-[18px] font-light text-white/60">Problem</p>
             <p className="text-[clamp(20px,4.5vw,48px)] lg:text-[48px] font-light leading-[1.3]">
               Paying with a credit card is seamless and nearly instant, while using a PayPal installment credit product requires customers to complete a rigorous, multi-step application at every checkout. This added friction disrupts the purchase flow, hurting conversion, repeat usage, and adoption of one of PayPal&apos;s key revenue-driving products.
               <br />
@@ -182,7 +182,7 @@ export default function PayPal1CaseStudy() {
             className="flex w-full flex-col gap-[14px] lg:w-[29vw] lg:max-w-[538px]"
             style={{ fontFamily: leagueSpartan }}
           >
-            <p className="text-sm lg:text-[18px] font-light">Requirements &amp; Discovery</p>
+            <p className="text-sm lg:text-[18px] font-light text-white/60">Requirements &amp; Discovery</p>
             <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
               With six product teams, leadership, and cross-functional feedback, I used ChatGPT to structure the problem space based on meeting notes for each stakeholder team &mdash; mapping each product&apos;s funnel, success metrics, and the constraints unique to US vs. UK credit regulation &mdash; so kickoff started from sharp, prioritized questions rather than a blank page.
             </p>
@@ -246,7 +246,7 @@ export default function PayPal1CaseStudy() {
             className="order-2 flex flex-col gap-[14px] lg:w-[1524px]"
             style={{ fontFamily: leagueSpartan }}
           >
-            <p className="text-sm lg:text-[18px] font-light">Competitive Analysis</p>
+            <p className="text-sm lg:text-[18px] font-light text-white/60">Competitive Analysis</p>
             <p className="w-full lg:w-[1279px] max-w-full text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
               I fed competitor installment flows into ChatGPT for a structured teardown &mdash; step counts, friction points, and patterns for returning users &mdash; and combined those takeaways with internal research to define the leanest possible Pay in 4 flow.
             </p>
@@ -294,7 +294,7 @@ export default function PayPal1CaseStudy() {
             className="mt-10 lg:mt-[61px] flex w-full max-w-[1279px] flex-col gap-[14px]"
             style={{ fontFamily: leagueSpartan }}
           >
-            <p className="text-sm lg:text-[18px] font-light">Execution &amp; Iteration</p>
+            <p className="text-sm lg:text-[18px] font-light text-white/60">Execution &amp; Iteration</p>
             <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
               I reduced the Pay in 4 funnel from three steps to one across both markets, using ChatGPT to unify content across all six products and to critique flows for friction and accessibility before team and leadership reviews &mdash; so review time went to decisions, not cleanup.
             </p>
