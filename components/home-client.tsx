@@ -320,8 +320,9 @@ export default function HomeClient() {
               (This website was completely vibe-coded in weeks)
             </p>
             <p className="text-white/85 font-light font-sans text-base sm:text-lg leading-snug max-w-[34ch]">
-              These projects demonstrate my ability to align diverse stakeholders and
-              rapidly iterate on designs to inform decisions that drive revenue growth.
+              9+ years of experience simplifying complex products, reducing friction, and
+              driving business growth through clear, effective UX. Certified in AI workflow,
+              AI product strategy, and designing AI experiences.
             </p>
           </section>
 

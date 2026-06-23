@@ -49,8 +49,9 @@ export default function Hero({ title, titleKey, showTagline = true }: HeroProps)
             </p>
             <div className="flex items-center justify-end w-full">
               <p className="text-white font-light font-sans text-2xl leading-7 tracking-[-0.015em] w-[370px] shrink-0">
-                These projects demonstrate my ability to align diverse stakeholders and
-                rapidly iterate on designs to inform decisions that drive revenue growth.
+                9+ years of experience simplifying complex products, reducing friction, and
+                driving business growth through clear, effective UX. Certified in AI workflow,
+                AI product strategy, and designing AI experiences.
               </p>
             </div>
           </motion.div>
