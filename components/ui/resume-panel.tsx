@@ -105,9 +105,9 @@ export default function ResumePanel() {
               <span className="text-[#7c8896]">what I do</span>
               <span className="text-black">=</span>
               <span className="text-[#fd0]">{`{`}</span>
-              <span className="text-black">&quot;I turn complex customer, business, and technical problems into clear product direction. I use </span>
-              <span style={blueHL}>modern AI-accelerated workflows with ChatGPT, Claude, Figma AI-tools, and Google Stitch</span>
-              <span className="text-black"> to improve research synthesis, opportunity framing, UX exploration, prototyping, critique, and product storytelling.&quot;</span>
+              <span className="text-black">&quot;</span>
+              <span className="text-black" style={blueHL}>Certified in AI-design workflows, AI product strategy and designing AI-powered experiences</span>
+              <span className="text-black">, I turn stakeholder requirements into user-centered concepts that accelerate alignment, sharpen product decisions, and drive measurable business outcomes.&quot;</span>
               <span className="text-[#fd0]">{`}`}</span>
             </p>
 
