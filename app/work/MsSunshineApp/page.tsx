@@ -10,12 +10,13 @@ import competitiveAnalysisCover from "@/components/images/Teacher'sApp/Competiti
 import middleCopyVideoBg from "@/components/images/Teacher'sApp/AppFlow/MiddleCopyVideoBg.png";
 import home from "@/components/images/Teacher'sApp/NewHomeScreenV2.png";
 import backgroundHandYellow from "@/components/images/Teacher'sApp/AppFlow/BackgroundhandYellow.png";
-import qrCode from "@/components/images/Teacher'sApp/QR_Code.png";
+import qrCode from "@/components/images/Teacher'sApp/MsSunshineAppV5.png";
 import activityFlow1 from "@/components/images/Teacher'sApp/AppFlow/ActivityFlow1.png";
 import activityFlow3 from "@/components/images/Teacher'sApp/AppFlow/ActivityFlow3.png";
 import activityFlow5 from "@/components/images/Teacher'sApp/AppFlow/ActivityFlow5.png";
 import activityFlow6 from "@/components/images/Teacher'sApp/AppFlow/ActivityFlow6.png";
 import { ActivityFlowCarousel } from "@/components/ui/activity-flow-carousel";
+import BackToHomeButton from "@/components/ui/back-to-home-button";
 
 export const metadata = {
   title: "Streamlining and Automating Daily Reporting — Timothy Valderrama",
@@ -221,16 +222,10 @@ export default function SoloPage() {
               </ul>
             </div>
             <div className="flex items-center lg:pl-[42px]">
-              <Link
-                href="/"
-                className="inline-flex items-center justify-center rounded-full bg-[#484848] px-6 lg:px-[30px] py-3 lg:py-[16px] text-xl lg:text-[32px] font-normal whitespace-nowrap text-white transition-colors duration-150 hover:bg-[#606060]"
-                style={{
-                  fontFamily: leagueSpartan,
-                  lineHeight: 1,
-                }}
-              >
-                Back to Homepage
-              </Link>
+              <BackToHomeButton
+                className="justify-center text-xl lg:text-[32px]"
+                fontFamily={leagueSpartan}
+              />
             </div>
           </div>
         </div>

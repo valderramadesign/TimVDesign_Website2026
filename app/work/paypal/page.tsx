@@ -8,7 +8,6 @@ import HeroVideo from "@/components/ui/hero-video";
 import CounterNumber from "@/components/ui/counter-number";
 import { AnimatedImpactRow } from "@/components/ui/animated-impact-row";
 import ImageSpotlight from "@/components/ui/image-spotlight";
-import competition from "@/components/images/paypal1-competition.png";
 import montlyInvoicingHeroOnTable from "@/components/images/Monthly invoicing Images/MontlyInvoicingHeroScreen_OnTable.png";
 import phoneWithAppRollover from "@/components/images/Teacher'sApp/PhoneWithApp_Rollover.png";
 import workflow from "@/components/images/WorkflowDiagram.png";
@@ -23,6 +22,7 @@ import flow3 from "@/components/images/1StepFlow_3.png";
 import payMonthlyScreens from "@/components/images/PayMonthlyScreens.png";
 import payPalCreditScreens from "@/components/images/PayPalCreditScreens.png";
 import payPalMastercardScreens from "@/components/images/PayPalMastercardScreens.png";
+import BackToHomeButton from "@/components/ui/back-to-home-button";
 import payPalCreditUKScreens from "@/components/images/PayPalCreditUKScreens.png";
 import payIn3UKScreens from "@/components/images/PayIn3UKScreens.png";
 import cardArtPayIn4 from "@/components/images/PayIn4_CardArt.png";
@@ -182,9 +182,9 @@ export default function PayPal1CaseStudy() {
             className="flex w-full flex-col gap-[14px] lg:w-[29vw] lg:max-w-[538px]"
             style={{ fontFamily: leagueSpartan }}
           >
-            <p className="text-sm lg:text-[18px] font-light text-white/60">Requirements &amp; Discovery</p>
+            <p className="text-sm lg:text-[18px] font-light text-white/60">The Vision</p>
             <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
-              With six product teams, leadership, and cross-functional feedback, I used ChatGPT to structure the problem space based on meeting notes for each stakeholder team &mdash; mapping each product&apos;s funnel, success metrics, and the constraints unique to US vs. UK credit regulation &mdash; so kickoff started from sharp, prioritized questions rather than a blank page.
+              Simplify loan applications for a frictionless checkout.
             </p>
           </ScrollFade>
 
@@ -217,42 +217,6 @@ export default function PayPal1CaseStudy() {
           </ScrollFade>
         </div>
 
-        {/* Analysis */}
-        <div className="mt-24 lg:mt-[200px] lg:-mr-[37px] flex w-full lg:w-[calc(100%+37px)] flex-col gap-10 overflow-hidden lg:items-end lg:gap-[61px]">
-          {/* 3D UI Reveal animation — flush to right edge */}
-          <div className="hidden lg:order-1 lg:block lg:w-[1524px]">
-            <iframe
-              src="/compositions/ui-3d-reveal.html"
-              width="1524"
-              height="916"
-              scrolling="no"
-              className="block border-0"
-              style={{ height: "916px" }}
-            />
-          </div>
-
-          {/* Mobile fallback — still image of competitor analysis */}
-          <div className="order-1 -mx-5 lg:hidden">
-            <Image
-              src={competition}
-              alt="Pay in 4 competitive analysis"
-              className="w-full h-auto"
-            />
-          </div>
-
-          {/* Text — aligned to the graphic's left edge on desktop */}
-          <ScrollFade
-            direction="right"
-            className="order-2 flex flex-col gap-[14px] lg:w-[1524px]"
-            style={{ fontFamily: leagueSpartan }}
-          >
-            <p className="text-sm lg:text-[18px] font-light text-white/60">Competitive Analysis</p>
-            <p className="w-full lg:w-[1279px] max-w-full text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
-              I fed competitor installment flows into ChatGPT for a structured teardown &mdash; step counts, friction points, and patterns for returning users &mdash; and combined those takeaways with internal research to define the leanest possible Pay in 4 flow.
-            </p>
-          </ScrollFade>
-        </div>
-
         {/* Workflow + commentary */}
         <div className="mt-24 lg:mt-[200px] flex flex-col lg:flex-row items-start lg:items-end lg:justify-end gap-10 lg:gap-[71px]">
           <div className="relative aspect-[1246/895] w-full lg:w-[1240px] lg:max-w-full">
@@ -272,12 +236,12 @@ export default function PayPal1CaseStudy() {
                 Design System Gap &rarr; Build Plan
               </p>
               <p className="text-sm lg:text-[18px] font-light leading-[1.5] lg:leading-[1.4]">
-                Because PayPal UI 4.0 wasn&apos;t ready, my team had to build
-                components ourselves. I used Figma First Draft to generate
-                first-pass components and layouts, then refined them against
-                PayPal&apos;s standards &mdash; fast-tracking 40+ iterations
-                through stakeholder review instead of designing each from
-                scratch.
+                Partnered with six product teams, leadership, and
+                cross-functional stakeholders to synthesize meeting notes in
+                ChatGPT, mapping each product&apos;s funnel, success metrics,
+                and US&ndash;UK regulatory constraints&mdash;accelerating 40+
+                design iterations through stakeholder review without
+                rebuilding each concept from scratch.
               </p>
             </div>
           </ScrollFade>
@@ -400,13 +364,7 @@ export default function PayPal1CaseStudy() {
 
             {/* CTAs — pinned to bottom of cell */}
             <div className="flex flex-wrap items-center gap-3 lg:gap-[25px]">
-              <Link
-                href="/"
-                className="inline-flex items-center rounded-full bg-[#484848] px-6 lg:px-[30px] py-3 lg:py-[16px] text-lg lg:text-[32px] font-normal leading-none whitespace-nowrap text-white transition-colors duration-150 hover:bg-[#606060]"
-                style={{ fontFamily: "var(--font-league-spartan)" }}
-              >
-                Back to Homepage
-              </Link>
+              <BackToHomeButton className="text-lg lg:text-[32px]" />
               <a
                 href="https://pay-in4-prototype-cdgo3u6dn-valderramadesign-4260s-projects.vercel.app"
                 target="_blank"
