@@ -11,7 +11,7 @@ import ImageSpotlight from "@/components/ui/image-spotlight";
 import competition from "@/components/images/paypal1-competition.png";
 import montlyInvoicingHeroOnTable from "@/components/images/Monthly invoicing Images/MontlyInvoicingHeroScreen_OnTable.png";
 import phoneWithAppRollover from "@/components/images/Teacher'sApp/PhoneWithApp_Rollover.png";
-import workflow from "@/components/images/WorkflowDiagram.svg";
+import workflow from "@/components/images/WorkflowDiagram.png";
 import circleLg from "@/components/images/paypal1-circle-lg.png";
 import prdImage from "@/components/images/PRD.png";
 import productMetricsImage from "@/components/images/ProductMetrics.png";
@@ -138,7 +138,7 @@ export default function PayPal1CaseStudy() {
       {/* Hero video */}
       <section className="relative w-full">
         <div className="relative aspect-[16/10] lg:aspect-auto lg:h-[1034px] w-full overflow-hidden">
-          <HeroVideo src="/WomanPhoneShopping.mp4" />
+          <HeroVideo src="/videos/HeroPayPal1_Video.mp4" />
         </div>
       </section>
 
@@ -283,28 +283,10 @@ export default function PayPal1CaseStudy() {
           </ScrollFade>
         </div>
 
-        {/* Hero video */}
-        <div className="mt-24 lg:mt-[200px] relative aspect-[16/10] lg:aspect-auto lg:h-[1034px] w-[calc(100%+40px)] lg:w-[calc(100%+74px)] -mx-5 lg:-mx-[37px] overflow-hidden">
-          <HeroVideo src="/videos/HeroPayPal1_Video.mp4" />
-        </div>
-
-        {/* Execution & iteration */}
-        <ScrollFade direction="left">
-          <div
-            className="mt-10 lg:mt-[61px] flex w-full max-w-[1279px] flex-col gap-[14px]"
-            style={{ fontFamily: leagueSpartan }}
-          >
-            <p className="text-sm lg:text-[18px] font-light text-white/60">Execution &amp; Iteration</p>
-            <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
-              I reduced the Pay in 4 funnel from three steps to one across both markets, using ChatGPT to unify content across all six products and to critique flows for friction and accessibility before team and leadership reviews &mdash; so review time went to decisions, not cleanup.
-            </p>
-          </div>
-        </ScrollFade>
-
       </section>
 
       {/* Impact graphs */}
-      <section className="mt-24 lg:mt-[200px] max-w-[1600px] w-full pb-24 lg:pb-[200px] mx-auto px-5 lg:px-[37px]">
+      <section className="mt-24 lg:mt-[200px] max-w-[1600px] w-full pb-10 lg:pb-[61px] mx-auto px-5 lg:px-[37px]">
           <p className="font-light text-sm lg:text-[18px] mb-6 lg:mb-8" style={{ fontFamily: leagueSpartan }}>Impact</p>
           <div className="grid grid-cols-[100px_1fr] lg:grid-cols-[280px_1fr] gap-4 lg:gap-12 mb-4 lg:mb-6">
             <div />
@@ -334,6 +316,19 @@ export default function PayPal1CaseStudy() {
               <p className="font-serif text-[clamp(48px,12vw,96px)] lg:text-[clamp(64px,8vw,96px)] leading-[1] tracking-[-0.96px]">$784M</p>
             </div>
           </div>
+
+          {/* Execution & iteration */}
+          <ScrollFade direction="left">
+            <div
+              className="mt-24 lg:mt-[200px] flex w-full max-w-[1279px] flex-col gap-[14px]"
+              style={{ fontFamily: leagueSpartan }}
+            >
+              <p className="text-sm lg:text-[18px] font-light text-white/60">Execution &amp; Iteration</p>
+              <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
+                I reduced the Pay in 4 funnel from three steps to one across both markets, using ChatGPT to unify content across all six products and to critique flows for friction and accessibility before team and leadership reviews &mdash; so review time went to decisions, not cleanup.
+              </p>
+            </div>
+          </ScrollFade>
       </section>
 
       <section className="relative w-full px-5 lg:px-[37px]">
@@ -361,7 +356,7 @@ export default function PayPal1CaseStudy() {
           <VideoOverlay />
 
           {/* Bottom Right: closing copy */}
-          <ScrollFade direction="right" className="flex flex-col justify-between gap-6 lg:gap-8 pl-0 lg:pl-[24px]" style={{ fontFamily: leagueSpartan }}>
+          <ScrollFade direction="right" className="flex flex-col gap-10 lg:gap-[56px] pl-0 lg:pl-[24px]" style={{ fontFamily: leagueSpartan }}>
             <div className="flex flex-col gap-6 lg:gap-8">
               {/* Stats side by side */}
               <div className="flex flex-row gap-8 lg:gap-12">

@@ -69,7 +69,7 @@ export default function SoloPage() {
       {/* Hero video — full bleed */}
       <section className="w-full">
         <video
-          src="/videos/TeacherRecordingActivity/TeacherRecordingActivity2.mp4"
+          src="/videos/TeacherInterview/TeacherAppInterview_3.mp4"
           autoPlay
           loop
           muted
@@ -103,39 +103,8 @@ export default function SoloPage() {
         />
       </section>
 
-      {/* Meeting Movie — interview image + caption */}
-      <section className="w-full flex flex-col lg:items-end gap-6 lg:gap-[24px] pt-16 lg:pt-[167px] pb-12 lg:pb-[100px]">
-        <video
-          src="/videos/TeacherInterview/TeacherAppInterview_3.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className="w-full h-auto object-cover"
-        />
-        <div
-          className="flex flex-col items-start px-5 lg:px-0 lg:pr-[24px]"
-          style={{ fontFamily: leagueSpartan }}
-        >
-          <div className="w-full max-w-[466px] lg:w-[466px] text-[18px] font-light text-white leading-[21px] space-y-[21px]">
-            <p className="text-white/60">Research &amp; Synthesis</p>
-            <p>
-              I used ChatGPT to build a detailed research plan, then ran interviews with teachers and school owners. ChatGPT synthesized the findings into five clear needs:
-            </p>
-            <ul className="list-disc pl-[27px]">
-              <li>Fast, simple logging</li>
-              <li>Better parent communication</li>
-              <li>Bulk actions for multiple children</li>
-              <li>Flexible editing and deletion</li>
-              <li>Stronger child-record management</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
       {/* Competitive Analysis */}
-      <section className="w-full flex flex-col lg:items-end gap-[45px] lg:gap-[110px] pb-[67px] lg:pb-[140px]">
+      <section className="w-full flex flex-col lg:items-end gap-[45px] lg:gap-[110px] pt-16 lg:pt-[200px] pb-[67px] lg:pb-[140px]">
         <div className="flex flex-col gap-[14px] w-full max-w-[1476px] px-5 lg:pl-0 lg:pr-[24px]" style={{ fontFamily: leagueSpartan }}>
           <p className="text-[18px] font-light leading-none text-white/60">Competitive Analysis</p>
           <div className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px] w-full max-w-[700px]">
@@ -179,16 +148,6 @@ export default function SoloPage() {
               />
             </a>
           </div>
-        </div>
-      </section>
-
-      {/* PRD & build plan */}
-      <section className="w-full flex flex-col lg:items-end pb-[84px] lg:pb-[175px]" style={{ fontFamily: leagueSpartan }}>
-        <div className="flex w-full lg:max-w-[748px] flex-col gap-[14px] px-5 lg:px-[24px]">
-          <p className="text-[18px] font-light leading-none text-white/60">PRD &amp; Build Plan</p>
-          <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px] w-full max-w-[700px]">
-            I turned research and competitive insights into a ChatGPT-generated product requirements document, which became the single source of truth for scope, user roles (teacher / head teacher / parent), and the MVP feature set.
-          </p>
         </div>
       </section>
 
@@ -243,9 +202,9 @@ export default function SoloPage() {
           className="flex flex-col items-start min-w-0 w-full"
           style={{ fontFamily: leagueSpartan }}
         >
-          <div className="flex flex-col gap-4 sm:gap-6 lg:gap-[32px] w-full">
+          <div className="flex flex-col gap-10 lg:gap-[56px] w-full">
             <div className="flex flex-col gap-[14px] text-white">
-              <p className="text-[18px] font-light leading-none text-white/60">Build &amp; Iteration</p>
+              <p className="text-[18px] font-light leading-none text-white/60">Things I Did:</p>
               <p className="text-[clamp(18px,2.2vw,22px)] font-light leading-[1.32]">
                 Once concepts were validated with the client, I used Replit to turn designs into a working build, then iterated on real feedback from the client and test users. The shipped app, a tremendous efficiency gain over manual end-of-day reporting, does the following:
               </p>
@@ -264,7 +223,7 @@ export default function SoloPage() {
             <div className="flex items-center lg:pl-[42px]">
               <Link
                 href="/"
-                className="inline-flex items-center justify-center rounded-full bg-[#484848] px-6 lg:px-[24px] py-3 lg:py-[14px] text-xl lg:text-[22px] font-normal whitespace-nowrap text-white transition-colors duration-150 hover:bg-[#606060]"
+                className="inline-flex items-center justify-center rounded-full bg-[#484848] px-6 lg:px-[30px] py-3 lg:py-[16px] text-xl lg:text-[32px] font-normal whitespace-nowrap text-white transition-colors duration-150 hover:bg-[#606060]"
                 style={{
                   fontFamily: leagueSpartan,
                   lineHeight: 1,

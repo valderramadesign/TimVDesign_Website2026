@@ -173,7 +173,7 @@ export default function MetaPage() {
 
       <section className="w-full">
         <video
-          src="/CreditCardDeclineMOV.mp4"
+          src="/MI_Presentation_Video.mp4"
           autoPlay
           loop
           muted
@@ -192,7 +192,7 @@ export default function MetaPage() {
         </div>
       </section>
 
-      <section className="w-full pb-24 lg:pb-[310px] px-5 lg:px-8">
+      <section className="w-full pb-24 lg:pb-[76px] px-5 lg:px-8">
         <p className="text-center text-[18px] font-light mb-[13px] lg:mb-[17px]" style={{ fontFamily: leagueSpartan }}>Old 9-Step Onboarding Flow</p>
         <CardStack
           items={oldFlowItems}
@@ -207,19 +207,7 @@ export default function MetaPage() {
         />
       </section>
 
-      <section className="w-full">
-        <video
-          src="/MI_Presentation_Video.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className="w-full h-auto object-cover"
-        />
-      </section>
-
-      <section className="px-5 lg:px-[37px] pt-12 pb-20 lg:pb-[220px] w-full flex lg:justify-end">
+      <section className="px-5 lg:px-[37px] pt-12 lg:pt-0 pb-20 lg:pb-[220px] w-full flex lg:justify-center">
         <div className="w-full lg:max-w-[1000px] flex flex-col lg:flex-row gap-8 lg:gap-12 font-light text-[18px] leading-[1.4] text-white" style={{ fontFamily: leagueSpartan }}>
           <div className="space-y-3 lg:max-w-[480px]">
             <p className="text-white/60">Requirements &amp; Discovery</p>
