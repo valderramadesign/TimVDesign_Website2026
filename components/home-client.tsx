@@ -316,9 +316,6 @@ export default function HomeClient() {
               <br />
               + Agentic Front-end Developer
             </h1>
-            <p className="text-white/80 font-light text-sm sm:text-base">
-              (This website was completely vibe-coded in weeks)
-            </p>
             <p className="text-white/85 font-light font-sans text-base sm:text-lg leading-snug max-w-[34ch]">
               In the age of AI-assisted design, experience is what turns fast output into
               thoughtful, user-centered products.

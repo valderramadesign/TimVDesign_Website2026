@@ -44,9 +44,6 @@ export default function Hero({ title, titleKey, showTagline = true }: HeroProps)
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
           >
-            <p className="text-white font-light text-[18px] leading-normal" style={{ fontFamily: "var(--font-league-spartan)" }}>
-              (This website was completely vibe-coded in less than a week)
-            </p>
             <div className="flex items-center justify-end w-full">
               <p className="text-white font-light font-sans text-2xl leading-7 tracking-[-0.015em] w-[370px] shrink-0">
                 In the age of AI-assisted design, experience is what turns fast output into

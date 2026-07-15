@@ -23,6 +23,7 @@ import oldConfused from "@/components/images/Monthly invoicing Images/MI_Old_Flo
 import oldWalkingAway from "@/components/images/Monthly invoicing Images/MI_Old_Flow_Screens/WalkingAway4.png";
 import imgEyeBackground from "@/components/images/Monthly invoicing Images/FigmaAssets/EyeBackground.png";
 import imgPsychedelicBackground from "@/components/images/Monthly invoicing Images/FigmaAssets/PsychedelicBackground.png";
+import BackToHomeButton from "@/components/ui/back-to-home-button";
 import imgPromoIllustration from "@/components/images/Monthly invoicing Images/FigmaAssets/PromoIllustration.png";
 
 const oldFlowItems: CardStackItem[] = [
@@ -326,13 +327,7 @@ export default function MetaPage() {
               </ul>
             </div>
             <div className="flex flex-wrap items-center gap-4 lg:gap-[25px]">
-              <Link
-                href="/"
-                className="inline-flex items-center justify-center rounded-full bg-[#484848] px-6 lg:px-[30px] py-3 lg:py-[16px] text-xl lg:text-[32px] font-normal whitespace-nowrap text-white transition-colors duration-150 hover:bg-[#606060]"
-                style={{ fontFamily: "var(--font-league-spartan)", lineHeight: 1 }}
-              >
-                Back to Homepage
-              </Link>
+              <BackToHomeButton className="justify-center text-xl lg:text-[32px]" />
               <a
                 href="https://montly-invoicing-prototype.vercel.app/"
                 target="_blank"
