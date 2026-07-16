@@ -323,12 +323,11 @@ export default function HomeClient() {
                     transition={{ duration: 0.35, delay: 0.25 }}
                   >
                     <p className="text-white/80 text-[19px] font-light leading-[24px] text-right">
-                      Designed and delivered an end-to-end patient portal concept
-                      for presentation to leadership for a proposal that reduces
-                      clutter and prioritizes the tasks patients actually need to
-                      complete. Informed by research and patient usage data, the
-                      experience helps patients access care without complex
-                      navigation or interface friction.
+                      For this design exercise, I created an end-to-end patient
+                      portal concept for a leadership proposal, focused on
+                      reducing clutter and prioritizing essential patient
+                      tasks. Desktop research and persona jobs-to-be-done
+                      informed a streamlined experience for accessing care.
                     </p>
                   </motion.div>
 
