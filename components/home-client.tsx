@@ -371,9 +371,9 @@ export default function HomeClient() {
               className="text-white font-serif leading-[0.96] tracking-[-0.015em]"
               style={{ fontSize: "clamp(40px, 11vw, 72px)" }}
             >
-              Proven Experience + AI =
+              Proven Experience + AI
               <br />
-              Real Business Results.
+              = Real Business Results.
             </h1>
             <p className="text-white/85 font-light font-sans text-base sm:text-lg leading-snug max-w-[34ch]">
               In the age of AI-assisted design, experience is what turns fast output into
