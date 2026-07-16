@@ -13,6 +13,7 @@ import Logo from "@/components/ui/logo";
 import paypal1Rollover from "@/components/images/PayPal1_RolloverImage_WithBackground.png";
 import metaRollover from "@/components/images/Monthly invoicing Images/MontlyInvoicingHeroScreen_OnTable.png";
 import soloPhoneWithApp from "@/components/images/Teacher'sApp/PhoneWithApp_Rollover.png";
+import patientAppRollover from "@/components/images/Patient Portal/PatientApp_Rollover.png";
 
 const MOBILE_CARDS = [
   {
@@ -51,6 +52,18 @@ const MOBILE_CARDS = [
     imageAlt: "Daily reporting app shown on phone",
     objectPosition: "top",
   },
+  {
+    id: "sutter",
+    href: "/work/PatientPortal",
+    label: "Sutter Health",
+    eyebrow: "Less Portal. More Care.",
+    title: "Redesigning the Patient Portal",
+    metric: "3 days",
+    metricLabel: "From concept to prototype",
+    image: patientAppRollover,
+    imageAlt: "Sutter Health patient portal app on phone",
+    objectPosition: "top",
+  },
 ];
 
 export default function HomeClient() {
@@ -59,9 +72,10 @@ export default function HomeClient() {
   const showPayPal = hoveredProject === "paypal";
   const showMeta   = hoveredProject === "meta";
   const showSolo   = hoveredProject === "solo";
+  const showSutter = hoveredProject === "sutter";
 
   useEffect(() => {
-    const imgs = [paypal1Rollover.src, metaRollover.src, soloPhoneWithApp.src];
+    const imgs = [paypal1Rollover.src, metaRollover.src, soloPhoneWithApp.src, patientAppRollover.src];
     imgs.forEach((src) => { const img = new window.Image(); img.src = src; });
   }, []);
 
@@ -79,9 +93,11 @@ export default function HomeClient() {
     ? <>Designing Onboarding<br />That Drives Adoption</>
     : showSolo
     ? "Rapid App Innovation"
+    : showSutter
+    ? "Less portal. More care."
     : undefined;
 
-  const heroKey = showPayPal ? "paypal" : showMeta ? "meta" : showSolo ? "solo" : "default";
+  const heroKey = showPayPal ? "paypal" : showMeta ? "meta" : showSolo ? "solo" : showSutter ? "sutter" : "default";
 
   return (
     <>
@@ -108,8 +124,8 @@ export default function HomeClient() {
         {/* Main homepage content — compresses as resume opens */}
         <div className="flex-1 min-w-0 relative min-h-screen">
           {/* Background */}
-          {!showPayPal && !showMeta && !showSolo && <LiquidMetalBackground />}
-          {/* All 3 video backgrounds always in the DOM so they preload immediately */}
+          {!showPayPal && !showMeta && !showSolo && !showSutter && <LiquidMetalBackground />}
+          {/* All 4 video backgrounds always in the DOM so they preload immediately */}
           <div className={`absolute inset-0 z-[-10] bg-black ${showPayPal ? "opacity-100" : "opacity-0"}`}>
             <video
               src="/WomanPhoneShopping.mp4"
@@ -131,6 +147,13 @@ export default function HomeClient() {
               className="absolute inset-0 w-full h-full object-cover opacity-30"
             />
           </div>
+          <div className={`absolute inset-0 z-[-10] bg-black ${showSutter ? "opacity-100" : "opacity-0"}`}>
+            <video
+              src="/videos/PatientPortal/SickMan_Rollover.mp4"
+              autoPlay loop muted playsInline preload="auto" suppressHydrationWarning
+              className="absolute inset-0 w-full h-full object-cover opacity-30"
+            />
+          </div>
 
           <main className="relative z-10 flex flex-col justify-between p-[24px] h-screen">
             <div className="flex flex-col">
@@ -147,7 +170,7 @@ export default function HomeClient() {
               <Hero
                 title={heroTitle}
                 titleKey={heroKey}
-                showTagline={!showPayPal && !showMeta && !showSolo}
+                showTagline={!showPayPal && !showMeta && !showSolo && !showSutter}
               />
             </div>
 
@@ -280,6 +303,43 @@ export default function HomeClient() {
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <Image src={soloPhoneWithApp} alt="Solo" className="w-full h-full object-cover" priority />
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Sutter Health rollover panel */}
+            <AnimatePresence>
+              {showSutter && (
+                <motion.div
+                  key="sutter-panel"
+                  className="absolute top-[143px] right-[69px] z-[5] flex items-center gap-[40px]"
+                  initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <motion.div
+                    className="w-[438px] shrink-0"
+                    initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                    transition={{ duration: 0.35, delay: 0.25 }}
+                  >
+                    <p className="text-white/80 text-[19px] font-light leading-[24px] text-right">
+                      Designed and delivered an end-to-end patient portal concept
+                      for presentation to leadership for a proposal that reduces
+                      clutter and prioritizes the tasks patients actually need to
+                      complete. Informed by research and patient usage data, the
+                      experience helps patients access care without complex
+                      navigation or interface friction.
+                    </p>
+                  </motion.div>
+
+                  <motion.div
+                    className="w-[367px] h-[504px] shrink-0 rounded-[30px] overflow-hidden"
+                    initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
+                    animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
+                    exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <Image src={patientAppRollover} alt="Sutter Health patient portal app" className="w-full h-full object-cover" priority />
                   </motion.div>
                 </motion.div>
               )}

@@ -6,6 +6,7 @@ const NAV_ITEMS = [
   { id: "paypal", label: "PayPal", href: "/work/paypal" },
   { id: "meta",   label: "Meta",   href: "/work/meta" },
   { id: "solo",   label: "Ms. Sunshine App",   href: "/work/MsSunshineApp" },
+  { id: "sutter", label: "Sutter Health",       href: "/work/PatientPortal" },
 ];
 
 type LeftNavProps = {
