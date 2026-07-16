@@ -11,9 +11,9 @@ type HeroProps = {
 export default function Hero({ title, titleKey, showTagline = true }: HeroProps) {
   const content = title ?? (
     <>
-      Proven Experience + AI =
+      Proven Experience + AI
       <br />
-      Real Business Results.
+      = Real Business Results.
     </>
   );
 
