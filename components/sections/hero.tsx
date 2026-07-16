@@ -11,9 +11,9 @@ type HeroProps = {
 export default function Hero({ title, titleKey, showTagline = true }: HeroProps) {
   const content = title ?? (
     <>
-      UX/UI Designer
+      Proven Experience + AI.
       <br />
-      + Agentic Front-end Developer
+      Exceptional Experiences. Real Business Results.
     </>
   );
 
