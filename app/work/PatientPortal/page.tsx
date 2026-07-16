@@ -173,7 +173,7 @@ export default function PatientPortalPage() {
       </section>
 
       {/* Closing — Things I did + Macbook */}
-      <section className="w-full flex flex-col lg:flex-row items-start gap-10 lg:gap-[80px] px-5 lg:px-[24px] pb-20 lg:pb-[200px]">
+      <section className="w-full flex flex-col lg:flex-row items-start lg:items-center gap-10 lg:gap-[80px] px-5 lg:px-[24px] pb-20 lg:pb-[200px]">
         <div className="flex flex-col items-start min-w-0 w-full lg:flex-1" style={{ fontFamily: leagueSpartan }}>
           <div className="flex flex-col gap-10 lg:gap-[56px] w-full">
             <div className="flex flex-col gap-[14px] text-white">
