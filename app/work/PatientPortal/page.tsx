@@ -60,13 +60,13 @@ export default function PatientPortalPage() {
             <div className="flex w-full lg:w-[861px] max-w-full flex-col gap-[14px]">
               <p className="text-[18px] font-light leading-none text-white/60">My Role</p>
               <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">
-                Research, design, and front-end development for a concept redesign of Sutter Health&rsquo;s MyHealthOnline patient portal &mdash; from discovery to a working, prototyped booking flow.
+                Using AI-assisted research and rapid design workflows to create a clear, functional prototype for a simplified patient portal&mdash;making it easier for patients to schedule appointments with their doctors.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row items-start gap-8 sm:gap-[80px] lg:ml-auto">
               <div className="flex flex-col gap-[14px]">
                 <p className="text-[18px] font-light leading-none text-white/60">Timeline</p>
-                <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">3 days</p>
+                <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">2.5 days</p>
               </div>
               <div className="flex flex-col gap-[14px]">
                 <p className="text-[18px] font-light leading-none text-white/60">Platforms</p>
