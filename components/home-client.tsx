@@ -373,7 +373,7 @@ export default function HomeClient() {
             >
               Proven Experience + AI
               <br />
-              = Real Business Results.
+              = Fast Tracked Business Goals
             </h1>
             <p className="text-white/85 font-light font-sans text-base sm:text-lg leading-snug max-w-[34ch]">
               In the age of AI-assisted design, experience is what turns fast output into

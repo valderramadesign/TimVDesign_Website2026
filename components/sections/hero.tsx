@@ -13,7 +13,7 @@ export default function Hero({ title, titleKey, showTagline = true }: HeroProps)
     <>
       Proven Experience + AI
       <br />
-      = Real Business Results.
+      = Fast Tracked Business Goals
     </>
   );
 
