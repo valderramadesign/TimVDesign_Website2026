@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { League_Spartan, JetBrains_Mono } from "next/font/google";
+import { League_Spartan, JetBrains_Mono, PT_Serif } from "next/font/google";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -10,8 +10,14 @@ export const viewport: Viewport = {
 
 const leagueSpartan = League_Spartan({
   subsets: ["latin"],
-  weight: ["300", "400", "600"],
+  weight: ["300", "400", "600", "700"],
   variable: "--font-league-spartan",
+});
+
+const ptSerif = PT_Serif({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-pt-serif",
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -37,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${leagueSpartan.variable} ${jetbrainsMono.variable} bg-black antialiased`}
+        className={`${leagueSpartan.variable} ${jetbrainsMono.variable} ${ptSerif.variable} bg-black antialiased`}
         suppressHydrationWarning
       >
         {children}

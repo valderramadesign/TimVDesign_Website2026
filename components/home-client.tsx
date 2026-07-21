@@ -10,10 +10,13 @@ import LeftNav from "@/components/layout/left-nav";
 import Hero from "@/components/sections/hero";
 import ResumePanel from "@/components/ui/resume-panel";
 import Logo from "@/components/ui/logo";
+import { AsciiCubes } from "@/components/ui/ascii-cubes";
 import paypal1Rollover from "@/components/images/PayPal1_RolloverImage_WithBackground.png";
 import metaRollover from "@/components/images/Monthly invoicing Images/MontlyInvoicingHeroScreen_OnTable.png";
 import soloPhoneWithApp from "@/components/images/Teacher'sApp/PhoneWithApp_Rollover.png";
 import patientAppRollover from "@/components/images/Patient Portal/PatientApp_Rollover.png";
+import doorDashRollover from "@/components/images/DoorDash Dashboard/headquarters-laptop-command-center-cropped-1837x953.png";
+import doorDashOldDashboard from "@/components/images/DoorDash Dashboard/DoorDash_OldDashboard 1.png";
 
 const MOBILE_CARDS = [
   {
@@ -64,6 +67,18 @@ const MOBILE_CARDS = [
     imageAlt: "Sutter Health patient portal app on phone",
     objectPosition: "top",
   },
+  {
+    id: "doordash",
+    href: "/work/DoorDashDashboard",
+    label: "DoorDash Dashboard",
+    eyebrow: "See the Signal. Seize the Opportunity.",
+    title: "Turning Marketplace Signals Into Action",
+    metric: "2 Days",
+    metricLabel: "Self-initiated concept sprint",
+    image: doorDashRollover,
+    imageAlt: "DoorDash headquarters command center dashboard on laptop",
+    objectPosition: "center",
+  },
 ];
 
 export default function HomeClient() {
@@ -73,9 +88,10 @@ export default function HomeClient() {
   const showMeta   = hoveredProject === "meta";
   const showSolo   = hoveredProject === "solo";
   const showSutter = hoveredProject === "sutter";
+  const showDoorDash = hoveredProject === "doordash";
 
   useEffect(() => {
-    const imgs = [paypal1Rollover.src, metaRollover.src, soloPhoneWithApp.src, patientAppRollover.src];
+    const imgs = [paypal1Rollover.src, metaRollover.src, soloPhoneWithApp.src, patientAppRollover.src, doorDashRollover.src, doorDashOldDashboard.src];
     imgs.forEach((src) => { const img = new window.Image(); img.src = src; });
   }, []);
 
@@ -95,9 +111,21 @@ export default function HomeClient() {
     ? "Rapid App Innovation"
     : showSutter
     ? "Less portal. More care."
+    : showDoorDash
+    ? <>See the Signal.<br />Seize the Opportunity.</>
     : undefined;
 
-  const heroKey = showPayPal ? "paypal" : showMeta ? "meta" : showSolo ? "solo" : showSutter ? "sutter" : "default";
+  const heroKey = showPayPal
+    ? "paypal"
+    : showMeta
+    ? "meta"
+    : showSolo
+    ? "solo"
+    : showSutter
+    ? "sutter"
+    : showDoorDash
+    ? "doordash"
+    : "default";
 
   return (
     <>
@@ -124,8 +152,8 @@ export default function HomeClient() {
         {/* Main homepage content — compresses as resume opens */}
         <div className="flex-1 min-w-0 relative min-h-screen">
           {/* Background */}
-          {!showPayPal && !showMeta && !showSolo && !showSutter && <LiquidMetalBackground />}
-          {/* All 4 video backgrounds always in the DOM so they preload immediately */}
+          {!showPayPal && !showMeta && !showSolo && !showSutter && !showDoorDash && <LiquidMetalBackground />}
+          {/* All video/image backgrounds always in the DOM so they preload immediately */}
           <div className={`absolute inset-0 z-[-10] bg-black ${showPayPal ? "opacity-100" : "opacity-0"}`}>
             <video
               src="/WomanPhoneShopping.mp4"
@@ -154,6 +182,14 @@ export default function HomeClient() {
               className="absolute inset-0 w-full h-full object-cover opacity-30"
             />
           </div>
+          <div className={`absolute inset-0 z-[-10] bg-black overflow-hidden transition-opacity duration-300 ${showDoorDash ? "opacity-100" : "opacity-0"}`}>
+            {/* Chameleon cube field — scrolls the dashboard and samples its colors */}
+            <AsciiCubes
+              active={showDoorDash}
+              imageSrc={doorDashOldDashboard.src}
+              className="absolute inset-0 h-full w-full pointer-events-none"
+            />
+          </div>
 
           <main className="relative z-10 flex flex-col justify-between p-[24px] h-screen">
             <div className="flex flex-col">
@@ -170,7 +206,7 @@ export default function HomeClient() {
               <Hero
                 title={heroTitle}
                 titleKey={heroKey}
-                showTagline={!showPayPal && !showMeta && !showSolo && !showSutter}
+                showTagline={!showPayPal && !showMeta && !showSolo && !showSutter && !showDoorDash}
               />
             </div>
 
@@ -339,6 +375,40 @@ export default function HomeClient() {
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <Image src={patientAppRollover} alt="Sutter Health patient portal app" className="w-full h-full object-cover" priority />
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* DoorDash Dashboard rollover panel */}
+            <AnimatePresence>
+              {showDoorDash && (
+                <motion.div
+                  key="doordash-panel"
+                  className="absolute top-[148px] right-[69px] z-[5] flex items-center gap-[40px]"
+                  initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <motion.div
+                    className="w-[370px] shrink-0"
+                    initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                    transition={{ duration: 0.35, delay: 0.25 }}
+                  >
+                    <p className="text-white/80 text-[19px] font-light leading-[24px] text-right">
+                      This self-initiated concept reimagines a traditional DoorDash dashboard around
+                      <br />
+                      the jobs-to-be-done of Marketplace Operations, Merchant Success, and Growth &amp; Finance teams &mdash; reducing friction across their daily workflows.
+                    </p>
+                  </motion.div>
+
+                  <motion.div
+                    className="w-[672px] h-[419px] shrink-0 rounded-[30px] overflow-hidden"
+                    initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
+                    animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
+                    exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <Image src={doorDashRollover} alt="DoorDash Dashboard" className="w-full h-full object-cover" priority />
                   </motion.div>
                 </motion.div>
               )}
