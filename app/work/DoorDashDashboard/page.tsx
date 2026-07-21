@@ -297,7 +297,7 @@ export default function DoorDashDashboardCaseStudy() {
 
           <ScrollFade
             direction="left"
-            className="pointer-events-none absolute inset-x-0 z-20 flex flex-col gap-10 lg:gap-[56px] px-6 py-10 sm:px-10 lg:px-[64px] lg:py-0 lg:top-[9.7%]"
+            className="pointer-events-none static lg:absolute lg:inset-x-0 z-20 flex flex-col gap-10 lg:gap-[56px] px-6 py-10 sm:px-10 lg:px-[64px] lg:py-0 lg:top-[9.7%]"
             style={{ fontFamily: leagueSpartan }}
           >
             <div className="pointer-events-auto flex flex-col gap-6 lg:gap-8 max-w-[560px] lg:max-w-[33%]">
