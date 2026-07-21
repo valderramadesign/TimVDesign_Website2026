@@ -224,7 +224,7 @@ export default function DoorDashDashboardCaseStudy() {
               fill
               className="object-contain object-right"
             />
-            <p className="absolute right-0 bottom-[4%] lg:bottom-[9%] w-[55%] max-w-[420px] text-[12px] sm:text-base lg:text-[18px] font-light leading-[1.4] lg:leading-[1.5] text-white">
+            <p className="absolute top-[67.8%] left-[84.79%] w-[55%] max-w-[220px] text-[12px] sm:text-base lg:text-[13px] font-light leading-[1.4] lg:leading-[1.4] text-white min-[1536px]:max-w-[300px] min-[1536px]:text-[18px] min-[1536px]:leading-[1.5]">
               I used an end-to-end AI-assisted workflow &mdash; from ChatGPT-structured
               discovery through Figma iteration and Claude Code prototyping &mdash; to
               shape the design strategy, accelerate iteration, and turn scattered
@@ -234,7 +234,7 @@ export default function DoorDashDashboardCaseStudy() {
         </div>
 
         {/* Discovery */}
-        <div className="mt-24 lg:mt-[200px] flex flex-col gap-16 lg:gap-[100px]">
+        <div className="mt-24 lg:mt-[200px] flex flex-col gap-[150px]">
           <ScrollFade direction="left">
             <p className="text-sm lg:text-[18px] font-light text-white/60" style={{ fontFamily: leagueSpartan }}>
               Discovery
@@ -244,7 +244,7 @@ export default function DoorDashDashboardCaseStudy() {
           {DISCOVERY_CONCEPTS.map((concept, i) => (
             <div
               key={concept.title}
-              className={`flex flex-col ${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} items-center gap-10 lg:gap-[60px]`}
+              className={`flex flex-col ${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} items-center gap-[30px]`}
             >
               <DashboardAssembleReveal
                 image={concept.image}
@@ -274,33 +274,31 @@ export default function DoorDashDashboardCaseStudy() {
       </section>
 
       {/* Closing */}
-      <section className="relative w-full px-5 lg:px-[37px] mt-24 lg:mt-[200px]">
-        <div className="relative w-full overflow-hidden rounded-2xl lg:rounded-[24px]">
-          <div className="relative aspect-[1726/911] w-full">
-            <a
-              href="https://door-dash-dashboard-amber.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Open the DoorDash dashboard prototype"
-              className="absolute inset-0 z-10 block"
-            >
-              <Image
-                src={closingImage}
-                alt="DoorDash dashboard shown across laptop and phone"
-                fill
-                className="object-cover"
-                sizes="100vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-transparent" />
-            </a>
-          </div>
+      <section className="relative w-full mt-24 lg:mt-[200px]">
+        <div className="relative">
+          <a
+            href="https://door-dash-dashboard-amber.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open the DoorDash dashboard prototype"
+            className="relative block w-full aspect-[1726/911]"
+          >
+            <Image
+              src={closingImage}
+              alt="DoorDash dashboard shown across laptop and phone"
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 hidden bg-gradient-to-r from-black/85 via-black/40 to-transparent min-[1536px]:block" />
+          </a>
 
           <ScrollFade
             direction="left"
-            className="pointer-events-none static lg:absolute lg:inset-x-0 z-20 flex flex-col gap-10 lg:gap-[56px] px-6 py-10 sm:px-10 lg:px-[64px] lg:py-0 lg:top-[9.7%]"
+            className="pointer-events-none static z-10 ml-6 flex w-[calc(100%-48px)] flex-col gap-10 py-10 sm:w-2/3 sm:gap-12 lg:gap-[56px] min-[1536px]:absolute min-[1536px]:inset-x-0 min-[1536px]:top-0 min-[1536px]:mx-0 min-[1536px]:w-[calc(42vw-42px)] min-[1536px]:py-0 min-[1536px]:pl-[37px] min-[1536px]:pt-[9.7%]"
             style={{ fontFamily: leagueSpartan }}
           >
-            <div className="pointer-events-auto flex flex-col gap-6 lg:gap-8 max-w-[560px] lg:max-w-[33%]">
+            <div className="pointer-events-auto flex flex-col gap-6 lg:gap-8">
               <p className="text-sm lg:text-[18px] font-light">Things I Did:</p>
               <ul className="ml-[24px] flex list-disc flex-col gap-3 lg:gap-[18px] text-base lg:text-[22px] font-light leading-[1.5] lg:leading-[1.4]">
                 <li>
