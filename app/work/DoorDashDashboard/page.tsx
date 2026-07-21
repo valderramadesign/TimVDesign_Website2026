@@ -300,7 +300,7 @@ export default function DoorDashDashboardCaseStudy() {
             className="pointer-events-none absolute inset-x-0 z-20 flex flex-col gap-10 lg:gap-[56px] px-6 py-10 sm:px-10 lg:px-[64px] lg:py-0 lg:top-[9.7%]"
             style={{ fontFamily: leagueSpartan }}
           >
-            <div className="pointer-events-auto flex flex-col gap-6 lg:gap-8 max-w-[560px]">
+            <div className="pointer-events-auto flex flex-col gap-6 lg:gap-8 max-w-[560px] lg:max-w-[33%]">
               <p className="text-sm lg:text-[18px] font-light">Things I Did:</p>
               <ul className="ml-[24px] flex list-disc flex-col gap-3 lg:gap-[18px] text-base lg:text-[22px] font-light leading-[1.5] lg:leading-[1.4]">
                 <li>
