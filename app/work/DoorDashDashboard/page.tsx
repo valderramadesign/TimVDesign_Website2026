@@ -224,7 +224,7 @@ export default function DoorDashDashboardCaseStudy() {
               fill
               className="object-contain object-right"
             />
-            <p className="absolute top-[67.8%] left-[84.79%] w-[55%] max-w-[220px] text-[12px] sm:text-base lg:text-[13px] font-light leading-[1.4] lg:leading-[1.4] text-white min-[1536px]:max-w-[300px] min-[1536px]:text-[18px] min-[1536px]:leading-[1.5]">
+            <p className="absolute top-[73.14%] left-[74.04%] w-[25.96%] text-[12px] sm:text-base lg:text-[13px] font-light leading-[1.4] lg:leading-[1.4] text-white min-[1536px]:text-[18px] min-[1536px]:leading-[1.5]">
               I used an end-to-end AI-assisted workflow &mdash; from ChatGPT-structured
               discovery through Figma iteration and Claude Code prototyping &mdash; to
               shape the design strategy, accelerate iteration, and turn scattered
