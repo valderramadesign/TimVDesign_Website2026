@@ -10,7 +10,6 @@ import competitiveAnalysisCover from "@/components/images/Teacher'sApp/Competiti
 import middleCopyVideoBg from "@/components/images/Teacher'sApp/AppFlow/MiddleCopyVideoBg.png";
 import home from "@/components/images/Teacher'sApp/NewHomeScreenV2.png";
 import backgroundHandYellow from "@/components/images/Teacher'sApp/AppFlow/BackgroundhandYellow.png";
-import qrCode from "@/components/images/Teacher'sApp/MsSunshineAppV5.png";
 import activityFlow1 from "@/components/images/Teacher'sApp/AppFlow/ActivityFlow1.png";
 import activityFlow3 from "@/components/images/Teacher'sApp/AppFlow/ActivityFlow3.png";
 import activityFlow5 from "@/components/images/Teacher'sApp/AppFlow/ActivityFlow5.png";
@@ -177,24 +176,19 @@ export default function SoloPage() {
             aria-hidden
           />
           <div className="relative z-10 w-full h-full flex items-start justify-center pt-[7%]">
-            <div className="relative w-[46%] aspect-[450/944]">
+            <a
+              href="https://ms-sunshine-app.vercel.app/home"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative w-[46%] aspect-[450/944]"
+            >
               <Image
                 src={home}
                 alt="App home screen"
                 fill
                 className="object-cover"
               />
-            </div>
-          </div>
-          <div
-            className="absolute z-20 w-[15%] aspect-square right-[2.5%] bottom-[2.5%]"
-          >
-            <Image
-              src={qrCode}
-              alt="QR code to view the prototype"
-              fill
-              className="object-cover"
-            />
+            </a>
           </div>
         </div>
 
@@ -221,11 +215,20 @@ export default function SoloPage() {
                 </li>
               </ul>
             </div>
-            <div className="flex items-center lg:pl-[42px]">
+            <div className="flex flex-wrap items-center gap-3 lg:gap-[25px] lg:pl-[42px]">
               <BackToHomeButton
                 className="justify-center text-xl lg:text-[32px]"
                 fontFamily={leagueSpartan}
               />
+              <a
+                href="https://ms-sunshine-app.vercel.app/home"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center rounded-full border border-[#919191] px-6 lg:px-[30px] py-3 lg:py-[16px] text-xl lg:text-[32px] font-normal leading-none whitespace-nowrap text-white transition-colors duration-150 hover:border-white"
+                style={{ fontFamily: leagueSpartan }}
+              >
+                Prototype
+              </a>
             </div>
           </div>
         </div>
