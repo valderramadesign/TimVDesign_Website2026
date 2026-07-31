@@ -330,7 +330,7 @@ export default function PayPal1CaseStudy() {
                 <div className="ml-[24px] flex flex-row gap-8 lg:gap-12">
                   <div>
                     <p className="font-serif text-[clamp(40px,9vw,72px)] lg:text-[72px] font-normal leading-none">208%</p>
-                    <p className="mt-1 text-sm lg:text-[18px] font-light">
+                    <p className="mt-0 text-sm lg:text-[18px] font-light">
                       Increase in conversion
                     </p>
                   </div>
@@ -338,7 +338,7 @@ export default function PayPal1CaseStudy() {
                     <p className="font-serif text-[clamp(40px,9vw,72px)] lg:text-[72px] font-normal leading-none">
                       $598M/mo.
                     </p>
-                    <p className="mt-1 text-sm lg:text-[18px] font-light">
+                    <p className="mt-0 text-sm lg:text-[18px] font-light">
                       Trending total purchase volume
                     </p>
                   </div>

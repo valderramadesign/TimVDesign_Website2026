@@ -652,7 +652,7 @@ export default function PayPalGermanCreditCaseStudy() {
                   <p className="font-serif text-[clamp(40px,9vw,72px)] lg:text-[72px] font-normal leading-none">
                     $19.2M
                   </p>
-                  <p className="mt-1 text-sm lg:text-[18px] font-light">
+                  <p className="mt-0 text-sm lg:text-[18px] font-light">
                     Pay in 30 Days avg. annual iRev
                   </p>
                 </div>
@@ -660,7 +660,7 @@ export default function PayPalGermanCreditCaseStudy() {
                   <p className="font-serif text-[clamp(40px,9vw,72px)] lg:text-[72px] font-normal leading-none">
                     $27.5M
                   </p>
-                  <p className="mt-1 text-sm lg:text-[18px] font-light">
+                  <p className="mt-0 text-sm lg:text-[18px] font-light">
                     PayPal Ratenzahlung avg. annual iRev
                   </p>
                 </div>

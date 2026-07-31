@@ -244,7 +244,7 @@ export default function HomeClient() {
                     <div className="flex flex-col gap-[26px] items-end">
                       <div className="text-right">
                         <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>$46.7M</p>
-                        <p className="text-white/70 text-[18px] font-light mt-[4.48px]">iRev average annually</p>
+                        <p className="text-white/70 text-[18px] font-light mt-[0.48px]">iRev average annually</p>
                       </div>
                       <p className="text-white/80 text-[19px] font-light leading-[24px] text-right">
                         Germany&rsquo;s credit-cautious culture required products built
@@ -285,11 +285,11 @@ export default function HomeClient() {
                     <div className="flex flex-col gap-[26px] items-end">
                       <div className="text-right">
                         <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>208%</p>
-                        <p className="text-white/70 text-[18px] font-light mt-[4.48px]">Increase in conversion</p>
+                        <p className="text-white/70 text-[18px] font-light mt-[0.48px]">Increase in conversion</p>
                       </div>
                       <div className="text-right">
                         <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>$598M/mo.</p>
-                        <p className="text-white/70 text-[18px] font-light mt-[4.48px]">Trending total purchase volume</p>
+                        <p className="text-white/70 text-[18px] font-light mt-[0.48px]">Trending total purchase volume</p>
                       </div>
                       <p className="text-white/80 text-[19px] font-light leading-[24px] text-right">
                         Led the design strategy for a CEO-prioritized PayPal initiative
@@ -330,11 +330,11 @@ export default function HomeClient() {
                     <div className="flex flex-col gap-[26px] items-end">
                       <div className="text-right">
                         <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>61%</p>
-                        <p className="text-white/70 text-[18px] font-light mt-[4.48px]">Increase in conversion</p>
+                        <p className="text-white/70 text-[18px] font-light mt-[0.48px]">Increase in conversion</p>
                       </div>
                       <div className="text-right">
                         <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>$2.3/mo.</p>
-                        <p className="text-white/70 text-[18px] font-light mt-[4.48px]">Average savings</p>
+                        <p className="text-white/70 text-[18px] font-light mt-[0.48px]">Average savings</p>
                       </div>
                       <p className="text-white/80 text-[19px] font-light leading-[24px] text-right">
                         Increased high-spend advertiser adoption by optimizing banner
@@ -375,7 +375,7 @@ export default function HomeClient() {
                     <div className="flex flex-col gap-[26px] items-end">
                       <div className="text-right">
                         <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>480 hrs</p>
-                        <p className="text-white/70 text-[18px] font-light mt-[4.48px]">Savings annually</p>
+                        <p className="text-white/70 text-[18px] font-light mt-[0.48px]">Savings annually</p>
                       </div>
                       <p className="text-white/80 text-[19px] font-light leading-[24px] text-right">
                         Designed and developed an end-to-end mobile app that
