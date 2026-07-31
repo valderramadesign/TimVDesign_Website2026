@@ -315,7 +315,12 @@ export default function PayPalGermanCreditCaseStudy() {
             </div>
           </ScrollFade>
 
-          <div className="relative aspect-[419/851] w-[72%] max-w-[320px] lg:absolute lg:left-[357em] lg:top-[44em] lg:aspect-auto lg:h-[851em] lg:w-[419em] lg:max-w-none">
+          <a
+            href={PROTOTYPE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative block aspect-[419/851] w-[72%] max-w-[320px] lg:absolute lg:left-[357em] lg:top-[44em] lg:aspect-auto lg:h-[851em] lg:w-[419em] lg:max-w-none"
+          >
             <Image
               src={phoneOrange}
               alt="Pay in 30 Days shown on an iPhone"
@@ -323,7 +328,7 @@ export default function PayPalGermanCreditCaseStudy() {
               sizes="(max-width: 1024px) 72vw, 419px"
               className="object-contain"
             />
-          </div>
+          </a>
 
           {/* PayPal Ratenzahlung */}
           <ScrollFade
@@ -349,7 +354,12 @@ export default function PayPalGermanCreditCaseStudy() {
             </div>
           </ScrollFade>
 
-          <div className="relative aspect-[419/851] w-[72%] max-w-[320px] lg:absolute lg:left-[826em] lg:top-[44em] lg:aspect-auto lg:h-[851em] lg:w-[419em] lg:max-w-none">
+          <a
+            href={PROTOTYPE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative block aspect-[419/851] w-[72%] max-w-[320px] lg:absolute lg:left-[826em] lg:top-[44em] lg:aspect-auto lg:h-[851em] lg:w-[419em] lg:max-w-none"
+          >
             <Image
               src={phoneBlue}
               alt="PayPal Ratenzahlung shown on an iPhone"
@@ -357,7 +367,7 @@ export default function PayPalGermanCreditCaseStudy() {
               sizes="(max-width: 1024px) 72vw, 419px"
               className="object-contain"
             />
-          </div>
+          </a>
         </div>
       </section>
 
