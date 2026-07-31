@@ -641,18 +641,18 @@ export default function PayPalGermanCreditCaseStudy() {
               className="object-cover"
               sizes="100vw"
             />
-            <div className="absolute inset-0 hidden bg-gradient-to-l from-black/85 via-black/40 to-transparent min-[1536px]:block" />
+            <div className="absolute inset-0 hidden bg-gradient-to-l from-black/85 via-black/40 to-transparent lg:block" />
           </a>
 
           <ScrollFade
             direction="right"
-            className="static z-10 ml-6 flex w-[calc(100%-48px)] flex-col gap-10 py-10 sm:w-2/3 sm:gap-12 lg:gap-[56px] min-[1536px]:absolute min-[1536px]:right-0 min-[1536px]:top-0 min-[1536px]:ml-0 min-[1536px]:w-[41vw] min-[1536px]:max-w-[653px] min-[1536px]:py-0 min-[1536px]:pr-[24px] min-[1536px]:pt-[5%]"
+            className="static z-10 ml-6 flex w-[calc(100%-48px)] flex-col gap-10 py-10 sm:w-2/3 sm:gap-12 lg:absolute lg:right-0 lg:top-0 lg:ml-0 lg:w-[41vw] lg:max-w-[653px] lg:gap-[56px] lg:py-0 lg:pr-[24px] lg:pt-[5%]"
             style={{ fontFamily: leagueSpartan }}
           >
             <div className="flex flex-col gap-6 lg:gap-8">
               <p className="text-sm lg:text-[18px] font-light">Things I did:</p>
 
-              <div className="flex flex-wrap gap-x-10 gap-y-6 lg:gap-x-[66px] min-[1536px]:flex-nowrap">
+              <div className="flex flex-wrap gap-x-10 gap-y-6 lg:flex-nowrap lg:gap-x-[66px]">
                 <div className="lg:w-[289px]">
                   <p className="font-serif text-[clamp(40px,9vw,72px)] lg:text-[72px] font-normal leading-none">
                     $19.2M
