@@ -202,7 +202,7 @@ export default function SoloPage() {
               <p className="text-[18px] font-light leading-none text-white/60">Things I Did:</p>
               <div>
                 <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>480 hrs</p>
-                <p className="text-white/70 text-[18px] font-light mt-2">Savings annually</p>
+                <p className="text-white/70 text-[18px] font-light mt-[4.48px]">Savings annually</p>
               </div>
               <p className="text-[clamp(18px,2.2vw,22px)] font-light leading-[1.32]">
                 Once concepts were validated with the client, I used Replit to turn designs into a working build, then iterated on real feedback from the client and test users. The shipped app, a tremendous efficiency gain over manual end-of-day reporting, does the following:

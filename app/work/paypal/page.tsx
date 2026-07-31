@@ -322,27 +322,28 @@ export default function PayPal1CaseStudy() {
           {/* Bottom Right: closing copy */}
           <ScrollFade direction="right" className="flex flex-col gap-10 lg:gap-[56px] pl-0 lg:pl-[24px]" style={{ fontFamily: leagueSpartan }}>
             <div className="flex flex-col gap-6 lg:gap-8">
-              {/* Stats side by side */}
-              <div className="flex flex-row gap-8 lg:gap-12">
-                <div>
-                  <p className="font-serif text-[clamp(40px,9vw,72px)] lg:text-[72px] font-normal leading-none">208%</p>
-                  <p className="mt-1 text-sm lg:text-[18px] font-light">
-                    Increase in conversion
-                  </p>
-                </div>
-                <div>
-                  <p className="font-serif text-[clamp(40px,9vw,72px)] lg:text-[72px] font-normal leading-none">
-                    $598M/mo.
-                  </p>
-                  <p className="mt-1 text-sm lg:text-[18px] font-light">
-                    Trending total purchase volume
-                  </p>
-                </div>
-              </div>
-
               {/* What did I do */}
               <div className="flex flex-col gap-[14px]">
                 <p className="text-sm lg:text-[18px] font-light">Things I Did:</p>
+
+                {/* Stats side by side */}
+                <div className="ml-[24px] flex flex-row gap-8 lg:gap-12">
+                  <div>
+                    <p className="font-serif text-[clamp(40px,9vw,72px)] lg:text-[72px] font-normal leading-none">208%</p>
+                    <p className="mt-1 text-sm lg:text-[18px] font-light">
+                      Increase in conversion
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-serif text-[clamp(40px,9vw,72px)] lg:text-[72px] font-normal leading-none">
+                      $598M/mo.
+                    </p>
+                    <p className="mt-1 text-sm lg:text-[18px] font-light">
+                      Trending total purchase volume
+                    </p>
+                  </div>
+                </div>
+
                 <ul className="ml-[24px] flex list-disc flex-col gap-3 lg:gap-[18px] text-base lg:text-[24px] font-light leading-[1.5] lg:leading-[1.4]">
                   <li>
                     Ran an AI-assisted discovery-to-handoff workflow across six

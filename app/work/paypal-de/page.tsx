@@ -311,7 +311,7 @@ export default function PayPalGermanCreditCaseStudy() {
               <p className="font-serif text-[clamp(56px,12vw,96px)] leading-[1.135] tracking-[-0.01em] lg:text-[96em]">
                 <CounterNumber to={19.2} prefix="$" suffix="M" decimals={1} />
               </p>
-              <p className="text-xl leading-[1.2] lg:text-[40em]">Average annual revenue</p>
+              <p className="text-sm font-light leading-none lg:text-[24em]">Average annual revenue</p>
             </div>
           </ScrollFade>
 
@@ -345,7 +345,7 @@ export default function PayPalGermanCreditCaseStudy() {
               <p className="font-serif text-[clamp(56px,12vw,96px)] leading-[1.135] tracking-[-0.01em] lg:text-[96em]">
                 <CounterNumber to={27.5} prefix="$" suffix="M" decimals={1} />
               </p>
-              <p className="text-xl leading-[1.2] lg:text-[40em]">Average annual revenue</p>
+              <p className="text-sm font-light leading-none lg:text-[24em]">Average annual revenue</p>
             </div>
           </ScrollFade>
 
