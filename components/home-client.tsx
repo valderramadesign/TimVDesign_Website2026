@@ -374,8 +374,8 @@ export default function HomeClient() {
                   >
                     <div className="flex flex-col gap-[26px] items-end">
                       <div className="text-right">
-                        <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>257%</p>
-                        <p className="text-white/70 text-[18px] font-light mt-2">Increase in efficiency</p>
+                        <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>480 hrs</p>
+                        <p className="text-white/70 text-[18px] font-light mt-2">Savings annually</p>
                       </div>
                       <p className="text-white/80 text-[19px] font-light leading-[24px] text-right">
                         Designed and developed an end-to-end mobile app that
