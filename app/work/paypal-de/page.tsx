@@ -22,7 +22,7 @@ import rzFivePhoneRow from "@/components/images/PayPal DE/v1-Ratenzahlung/paypal
 import rzThreePhoneFan from "@/components/images/PayPal DE/v1-Ratenzahlung/paypal_de_v4_android_s26_ultra_three_phone_fan.png";
 import rzSevenPhoneRow from "@/components/images/PayPal DE/v1-Ratenzahlung/paypal_de_v5_iphone17_seven_phone_row_centered.png";
 import rzThreePhoneFanIphone from "@/components/images/PayPal DE/v1-Ratenzahlung/paypal_de_v6_iphone17_three_phone_fan.png";
-import closingMacbook from "@/components/images/PayPal DE/macbook-paypal-crisp-modal-all-glass-table-v3-4k.png";
+import closingMacbook from "@/components/images/PayPal DE/macbook-paypal-4k.png";
 
 export const metadata = {
   title: "Building Trust Through Responsible Credit — Timothy Valderrama",
@@ -35,7 +35,7 @@ const CYAN = "#00b0d8";
 const PANEL = "#2a2e33";
 
 /** Live prototype deployment for this case study. Leave empty to hide the button. */
-const PROTOTYPE_URL: string = "";
+const PROTOTYPE_URL: string = "https://german-credit-products.vercel.app/";
 
 /**
  * The Figma frame is 1853px wide with a 24px gutter, so the design canvas is 1805px.
@@ -628,7 +628,12 @@ export default function PayPalGermanCreditCaseStudy() {
       {/* Closing */}
       <section className="relative w-full mt-20 lg:mt-[167px]">
         <div className="relative">
-          <div className="relative block w-full aspect-[16/9]">
+          <a
+            href={PROTOTYPE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative block w-full aspect-[16/9]"
+          >
             <Image
               src={closingMacbook}
               alt="PayPal German checkout shown on a laptop"
@@ -637,7 +642,7 @@ export default function PayPalGermanCreditCaseStudy() {
               sizes="100vw"
             />
             <div className="absolute inset-0 hidden bg-gradient-to-l from-black/85 via-black/40 to-transparent min-[1536px]:block" />
-          </div>
+          </a>
 
           <ScrollFade
             direction="right"
