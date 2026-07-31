@@ -650,9 +650,9 @@ export default function PayPalGermanCreditCaseStudy() {
             style={{ fontFamily: leagueSpartan }}
           >
             <div className="flex flex-col gap-6 lg:gap-8">
-              <p className="text-sm lg:text-[18px] font-light">Things I did:</p>
+              <p className="text-sm lg:text-[18px] font-light">Things I Did:</p>
 
-              <div className="flex flex-wrap gap-x-10 gap-y-6 lg:flex-nowrap lg:gap-x-[66px]">
+              <div className="flex flex-wrap gap-x-10 gap-y-6 lg:flex-nowrap lg:gap-x-[24px]">
                 <div className="lg:w-[289px]">
                   <p className="font-serif text-[clamp(40px,9vw,72px)] lg:text-[72px] font-normal leading-none">
                     $19.2M
