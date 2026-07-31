@@ -290,12 +290,12 @@ export default function DoorDashDashboardCaseStudy() {
               className="object-cover"
               sizes="100vw"
             />
-            <div className="absolute inset-0 hidden bg-gradient-to-r from-black/85 via-black/40 to-transparent min-[1536px]:block" />
+            <div className="absolute inset-0 hidden bg-gradient-to-r from-black/85 via-black/40 to-transparent lg:block" />
           </a>
 
           <ScrollFade
             direction="left"
-            className="pointer-events-none static z-10 ml-6 flex w-[calc(100%-48px)] flex-col gap-10 py-10 sm:w-2/3 sm:gap-12 lg:gap-[56px] min-[1536px]:absolute min-[1536px]:inset-x-0 min-[1536px]:top-0 min-[1536px]:mx-0 min-[1536px]:w-[calc(42vw-42px)] min-[1536px]:py-0 min-[1536px]:pl-[37px] min-[1536px]:pt-[9.7%]"
+            className="pointer-events-none static z-10 ml-6 flex w-[calc(100%-48px)] flex-col gap-10 py-10 sm:w-2/3 sm:gap-12 lg:absolute lg:inset-x-0 lg:top-0 lg:mx-0 lg:w-[calc(42vw-42px)] lg:gap-[56px] lg:py-0 lg:pl-[37px] lg:pt-[9.7%]"
             style={{ fontFamily: leagueSpartan }}
           >
             <div className="pointer-events-auto flex flex-col gap-6 lg:gap-8">

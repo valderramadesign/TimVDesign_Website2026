@@ -177,7 +177,7 @@ export default function PatientPortalPage() {
         <div className="flex flex-col items-start min-w-0 w-full lg:flex-1" style={{ fontFamily: leagueSpartan }}>
           <div className="flex flex-col gap-10 lg:gap-[56px] w-full">
             <div className="flex flex-col gap-[14px] text-white">
-              <p className="text-[18px] font-light leading-none text-white/60">Things I did:</p>
+              <p className="text-[18px] font-light leading-none text-white/60">Things I Did:</p>
               <ul className="text-[clamp(18px,2.2vw,22px)] font-light leading-[1.4] list-disc pl-6 lg:pl-[36px] space-y-4 sm:space-y-5 lg:space-y-[24px]">
                 <li>
                   After thoroughly researching the industry, key personas, and their pain points, I used an AI-assisted, context-engineered workflow to accelerate the design process from discovery to a working appointment-booking prototype.
