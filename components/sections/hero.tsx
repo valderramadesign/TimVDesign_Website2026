@@ -35,24 +35,21 @@ export default function Hero({ title, titleKey, showTagline = true }: HeroProps)
         </AnimatePresence>
       </div>
 
-      <AnimatePresence>
-        {showTagline && (
-          <motion.div
-            className="flex flex-col gap-6 w-full"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-          >
-            <div className="flex items-center justify-end w-full">
-              <p className="text-white font-light font-sans text-2xl leading-7 tracking-[-0.015em] w-[370px] shrink-0">
-                In the age of AI-assisted design, experience is what turns fast output into
-                thoughtful, user-centered products.
-              </p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Kept mounted (opacity-only fade) so its height stays reserved and the
+          headline above doesn't shift baseline as project rollovers toggle it. */}
+      <motion.div
+        className="flex flex-col gap-6 w-full"
+        animate={{ opacity: showTagline ? 1 : 0 }}
+        transition={{ duration: 0.25 }}
+        aria-hidden={!showTagline}
+      >
+        <div className="flex items-center justify-end w-full">
+          <p className="text-white font-light font-sans text-2xl leading-7 tracking-[-0.015em] w-[370px] shrink-0">
+            In the age of AI-assisted design, experience is what turns fast output into
+            thoughtful, user-centered products.
+          </p>
+        </div>
+      </motion.div>
     </div>
   );
 }
