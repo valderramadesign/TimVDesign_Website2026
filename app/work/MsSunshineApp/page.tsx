@@ -200,7 +200,7 @@ export default function SoloPage() {
           <div className="flex flex-col gap-10 lg:gap-[56px] w-full">
             <div className="flex flex-col gap-[14px] text-white">
               <p className="text-[18px] font-light leading-none text-white/60">Things I Did:</p>
-              <div className="text-right">
+              <div>
                 <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>480 hrs</p>
                 <p className="text-white/70 text-[18px] font-light mt-2">Savings annually</p>
               </div>
