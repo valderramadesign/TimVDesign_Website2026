@@ -204,16 +204,20 @@ export default function HomeClient() {
             />
           </div>
 
-          <main className="relative z-10 flex flex-col justify-between p-[24px] h-screen">
+          <main className="relative z-10 flex flex-col p-[24px] h-screen">
             <div className="flex flex-col">
               <Header
                 onResumeToggle={() => setResumeOpen((v) => !v)}
                 resumeOpen={resumeOpen}
               />
-              <div className="relative w-full mt-[clamp(80px,18vh,180px)]">
+              <div className="relative w-full mt-[clamp(40px,calc(18vh_-_40px),140px)]">
                 <LeftNav onHover={setHoveredProject} />
               </div>
             </div>
+
+            {/* Guarantees at least 40px between the nav and the headline below,
+                even on short viewports where they'd otherwise collide. */}
+            <div className="flex-1 min-h-[40px]" />
 
             <div className="pb-[30px]">
               <Hero
