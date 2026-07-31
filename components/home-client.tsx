@@ -17,6 +17,7 @@ import soloPhoneWithApp from "@/components/images/Teacher'sApp/PhoneWithApp_Roll
 import patientAppRollover from "@/components/images/Patient Portal/PatientApp_Rollover.png";
 import doorDashRollover from "@/components/images/DoorDash Dashboard/headquarters-laptop-command-center-cropped-1837x953.png";
 import doorDashOldDashboard from "@/components/images/DoorDash Dashboard/DoorDash_OldDashboard 1.png";
+import paypalDeRollover from "@/components/images/PayPal DE/PayPalDE_RolloverPhone.png";
 
 const MOBILE_CARDS = [
   {
@@ -84,6 +85,7 @@ const MOBILE_CARDS = [
 export default function HomeClient() {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [resumeOpen, setResumeOpen] = useState(false);
+  const showPayPalDE = hoveredProject === "paypalde";
   const showPayPal = hoveredProject === "paypal";
   const showMeta   = hoveredProject === "meta";
   const showSolo   = hoveredProject === "solo";
@@ -91,7 +93,7 @@ export default function HomeClient() {
   const showDoorDash = hoveredProject === "doordash";
 
   useEffect(() => {
-    const imgs = [paypal1Rollover.src, metaRollover.src, soloPhoneWithApp.src, patientAppRollover.src, doorDashRollover.src, doorDashOldDashboard.src];
+    const imgs = [paypalDeRollover.src, paypal1Rollover.src, metaRollover.src, soloPhoneWithApp.src, patientAppRollover.src, doorDashRollover.src, doorDashOldDashboard.src];
     imgs.forEach((src) => { const img = new window.Image(); img.src = src; });
   }, []);
 
@@ -103,7 +105,9 @@ export default function HomeClient() {
     }
   }, [resumeOpen]);
 
-  const heroTitle = showPayPal
+  const heroTitle = showPayPalDE
+    ? <>Turning Credit Caution<br />Into Customer Adoption</>
+    : showPayPal
     ? "Reducing Friction"
     : showMeta
     ? <>Designing Onboarding<br />That Drives Adoption</>
@@ -115,7 +119,9 @@ export default function HomeClient() {
     ? <>See the Signal.<br />Seize the Opportunity.</>
     : undefined;
 
-  const heroKey = showPayPal
+  const heroKey = showPayPalDE
+    ? "paypalde"
+    : showPayPal
     ? "paypal"
     : showMeta
     ? "meta"
@@ -152,8 +158,15 @@ export default function HomeClient() {
         {/* Main homepage content — compresses as resume opens */}
         <div className="flex-1 min-w-0 relative min-h-screen">
           {/* Background */}
-          {!showPayPal && !showMeta && !showSolo && !showSutter && !showDoorDash && <LiquidMetalBackground />}
+          {!showPayPalDE && !showPayPal && !showMeta && !showSolo && !showSutter && !showDoorDash && <LiquidMetalBackground />}
           {/* All video/image backgrounds always in the DOM so they preload immediately */}
+          <div className={`absolute inset-0 z-[-10] bg-black ${showPayPalDE ? "opacity-100" : "opacity-0"}`}>
+            <video
+              src="/videos/PayPalDE/TryNowPayLaterVideo.mp4"
+              autoPlay loop muted playsInline preload="auto" suppressHydrationWarning
+              className="absolute inset-0 w-full h-full object-cover opacity-50"
+            />
+          </div>
           <div className={`absolute inset-0 z-[-10] bg-black ${showPayPal ? "opacity-100" : "opacity-0"}`}>
             <video
               src="/WomanPhoneShopping.mp4"
@@ -206,9 +219,50 @@ export default function HomeClient() {
               <Hero
                 title={heroTitle}
                 titleKey={heroKey}
-                showTagline={!showPayPal && !showMeta && !showSolo && !showSutter && !showDoorDash}
+                showTagline={!showPayPalDE && !showPayPal && !showMeta && !showSolo && !showSutter && !showDoorDash}
               />
             </div>
+
+            {/* PayPal Germany rollover panel */}
+            <AnimatePresence>
+              {showPayPalDE && (
+                <motion.div
+                  key="paypalde-panel"
+                  className="absolute top-[120px] right-[69px] z-[5] flex items-center gap-[40px]"
+                  initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <motion.div
+                    className="w-[350px] shrink-0"
+                    initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                    transition={{ duration: 0.35, delay: 0.25 }}
+                  >
+                    <div className="flex flex-col gap-[26px] items-end">
+                      <div className="text-right">
+                        <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>$46.7M</p>
+                        <p className="text-white/70 text-[18px] font-light mt-2">iRev average annually</p>
+                      </div>
+                      <p className="text-white/80 text-[19px] font-light leading-[24px] text-right">
+                        Germany&rsquo;s credit-cautious culture required products built
+                        around control and responsible borrowing: pay after inspecting
+                        an order, or spread higher-cost purchases across flexible
+                        installments.
+                      </p>
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    className="w-[350px] shrink-0"
+                    initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
+                    animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
+                    exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <Image src={paypalDeRollover} alt="PayPal Germany checkout screen" className="w-full h-auto" priority />
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
             {/* PayPal rollover panel */}
             <AnimatePresence>
