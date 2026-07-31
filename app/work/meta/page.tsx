@@ -286,7 +286,14 @@ export default function MetaPage() {
 
       <section className="w-full flex justify-center pb-[117px] lg:pb-[185px] px-5 lg:px-8">
         <div className="w-full max-w-[1417px]">
-          <MiNewFlowSlideshow />
+          <a
+            href="https://montly-invoicing-prototype.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block"
+          >
+            <MiNewFlowSlideshow />
+          </a>
         </div>
       </section>
 
