@@ -22,9 +22,15 @@ import carousel08 from "@/components/images/Patient Portal/Carousel_08_teal.png"
 import carousel09 from "@/components/images/Patient Portal/Carousel_09.png";
 import carousel10 from "@/components/images/Patient Portal/Carousel_10.png";
 
-export const metadata = {
-  title: "A Simpler Patient Portal for Faster Access to Care — Timothy Valderrama",
-};
+import { PROJECTS_BY_ID } from "@/lib/content";
+import { caseStudyMetadata } from "@/lib/seo";
+
+const project = PROJECTS_BY_ID.sutter;
+
+export const metadata = caseStudyMetadata(
+  project,
+  "A 2.5-day design exercise reimagining the Sutter Health MyHealthOnline portal around a simpler appointment-booking flow.",
+);
 
 const leagueSpartan = "var(--font-league-spartan)";
 
@@ -50,7 +56,7 @@ export default function PatientPortalPage() {
       <section className="w-full bg-black px-5 pb-5 lg:px-[24px] lg:pb-[24px]">
         <div className="flex flex-col gap-10 lg:gap-[62px]">
           <div className="flex w-full lg:w-[1335px] max-w-full flex-col gap-[14px]" style={{ fontFamily: leagueSpartan }}>
-            <p className="text-[18px] font-light leading-none text-white/60">Less portal. More care.</p>
+            <p className="text-[18px] font-light leading-none text-white/60">Less Portal. More Care.</p>
             <h1 className="font-serif text-[clamp(40px,10vw,96px)] lg:text-[96px] leading-[1.04] lg:leading-[96px] tracking-[-0.015em]">
               A Simpler Patient Portal for Faster Access to Care
             </h1>
@@ -71,6 +77,10 @@ export default function PatientPortalPage() {
               <div className="flex flex-col gap-[14px]">
                 <p className="text-[18px] font-light leading-none text-white/60">Platforms</p>
                 <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">Mobile &amp; desktop</p>
+              </div>
+              <div className="flex flex-col gap-[14px]">
+                <p className="text-[18px] font-light leading-none text-white/60">Status</p>
+                <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">{project.status}</p>
               </div>
             </div>
           </div>
@@ -230,7 +240,7 @@ export default function PatientPortalPage() {
             <div className="relative aspect-[437/666] w-full lg:w-[437px] lg:h-[666px] rounded-[30px] overflow-hidden lg:shrink-0">
               <img
                 src="/images/next-case-studies/paypal-hero.jpg"
-                alt="PayPal case study"
+                alt="PayPal case study preview"
                 className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
@@ -248,7 +258,7 @@ export default function PatientPortalPage() {
               <div className="absolute h-full top-0" style={{ left: "-3.69%", width: "130.67%" }}>
                 <Image
                   src={montlyInvoicingHeroOnTable}
-                  alt="Meta case study"
+                  alt="Meta case study preview"
                   fill
                   className="object-cover"
                 />

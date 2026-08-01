@@ -16,10 +16,15 @@ import activityFlow5 from "@/components/images/Teacher'sApp/AppFlow/ActivityFlow
 import activityFlow6 from "@/components/images/Teacher'sApp/AppFlow/ActivityFlow6.png";
 import { ActivityFlowCarousel } from "@/components/ui/activity-flow-carousel";
 import BackToHomeButton from "@/components/ui/back-to-home-button";
+import { PROJECTS_BY_ID } from "@/lib/content";
+import { caseStudyMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Streamlining and Automating Daily Reporting — Timothy Valderrama",
-};
+const project = PROJECTS_BY_ID.solo;
+
+export const metadata = caseStudyMetadata(
+  project,
+  "A solo, AI-assisted build of the Ms. Sunshine App — automating a preschool's daily activity reporting and saving the head teacher an estimated 480 hours a year.",
+);
 
 const leagueSpartan = "var(--font-league-spartan)";
 
@@ -49,7 +54,7 @@ export default function SoloPage() {
             <div className="flex w-full lg:w-[861px] max-w-full flex-col gap-[14px]">
               <p className="text-[18px] font-light leading-none text-white/60">My Role</p>
               <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">
-                Solo end-to-end AI workflow: research with ChatGPT and Claude, PRD generation with ChatGPT, design with Google Stitch and Figma, build with Replit &mdash; concept to tested MVP in 3 weeks.
+                Solo end-to-end AI workflow: research with ChatGPT and Claude, PRD generation with ChatGPT, design with Google Stitch and Figma, build with Replit &mdash; concept to tested MVP in the first 3 weeks.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row items-start gap-8 sm:gap-[80px] lg:ml-auto">
@@ -60,6 +65,10 @@ export default function SoloPage() {
               <div className="flex flex-col gap-[14px]">
                 <p className="text-[18px] font-light leading-none text-white/60">Platforms</p>
                 <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">Mobile</p>
+              </div>
+              <div className="flex flex-col gap-[14px]">
+                <p className="text-[18px] font-light leading-none text-white/60">Status</p>
+                <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">{project.status}</p>
               </div>
             </div>
           </div>
@@ -202,10 +211,10 @@ export default function SoloPage() {
               <p className="text-[18px] font-light leading-none text-white/60">Things I Did:</p>
               <div>
                 <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>480 hrs</p>
-                <p className="text-white/70 text-[18px] font-light mt-[0.48px]">Savings annually</p>
+                <p className="text-white/70 text-[18px] font-light mt-[0.48px]">Estimated annual time saved</p>
               </div>
               <p className="text-[clamp(18px,2.2vw,22px)] font-light leading-[1.32]">
-                Once concepts were validated with the client, I used Replit to turn designs into a working build, then iterated on real feedback from the client and test users. The shipped app, a tremendous efficiency gain over manual end-of-day reporting, does the following:
+                Once concepts were validated with the client, I used Replit to turn designs into a working build, then iterated on real feedback from the client and test users. The shipped app removes manual end-of-day reporting &mdash; an estimated 2 hours of the head teacher&rsquo;s day, or roughly 480 hours across a ~240-day working year. It does the following:
               </p>
               <ul className="text-[clamp(18px,2.2vw,22px)] font-light leading-[1.32] list-disc pl-6 lg:pl-[36px] space-y-4 sm:space-y-5 lg:space-y-[24px]">
                 <li>
@@ -249,7 +258,7 @@ export default function SoloPage() {
             <div className="relative aspect-[437/666] w-full lg:w-[437px] lg:h-[666px] rounded-[30px] overflow-hidden lg:shrink-0">
               <img
                 src="/images/next-case-studies/paypal-hero.jpg"
-                alt="PayPal case study"
+                alt="PayPal case study preview"
                 className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
@@ -267,7 +276,7 @@ export default function SoloPage() {
               <div className="absolute h-full top-0" style={{ left: "-3.69%", width: "130.67%" }}>
                 <Image
                   src={montlyInvoicingHeroOnTable}
-                  alt="Meta case study"
+                  alt="Meta case study preview"
                   fill
                   className="object-cover"
                 />

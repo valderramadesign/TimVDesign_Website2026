@@ -13,10 +13,16 @@ import missionControlDashboard from "@/components/images/DoorDash Dashboard/prom
 import personaMarketplaceOps from "@/components/images/DoorDash Dashboard/persona-marketplace-ops.png";
 import personaMerchantSuccess from "@/components/images/DoorDash Dashboard/persona-merchant-success.png";
 import personaGrowthFinance from "@/components/images/DoorDash Dashboard/persona-growth-finance.png";
+import BackToHomeButton from "@/components/ui/back-to-home-button";
+import { PROJECTS_BY_ID } from "@/lib/content";
+import { caseStudyMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "DoorDash Dashboard — Timothy Valderrama",
-};
+const project = PROJECTS_BY_ID.doordash;
+
+export const metadata = caseStudyMetadata(
+  project,
+  "A self-initiated two-day concept sprint turning a cluttered DoorDash operations dashboard into a scannable, AI-assisted view of the day's most urgent marketplace issues.",
+);
 
 const leagueSpartan = "var(--font-league-spartan)";
 
@@ -105,7 +111,7 @@ export default function DoorDashDashboardCaseStudy() {
                 See the Signal. Seize the Opportunity.
               </p>
               <h1 className="font-serif leading-[1.02] lg:leading-[96px] tracking-[-0.015em] text-[clamp(36px,9vw,96px)] lg:text-[96px]">
-                Turning marketplace signals into confident action.
+                Turning Marketplace Signals Into Confident Action
               </h1>
             </div>
           </ScrollFade>
@@ -135,6 +141,12 @@ export default function DoorDashDashboardCaseStudy() {
                   <p className="text-sm lg:text-[18px] font-light leading-none text-white/60">Platforms</p>
                   <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
                     Mobile &amp; desktop
+                  </p>
+                </div>
+                <div className="flex flex-col gap-[14px]">
+                  <p className="text-sm lg:text-[18px] font-light leading-none text-white/60">Status</p>
+                  <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
+                    {project.status}
                   </p>
                 </div>
               </div>
@@ -317,13 +329,7 @@ export default function DoorDashDashboardCaseStudy() {
             </div>
 
             <div className="pointer-events-auto flex flex-wrap items-center gap-3 lg:gap-[25px]">
-              <Link
-                href="/"
-                className="inline-flex items-center rounded-full bg-[#484848] px-6 lg:px-[30px] py-3 lg:py-[16px] text-lg lg:text-[32px] font-normal leading-none whitespace-nowrap text-white transition-colors duration-150 hover:bg-[#606060]"
-                style={{ fontFamily: "var(--font-league-spartan)" }}
-              >
-                Back to Homepage
-              </Link>
+              <BackToHomeButton className="text-lg lg:text-[32px]" fontFamily={leagueSpartan} />
               <a
                 href="https://door-dash-dashboard-amber.vercel.app/"
                 target="_blank"
@@ -347,7 +353,7 @@ export default function DoorDashDashboardCaseStudy() {
           <Link href="/work/paypal" className="group flex w-full max-w-[437px] lg:w-[437px] flex-col gap-4 lg:gap-[27px] items-start">
             <div className="aspect-[437/666] w-full lg:h-[666px] lg:w-[437px] relative lg:shrink-0 rounded-2xl lg:rounded-[30px] overflow-hidden">
               <img
-                alt="PayPal case study"
+                alt="PayPal case study preview"
                 src="/images/next-case-studies/paypal-hero.jpg"
                 className="absolute pointer-events-none object-cover h-full transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                 style={{ width: "270%", maxWidth: "none", left: "-88%" }}

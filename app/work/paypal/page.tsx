@@ -30,10 +30,15 @@ import cardArtPayMonthly from "@/components/images/PayMonthly_CardArt.png";
 import cardArtPayPalCredit from "@/components/images/PayPalCredit_CardArt.png";
 import cardArtPayPalMastercard from "@/components/images/PayPalMastercard_CardArt.png";
 import cardArtPayIn3 from "@/components/images/PayIn3_CardArt.png";
+import { PROJECTS_BY_ID } from "@/lib/content";
+import { caseStudyMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Optimizing Loan Application Flows in PayPal Checkout — Timothy Valderrama",
-};
+const project = PROJECTS_BY_ID.paypal;
+
+export const metadata = caseStudyMetadata(
+  project,
+  "Redesigning six US and UK PayPal credit products for the new checkout framework — cutting the Pay in 4 funnel from three steps to one and contributing to ~$784M in annual incremental revenue.",
+);
 
 const leagueSpartan = "var(--font-league-spartan)";
 
@@ -127,6 +132,12 @@ export default function PayPal1CaseStudy() {
                   <p className="text-sm lg:text-[18px] font-light leading-none text-white/60">Platforms</p>
                   <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
                     iOS/Android mobile and desktop
+                  </p>
+                </div>
+                <div className="flex flex-col gap-[14px]">
+                  <p className="text-sm lg:text-[18px] font-light leading-none text-white/60">Status</p>
+                  <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
+                    {project.status}
                   </p>
                 </div>
               </div>
@@ -273,10 +284,10 @@ export default function PayPal1CaseStudy() {
               futurePct={79}
               todayLabel="51%"
               futureLabel="79%"
-              sublabel="Increase of 27%"
+              sublabel="Increase of 28 percentage points"
             />
             <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-3 lg:gap-12 items-baseline lg:items-center pt-4">
-              <h3 className="font-[family-name:var(--font-league-spartan)] text-2xl lg:text-[40px] leading-[1.1] font-normal whitespace-pre-line">{"Increase in\nannual revenue"}</h3>
+              <h3 className="font-[family-name:var(--font-league-spartan)] text-2xl lg:text-[40px] leading-[1.1] font-normal whitespace-pre-line">{"Annual incremental\nrevenue (iRev)"}</h3>
               <p className="font-serif text-[clamp(48px,12vw,96px)] lg:text-[clamp(64px,8vw,96px)] leading-[1] tracking-[-0.96px]">$784M</p>
             </div>
           </div>
@@ -331,7 +342,7 @@ export default function PayPal1CaseStudy() {
                   <div>
                     <p className="font-serif text-[clamp(40px,9vw,72px)] lg:text-[72px] font-normal leading-none">208%</p>
                     <p className="mt-0 text-sm lg:text-[18px] font-light">
-                      Increase in conversion
+                      Of baseline Pay in 4 conversion
                     </p>
                   </div>
                   <div>
@@ -347,8 +358,8 @@ export default function PayPal1CaseStudy() {
                 <ul className="ml-[24px] flex list-disc flex-col gap-3 lg:gap-[18px] text-base lg:text-[24px] font-light leading-[1.5] lg:leading-[1.4]">
                   <li>
                     Ran an AI-assisted discovery-to-handoff workflow across six
-                    credit products, contributing ~$784M to PayPal&apos;s bottom
-                    line.
+                    credit products, contributing to ~$784M in annual
+                    incremental revenue (iRev).
                   </li>
                   <li>
                     Used ChatGPT to accelerate discovery, competitive synthesis,
@@ -357,7 +368,7 @@ export default function PayPal1CaseStudy() {
                   </li>
                   <li>
                     Cut the Pay in 4 funnel from three steps to one (US + UK),
-                    driving a 208% increase in conversion.
+                    lifting conversion to 208% of its baseline.
                   </li>
                 </ul>
               </div>
@@ -663,7 +674,7 @@ export default function PayPal1CaseStudy() {
               </div>
               <div className="flex w-full lg:h-[144px] lg:w-[477px] flex-col items-start gap-3 lg:gap-0 lg:justify-between text-white">
                 <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px] tracking-[-0.32px]">
-                  Total revenue
+                  Total annual iRev
                 </p>
                 <CounterNumber
                   to={784}
@@ -703,7 +714,7 @@ export default function PayPal1CaseStudy() {
             <div className="relative aspect-[437/666] lg:aspect-auto lg:h-[666px] w-full overflow-hidden rounded-2xl lg:rounded-[30px]">
               <Image
                 src={phoneWithAppRollover}
-                alt="Solo case study preview"
+                alt="Ms. Sunshine App case study preview"
                 fill
                 className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                 sizes="(max-width: 1024px) 100vw, 437px"

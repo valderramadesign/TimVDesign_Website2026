@@ -2,6 +2,8 @@
 
 import { useEffect } from "react";
 
+import { SITE } from "@/lib/content";
+
 const jb = "var(--font-jetbrains-mono)";
 
 const rule = {
@@ -56,8 +58,12 @@ function Job({
 }
 
 export default function ResumePrintPage() {
+  // Only auto-open the print dialog when linked with ?print=1 (the "PRINT" action
+  // in the résumé panel). The mobile footer links here to read the résumé.
   useEffect(() => {
-    window.print();
+    if (new URLSearchParams(window.location.search).get("print") === "1") {
+      window.print();
+    }
   }, []);
 
   return (
@@ -66,6 +72,7 @@ export default function ResumePrintPage() {
         @media print {
           @page { margin: 0.5in; }
           body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+          .no-print { display: none !important; }
         }
       `}</style>
 
@@ -73,17 +80,38 @@ export default function ResumePrintPage() {
 
         {/* Header */}
         <div style={{ marginBottom: 20 }}>
-          <div style={{ fontSize: 22, fontWeight: "bold", marginBottom: 4 }}>Timothy Valderrama</div>
+          <div style={{ fontSize: 22, fontWeight: "bold", marginBottom: 4 }}>{SITE.name}</div>
           <div style={{ fontSize: 10, color: "#444" }}>
-            valderramadesign@gmail.com &nbsp;·&nbsp; San Mateo, CA &nbsp;·&nbsp; US Citizen
+            {SITE.email} &nbsp;·&nbsp; {SITE.location} &nbsp;·&nbsp; {SITE.citizenship}
           </div>
         </div>
 
         {/* Summary */}
         <div style={{ marginBottom: 20 }}>
           <p style={{ fontSize: 10, lineHeight: "15px", margin: 0 }}>
-            Product designer with 9+ years in UX, specializing in simplifying complex product experiences, improving business outcomes, and using AI-assisted workflows to accelerate and strengthen the design process from discovery through delivery.
+            {SITE.title} {SITE.supporting} 20+ years of total design experience, including 9+ years in UX, simplifying complex product experiences, improving business outcomes, and using AI-assisted workflows to accelerate and strengthen the design process from discovery through delivery.
           </p>
+        </div>
+
+        <div className="no-print" style={{ marginBottom: 20 }}>
+          <button
+            type="button"
+            onClick={() => window.print()}
+            style={{
+              fontFamily: jb,
+              fontSize: 10,
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              padding: "8px 16px",
+              borderRadius: 999,
+              border: "1px solid #000",
+              background: "transparent",
+              color: "#000",
+              cursor: "pointer",
+            }}
+          >
+            Print / Save as PDF
+          </button>
         </div>
 
         {/* Experience */}
@@ -97,18 +125,18 @@ export default function ResumePrintPage() {
             dates="Feb 2026 – Present"
             bullets={[
               "Returned to full professional capacity after surgery and rehabilitation for a sports injury, using the transition period to deepen expertise in AI-assisted product design workflows across strategy, interface design, prototyping, and app development.",
-              "Designed and developed an AI-powered preschool activity reporting app for Sunshine Little House of Learning, automating real-time parent updates and end-of-day summaries while saving the head teacher approximately 2 hours per day.",
+              "Designed and developed an AI-powered preschool activity reporting app for Sunshine Little House of Learning, automating real-time parent updates and end-of-day summaries while saving the head teacher an estimated 2 hours per day.",
             ]}
           />
 
           <Job
             company="Meta FinTech"
-            title="Product Designer V (Staff Designer)"
+            title="Product Designer V (Staff Product Designer)"
             type="Design Consultant"
             dates="Dec 2024 – Aug 2025"
             bullets={[
               "Led design strategy to reduce checkout payment friction through credential sharing and autopay, increasing iRev by 6.3% and credential coverage by 36%.",
-              "Designed solutions to reduce ad billing credit card costs by promoting Monthly Invoicing and optimizing the AI- and automation-driven application flow, increasing conversion by 41% and delivering an estimated 20% annual savings in credit card fees.",
+              "Designed solutions to reduce ad billing credit card costs by promoting Monthly Invoicing and optimizing the AI- and automation-driven application flow, targeting a lift in conversion from a 39% baseline to 97% and ~$20M in projected annual savings in credit card fees.",
             ]}
           />
 
@@ -118,7 +146,7 @@ export default function ResumePrintPage() {
             type="FTE"
             dates="Oct 2016 – Apr 2024"
             bullets={[
-              "Modernized PayPal's installment products (top leadership priority) by migrating to UI 4.0 and the Checkout Product System, lifting conversion to 208% and growing monthly TPV to $598M for Pay in 4.",
+              "Modernized PayPal's installment products (top leadership priority) by migrating to UI 4.0 and the Checkout Product System, lifting conversion to 208% of its baseline and growing monthly TPV to $598M for Pay in 4.",
               "Led design strategy and end-to-end implementation across all German products, generating $181M in monthly TPV for PayPal Monthly Installments and $529M for Pay in 30 Days; directly contributed to promotion to Lead Designer for Global Installments.",
               "Provided mentorship and strategic guidance to senior designers, introducing scalable, data-informed solutions and process improvements to elevate team-wide design quality and maturity.",
             ]}
@@ -144,7 +172,7 @@ export default function ResumePrintPage() {
             {[
               ["Nielsen Norman Group", "Master Certificate · Human Computer Interaction"],
               ["Academy of Art University", "BFA · Graphic Design"],
-              ["De La Salle University", "BA/BS · Business Marketing"],
+              ["De La Salle University", "BAS · Business Marketing"],
             ].map(([school, degree]) => (
               <div key={school} style={{ display: "flex", justifyContent: "space-between", fontSize: 10 }}>
                 <span style={{ fontWeight: "bold" }}>{school}</span>

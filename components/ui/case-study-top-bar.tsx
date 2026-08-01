@@ -29,9 +29,9 @@ export default function CaseStudyTopBar() {
         className="rounded-full border border-transparent bg-[#484848] px-4 py-2 text-base font-normal leading-none whitespace-nowrap text-white transition-colors duration-150 hover:border-white"
         style={{ fontFamily: "var(--font-league-spartan)" }}
       >
-        Menu
+        Home
       </Link>
-      <Link href="/" aria-label="Home">
+      <Link href="/" aria-label="Timothy Valderrama — home">
         <Logo />
       </Link>
     </>
@@ -40,7 +40,7 @@ export default function CaseStudyTopBar() {
   return (
     <>
       {/* Spacer preserves document flow height */}
-      <div aria-hidden className={`invisible ${barClasses}`}>
+      <div aria-hidden inert className={`invisible ${barClasses}`}>
         {content}
       </div>
       {/* Fixed bar: stays visible while page scrolls behind it */}

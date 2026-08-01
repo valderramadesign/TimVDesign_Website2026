@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import LiquidMetalBackground from "@/components/ui/liquid-metal-background";
@@ -18,69 +18,49 @@ import patientAppRollover from "@/components/images/Patient Portal/PatientApp_Ro
 import doorDashRollover from "@/components/images/DoorDash Dashboard/headquarters-laptop-command-center-cropped-1837x953.png";
 import doorDashOldDashboard from "@/components/images/DoorDash Dashboard/DoorDash_OldDashboard 1.png";
 import paypalDeRollover from "@/components/images/PayPal DE/PayPalDE_RolloverPhone.png";
+import { PROJECTS, SITE } from "@/lib/content";
 
-const MOBILE_CARDS = [
-  {
-    id: "paypal",
-    href: "/work/paypal",
-    label: "PayPal",
-    eyebrow: "Reducing Friction",
-    title: "Optimizing Loan Application Flows",
-    metric: "208%",
-    metricLabel: "Increase in conversion",
+/** Imagery for the mobile/tablet cards. Copy comes from the shared PROJECTS list. */
+const CARD_MEDIA: Record<
+  string,
+  { image: StaticImageData; imageAlt: string; objectPosition: string }
+> = {
+  paypalde: {
+    image: paypalDeRollover,
+    imageAlt: "PayPal Germany checkout screen on a phone",
+    objectPosition: "center",
+  },
+  paypal: {
     image: paypal1Rollover,
     imageAlt: "PayPal Pay in 4 application screen",
     objectPosition: "center",
   },
-  {
-    id: "meta",
-    href: "/work/meta",
-    label: "Meta",
-    eyebrow: "Designing Onboarding That Drives Adoption",
-    title: "Monthly Invoicing for Meta Ads",
-    metric: "61%",
-    metricLabel: "Increase in conversion",
+  meta: {
     image: metaRollover,
     imageAlt: "Meta Monthly Invoicing hero screen on table",
     objectPosition: "center",
   },
-  {
-    id: "solo",
-    href: "/work/MsSunshineApp",
-    label: "Ms. Sunshine App",
-    eyebrow: "Rapid App Innovation",
-    title: "Daily Reporting App for Teachers",
-    metric: "257%",
-    metricLabel: "Increase in efficiency",
+  solo: {
     image: soloPhoneWithApp,
     imageAlt: "Daily reporting app shown on phone",
     objectPosition: "top",
   },
-  {
-    id: "sutter",
-    href: "/work/PatientPortal",
-    label: "Sutter Health",
-    eyebrow: "Less Portal. More Care.",
-    title: "Redesigning the Patient Portal",
-    metric: "3 days",
-    metricLabel: "From concept to prototype",
+  sutter: {
     image: patientAppRollover,
     imageAlt: "Sutter Health patient portal app on phone",
     objectPosition: "top",
   },
-  {
-    id: "doordash",
-    href: "/work/DoorDashDashboard",
-    label: "DoorDash Dashboard",
-    eyebrow: "See the Signal. Seize the Opportunity.",
-    title: "Turning Marketplace Signals Into Action",
-    metric: "2 Days",
-    metricLabel: "Self-initiated concept sprint",
+  doordash: {
     image: doorDashRollover,
     imageAlt: "DoorDash headquarters command center dashboard on laptop",
     objectPosition: "center",
   },
-];
+};
+
+const MOBILE_CARDS = PROJECTS.map((project) => ({
+  ...project,
+  ...CARD_MEDIA[project.id],
+}));
 
 export default function HomeClient() {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
@@ -114,7 +94,7 @@ export default function HomeClient() {
     : showSolo
     ? "Rapid App Innovation"
     : showSutter
-    ? "Less portal. More care."
+    ? "Less Portal. More Care."
     : showDoorDash
     ? <>See the Signal.<br />Seize the Opportunity.</>
     : undefined;
@@ -244,7 +224,7 @@ export default function HomeClient() {
                     <div className="flex flex-col gap-[26px] items-end">
                       <div className="text-right">
                         <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>$46.7M</p>
-                        <p className="text-white/70 text-[18px] font-light mt-[0.48px]">iRev average annually</p>
+                        <p className="text-white/70 text-[18px] font-light mt-[0.48px]">Combined average annual iRev</p>
                       </div>
                       <p className="text-white/80 text-[19px] font-light leading-[24px] text-right">
                         Germany&rsquo;s credit-cautious culture required products built
@@ -285,7 +265,7 @@ export default function HomeClient() {
                     <div className="flex flex-col gap-[26px] items-end">
                       <div className="text-right">
                         <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>208%</p>
-                        <p className="text-white/70 text-[18px] font-light mt-[0.48px]">Increase in conversion</p>
+                        <p className="text-white/70 text-[18px] font-light mt-[0.48px]">Of baseline Pay in 4 conversion</p>
                       </div>
                       <div className="text-right">
                         <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>$598M/mo.</p>
@@ -307,7 +287,7 @@ export default function HomeClient() {
                     exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <Image src={paypal1Rollover} alt="PayPal 1" className="w-full h-auto" priority />
+                    <Image src={paypal1Rollover} alt="PayPal Pay in 4 application screen" className="w-full h-auto" priority />
                   </motion.div>
                 </motion.div>
               )}
@@ -329,18 +309,18 @@ export default function HomeClient() {
                   >
                     <div className="flex flex-col gap-[26px] items-end">
                       <div className="text-right">
-                        <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>61%</p>
-                        <p className="text-white/70 text-[18px] font-light mt-[0.48px]">Increase in conversion</p>
+                        <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>97%</p>
+                        <p className="text-white/70 text-[18px] font-light mt-[0.48px]">Target conversion, up from 39%</p>
                       </div>
                       <div className="text-right">
-                        <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>$2.3/mo.</p>
-                        <p className="text-white/70 text-[18px] font-light mt-[0.48px]">Average savings</p>
+                        <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>~$20M/yr.</p>
+                        <p className="text-white/70 text-[18px] font-light mt-[0.48px]">Projected annual savings</p>
                       </div>
                       <p className="text-white/80 text-[19px] font-light leading-[24px] text-right">
-                        Increased high-spend advertiser adoption by optimizing banner
+                        Focused on high-spend advertiser adoption by optimizing banner
                         messaging and placement, simplifying the flow (9 → 3 screens)
-                        to lift conversion from 32% to 93%, and enabling automatic
-                        Monthly Invoicing attachment.
+                        to target 97% conversion against a 39% baseline, and enabling
+                        automatic Monthly Invoicing attachment.
                       </p>
                     </div>
                   </motion.div>
@@ -352,7 +332,7 @@ export default function HomeClient() {
                     exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <Image src={metaRollover} alt="Meta" className="w-full h-full object-cover" priority />
+                    <Image src={metaRollover} alt="Meta Monthly Invoicing hero screen on table" className="w-full h-full object-cover" priority />
                   </motion.div>
                 </motion.div>
               )}
@@ -375,7 +355,7 @@ export default function HomeClient() {
                     <div className="flex flex-col gap-[26px] items-end">
                       <div className="text-right">
                         <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>480 hrs</p>
-                        <p className="text-white/70 text-[18px] font-light mt-[0.48px]">Savings annually</p>
+                        <p className="text-white/70 text-[18px] font-light mt-[0.48px]">Estimated annual time saved</p>
                       </div>
                       <p className="text-white/80 text-[19px] font-light leading-[24px] text-right">
                         Designed and developed an end-to-end mobile app that
@@ -396,7 +376,7 @@ export default function HomeClient() {
                     exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <Image src={soloPhoneWithApp} alt="Solo" className="w-full h-full object-cover" priority />
+                    <Image src={soloPhoneWithApp} alt="Ms. Sunshine App daily reporting screen on phone" className="w-full h-full object-cover" priority />
                   </motion.div>
                 </motion.div>
               )}
@@ -485,9 +465,11 @@ export default function HomeClient() {
           <button
             type="button"
             onClick={() => setResumeOpen(true)}
+            aria-expanded={resumeOpen}
+            aria-controls="resume-sheet"
             className="rounded-full border border-transparent bg-[#484848] px-4 py-2.5 text-sm font-normal leading-none whitespace-nowrap text-white active:scale-[0.98] transition-all duration-150"
           >
-            Resume
+            Résumé
           </button>
           <Logo />
         </header>
@@ -532,8 +514,13 @@ export default function HomeClient() {
                         priority={i < 2}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                      <div className="absolute left-5 top-5 rounded-full bg-black/60 px-3 py-1 text-xs text-white/90 backdrop-blur-md">
-                        {card.label}
+                      <div className="absolute left-5 top-5 flex flex-wrap items-center gap-2">
+                        <span className="rounded-full bg-black/60 px-3 py-1 text-xs text-white/90 backdrop-blur-md">
+                          {card.label}
+                        </span>
+                        <span className="rounded-full border border-white/20 bg-black/45 px-3 py-1 text-[10px] uppercase tracking-[0.14em] text-white/75 backdrop-blur-md">
+                          {card.status}
+                        </span>
                       </div>
                     </div>
                     <div className="flex items-end justify-between gap-4 p-5 sm:p-6">
@@ -563,12 +550,20 @@ export default function HomeClient() {
           {/* Footer */}
           <footer className="mt-2 flex flex-col gap-2 border-t border-white/10 pt-6 text-sm text-white/60 font-sans">
             <a
-              href="mailto:valderramadesign@gmail.com"
-              className="text-white/90 underline-offset-4 hover:underline"
+              href={`mailto:${SITE.email}`}
+              className="w-fit text-white/90 underline-offset-4 hover:underline"
             >
-              valderramadesign@gmail.com
+              {SITE.email}
             </a>
-            <p>San Mateo, CA · US Citizen</p>
+            <Link
+              href="/resume/print"
+              className="w-fit text-white/90 underline-offset-4 hover:underline"
+            >
+              View full résumé
+            </Link>
+            <p>
+              {SITE.location} · {SITE.citizenship}
+            </p>
           </footer>
         </main>
 
@@ -587,6 +582,9 @@ export default function HomeClient() {
               />
               <motion.div
                 key="resume-mobile-sheet"
+                id="resume-sheet"
+                role="dialog"
+                aria-label="Résumé"
                 className="fixed inset-0 z-50 flex flex-col bg-[#fcf5e0]"
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}

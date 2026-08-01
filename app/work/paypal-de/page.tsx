@@ -23,10 +23,15 @@ import rzThreePhoneFan from "@/components/images/PayPal DE/v1-Ratenzahlung/paypa
 import rzSevenPhoneRow from "@/components/images/PayPal DE/v1-Ratenzahlung/paypal_de_v5_iphone17_seven_phone_row_centered.png";
 import rzThreePhoneFanIphone from "@/components/images/PayPal DE/v1-Ratenzahlung/paypal_de_v6_iphone17_three_phone_fan.png";
 import closingMacbook from "@/components/images/PayPal DE/macbook-paypal-4k.png";
+import { PROJECTS_BY_ID } from "@/lib/content";
+import { caseStudyMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Building Trust Through Responsible Credit — Timothy Valderrama",
-};
+const project = PROJECTS_BY_ID.paypalde;
+
+export const metadata = caseStudyMetadata(
+  project,
+  "Designing PayPal Pay in 30 Days and Ratenzahlung for Germany — two responsible credit products averaging $19.2M and $27.5M in annual revenue.",
+);
 
 const leagueSpartan = "var(--font-league-spartan)";
 const ptSerif = "var(--font-pt-serif)";
@@ -246,6 +251,12 @@ export default function PayPalGermanCreditCaseStudy() {
                     Mobile &amp; desktop
                   </p>
                 </div>
+                <div className="flex flex-col gap-[14px]">
+                  <p className="text-sm lg:text-[18px] font-light leading-none">Status</p>
+                  <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
+                    {project.status}
+                  </p>
+                </div>
               </div>
             </ScrollFade>
           </div>
@@ -311,7 +322,7 @@ export default function PayPalGermanCreditCaseStudy() {
               <p className="font-serif text-[clamp(56px,12vw,96px)] leading-[1.135] tracking-[-0.01em] lg:text-[96em]">
                 <CounterNumber to={19.2} prefix="$" suffix="M" decimals={1} />
               </p>
-              <p className="text-sm font-light leading-none lg:text-[24em]">Average annual revenue</p>
+              <p className="text-sm font-light leading-none lg:text-[24em]">Average annual iRev</p>
             </div>
           </ScrollFade>
 
@@ -350,7 +361,7 @@ export default function PayPalGermanCreditCaseStudy() {
               <p className="font-serif text-[clamp(56px,12vw,96px)] leading-[1.135] tracking-[-0.01em] lg:text-[96em]">
                 <CounterNumber to={27.5} prefix="$" suffix="M" decimals={1} />
               </p>
-              <p className="text-sm font-light leading-none lg:text-[24em]">Average annual revenue</p>
+              <p className="text-sm font-light leading-none lg:text-[24em]">Average annual iRev</p>
             </div>
           </ScrollFade>
 
@@ -685,7 +696,7 @@ export default function PayPalGermanCreditCaseStudy() {
                 <li>
                   Designed and scaled an award-winning, interest-free credit product from concept to
                   maturity, leading the design strategy and collaboration behind a seamless one-click
-                  application that generated nearly $2M in monthly revenue in a credit-averse market.
+                  application that generated $19.2M in average annual iRev in a credit-averse market.
                 </li>
                 <li>
                   Designed and scaled an installment product from concept to maturity, giving German
@@ -728,7 +739,7 @@ export default function PayPalGermanCreditCaseStudy() {
             <div className="aspect-[437/666] w-full lg:h-[666px] lg:w-[437px] relative lg:shrink-0 rounded-[30px] overflow-hidden">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                alt="PayPal case study"
+                alt="PayPal case study preview"
                 src="/images/next-case-studies/paypal-hero.jpg"
                 className="absolute pointer-events-none object-cover h-full"
                 style={{ width: "270%", maxWidth: "none", left: "-88%" }}

@@ -1,5 +1,7 @@
 "use client";
 
+import { SITE } from "@/lib/content";
+
 const jb = "var(--font-jetbrains-mono)";
 
 const yellowHL = { background: "rgba(255,180,0,0.3)", borderRadius: "2px" };
@@ -47,7 +49,7 @@ export default function ResumePanel() {
           </div>
         </div>
         <a
-          href="/resume/print"
+          href="/resume/print?print=1"
           target="_blank"
           rel="noopener noreferrer"
           className="text-[12px] text-[#7c8896] hover:text-black transition-colors duration-150"
@@ -92,7 +94,7 @@ export default function ResumePanel() {
               <span className="text-[#7c8896]">who am I</span>
               <span className="text-black">=</span>
               <span className="text-[#fd0]">{`{`}</span>
-              <span className="text-black">&quot;Design leader specializing in complex, platform-scale experiences that balance customer trust, business outcomes, and AI-enabled innovation.&quot;</span>
+              <span className="text-black">&quot;{SITE.title} {SITE.supporting}&quot;</span>
               <span className="text-[#fd0]">{`}`}</span>
               <span>{` `}</span>
               <span className="text-[#fd0]">{`{`}</span>
@@ -115,7 +117,7 @@ export default function ResumePanel() {
               <span className="text-[#7c8896]">Next role</span>
               <span className="text-black">=</span>
               <span className="text-[#fd0]">{`{`}</span>
-              <span className="text-black">&quot;Seeking a senior product design role leading end-to-end UX initiatives that optimize customer experience, drive business impact, mentor designers, and elevate product quality—while using{` `}<span style={blueHL}>AI-assisted workflows to accelerate research, ideation, prototyping, and design execution</span>.&quot;</span>
+              <span className="text-black">&quot;Seeking a principal product design role leading end-to-end UX initiatives that optimize customer experience, drive business impact, mentor designers, and elevate product quality—while using{` `}<span style={blueHL}>AI-assisted workflows to accelerate research, ideation, prototyping, and design execution</span>.&quot;</span>
               <span className="text-[#fd0]">{`}`}</span>
             </p>
 
@@ -148,7 +150,7 @@ export default function ResumePanel() {
                   &quot;Designed and developed an{` `}
                   <span style={blueHL}>AI-powered preschool activity reporting app</span>{` `}
                   for Sunshine Little House of Learning, automating real-time parent updates and end-of-day summaries while{` `}
-                  <span style={yellowHL}>saving the head teacher approximately 2 hours per day</span>.&quot;
+                  <span style={yellowHL}>saving the head teacher an estimated 2 hours per day</span>.&quot;
                   <span className="text-[#fd0]">{`}`}</span>
                 </p>
               </div>
@@ -179,7 +181,7 @@ export default function ResumePanel() {
                   <span className="text-[#fd0]">{`{`}</span>
                   &quot;Designed solutions to reduce ad billing credit card costs by promoting Monthly Invoicing and optimizing the{` `}
                   <span style={blueHL}>AI- and automation-driven application flow</span>;{` `}
-                  <span style={yellowHL}>increased conversion by 41% and delivered an estimated 20% annual savings</span> in credit card fees.&quot;
+                  <span style={yellowHL}>targeting a lift in conversion from a 39% baseline to 97% and ~$20M in projected annual savings</span> in credit card fees.&quot;
                   <span className="text-[#fd0]">{`}`}</span>
                 </p>
               </div>
@@ -201,7 +203,7 @@ export default function ResumePanel() {
                   <span className="text-[#fd0]">{`{`}</span>
                   &quot;Modernized PayPal&apos;s installment products, a top-priority leadership initiative, by migrating to UI 4.0 and the Checkout Product System; used{` `}
                   <span style={blueHL}>Figma, ChatGPT, and Claude for research synthesis, UX writing variants, flow critique, and product narrative development</span>,{` `}
-                  <span style={yellowHL}>lifting conversion to 208% and growing monthly TPV to $598M</span> for Pay in 4.&quot;
+                  <span style={yellowHL}>lifting conversion to 208% of its baseline and growing monthly TPV to $598M</span> for Pay in 4.&quot;
                   <span className="text-[#fd0]">{`}`}</span>
                 </p>
                 <p className="mb-0">

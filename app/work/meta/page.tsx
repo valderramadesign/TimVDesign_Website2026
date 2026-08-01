@@ -25,6 +25,8 @@ import imgEyeBackground from "@/components/images/Monthly invoicing Images/Figma
 import imgPsychedelicBackground from "@/components/images/Monthly invoicing Images/FigmaAssets/PsychedelicBackground.png";
 import BackToHomeButton from "@/components/ui/back-to-home-button";
 import imgPromoIllustration from "@/components/images/Monthly invoicing Images/FigmaAssets/PromoIllustration.png";
+import { PROJECTS_BY_ID } from "@/lib/content";
+import { caseStudyMetadata } from "@/lib/seo";
 
 const oldFlowItems: CardStackItem[] = [
   { id: 1, title: "Old flow — screen 1", imageSrc: oldScreen.src },
@@ -42,9 +44,12 @@ const oldFlowItems: CardStackItem[] = [
   { id: 13, title: "Advertiser — walking away", imageSrc: oldWalkingAway.src },
 ];
 
-export const metadata = {
-  title: "Boosting Visibility and Applications Through Onboarding Optimization — Timothy Valderrama",
-};
+const project = PROJECTS_BY_ID.meta;
+
+export const metadata = caseStudyMetadata(
+  project,
+  "Rebuilding Meta Monthly Invoicing onboarding from 9 screens to 3, against an H1 2025 target of lifting conversion from a 39% baseline to 97% and ~$20M/yr in projected savings.",
+);
 
 function PromoCard() {
   return (
@@ -167,6 +172,10 @@ export default function MetaPage() {
                 <p className="text-[18px] font-light leading-none text-white/60">Platforms</p>
                 <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">Desktop</p>
               </div>
+              <div className="flex flex-col gap-[14px]">
+                <p className="text-[18px] font-light leading-none text-white/60">Status</p>
+                <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">{project.status}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -227,14 +236,14 @@ export default function MetaPage() {
       </section>
 
       <section className="px-5 lg:px-8 pb-24 lg:pb-[178px] max-w-[1600px] mx-auto w-full -mt-5">
-        <p className="font-light text-[18px] mb-8" style={{ fontFamily: leagueSpartan }}>Impact</p>
+        <p className="font-light text-[18px] mb-8" style={{ fontFamily: leagueSpartan }}>Impact targets</p>
 
         {/* Column headers */}
         <div className="grid grid-cols-[110px_1fr] lg:grid-cols-[280px_1fr] gap-4 lg:gap-12 mb-6">
           <div />
           <div className="flex justify-between">
-            <p className="font-[family-name:var(--font-league-spartan)] font-bold text-base lg:text-[24px] text-white/60 tracking-[-0.24px]">Today</p>
-            <p className="font-[family-name:var(--font-league-spartan)] font-bold text-base lg:text-[24px] text-white/60 tracking-[-0.24px]">H1 2025</p>
+            <p className="font-[family-name:var(--font-league-spartan)] font-bold text-base lg:text-[24px] text-white/60 tracking-[-0.24px]">Baseline</p>
+            <p className="font-[family-name:var(--font-league-spartan)] font-bold text-base lg:text-[24px] text-white/60 tracking-[-0.24px]">H1 2025 target</p>
           </div>
         </div>
 
@@ -245,7 +254,7 @@ export default function MetaPage() {
             futurePct={67}
             todayLabel="27%"
             futureLabel="67%"
-            sublabel="$11M impact"
+            sublabel="$11M projected impact"
           />
           <AnimatedImpactRow
             label={"Improve\nawareness"}
@@ -253,7 +262,7 @@ export default function MetaPage() {
             futurePct={41}
             todayLabel="8%"
             futureLabel="41%"
-            sublabel="Increase of 27%"
+            sublabel="Target: +33 percentage points"
           />
           <AnimatedImpactRow
             label={"Grow\nconversion"}
@@ -261,10 +270,11 @@ export default function MetaPage() {
             futurePct={97}
             todayLabel="39%"
             futureLabel="97%"
+            sublabel="Target: +58 percentage points"
           />
           <div className="grid grid-cols-[110px_1fr] lg:grid-cols-[280px_1fr] gap-4 lg:gap-12 items-center pt-4">
             <h3 className="font-[family-name:var(--font-league-spartan)] text-[clamp(20px,5vw,40px)] lg:text-[40px] leading-[1.1] font-normal">
-              Savings
+              Projected savings
             </h3>
             <p className="font-serif text-[clamp(40px,10vw,96px)] lg:text-[clamp(64px,8vw,96px)] leading-[1] tracking-[-0.96px]">
               ~ $20M/yr.
@@ -326,10 +336,10 @@ export default function MetaPage() {
                   Ran an AI-first (Metamate) workflow from cross-functional discovery to delivery.
                 </li>
                 <li>
-                  Simplified the application from 9 &rarr; 3 screens, lifting conversion from 39% to 97%.
+                  Simplified the application from 9 &rarr; 3 screens, against an H1 2025 target of lifting conversion from a 39% baseline to 97%.
                 </li>
                 <li>
-                  Partnered with Content on banner copy and with teams to surface it in higher-traffic areas, expanding eligibility (27%&rarr;67%) and awareness (8%&rarr;41%) toward ~$20M/yr in projected savings.
+                  Partnered with Content on banner copy and with teams to surface it in higher-traffic areas, targeting expanded eligibility (27%&rarr;67%) and awareness (8%&rarr;41%) toward ~$20M/yr in projected savings.
                 </li>
               </ul>
             </div>
@@ -378,7 +388,7 @@ export default function MetaPage() {
             <div className="aspect-[437/666] w-full lg:h-[666px] lg:w-[437px] relative lg:shrink-0 rounded-[30px] overflow-hidden">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                alt="PayPal case study"
+                alt="PayPal case study preview"
                 src="/images/next-case-studies/paypal-hero.jpg"
                 className="absolute pointer-events-none object-cover h-full"
                 style={{ width: "270%", maxWidth: "none", left: "-88%" }}
