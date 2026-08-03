@@ -7,13 +7,13 @@ import { SITE, type Project } from "@/lib/content";
  * page title can never drift from its case study headline.
  */
 export function caseStudyMetadata(project: Project, description: string): Metadata {
-  const title = `${project.caseStudyTitle} — ${SITE.name}`;
-  const url = `${SITE.url}${project.href}`;
+  const title = `${project.caseStudyHeadline} — ${SITE.name}`;
+  const url = `${SITE.url}${project.route}`;
 
   return {
     title,
     description,
-    alternates: { canonical: project.href },
+    alternates: { canonical: project.route },
     openGraph: {
       type: "article",
       url,

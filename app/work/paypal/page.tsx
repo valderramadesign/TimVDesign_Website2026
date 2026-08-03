@@ -8,8 +8,6 @@ import HeroVideo from "@/components/ui/hero-video";
 import CounterNumber from "@/components/ui/counter-number";
 import { AnimatedImpactRow } from "@/components/ui/animated-impact-row";
 import ImageSpotlight from "@/components/ui/image-spotlight";
-import montlyInvoicingHeroOnTable from "@/components/images/Monthly invoicing Images/MontlyInvoicingHeroScreen_OnTable.png";
-import phoneWithAppRollover from "@/components/images/Teacher'sApp/PhoneWithApp_Rollover.png";
 import workflow from "@/components/images/WorkflowDiagram.png";
 import circleLg from "@/components/images/paypal1-circle-lg.png";
 import prdImage from "@/components/images/PRD.png";
@@ -23,6 +21,7 @@ import payMonthlyScreens from "@/components/images/PayMonthlyScreens.png";
 import payPalCreditScreens from "@/components/images/PayPalCreditScreens.png";
 import payPalMastercardScreens from "@/components/images/PayPalMastercardScreens.png";
 import BackToHomeButton from "@/components/ui/back-to-home-button";
+import { CTA_PILL_SIZE } from "@/components/ui/cta-pill";
 import payPalCreditUKScreens from "@/components/images/PayPalCreditUKScreens.png";
 import payIn3UKScreens from "@/components/images/PayIn3UKScreens.png";
 import cardArtPayIn4 from "@/components/images/PayIn4_CardArt.png";
@@ -30,10 +29,23 @@ import cardArtPayMonthly from "@/components/images/PayMonthly_CardArt.png";
 import cardArtPayPalCredit from "@/components/images/PayPalCredit_CardArt.png";
 import cardArtPayPalMastercard from "@/components/images/PayPalMastercard_CardArt.png";
 import cardArtPayIn3 from "@/components/images/PayIn3_CardArt.png";
-import { PROJECTS_BY_ID } from "@/lib/content";
+import {
+  CaseStudyHeader,
+  OutcomeMetrics,
+  ProblemAndStakes,
+  ProjectFacts,
+  outcomeMetricsFromResults,
+} from "@/components/case-study";
+import { PROJECTS_BY_ID, caseStudyResults, previewOf } from "@/lib/content";
 import { caseStudyMetadata } from "@/lib/seo";
 
 const project = PROJECTS_BY_ID.paypal;
+const results = caseStudyResults(project);
+const thingsIDid = outcomeMetricsFromResults(results, "achieved");
+const nextMeta = PROJECTS_BY_ID.meta;
+const nextMetaPreview = previewOf(nextMeta);
+const nextSolo = PROJECTS_BY_ID.solo;
+const nextSoloPreview = previewOf(nextSolo);
 
 export const metadata = caseStudyMetadata(
   project,
@@ -93,56 +105,27 @@ export default function PayPal1CaseStudy() {
       <section className="w-full bg-black px-5 pb-5 lg:px-[24px] lg:pb-[24px]">
         <div className="flex flex-col gap-10 lg:gap-[62px]">
           {/* Title block */}
-          <ScrollFade direction="left" once={true}>
-            <div
-              className="flex w-full lg:w-[1335px] max-w-full flex-col gap-[14px]"
-              style={{ fontFamily: leagueSpartan }}
-            >
-              <p className="text-sm lg:text-[18px] font-light leading-none text-white/60">
-                Reducing Friction
-              </p>
-              <h1 className="font-serif leading-[1.02] lg:leading-[96px] tracking-[-0.015em] text-[clamp(36px,9vw,96px)] lg:text-[96px]">
-                Optimizing Loan Application Flows in PayPal Checkout
-              </h1>
-            </div>
-          </ScrollFade>
+          <CaseStudyHeader
+            project={project}
+            as="div"
+            className="lg:w-[1335px] max-w-full"
+            style={{ fontFamily: leagueSpartan }}
+            reveal="left"
+            revealOnce
+          />
 
           {/* Project specs */}
-          <div
-            className="flex flex-col lg:flex-row w-full items-start gap-10 lg:gap-[64px] py-6 lg:py-[42px]"
+          <ProjectFacts
+            project={project}
             style={{ fontFamily: leagueSpartan }}
-          >
-            <ScrollFade direction="left" once={true}>
-              <div className="flex w-full lg:w-[861px] max-w-full flex-col gap-[14px]">
-                <p className="text-sm lg:text-[18px] font-light leading-none text-white/60">My Role</p>
-                <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
-                  Led the redesign of all six US and UK PayPal credit products for the new checkout framework. I ran the project on an AI-assisted workflow &mdash; using ChatGPT and Figma&apos;s AI tools at each stage &mdash; to move from discovery to stakeholder-ready designs in 1.5 months across six products.
-                </p>
-              </div>
-            </ScrollFade>
-            <ScrollFade direction="right" once={true} className="lg:ml-auto w-full lg:w-auto">
-              <div className="flex flex-col sm:flex-row items-start gap-6 sm:gap-10 lg:gap-[80px]">
-                <div className="flex flex-col gap-[14px]">
-                  <p className="text-sm lg:text-[18px] font-light leading-none text-white/60">Timeline</p>
-                  <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
-                    1.5 months
-                  </p>
-                </div>
-                <div className="flex w-full sm:w-[486px] lg:w-[260px] flex-col gap-[14px]">
-                  <p className="text-sm lg:text-[18px] font-light leading-none text-white/60">Platforms</p>
-                  <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
-                    iOS/Android mobile and desktop
-                  </p>
-                </div>
-                <div className="flex flex-col gap-[14px]">
-                  <p className="text-sm lg:text-[18px] font-light leading-none text-white/60">Status</p>
-                  <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
-                    {project.status}
-                  </p>
-                </div>
-              </div>
-            </ScrollFade>
-          </div>
+            factClassName={{
+              role: "lg:w-[861px]",
+              platforms: "w-full sm:w-[486px] lg:w-[260px]",
+            }}
+            leadReveal="left"
+            groupReveal="right"
+            revealOnce
+          />
         </div>
       </section>
 
@@ -156,20 +139,14 @@ export default function PayPal1CaseStudy() {
       {/* Body */}
       <section className="relative w-full px-5 lg:px-[37px] pt-8 lg:pt-[36px]">
         {/* Introduction */}
-        <ScrollFade direction="left">
-          <div
-            className="flex w-full max-w-[1563px] flex-col gap-[14px]"
-            style={{ fontFamily: leagueSpartan }}
-          >
-            <p className="text-sm lg:text-[18px] font-light text-white/60">Problem</p>
-            <p className="text-[clamp(20px,4.5vw,48px)] lg:text-[48px] font-light leading-[1.3]">
-              Paying with a credit card is seamless and nearly instant, while using a PayPal installment credit product requires customers to complete a rigorous, multi-step application at every checkout. This added friction disrupts the purchase flow, hurting conversion, repeat usage, and adoption of one of PayPal&apos;s key revenue-driving products.
-              <br />
-              <br />
-              While this CEO-prioritized initiative optimized six credit products across the United States and United Kingdom, this case study highlights Pay in 4, which saw the most significant product and design changes.
-            </p>
-          </div>
-        </ScrollFade>
+        <ProblemAndStakes
+          as="div"
+          className="max-w-[1563px]"
+          style={{ fontFamily: leagueSpartan }}
+          reveal="left"
+          title="Problem"
+          problem={project.description}
+        />
 
         {/* Requirements & discovery */}
         <div className="mt-24 lg:mt-[200px] flex flex-col items-center gap-10 lg:flex-row lg:items-center lg:gap-[60px]">
@@ -334,27 +311,12 @@ export default function PayPal1CaseStudy() {
           <ScrollFade direction="right" className="flex flex-col gap-10 lg:gap-[56px] pl-0 lg:pl-[24px]" style={{ fontFamily: leagueSpartan }}>
             <div className="flex flex-col gap-6 lg:gap-8">
               {/* What did I do */}
-              <div className="flex flex-col gap-[14px]">
-                <p className="text-sm lg:text-[18px] font-light">Things I Did:</p>
-
-                {/* Stats side by side */}
-                <div className="ml-[24px] flex flex-row gap-8 lg:gap-12">
-                  <div>
-                    <p className="font-serif text-[clamp(40px,9vw,72px)] lg:text-[72px] font-normal leading-none">208%</p>
-                    <p className="mt-0 text-sm lg:text-[18px] font-light">
-                      Of baseline Pay in 4 conversion
-                    </p>
-                  </div>
-                  <div>
-                    <p className="font-serif text-[clamp(40px,9vw,72px)] lg:text-[72px] font-normal leading-none">
-                      $598M/mo.
-                    </p>
-                    <p className="mt-0 text-sm lg:text-[18px] font-light">
-                      Trending total purchase volume
-                    </p>
-                  </div>
-                </div>
-
+              <OutcomeMetrics
+                as="div"
+                title="Things I Did:"
+                titleClassName="text-sm lg:text-[18px] font-light"
+                metrics={thingsIDid}
+              >
                 <ul className="ml-[24px] flex list-disc flex-col gap-3 lg:gap-[18px] text-base lg:text-[24px] font-light leading-[1.5] lg:leading-[1.4]">
                   <li>
                     Ran an AI-assisted discovery-to-handoff workflow across six
@@ -371,17 +333,17 @@ export default function PayPal1CaseStudy() {
                     lifting conversion to 208% of its baseline.
                   </li>
                 </ul>
-              </div>
+              </OutcomeMetrics>
             </div>
 
             {/* CTAs — pinned to bottom of cell */}
             <div className="flex flex-wrap items-center gap-3 lg:gap-[25px]">
-              <BackToHomeButton className="text-lg lg:text-[32px]" />
+              <BackToHomeButton />
               <a
                 href="https://pay-in4-prototype-cdgo3u6dn-valderramadesign-4260s-projects.vercel.app"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center rounded-full border border-[#919191] px-6 lg:px-[30px] py-3 lg:py-[16px] text-lg lg:text-[32px] font-normal leading-none whitespace-nowrap text-white transition-colors duration-150 hover:border-white"
+                className={`inline-flex items-center rounded-full border border-[#919191] px-6 lg:px-[30px] ${CTA_PILL_SIZE.lg} font-normal leading-none whitespace-nowrap text-white transition-colors duration-150 hover:border-white`}
                 style={{ fontFamily: "var(--font-league-spartan)" }}
               >
                 Prototype
@@ -694,34 +656,34 @@ export default function PayPal1CaseStudy() {
 
         <div className="relative flex flex-col lg:flex-row items-center lg:justify-center gap-12 lg:gap-[200px] px-5 lg:px-0">
           {/* Meta */}
-          <Link href="/work/meta" className="group flex w-full max-w-[671px] lg:w-[671px] lg:shrink-0 flex-col gap-4 lg:gap-[27px]">
+          <Link href={nextMeta.route} className="group flex w-full max-w-[671px] lg:w-[671px] lg:shrink-0 flex-col gap-4 lg:gap-[27px]">
             <div className="relative aspect-[824/606] w-full overflow-hidden rounded-2xl lg:rounded-[30px]">
               <Image
-                src={montlyInvoicingHeroOnTable}
-                alt="Meta case study preview"
+                src={nextMetaPreview.image}
+                alt={nextMetaPreview.alt}
                 fill
                 className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                 sizes="(max-width: 1024px) 100vw, 671px"
               />
             </div>
             <p className="font-serif text-[clamp(36px,9vw,64px)] lg:text-[64px] leading-[1.1] lg:leading-[72px] tracking-[-0.64px] text-white transition-opacity duration-300 group-hover:opacity-70">
-              Meta
+              {nextMeta.cardLabel}
             </p>
           </Link>
 
           {/* Solo */}
-          <Link href="/work/MsSunshineApp" className="group flex w-full max-w-[437px] lg:w-[437px] lg:shrink-0 flex-col gap-4 lg:gap-[27px]">
+          <Link href={nextSolo.route} className="group flex w-full max-w-[437px] lg:w-[437px] lg:shrink-0 flex-col gap-4 lg:gap-[27px]">
             <div className="relative aspect-[437/666] lg:aspect-auto lg:h-[666px] w-full overflow-hidden rounded-2xl lg:rounded-[30px]">
               <Image
-                src={phoneWithAppRollover}
-                alt="Ms. Sunshine App case study preview"
+                src={nextSoloPreview.image}
+                alt={nextSoloPreview.alt}
                 fill
                 className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                 sizes="(max-width: 1024px) 100vw, 437px"
               />
             </div>
             <p className="font-serif text-[clamp(36px,9vw,64px)] lg:text-[64px] leading-[1.1] lg:leading-[72px] tracking-[-0.64px] text-white transition-opacity duration-300 group-hover:opacity-70 whitespace-nowrap">
-              Ms. Sunshine App
+              {nextSolo.cardLabel}
             </p>
           </Link>
         </div>

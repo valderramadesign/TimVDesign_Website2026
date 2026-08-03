@@ -24,10 +24,11 @@ export default function CaseStudyTopBar() {
 
   const content = (
     <>
+      {/* Split padding compensates League Spartan's high ascent so the label
+          sits on the pill's midline; total height is unchanged. */}
       <Link
         href="/"
-        className="rounded-full border border-transparent bg-[#484848] px-4 py-2 text-base font-normal leading-none whitespace-nowrap text-white transition-colors duration-150 hover:border-white"
-        style={{ fontFamily: "var(--font-league-spartan)" }}
+        className="rounded-full border border-transparent bg-[#484848] px-4 pt-[10.28px] pb-[5.72px] text-base font-normal font-sans leading-none whitespace-nowrap text-white transition-colors duration-150 hover:border-white"
       >
         Home
       </Link>

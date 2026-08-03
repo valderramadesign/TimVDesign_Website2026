@@ -1,6 +1,5 @@
 import Link from "next/link";
 import CaseStudyTopBar from "@/components/ui/case-study-top-bar";
-import phoneWithAppRollover from "@/components/images/Teacher'sApp/PhoneWithApp_Rollover.png";
 import Image from "next/image";
 import NextCaseStudyTicker from "@/components/ui/next-case-study-ticker";
 import { CardStack, type CardStackItem } from "@/components/ui/card-stack";
@@ -24,8 +23,9 @@ import oldWalkingAway from "@/components/images/Monthly invoicing Images/MI_Old_
 import imgEyeBackground from "@/components/images/Monthly invoicing Images/FigmaAssets/EyeBackground.png";
 import imgPsychedelicBackground from "@/components/images/Monthly invoicing Images/FigmaAssets/PsychedelicBackground.png";
 import BackToHomeButton from "@/components/ui/back-to-home-button";
+import { CTA_PILL_SIZE } from "@/components/ui/cta-pill";
 import imgPromoIllustration from "@/components/images/Monthly invoicing Images/FigmaAssets/PromoIllustration.png";
-import { PROJECTS_BY_ID } from "@/lib/content";
+import { PROJECTS_BY_ID, caseStudyEyebrowText, imageSrc, previewOf } from "@/lib/content";
 import { caseStudyMetadata } from "@/lib/seo";
 
 const oldFlowItems: CardStackItem[] = [
@@ -45,6 +45,10 @@ const oldFlowItems: CardStackItem[] = [
 ];
 
 const project = PROJECTS_BY_ID.meta;
+const nextPayPal = PROJECTS_BY_ID.paypal;
+const nextPayPalPreview = previewOf(nextPayPal);
+const nextSolo = PROJECTS_BY_ID.solo;
+const nextSoloPreview = previewOf(nextSolo);
 
 export const metadata = caseStudyMetadata(
   project,
@@ -149,10 +153,10 @@ export default function MetaPage() {
         <div className="flex flex-col gap-10 lg:gap-[62px]">
           <div className="flex w-full lg:w-[1335px] max-w-full flex-col gap-[14px]" style={{ fontFamily: leagueSpartan }}>
             <p className="text-[18px] font-light leading-none text-white/60">
-              Driving the Shift to Monthly Invoicing
+              {caseStudyEyebrowText(project)}
             </p>
             <h1 className="font-serif text-[clamp(36px,9vw,96px)] lg:text-[96px] leading-[1.04] lg:leading-[96px] tracking-[-0.015em]">
-              Boosting Visibility and Applications Through Onboarding Optimization
+              {project.caseStudyHeadline}
             </h1>
           </div>
 
@@ -160,21 +164,17 @@ export default function MetaPage() {
             <div className="flex w-full lg:w-[861px] max-w-full flex-col gap-[14px]">
               <p className="text-[18px] font-light leading-none text-white/60">My Role</p>
               <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">
-                Partnered with engineering, finance, and cross-functional design teams to drive adoption of Monthly Invoicing &mdash; running an AI-first workflow with Metamate AI from discovery through handoff.
+                {project.role}
               </p>
             </div>
             <div className="flex flex-col sm:flex-row items-start gap-8 sm:gap-[80px] lg:ml-auto">
               <div className="flex flex-col gap-[14px]">
                 <p className="text-[18px] font-light leading-none text-white/60">Timeline</p>
-                <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">1.5 months</p>
+                <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">{project.timeline}</p>
               </div>
               <div className="flex flex-col gap-[14px]">
                 <p className="text-[18px] font-light leading-none text-white/60">Platforms</p>
-                <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">Desktop</p>
-              </div>
-              <div className="flex flex-col gap-[14px]">
-                <p className="text-[18px] font-light leading-none text-white/60">Status</p>
-                <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">{project.status}</p>
+                <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">{project.scope.platforms.join(", ")}</p>
               </div>
             </div>
           </div>
@@ -197,7 +197,7 @@ export default function MetaPage() {
         <div className="flex w-full max-w-[1563px] flex-col gap-[14px]" style={{ fontFamily: leagueSpartan }}>
           <p className="text-[18px] font-light text-white/60">Problem</p>
           <p className="text-[clamp(20px,4.5vw,48px)] lg:text-[48px] font-light leading-[1.3]">
-            High-spend advertisers risk costly campaign pauses from card failures and funding gaps. Monthly Invoicing helps prevent disruptions while reducing Meta&rsquo;s credit card processing costs, currently $2.46B annually and projected to reach $4.2B. Increasing adoption is expected to save at least $20M annually.
+            {project.description[0]}
           </p>
         </div>
       </section>
@@ -344,12 +344,12 @@ export default function MetaPage() {
               </ul>
             </div>
             <div className="flex flex-wrap items-center gap-4 lg:gap-[25px]">
-              <BackToHomeButton className="justify-center text-xl lg:text-[32px]" />
+              <BackToHomeButton className="justify-center" size="xl" />
               <a
                 href="https://montly-invoicing-prototype.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-full border border-[#919191] px-6 lg:px-[30px] py-3 lg:py-[16px] text-xl lg:text-[32px] font-normal whitespace-nowrap text-white transition-colors duration-150 hover:border-white"
+                className={`inline-flex items-center justify-center rounded-full border border-[#919191] px-6 lg:px-[30px] ${CTA_PILL_SIZE.xl} font-normal whitespace-nowrap text-white transition-colors duration-150 hover:border-white`}
                 style={{ fontFamily: "var(--font-league-spartan)", lineHeight: 1 }}
               >
                 Prototype
@@ -384,34 +384,34 @@ export default function MetaPage() {
 
         <div className="flex flex-col lg:flex-row items-center lg:justify-center gap-12 lg:gap-[200px] relative px-5 lg:px-0">
           {/* PayPal */}
-          <Link href="/work/paypal" className="group flex w-full max-w-[437px] lg:w-[437px] flex-col gap-4 lg:gap-[27px] items-start">
+          <Link href={nextPayPal.route} className="group flex w-full max-w-[437px] lg:w-[437px] flex-col gap-4 lg:gap-[27px] items-start">
             <div className="aspect-[437/666] w-full lg:h-[666px] lg:w-[437px] relative lg:shrink-0 rounded-[30px] overflow-hidden">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                alt="PayPal case study preview"
-                src="/images/next-case-studies/paypal-hero.jpg"
+                alt={nextPayPalPreview.alt}
+                src={imageSrc(nextPayPalPreview.image)}
                 className="absolute pointer-events-none object-cover h-full"
                 style={{ width: "270%", maxWidth: "none", left: "-88%" }}
               />
             </div>
             <p className="font-serif text-[clamp(36px,9vw,64px)] lg:text-[64px] leading-[1.1] lg:leading-[72px] text-white tracking-[-0.64px]">
-              PayPal
+              {nextPayPal.cardLabel}
             </p>
           </Link>
 
           {/* Solo */}
-          <Link href="/work/MsSunshineApp" className="group flex w-full max-w-[437px] lg:w-[437px] flex-col gap-4 lg:gap-[27px] items-start">
+          <Link href={nextSolo.route} className="group flex w-full max-w-[437px] lg:w-[437px] flex-col gap-4 lg:gap-[27px] items-start">
             <div className="aspect-[437/666] w-full lg:h-[666px] lg:w-[438px] relative rounded-[30px] lg:shrink-0 overflow-hidden">
               <Image
-                src={phoneWithAppRollover}
-                alt="Ms. Sunshine App case study preview"
+                src={nextSoloPreview.image}
+                alt={nextSoloPreview.alt}
                 fill
                 className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                 sizes="(max-width: 1024px) 100vw, 437px"
               />
             </div>
             <p className="font-serif text-[clamp(36px,9vw,64px)] lg:text-[64px] leading-[1.1] lg:leading-[72px] text-white tracking-[-0.64px] whitespace-nowrap">
-              Ms. Sunshine App
+              {nextSolo.cardLabel}
             </p>
           </Link>
         </div>

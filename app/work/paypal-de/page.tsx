@@ -6,8 +6,8 @@ import ScrollFade from "@/components/ui/scroll-fade";
 import HeroVideo from "@/components/ui/hero-video";
 import CounterNumber from "@/components/ui/counter-number";
 import BackToHomeButton from "@/components/ui/back-to-home-button";
+import { CTA_PILL_SIZE } from "@/components/ui/cta-pill";
 import DragScroll from "@/components/ui/drag-scroll";
-import montlyInvoicingHeroOnTable from "@/components/images/Monthly invoicing Images/MontlyInvoicingHeroScreen_OnTable.png";
 import workflowDiagram from "@/components/images/PayPal DE/PayPalDE_WorkflowDiagram.png";
 import phoneOrange from "@/components/images/PayPal DE/v1-PayIn30Days/paypal-pay-in-30-days-iphone-17-pro-max-cosmic-orange.png";
 import phoneBlue from "@/components/images/PayPal DE/v1-Ratenzahlung/paypal-ratenzahlung-status-bar-iphone-17-pro-max-deep-blue.png";
@@ -23,14 +23,26 @@ import rzThreePhoneFan from "@/components/images/PayPal DE/v1-Ratenzahlung/paypa
 import rzSevenPhoneRow from "@/components/images/PayPal DE/v1-Ratenzahlung/paypal_de_v5_iphone17_seven_phone_row_centered.png";
 import rzThreePhoneFanIphone from "@/components/images/PayPal DE/v1-Ratenzahlung/paypal_de_v6_iphone17_three_phone_fan.png";
 import closingMacbook from "@/components/images/PayPal DE/macbook-paypal-4k.png";
-import { PROJECTS_BY_ID } from "@/lib/content";
+import {
+  PROJECTS_BY_ID,
+  caseStudyResults,
+  caseStudyEyebrowText,
+  imageSrc,
+  previewOf,
+  resultDetail,
+} from "@/lib/content";
 import { caseStudyMetadata } from "@/lib/seo";
 
 const project = PROJECTS_BY_ID.paypalde;
+const results = caseStudyResults(project);
+const nextPayPal = PROJECTS_BY_ID.paypal;
+const nextPayPalPreview = previewOf(nextPayPal);
+const nextMeta = PROJECTS_BY_ID.meta;
+const nextMetaPreview = previewOf(nextMeta);
 
 export const metadata = caseStudyMetadata(
   project,
-  "Designing PayPal Pay in 30 Days and Ratenzahlung for Germany — two responsible credit products averaging $19.2M and $27.5M in annual revenue.",
+  "Designing PayPal Pay in 30 Days and Ratenzahlung for Germany — two responsible credit products generating $529M and $181M in monthly total purchase volume.",
 );
 
 const leagueSpartan = "var(--font-league-spartan)";
@@ -213,10 +225,10 @@ export default function PayPalGermanCreditCaseStudy() {
               style={{ fontFamily: leagueSpartan }}
             >
               <p className="text-sm lg:text-[18px] font-light leading-none">
-                Turning Credit Caution Into Customer Adoption
+                {caseStudyEyebrowText(project)}
               </p>
               <h1 className="font-serif leading-[1.02] lg:leading-[92px] tracking-[-0.015em] text-[clamp(36px,9vw,96px)] lg:text-[96px] lg:max-w-[1151px]">
-                Building Trust Through Responsible Credit
+                {project.caseStudyHeadline}
               </h1>
             </div>
           </ScrollFade>
@@ -229,11 +241,7 @@ export default function PayPalGermanCreditCaseStudy() {
               <div className="flex w-full lg:w-[1045px] max-w-full flex-col gap-[14px]">
                 <p className="text-sm lg:text-[18px] font-light leading-none">My Role</p>
                 <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
-                  I led the product design from 0&rarr;1, turning an ambiguous idea into a validated,
-                  polished digital experience. I owned the end-to-end process&mdash;from early concepts
-                  and complex AI workflows to final UI and developer handoff&mdash;working closely with
-                  product and engineering to move quickly, navigate trade-offs, and make the product
-                  clear and useful for non-expert users.
+                  {project.role}
                 </p>
               </div>
             </ScrollFade>
@@ -242,19 +250,13 @@ export default function PayPalGermanCreditCaseStudy() {
                 <div className="flex flex-col gap-[14px] lg:w-[170px]">
                   <p className="text-sm lg:text-[18px] font-light leading-none">Timeline</p>
                   <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
-                    3 months
+                    {project.timeline}
                   </p>
                 </div>
                 <div className="flex w-full sm:w-[486px] lg:w-[254px] flex-col gap-[14px]">
                   <p className="text-sm lg:text-[18px] font-light leading-none">Platforms</p>
                   <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
-                    Mobile &amp; desktop
-                  </p>
-                </div>
-                <div className="flex flex-col gap-[14px]">
-                  <p className="text-sm lg:text-[18px] font-light leading-none">Status</p>
-                  <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
-                    {project.status}
+                    {project.scope.platforms.join(", ")}
                   </p>
                 </div>
               </div>
@@ -279,10 +281,7 @@ export default function PayPalGermanCreditCaseStudy() {
           >
             <p className="text-sm lg:text-[18px] font-light leading-none">Problem</p>
             <p className="text-[clamp(20px,4.5vw,48px)] lg:text-[48px] font-light leading-[1.3] lg:leading-[56px]">
-              German customers were hesitant to use credit because existing payment options felt
-              risky, inflexible, or inconsistent with responsible spending habits. They needed a way
-              to inspect online purchases before money left their bank account, while still having the
-              flexibility to spread the cost of larger purchases into manageable payments.
+              {project.description[0]}
             </p>
           </div>
         </ScrollFade>
@@ -320,9 +319,9 @@ export default function PayPalGermanCreditCaseStudy() {
             </h2>
             <div className="flex flex-col gap-1 lg:w-[289em] lg:gap-[5em]">
               <p className="font-serif text-[clamp(56px,12vw,96px)] leading-[1.135] tracking-[-0.01em] lg:text-[96em]">
-                <CounterNumber to={19.2} prefix="$" suffix="M" decimals={1} />
+                <CounterNumber to={529} prefix="$" suffix="M" />
               </p>
-              <p className="text-sm font-light leading-none lg:text-[24em]">Average annual iRev</p>
+              <p className="text-sm font-light leading-none lg:text-[24em]">Monthly TPV</p>
             </div>
           </ScrollFade>
 
@@ -359,9 +358,9 @@ export default function PayPalGermanCreditCaseStudy() {
             </h2>
             <div className="flex flex-col gap-1 lg:w-[408em] lg:gap-[5em]">
               <p className="font-serif text-[clamp(56px,12vw,96px)] leading-[1.135] tracking-[-0.01em] lg:text-[96em]">
-                <CounterNumber to={27.5} prefix="$" suffix="M" decimals={1} />
+                <CounterNumber to={181} prefix="$" suffix="M" />
               </p>
-              <p className="text-sm font-light leading-none lg:text-[24em]">Average annual iRev</p>
+              <p className="text-sm font-light leading-none lg:text-[24em]">Monthly TPV</p>
             </div>
           </ScrollFade>
 
@@ -440,7 +439,7 @@ export default function PayPalGermanCreditCaseStudy() {
             w={544}
             bodyW={542}
             label="Iteration 4"
-            body="Introduced a servicing snooze feature that transformed a non-revenue-generating gateway product into a new revenue stream averaging $19.2M annually."
+            body="Introduced a servicing snooze feature that transformed a non-revenue-generating gateway product into a revenue-generating one, scaling to $529M in monthly total purchase volume."
           />
           <TimelineShot
             x={5815}
@@ -497,7 +496,7 @@ export default function PayPalGermanCreditCaseStudy() {
           <TimelineShape x={5492} y={512} w={309} h={310} fill={CYAN} circle />
           <TimelineShape x={7420} y={512} w={309} h={310} fill={CYAN} circle />
           <div className="text-right" style={box(7420, 609, 289)}>
-            <p className="font-serif text-[92em] leading-[1.14] tracking-[-0.01em]">$19.2M</p>
+            <p className="font-serif text-[92em] leading-[1.14] tracking-[-0.01em]">$529M</p>
           </div>
           <TimelineShape x={5492} y={180} w={309} h={310} fill={CYAN} circle />
           <TimelineShape x={1592} y={180} w={640} h={644} fill={PANEL} />
@@ -676,18 +675,18 @@ export default function PayPalGermanCreditCaseStudy() {
               <div className="flex flex-wrap gap-x-10 gap-y-6 lg:flex-nowrap lg:gap-x-[24px]">
                 <div className="lg:w-[289px]">
                   <p className="font-serif text-[clamp(40px,9vw,72px)] lg:text-[72px] font-normal leading-none">
-                    $19.2M
+                    {results[0].value}
                   </p>
                   <p className="mt-0 text-sm lg:text-[18px] font-light">
-                    Pay in 30 Days avg. annual iRev
+                    {resultDetail(results[0])}
                   </p>
                 </div>
                 <div className="lg:w-[301px]">
                   <p className="font-serif text-[clamp(40px,9vw,72px)] lg:text-[72px] font-normal leading-none">
-                    $27.5M
+                    {results[1].value}
                   </p>
                   <p className="mt-0 text-sm lg:text-[18px] font-light">
-                    PayPal Ratenzahlung avg. annual iRev
+                    {resultDetail(results[1])}
                   </p>
                 </div>
               </div>
@@ -696,7 +695,8 @@ export default function PayPalGermanCreditCaseStudy() {
                 <li>
                   Designed and scaled an award-winning, interest-free credit product from concept to
                   maturity, leading the design strategy and collaboration behind a seamless one-click
-                  application that generated $19.2M in average annual iRev in a credit-averse market.
+                  application that generated $529M in monthly total purchase volume in a
+                  credit-averse market.
                 </li>
                 <li>
                   Designed and scaled an installment product from concept to maturity, giving German
@@ -706,13 +706,13 @@ export default function PayPalGermanCreditCaseStudy() {
             </div>
 
             <div className="flex flex-wrap items-center gap-3 lg:gap-[25px]">
-              <BackToHomeButton className="text-lg lg:text-[32px]" fontFamily={leagueSpartan} />
+              <BackToHomeButton fontFamily={leagueSpartan} />
               {PROTOTYPE_URL ? (
                 <a
                   href={PROTOTYPE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center rounded-full border border-[#919191] px-6 lg:px-[30px] py-3 lg:py-[16px] text-lg lg:text-[32px] font-normal leading-none whitespace-nowrap text-white transition-colors duration-150 hover:border-white"
+                  className={`inline-flex items-center rounded-full border border-[#919191] px-6 lg:px-[30px] ${CTA_PILL_SIZE.lg} font-normal leading-none whitespace-nowrap text-white transition-colors duration-150 hover:border-white`}
                   style={{ fontFamily: leagueSpartan }}
                 >
                   Prototype
@@ -733,39 +733,39 @@ export default function PayPalGermanCreditCaseStudy() {
         <div className="relative flex flex-col lg:flex-row items-center lg:justify-center gap-12 lg:gap-[200px] px-5 lg:px-0">
           {/* PayPal */}
           <Link
-            href="/work/paypal"
+            href={nextPayPal.route}
             className="group flex w-full max-w-[437px] lg:w-[437px] flex-col gap-4 lg:gap-[27px] items-start"
           >
             <div className="aspect-[437/666] w-full lg:h-[666px] lg:w-[437px] relative lg:shrink-0 rounded-[30px] overflow-hidden">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                alt="PayPal case study preview"
-                src="/images/next-case-studies/paypal-hero.jpg"
+                alt={nextPayPalPreview.alt}
+                src={imageSrc(nextPayPalPreview.image)}
                 className="absolute pointer-events-none object-cover h-full"
                 style={{ width: "270%", maxWidth: "none", left: "-88%" }}
               />
             </div>
             <p className="font-serif text-[clamp(36px,9vw,64px)] lg:text-[64px] leading-[1.1] lg:leading-[72px] text-white tracking-[-0.64px] transition-opacity duration-300 group-hover:opacity-70">
-              PayPal
+              {nextPayPal.cardLabel}
             </p>
           </Link>
 
           {/* Meta */}
           <Link
-            href="/work/meta"
+            href={nextMeta.route}
             className="group flex w-full max-w-[671px] lg:w-[671px] lg:shrink-0 flex-col gap-4 lg:gap-[27px]"
           >
             <div className="relative aspect-[824/606] w-full overflow-hidden rounded-2xl lg:rounded-[30px]">
               <Image
-                src={montlyInvoicingHeroOnTable}
-                alt="Meta case study preview"
+                src={nextMetaPreview.image}
+                alt={nextMetaPreview.alt}
                 fill
                 className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                 sizes="(max-width: 1024px) 100vw, 671px"
               />
             </div>
             <p className="font-serif text-[clamp(36px,9vw,64px)] lg:text-[64px] leading-[1.1] lg:leading-[72px] tracking-[-0.64px] text-white transition-opacity duration-300 group-hover:opacity-70">
-              Meta
+              {nextMeta.cardLabel}
             </p>
           </Link>
         </div>

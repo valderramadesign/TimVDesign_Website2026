@@ -87,11 +87,11 @@ const structuredData = {
     },
     ...PROJECTS.map((project) => ({
       "@type": "CreativeWork",
-      "@id": `${SITE.url}${project.href}#case-study`,
-      url: `${SITE.url}${project.href}`,
-      name: project.caseStudyTitle,
-      headline: project.caseStudyTitle,
-      about: project.title,
+      "@id": `${SITE.url}${project.route}#case-study`,
+      url: `${SITE.url}${project.route}`,
+      name: project.caseStudyHeadline,
+      headline: project.caseStudyHeadline,
+      about: project.cardTitle,
       creativeWorkStatus: project.status,
       author: { "@id": `${SITE.url}/#person` },
       isPartOf: { "@id": `${SITE.url}/#website` },
@@ -105,11 +105,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body
-        className={`${leagueSpartan.variable} ${jetbrainsMono.variable} ${ptSerif.variable} bg-black antialiased`}
-        suppressHydrationWarning
-      >
+    <html
+      lang="en"
+      className={`${leagueSpartan.variable} ${jetbrainsMono.variable} ${ptSerif.variable}`}
+    >
+      <body className="bg-black antialiased" suppressHydrationWarning>
         {children}
         <script
           type="application/ld+json"

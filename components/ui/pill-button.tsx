@@ -17,7 +17,10 @@ export default function PillButton({
   onMouseEnter,
   onMouseLeave,
 }: PillButtonProps) {
-  const className = `px-4 py-2 rounded-full text-base font-normal font-sans leading-none whitespace-nowrap border transition-colors duration-150 cursor-pointer ${
+  // League Spartan's ascent (0.74em) overshoots its cap height (0.66em), so a
+  // leading-none label renders 2.28px above centre. The split padding puts the
+  // cap box on the pill's midline without changing its 34px height.
+  const className = `px-4 pt-[10.28px] pb-[5.72px] rounded-full text-base font-normal font-sans leading-none whitespace-nowrap border transition-colors duration-150 cursor-pointer ${
     active
       ? "bg-white text-black border-white"
       : "bg-[#484848] text-white border-transparent hover:border-white"

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Image, { type StaticImageData } from "next/image";
+import { Fragment, useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import LiquidMetalBackground from "@/components/ui/liquid-metal-background";
@@ -11,56 +11,169 @@ import Hero from "@/components/sections/hero";
 import ResumePanel from "@/components/ui/resume-panel";
 import Logo from "@/components/ui/logo";
 import { AsciiCubes } from "@/components/ui/ascii-cubes";
-import paypal1Rollover from "@/components/images/PayPal1_RolloverImage_WithBackground.png";
-import metaRollover from "@/components/images/Monthly invoicing Images/MontlyInvoicingHeroScreen_OnTable.png";
-import soloPhoneWithApp from "@/components/images/Teacher'sApp/PhoneWithApp_Rollover.png";
-import patientAppRollover from "@/components/images/Patient Portal/PatientApp_Rollover.png";
-import doorDashRollover from "@/components/images/DoorDash Dashboard/headquarters-laptop-command-center-cropped-1837x953.png";
 import doorDashOldDashboard from "@/components/images/DoorDash Dashboard/DoorDash_OldDashboard 1.png";
-import paypalDeRollover from "@/components/images/PayPal DE/PayPalDE_RolloverPhone.png";
-import { PROJECTS, SITE } from "@/lib/content";
+import {
+  CAPABILITIES,
+  HOMEPAGE_EXPERIMENTS,
+  HOMEPAGE_FLAGSHIPS,
+  HOMEPAGE_PROJECTS,
+  PROJECTS_BY_ID,
+  SITE,
+  homepageEyebrow,
+  homepageEyebrowText,
+  resultDetail,
+  type Project,
+  type ProjectResult,
+} from "@/lib/content";
 
-/** Imagery for the mobile/tablet cards. Copy comes from the shared PROJECTS list. */
-const CARD_MEDIA: Record<
-  string,
-  { image: StaticImageData; imageAlt: string; objectPosition: string }
-> = {
-  paypalde: {
-    image: paypalDeRollover,
-    imageAlt: "PayPal Germany checkout screen on a phone",
-    objectPosition: "center",
-  },
-  paypal: {
-    image: paypal1Rollover,
-    imageAlt: "PayPal Pay in 4 application screen",
-    objectPosition: "center",
-  },
-  meta: {
-    image: metaRollover,
-    imageAlt: "Meta Monthly Invoicing hero screen on table",
-    objectPosition: "center",
-  },
-  solo: {
-    image: soloPhoneWithApp,
-    imageAlt: "Daily reporting app shown on phone",
-    objectPosition: "top",
-  },
-  sutter: {
-    image: patientAppRollover,
-    imageAlt: "Sutter Health patient portal app on phone",
-    objectPosition: "top",
-  },
-  doordash: {
-    image: doorDashRollover,
-    imageAlt: "DoorDash headquarters command center dashboard on laptop",
-    objectPosition: "center",
-  },
-};
+const PAYPAL_DE = PROJECTS_BY_ID.paypalde;
+const PAYPAL = PROJECTS_BY_ID.paypal;
+const META = PROJECTS_BY_ID.meta;
+const SOLO = PROJECTS_BY_ID.solo;
+const SUTTER = PROJECTS_BY_ID.sutter;
+const DOORDASH = PROJECTS_BY_ID.doordash;
 
-const MOBILE_CARDS = PROJECTS.map((project) => ({
-  ...project,
-  ...CARD_MEDIA[project.id],
-}));
+/** Figures stacked in a rollover panel. Renders nothing when there are none. */
+function PanelResults({ results }: { results: ProjectResult[] }) {
+  return (
+    <>
+      {results.map((result) => (
+        <div key={result.value} className="text-right">
+          <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>
+            {result.value}
+          </p>
+          <p className="text-white/70 text-[18px] font-light mt-[0.48px]">
+            {resultDetail(result)}
+          </p>
+        </div>
+      ))}
+    </>
+  );
+}
+
+const FACT_LABEL_CLASS =
+  "text-white/45 text-[11px] uppercase tracking-[0.18em] font-sans";
+
+/** Capability signals, set as one quiet metadata line rather than a section. */
+function CapabilitySignals({ className = "" }: { className?: string }) {
+  return (
+    <ul
+      className={`flex flex-wrap items-center gap-x-7 gap-y-2 ${FACT_LABEL_CLASS} ${className}`}
+    >
+      {CAPABILITIES.map((capability) => (
+        <li key={capability}>{capability}</li>
+      ))}
+    </ul>
+  );
+}
+
+type CardFact = { label: string; value: string };
+
+/** Role and scope as label/value pairs, skipping anything the record lacks. */
+function cardFacts(project: Project): CardFact[] {
+  return [
+    { label: "Role", value: project.cardRole },
+    { label: "Scope", value: project.cardScope },
+  ].filter((fact): fact is CardFact => Boolean(fact.value));
+}
+
+/**
+ * A flagship's problem statement, sized for the desktop rollover panel.
+ *
+ * The panel is a hover preview, not a card: it carries the result and the
+ * problem only. Role and scope live on the cards and on the case study, because
+ * the rollover shares its band with the hero headline and a facts block tall
+ * enough to hold them overruns the headline on a 1280x800 viewport.
+ *
+ * Panels carrying this block pin their text column with `self-start` rather
+ * than centering it beside the image, which keeps the longer copy clear of the
+ * headline on short viewports.
+ */
+function PanelCopy({ project }: { project: Project }) {
+  if (!project.cardProblem) return null;
+
+  return (
+    <p className="text-white/80 text-[19px] font-light leading-[24px] text-right">
+      {project.cardProblem}
+    </p>
+  );
+}
+
+/**
+ * A selected-work card for the mobile and tablet layout. Flagships carry a
+ * problem sentence plus role and scope; experiments carry neither, so the card
+ * renders only what the record actually states.
+ */
+function WorkCard({ project, priority }: { project: Project; priority: boolean }) {
+  const facts = cardFacts(project);
+
+  return (
+    <Link
+      href={project.route}
+      className="group block overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] backdrop-blur-sm active:scale-[0.99] transition-transform duration-150"
+    >
+      <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] overflow-hidden bg-black/40">
+        <Image
+          src={project.thumbnail.image}
+          alt={project.thumbnail.alt}
+          fill
+          sizes="(max-width: 768px) 100vw, 720px"
+          className="object-cover"
+          style={{ objectPosition: project.thumbnail.objectPosition }}
+          priority={priority}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+        <div className="absolute left-5 top-5 flex flex-wrap items-center gap-2">
+          <span className="rounded-full bg-black/60 px-3 py-1 text-xs text-white/90 backdrop-blur-md">
+            {project.cardLabel}
+          </span>
+          <span className="rounded-full border border-white/20 bg-black/45 px-3 py-1 text-[10px] uppercase tracking-[0.14em] text-white/75 backdrop-blur-md">
+            {project.status}
+          </span>
+        </div>
+      </div>
+      <div className="p-5 sm:p-6">
+        <div className="flex items-end justify-between gap-4">
+          <div className="min-w-0 flex-1">
+            <p className="text-white/55 text-[11px] uppercase tracking-[0.18em] font-sans">
+              {homepageEyebrowText(project)}
+            </p>
+            <p className="mt-1.5 text-white text-lg sm:text-xl font-light font-sans leading-snug">
+              {project.cardTitle}
+            </p>
+          </div>
+          {project.cardResult && (
+            <div className="shrink-0 text-right">
+              <p className="text-white font-serif leading-none text-3xl sm:text-4xl">
+                {project.cardResult.value}
+              </p>
+              <p className="mt-1 text-white/55 text-[10px] uppercase tracking-[0.15em] font-sans max-w-[12ch]">
+                {project.cardResult.label}
+              </p>
+            </div>
+          )}
+        </div>
+        {project.cardProblem && (
+          <p className="mt-4 text-white/70 text-sm sm:text-[15px] font-light font-sans leading-relaxed">
+            {project.cardProblem}
+          </p>
+        )}
+        {facts.length > 0 && (
+          <dl className="mt-4 grid grid-cols-1 gap-3 border-t border-white/10 pt-4 sm:grid-cols-2 sm:gap-6">
+            {facts.map((fact) => (
+              <div key={fact.label}>
+                <dt className={FACT_LABEL_CLASS}>{fact.label}</dt>
+                <dd className="mt-1 text-white/80 text-sm font-light font-sans leading-snug">
+                  {fact.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        )}
+      </div>
+    </Link>
+  );
+}
 
 export default function HomeClient() {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
@@ -73,7 +186,7 @@ export default function HomeClient() {
   const showDoorDash = hoveredProject === "doordash";
 
   useEffect(() => {
-    const imgs = [paypalDeRollover.src, paypal1Rollover.src, metaRollover.src, soloPhoneWithApp.src, patientAppRollover.src, doorDashRollover.src, doorDashOldDashboard.src];
+    const imgs = [...HOMEPAGE_PROJECTS.map((p) => p.thumbnail.image.src), doorDashOldDashboard.src];
     imgs.forEach((src) => { const img = new window.Image(); img.src = src; });
   }, []);
 
@@ -85,33 +198,20 @@ export default function HomeClient() {
     }
   }, [resumeOpen]);
 
-  const heroTitle = showPayPalDE
-    ? <>Turning Credit Caution<br />Into Customer Adoption</>
-    : showPayPal
-    ? "Reducing Friction"
-    : showMeta
-    ? <>Designing Onboarding<br />That Drives Adoption</>
-    : showSolo
-    ? "Rapid App Innovation"
-    : showSutter
-    ? "Less Portal. More Care."
-    : showDoorDash
-    ? <>See the Signal.<br />Seize the Opportunity.</>
-    : undefined;
+  const hovered = hoveredProject ? PROJECTS_BY_ID[hoveredProject] : undefined;
 
-  const heroKey = showPayPalDE
-    ? "paypalde"
-    : showPayPal
-    ? "paypal"
-    : showMeta
-    ? "meta"
-    : showSolo
-    ? "solo"
-    : showSutter
-    ? "sutter"
-    : showDoorDash
-    ? "doordash"
-    : "default";
+  const heroTitle = hovered ? (
+    <>
+      {homepageEyebrow(hovered).map((line, i) => (
+        <Fragment key={line}>
+          {i > 0 && <br />}
+          {line}
+        </Fragment>
+      ))}
+    </>
+  ) : undefined;
+
+  const heroKey = hovered?.id ?? "default";
 
   return (
     <>
@@ -138,7 +238,7 @@ export default function HomeClient() {
         {/* Main homepage content — compresses as resume opens */}
         <div className="flex-1 min-w-0 relative min-h-screen">
           {/* Background */}
-          {!showPayPalDE && !showPayPal && !showMeta && !showSolo && !showSutter && !showDoorDash && <LiquidMetalBackground />}
+          {!hovered && <LiquidMetalBackground />}
           {/* All video/image backgrounds always in the DOM so they preload immediately */}
           <div className={`absolute inset-0 z-[-10] bg-black ${showPayPalDE ? "opacity-100" : "opacity-0"}`}>
             <video
@@ -184,27 +284,57 @@ export default function HomeClient() {
             />
           </div>
 
+          {/* The liquid-metal background tracks the cursor, so it drifts over the
+              introduction whenever the pointer is near the actions. This scrim
+              sits above every background layer and below `main`, keeping the
+              copy legible without dimming the top of the frame. */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[58%] bg-gradient-to-t from-black via-black/75 to-transparent" />
+
           <main className="relative z-10 flex flex-col p-[24px] h-screen">
-            <div className="flex flex-col">
+            <div className="shrink-0">
               <Header
                 onResumeToggle={() => setResumeOpen((v) => !v)}
                 resumeOpen={resumeOpen}
               />
-              <div className="relative w-full mt-[clamp(40px,calc(18vh_-_40px),140px)]">
-                <LeftNav onHover={setHoveredProject} />
-              </div>
             </div>
 
-            {/* Guarantees at least 40px between the nav and the headline below,
-                even on short viewports where they'd otherwise collide. */}
-            <div className="flex-1 min-h-[40px]" />
+            {/* Fixed gap rather than a flex spacer: a two-line project eyebrow
+                makes the headline 44px taller on hover, and a flexible gap
+                here would drag the nav up out from under the pointer. Re-tuned
+                down from the original clamp so the introduction still clears
+                the fold at 1280x800. */}
+            <div
+              id="selected-work"
+              tabIndex={-1}
+              className="relative w-fit shrink-0 rounded-[28px] focus:outline-2 focus:outline-offset-8 focus:outline-white/70 mt-[clamp(40px,calc(18vh_-_100px),140px)]"
+            >
+              <LeftNav onHover={setHoveredProject} />
+            </div>
 
-            <div className="pb-[30px]">
+            <div className="flex-1 min-h-[32px]" />
+
+            <div className="shrink-0 pb-[14px]">
               <Hero
                 title={heroTitle}
                 titleKey={heroKey}
-                showTagline={!showPayPalDE && !showPayPal && !showMeta && !showSolo && !showSutter && !showDoorDash}
+                showSupporting={!hovered}
               />
+              {/* Kept mounted and faded rather than unmounted so the band keeps
+                  its height and the headline above it doesn't shift as project
+                  rollovers toggle this copy off. */}
+              <motion.div
+                animate={{ opacity: hovered ? 0 : 1 }}
+                transition={{ duration: 0.25 }}
+                aria-hidden={Boolean(hovered)}
+              >
+                <p className="mt-[22px] text-white font-light font-sans text-2xl leading-7 tracking-[-0.015em]">
+                  {SITE.homeTitle}
+                </p>
+                {/* Held to the headline's measure (the 480px supporting column
+                    plus its 48px gap), which also keeps the signals clear of the
+                    rollover panel artwork on the right. */}
+                <CapabilitySignals className="mt-[18px] max-w-[calc(100%_-_528px)]" />
+              </motion.div>
             </div>
 
             {/* PayPal Germany rollover panel */}
@@ -212,7 +342,7 @@ export default function HomeClient() {
               {showPayPalDE && (
                 <motion.div
                   key="paypalde-panel"
-                  className="absolute top-[120px] right-[69px] z-[5] flex items-center gap-[40px]"
+                  className="absolute top-[120px] right-[69px] z-[5] flex items-end gap-[40px]"
                   initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
@@ -222,16 +352,8 @@ export default function HomeClient() {
                     transition={{ duration: 0.35, delay: 0.25 }}
                   >
                     <div className="flex flex-col gap-[26px] items-end">
-                      <div className="text-right">
-                        <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>$46.7M</p>
-                        <p className="text-white/70 text-[18px] font-light mt-[0.48px]">Combined average annual iRev</p>
-                      </div>
-                      <p className="text-white/80 text-[19px] font-light leading-[24px] text-right">
-                        Germany&rsquo;s credit-cautious culture required products built
-                        around control and responsible borrowing: pay after inspecting
-                        an order, or spread higher-cost purchases across flexible
-                        installments.
-                      </p>
+                      <PanelResults results={PAYPAL_DE.panelResults} />
+                      <PanelCopy project={PAYPAL_DE} />
                     </div>
                   </motion.div>
 
@@ -242,7 +364,7 @@ export default function HomeClient() {
                     exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <Image src={paypalDeRollover} alt="PayPal Germany checkout screen" className="w-full h-auto" priority />
+                    <Image src={PAYPAL_DE.thumbnail.image} alt="PayPal Germany checkout screen" className="w-full h-auto" priority />
                   </motion.div>
                 </motion.div>
               )}
@@ -253,7 +375,7 @@ export default function HomeClient() {
               {showPayPal && (
                 <motion.div
                   key="paypal-panel"
-                  className="absolute top-[139px] right-[69px] z-[5] flex items-center gap-[40px]"
+                  className="absolute top-[139px] right-[69px] z-[5] flex items-end gap-[40px]"
                   initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
@@ -263,20 +385,8 @@ export default function HomeClient() {
                     transition={{ duration: 0.35, delay: 0.25 }}
                   >
                     <div className="flex flex-col gap-[26px] items-end">
-                      <div className="text-right">
-                        <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>208%</p>
-                        <p className="text-white/70 text-[18px] font-light mt-[0.48px]">Of baseline Pay in 4 conversion</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>$598M/mo.</p>
-                        <p className="text-white/70 text-[18px] font-light mt-[0.48px]">Trending total purchase volume</p>
-                      </div>
-                      <p className="text-white/80 text-[19px] font-light leading-[24px] text-right">
-                        Led the design strategy for a CEO-prioritized PayPal initiative
-                        to optimize 6 credit products across the United States and United
-                        Kingdom, improving conversion, total purchase volume, and revenue
-                        across the full portfolio.
-                      </p>
+                      <PanelResults results={PAYPAL.panelResults} />
+                      <PanelCopy project={PAYPAL} />
                     </div>
                   </motion.div>
 
@@ -287,7 +397,7 @@ export default function HomeClient() {
                     exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <Image src={paypal1Rollover} alt="PayPal Pay in 4 application screen" className="w-full h-auto" priority />
+                    <Image src={PAYPAL.thumbnail.image} alt={PAYPAL.thumbnail.alt} className="w-full h-auto" priority />
                   </motion.div>
                 </motion.div>
               )}
@@ -298,7 +408,7 @@ export default function HomeClient() {
               {showMeta && (
                 <motion.div
                   key="meta-panel"
-                  className="absolute top-[148px] right-[69px] z-[5] flex items-center gap-[40px]"
+                  className="absolute top-[148px] right-[69px] z-[5] flex items-end gap-[40px]"
                   initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
@@ -308,20 +418,8 @@ export default function HomeClient() {
                     transition={{ duration: 0.35, delay: 0.25 }}
                   >
                     <div className="flex flex-col gap-[26px] items-end">
-                      <div className="text-right">
-                        <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>97%</p>
-                        <p className="text-white/70 text-[18px] font-light mt-[0.48px]">Target conversion, up from 39%</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>~$20M/yr.</p>
-                        <p className="text-white/70 text-[18px] font-light mt-[0.48px]">Projected annual savings</p>
-                      </div>
-                      <p className="text-white/80 text-[19px] font-light leading-[24px] text-right">
-                        Focused on high-spend advertiser adoption by optimizing banner
-                        messaging and placement, simplifying the flow (9 → 3 screens)
-                        to target 97% conversion against a 39% baseline, and enabling
-                        automatic Monthly Invoicing attachment.
-                      </p>
+                      <PanelResults results={META.panelResults} />
+                      <PanelCopy project={META} />
                     </div>
                   </motion.div>
 
@@ -332,7 +430,7 @@ export default function HomeClient() {
                     exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <Image src={metaRollover} alt="Meta Monthly Invoicing hero screen on table" className="w-full h-full object-cover" priority />
+                    <Image src={META.thumbnail.image} alt={META.thumbnail.alt} className="w-full h-full object-cover" priority />
                   </motion.div>
                 </motion.div>
               )}
@@ -343,7 +441,7 @@ export default function HomeClient() {
               {showSolo && (
                 <motion.div
                   key="solo-panel"
-                  className="absolute top-[143px] right-[93px] z-[5] flex items-center gap-[40px]"
+                  className="absolute top-[143px] right-[93px] z-[5] flex items-end gap-[40px]"
                   initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
@@ -353,19 +451,8 @@ export default function HomeClient() {
                     transition={{ duration: 0.35, delay: 0.25 }}
                   >
                     <div className="flex flex-col gap-[26px] items-end">
-                      <div className="text-right">
-                        <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>480 hrs</p>
-                        <p className="text-white/70 text-[18px] font-light mt-[0.48px]">Estimated annual time saved</p>
-                      </div>
-                      <p className="text-white/80 text-[19px] font-light leading-[24px] text-right">
-                        Designed and developed an end-to-end mobile app that
-                        automates daily school activity reporting, gives parents
-                        real-time visibility into their child&apos;s day, and
-                        generates a comprehensive end-of-day summary of key
-                        events, activities, and observations. What once took
-                        hours of manual work can now be completed in seconds,
-                        with greater consistency, clarity, and impact.
-                      </p>
+                      <PanelResults results={SOLO.panelResults} />
+                      <PanelCopy project={SOLO} />
                     </div>
                   </motion.div>
 
@@ -376,7 +463,7 @@ export default function HomeClient() {
                     exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <Image src={soloPhoneWithApp} alt="Ms. Sunshine App daily reporting screen on phone" className="w-full h-full object-cover" priority />
+                    <Image src={SOLO.thumbnail.image} alt="Ms. Sunshine App daily reporting screen on phone" className="w-full h-full object-cover" priority />
                   </motion.div>
                 </motion.div>
               )}
@@ -387,7 +474,7 @@ export default function HomeClient() {
               {showSutter && (
                 <motion.div
                   key="sutter-panel"
-                  className="absolute top-[143px] right-[69px] z-[5] flex items-center gap-[40px]"
+                  className="absolute top-[143px] right-[69px] z-[5] flex items-end gap-[40px]"
                   initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
@@ -412,7 +499,7 @@ export default function HomeClient() {
                     exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <Image src={patientAppRollover} alt="Sutter Health patient portal app" className="w-full h-full object-cover" priority />
+                    <Image src={SUTTER.thumbnail.image} alt="Sutter Health patient portal app" className="w-full h-full object-cover" priority />
                   </motion.div>
                 </motion.div>
               )}
@@ -423,7 +510,7 @@ export default function HomeClient() {
               {showDoorDash && (
                 <motion.div
                   key="doordash-panel"
-                  className="absolute top-[148px] right-[69px] z-[5] flex items-center gap-[40px]"
+                  className="absolute top-[148px] right-[69px] z-[5] flex items-end gap-[40px]"
                   initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
@@ -446,7 +533,7 @@ export default function HomeClient() {
                     exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <Image src={doorDashRollover} alt="DoorDash Dashboard" className="w-full h-full object-cover" priority />
+                    <Image src={DOORDASH.thumbnail.image} alt="DoorDash Dashboard" className="w-full h-full object-cover" priority />
                   </motion.div>
                 </motion.div>
               )}
@@ -467,7 +554,7 @@ export default function HomeClient() {
             onClick={() => setResumeOpen(true)}
             aria-expanded={resumeOpen}
             aria-controls="resume-sheet"
-            className="rounded-full border border-transparent bg-[#484848] px-4 py-2.5 text-sm font-normal leading-none whitespace-nowrap text-white active:scale-[0.98] transition-all duration-150"
+            className="rounded-full border border-transparent bg-[#484848] px-4 pt-[11.62px] pb-[8.38px] text-sm font-normal leading-none whitespace-nowrap text-white active:scale-[0.98] transition-all duration-150"
           >
             Résumé
           </button>
@@ -475,77 +562,55 @@ export default function HomeClient() {
         </header>
 
         <main className="relative z-10 flex flex-col gap-10 sm:gap-14 px-5 sm:px-6 pt-6 pb-16">
-          {/* Hero — clamped from 44 → 64 */}
+          {/* Hero — clamped from 40 → 72 */}
           <section className="flex flex-col gap-5">
             <h1
               className="text-white font-serif leading-[0.96] tracking-[-0.015em]"
               style={{ fontSize: "clamp(40px, 11vw, 72px)" }}
             >
-              Proven Experience + AI
-              <br />
-              = Fast Tracked Business Goals
+              {SITE.name}
             </h1>
-            <p className="text-white/85 font-light font-sans text-base sm:text-lg leading-snug max-w-[34ch]">
-              In the age of AI-assisted design, experience is what turns fast output into
-              thoughtful, user-centered products.
+            <p className="text-white font-light font-sans text-xl sm:text-2xl leading-snug tracking-[-0.015em] max-w-[26ch]">
+              {SITE.homeTitle}
             </p>
+            <p className="text-white/75 font-light font-sans text-base sm:text-lg leading-relaxed max-w-[46ch]">
+              {SITE.supporting} {SITE.practice}
+            </p>
+            <CapabilitySignals className="mt-1" />
           </section>
 
           {/* Selected work — stacked, tap-friendly cards */}
-          <section className="flex flex-col gap-4 sm:gap-5">
+          <section
+            id="work"
+            tabIndex={-1}
+            className="flex flex-col gap-4 sm:gap-5 scroll-mt-4 outline-none"
+          >
             <p className="text-white/60 text-xs uppercase tracking-[0.18em] font-sans">
               Selected work
             </p>
             <ul className="flex flex-col gap-4 sm:gap-5">
-              {MOBILE_CARDS.map((card, i) => (
+              {HOMEPAGE_FLAGSHIPS.map((card, i) => (
                 <li key={card.id}>
-                  <Link
-                    href={card.href}
-                    className="group block overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] backdrop-blur-sm active:scale-[0.99] transition-transform duration-150"
-                  >
-                    <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] overflow-hidden bg-black/40">
-                      <Image
-                        src={card.image}
-                        alt={card.imageAlt}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 720px"
-                        className="object-cover"
-                        style={{ objectPosition: card.objectPosition }}
-                        priority={i < 2}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                      <div className="absolute left-5 top-5 flex flex-wrap items-center gap-2">
-                        <span className="rounded-full bg-black/60 px-3 py-1 text-xs text-white/90 backdrop-blur-md">
-                          {card.label}
-                        </span>
-                        <span className="rounded-full border border-white/20 bg-black/45 px-3 py-1 text-[10px] uppercase tracking-[0.14em] text-white/75 backdrop-blur-md">
-                          {card.status}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex items-end justify-between gap-4 p-5 sm:p-6">
-                      <div className="min-w-0 flex-1">
-                        <p className="text-white/55 text-[11px] uppercase tracking-[0.18em] font-sans">
-                          {card.eyebrow}
-                        </p>
-                        <p className="mt-1.5 text-white text-lg sm:text-xl font-light font-sans leading-snug">
-                          {card.title}
-                        </p>
-                      </div>
-                      <div className="shrink-0 text-right">
-                        <p className="text-white font-serif leading-none text-3xl sm:text-4xl">
-                          {card.metric}
-                        </p>
-                        <p className="mt-1 text-white/55 text-[10px] uppercase tracking-[0.15em] font-sans max-w-[12ch]">
-                          {card.metricLabel}
-                        </p>
-                      </div>
-                    </div>
-                  </Link>
+                  <WorkCard project={card} priority={i < 2} />
                 </li>
               ))}
             </ul>
           </section>
+
+          {HOMEPAGE_EXPERIMENTS.length > 0 && (
+            <section className="flex flex-col gap-4 sm:gap-5">
+              <p className="text-white/60 text-xs uppercase tracking-[0.18em] font-sans">
+                Experiments
+              </p>
+              <ul className="flex flex-col gap-4 sm:gap-5">
+                {HOMEPAGE_EXPERIMENTS.map((card) => (
+                  <li key={card.id}>
+                    <WorkCard project={card} priority={false} />
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
 
           {/* Footer */}
           <footer className="mt-2 flex flex-col gap-2 border-t border-white/10 pt-6 text-sm text-white/60 font-sans">
@@ -595,7 +660,7 @@ export default function HomeClient() {
                   <button
                     type="button"
                     onClick={() => setResumeOpen(false)}
-                    className="rounded-full border border-black/10 bg-white/70 px-4 py-1.5 text-sm text-black"
+                    className="rounded-full border border-black/10 bg-white/70 px-4 pt-[7.62px] pb-[4.38px] text-sm text-black"
                   >
                     Close
                   </button>

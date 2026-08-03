@@ -12,7 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     ...PROJECTS.map((project) => ({
-      url: `${SITE.url}${project.href}`,
+      url: `${SITE.url}${project.route}`,
       changeFrequency: "yearly" as const,
       priority: 0.8,
     })),

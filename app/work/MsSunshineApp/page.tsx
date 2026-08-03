@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import NextCaseStudyTicker from "@/components/ui/next-case-study-ticker";
 import CaseStudyTopBar from "@/components/ui/case-study-top-bar";
-import montlyInvoicingHeroOnTable from "@/components/images/Monthly invoicing Images/MontlyInvoicingHeroScreen_OnTable.png";
 
 import daySchedule from "@/components/images/Teacher'sApp/DaySchedule.png";
 
@@ -16,10 +15,23 @@ import activityFlow5 from "@/components/images/Teacher'sApp/AppFlow/ActivityFlow
 import activityFlow6 from "@/components/images/Teacher'sApp/AppFlow/ActivityFlow6.png";
 import { ActivityFlowCarousel } from "@/components/ui/activity-flow-carousel";
 import BackToHomeButton from "@/components/ui/back-to-home-button";
-import { PROJECTS_BY_ID } from "@/lib/content";
+import { CTA_PILL_SIZE } from "@/components/ui/cta-pill";
+import {
+  PROJECTS_BY_ID,
+  caseStudyResults,
+  caseStudyEyebrowText,
+  imageSrc,
+  previewOf,
+  resultDetail,
+} from "@/lib/content";
 import { caseStudyMetadata } from "@/lib/seo";
 
 const project = PROJECTS_BY_ID.solo;
+const results = caseStudyResults(project);
+const nextPayPal = PROJECTS_BY_ID.paypal;
+const nextPayPalPreview = previewOf(nextPayPal);
+const nextMeta = PROJECTS_BY_ID.meta;
+const nextMetaPreview = previewOf(nextMeta);
 
 export const metadata = caseStudyMetadata(
   project,
@@ -44,9 +56,9 @@ export default function SoloPage() {
         <div className="flex flex-col gap-10 lg:gap-[62px]">
 
           <div className="flex w-full lg:w-[1335px] max-w-full flex-col gap-[14px]" style={{ fontFamily: leagueSpartan }}>
-            <p className="text-[18px] font-light leading-none text-white/60">Rapid App Innovation</p>
+            <p className="text-[18px] font-light leading-none text-white/60">{caseStudyEyebrowText(project)}</p>
             <h1 className="font-serif text-[clamp(40px,10vw,96px)] lg:text-[96px] leading-[1.04] lg:leading-[96px] tracking-[-0.015em]">
-              Streamlining and Automating Daily Reporting
+              {project.caseStudyHeadline}
             </h1>
           </div>
 
@@ -54,21 +66,17 @@ export default function SoloPage() {
             <div className="flex w-full lg:w-[861px] max-w-full flex-col gap-[14px]">
               <p className="text-[18px] font-light leading-none text-white/60">My Role</p>
               <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">
-                Solo end-to-end AI workflow: research with ChatGPT and Claude, PRD generation with ChatGPT, design with Google Stitch and Figma, build with Replit &mdash; concept to tested MVP in the first 3 weeks.
+                {project.role}
               </p>
             </div>
             <div className="flex flex-col sm:flex-row items-start gap-8 sm:gap-[80px] lg:ml-auto">
               <div className="flex flex-col gap-[14px]">
                 <p className="text-[18px] font-light leading-none text-white/60">Timeline</p>
-                <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">2 months</p>
+                <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">{project.timeline}</p>
               </div>
               <div className="flex flex-col gap-[14px]">
                 <p className="text-[18px] font-light leading-none text-white/60">Platforms</p>
-                <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">Mobile</p>
-              </div>
-              <div className="flex flex-col gap-[14px]">
-                <p className="text-[18px] font-light leading-none text-white/60">Status</p>
-                <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">{project.status}</p>
+                <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">{project.scope.platforms.join(", ")}</p>
               </div>
             </div>
           </div>
@@ -93,12 +101,9 @@ export default function SoloPage() {
         <div className="flex w-full max-w-[1539px] flex-col gap-[14px]">
           <p className="text-[18px] font-light leading-none text-white/60">Problem</p>
           <div className="text-[clamp(20px,4.5vw,48px)] lg:text-[48px] font-light leading-[1.2] lg:leading-[56px] space-y-8 lg:space-y-[56px]">
-            <p>
-              Schools need a more efficient, scalable way to document and communicate each child&rsquo;s daily activities without relying on a labor-intensive end-of-day reporting process. Parents need timely visibility into their child&rsquo;s school day so they feel informed, reassured, and confident about their child&rsquo;s safety and well-being.
-            </p>
-            <p>
-              The app solves both needs by giving parents real-time updates throughout the day while automating activity tracking and report generation for school staff.
-            </p>
+            {project.description.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
         </div>
       </section>
@@ -209,10 +214,12 @@ export default function SoloPage() {
           <div className="flex flex-col gap-10 lg:gap-[56px] w-full">
             <div className="flex flex-col gap-[14px] text-white">
               <p className="text-[18px] font-light leading-none text-white/60">Things I Did:</p>
-              <div>
-                <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>480 hrs</p>
-                <p className="text-white/70 text-[18px] font-light mt-[0.48px]">Estimated annual time saved</p>
-              </div>
+              {results.map((result) => (
+                <div key={result.value}>
+                  <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>{result.value}</p>
+                  <p className="text-white/70 text-[18px] font-light mt-[0.48px]">{resultDetail(result)}</p>
+                </div>
+              ))}
               <p className="text-[clamp(18px,2.2vw,22px)] font-light leading-[1.32]">
                 Once concepts were validated with the client, I used Replit to turn designs into a working build, then iterated on real feedback from the client and test users. The shipped app removes manual end-of-day reporting &mdash; an estimated 2 hours of the head teacher&rsquo;s day, or roughly 480 hours across a ~240-day working year. It does the following:
               </p>
@@ -230,14 +237,15 @@ export default function SoloPage() {
             </div>
             <div className="flex flex-wrap items-center gap-3 lg:gap-[25px] lg:pl-[42px]">
               <BackToHomeButton
-                className="justify-center text-xl lg:text-[32px]"
+                className="justify-center"
+                size="xl"
                 fontFamily={leagueSpartan}
               />
               <a
                 href="https://ms-sunshine-app.vercel.app/home"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center rounded-full border border-[#919191] px-6 lg:px-[30px] py-3 lg:py-[16px] text-xl lg:text-[32px] font-normal leading-none whitespace-nowrap text-white transition-colors duration-150 hover:border-white"
+                className={`inline-flex items-center rounded-full border border-[#919191] px-6 lg:px-[30px] ${CTA_PILL_SIZE.xl} font-normal leading-none whitespace-nowrap text-white transition-colors duration-150 hover:border-white`}
                 style={{ fontFamily: leagueSpartan }}
               >
                 Prototype
@@ -254,36 +262,36 @@ export default function SoloPage() {
         {/* Cards row */}
         <div className="relative flex flex-col lg:flex-row items-center lg:justify-center gap-12 lg:gap-[200px] px-5 lg:px-0">
           {/* PayPal card */}
-          <Link href="/work/paypal" className="group flex w-full max-w-[437px] lg:w-[437px] flex-col gap-4 lg:gap-[27px] items-start">
+          <Link href={nextPayPal.route} className="group flex w-full max-w-[437px] lg:w-[437px] flex-col gap-4 lg:gap-[27px] items-start">
             <div className="relative aspect-[437/666] w-full lg:w-[437px] lg:h-[666px] rounded-[30px] overflow-hidden lg:shrink-0">
               <img
-                src="/images/next-case-studies/paypal-hero.jpg"
-                alt="PayPal case study preview"
+                src={imageSrc(nextPayPalPreview.image)}
+                alt={nextPayPalPreview.alt}
                 className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
             <p className="font-serif text-[clamp(36px,9vw,64px)] lg:text-[64px] text-white leading-[1.1] lg:leading-[72px] tracking-[-0.64px]">
-              PayPal
+              {nextPayPal.cardLabel}
             </p>
           </Link>
 
           {/* Meta card */}
-          <Link href="/work/meta" className="group flex w-full max-w-[671px] lg:w-[671px] flex-col gap-4 lg:gap-[27px] items-start">
+          <Link href={nextMeta.route} className="group flex w-full max-w-[671px] lg:w-[671px] flex-col gap-4 lg:gap-[27px] items-start">
             <div
               className="relative rounded-[30px] overflow-hidden w-full"
               style={{ aspectRatio: "824 / 606" }}
             >
               <div className="absolute h-full top-0" style={{ left: "-3.69%", width: "130.67%" }}>
                 <Image
-                  src={montlyInvoicingHeroOnTable}
-                  alt="Meta case study preview"
+                  src={nextMetaPreview.image}
+                  alt={nextMetaPreview.alt}
                   fill
                   className="object-cover"
                 />
               </div>
             </div>
             <p className="font-serif text-[clamp(36px,9vw,64px)] lg:text-[64px] text-white leading-[1.1] lg:leading-[72px] tracking-[-0.64px] w-full">
-              Meta
+              {nextMeta.cardLabel}
             </p>
           </Link>
         </div>

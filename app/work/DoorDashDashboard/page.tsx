@@ -5,7 +5,6 @@ import NextCaseStudyTicker from "@/components/ui/next-case-study-ticker";
 import CaseStudyTopBar from "@/components/ui/case-study-top-bar";
 import ScrollFade from "@/components/ui/scroll-fade";
 import DashboardAssembleReveal from "@/components/ui/dashboard-assemble-reveal";
-import phoneWithAppRollover from "@/components/images/Teacher'sApp/PhoneWithApp_Rollover.png";
 import workflow from "@/components/images/DoorDash Dashboard/WorkflowDiagram.svg";
 import actionFirstDashboard from "@/components/images/DoorDash Dashboard/minimal-action-first-dashboard-negative-transparent.png";
 import decisionBriefDashboard from "@/components/images/DoorDash Dashboard/decision-brief-dashboard-negative-transparent.png";
@@ -14,10 +13,20 @@ import personaMarketplaceOps from "@/components/images/DoorDash Dashboard/person
 import personaMerchantSuccess from "@/components/images/DoorDash Dashboard/persona-merchant-success.png";
 import personaGrowthFinance from "@/components/images/DoorDash Dashboard/persona-growth-finance.png";
 import BackToHomeButton from "@/components/ui/back-to-home-button";
-import { PROJECTS_BY_ID } from "@/lib/content";
+import { CTA_PILL_SIZE } from "@/components/ui/cta-pill";
+import {
+  PROJECTS_BY_ID,
+  caseStudyEyebrowText,
+  imageSrc,
+  previewOf,
+} from "@/lib/content";
 import { caseStudyMetadata } from "@/lib/seo";
 
 const project = PROJECTS_BY_ID.doordash;
+const nextPayPal = PROJECTS_BY_ID.paypal;
+const nextPayPalPreview = previewOf(nextPayPal);
+const nextSolo = PROJECTS_BY_ID.solo;
+const nextSoloPreview = previewOf(nextSolo);
 
 export const metadata = caseStudyMetadata(
   project,
@@ -108,10 +117,10 @@ export default function DoorDashDashboardCaseStudy() {
               style={{ fontFamily: leagueSpartan }}
             >
               <p className="text-sm lg:text-[18px] font-light leading-none text-white/60">
-                See the Signal. Seize the Opportunity.
+                {caseStudyEyebrowText(project)}
               </p>
               <h1 className="font-serif leading-[1.02] lg:leading-[96px] tracking-[-0.015em] text-[clamp(36px,9vw,96px)] lg:text-[96px]">
-                Turning Marketplace Signals Into Confident Action
+                {project.caseStudyHeadline}
               </h1>
             </div>
           </ScrollFade>
@@ -125,7 +134,7 @@ export default function DoorDashDashboardCaseStudy() {
               <div className="flex w-full lg:w-[861px] max-w-full flex-col gap-[14px]">
                 <p className="text-sm lg:text-[18px] font-light leading-none text-white/60">My Role</p>
                 <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
-                  By combining AI-driven insights with rapid design iteration, I transformed a cluttered dashboard into a clear, scannable experience &mdash; surfacing critical information so users can quickly identify and resolve operational friction.
+                  {project.role}
                 </p>
               </div>
             </ScrollFade>
@@ -134,19 +143,13 @@ export default function DoorDashDashboardCaseStudy() {
                 <div className="flex flex-col gap-[14px]">
                   <p className="text-sm lg:text-[18px] font-light leading-none text-white/60">Timeline</p>
                   <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
-                    2 days
+                    {project.timeline}
                   </p>
                 </div>
                 <div className="flex w-full sm:w-[486px] lg:w-[260px] flex-col gap-[14px]">
                   <p className="text-sm lg:text-[18px] font-light leading-none text-white/60">Platforms</p>
                   <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
-                    Mobile &amp; desktop
-                  </p>
-                </div>
-                <div className="flex flex-col gap-[14px]">
-                  <p className="text-sm lg:text-[18px] font-light leading-none text-white/60">Status</p>
-                  <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
-                    {project.status}
+                    {project.scope.platforms.join(", ")}
                   </p>
                 </div>
               </div>
@@ -179,10 +182,10 @@ export default function DoorDashDashboardCaseStudy() {
           >
             <p className="text-sm lg:text-[18px] font-light text-white/60">Problem</p>
             <p className="text-[clamp(20px,4.5vw,48px)] lg:text-[48px] font-light leading-[1.3]">
-              Operations, merchant success, and finance teams all rely on the same marketplace data, but the signals that matter most to each of them are buried across cluttered, one-size-fits-all reporting. By the time an issue is spotted, it&apos;s already cost the business time, revenue, or merchant trust.
+              {project.description[0]}
               <br />
               <br />
-              This self-initiated concept explores how a single dashboard experience could surface the right signal, to the right person, at the right moment &mdash; and turn that signal directly into action.
+              {project.description[1]}
             </p>
           </div>
         </ScrollFade>
@@ -329,12 +332,12 @@ export default function DoorDashDashboardCaseStudy() {
             </div>
 
             <div className="pointer-events-auto flex flex-wrap items-center gap-3 lg:gap-[25px]">
-              <BackToHomeButton className="text-lg lg:text-[32px]" fontFamily={leagueSpartan} />
+              <BackToHomeButton fontFamily={leagueSpartan} />
               <a
                 href="https://door-dash-dashboard-amber.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center rounded-full border border-[#919191] px-6 lg:px-[30px] py-3 lg:py-[16px] text-lg lg:text-[32px] font-normal leading-none whitespace-nowrap text-white transition-colors duration-150 hover:border-white"
+                className={`inline-flex items-center rounded-full border border-[#919191] px-6 lg:px-[30px] ${CTA_PILL_SIZE.lg} font-normal leading-none whitespace-nowrap text-white transition-colors duration-150 hover:border-white`}
                 style={{ fontFamily: "var(--font-league-spartan)" }}
               >
                 Prototype
@@ -350,33 +353,33 @@ export default function DoorDashDashboardCaseStudy() {
 
         <div className="relative flex flex-col lg:flex-row items-center lg:justify-center gap-12 lg:gap-[200px] px-5 lg:px-0">
           {/* PayPal */}
-          <Link href="/work/paypal" className="group flex w-full max-w-[437px] lg:w-[437px] flex-col gap-4 lg:gap-[27px] items-start">
+          <Link href={nextPayPal.route} className="group flex w-full max-w-[437px] lg:w-[437px] flex-col gap-4 lg:gap-[27px] items-start">
             <div className="aspect-[437/666] w-full lg:h-[666px] lg:w-[437px] relative lg:shrink-0 rounded-2xl lg:rounded-[30px] overflow-hidden">
               <img
-                alt="PayPal case study preview"
-                src="/images/next-case-studies/paypal-hero.jpg"
+                alt={nextPayPalPreview.alt}
+                src={imageSrc(nextPayPalPreview.image)}
                 className="absolute pointer-events-none object-cover h-full transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                 style={{ width: "270%", maxWidth: "none", left: "-88%" }}
               />
             </div>
             <p className="font-serif text-[clamp(36px,9vw,64px)] lg:text-[64px] leading-[1.1] lg:leading-[72px] text-white tracking-[-0.64px] transition-opacity duration-300 group-hover:opacity-70">
-              PayPal
+              {nextPayPal.cardLabel}
             </p>
           </Link>
 
           {/* Solo */}
-          <Link href="/work/MsSunshineApp" className="group flex w-full max-w-[437px] lg:w-[437px] lg:shrink-0 flex-col gap-4 lg:gap-[27px]">
+          <Link href={nextSolo.route} className="group flex w-full max-w-[437px] lg:w-[437px] lg:shrink-0 flex-col gap-4 lg:gap-[27px]">
             <div className="relative aspect-[437/666] lg:aspect-auto lg:h-[666px] w-full overflow-hidden rounded-2xl lg:rounded-[30px]">
               <Image
-                src={phoneWithAppRollover}
-                alt="Ms. Sunshine App case study preview"
+                src={nextSoloPreview.image}
+                alt={nextSoloPreview.alt}
                 fill
                 className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                 sizes="(max-width: 1024px) 100vw, 437px"
               />
             </div>
             <p className="font-serif text-[clamp(36px,9vw,64px)] lg:text-[64px] leading-[1.1] lg:leading-[72px] tracking-[-0.64px] text-white transition-opacity duration-300 group-hover:opacity-70 whitespace-nowrap">
-              Ms. Sunshine App
+              {nextSolo.cardLabel}
             </p>
           </Link>
         </div>
