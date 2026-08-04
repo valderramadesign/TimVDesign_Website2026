@@ -19,17 +19,29 @@ import doorDashRollover from "@/components/images/DoorDash Dashboard/headquarter
 
 export const SITE = {
   name: "Timothy Valderrama",
-  /** Primary positioning line. Used in metadata, structured data, and résumé. */
-  title: "Principal Product Designer for regulated FinTech and AI-enabled systems.",
-  /** Homepage-only positioning line. Kept separate from `title` so the résumé and metadata surfaces are unaffected. */
-  homeTitle: "Lead Product Designer for regulated FinTech and AI-enabled systems.",
+  /** Homepage-only wordmark. Kept separate from `name` so metadata, structured data, and the résumé keep the legal name. */
+  homeName: "Tim Valderrama",
+  /** Primary positioning line. Used on the homepage, in metadata, and in structured data. */
+  title: "Lead Product Designer for regulated FinTech and AI-enabled systems.",
   /** Supporting positioning line. */
   supporting: "Former PayPal design lead and Meta FinTech consultant.",
   /** Closing positioning sentence. Rendered directly after `supporting`. */
   practice:
     "I turn ambiguous, multi-market workflows into scalable products that improve conversion, revenue and customer trust.",
   shortBio:
-    "Principal Product Designer for regulated FinTech and AI-enabled systems. Former PayPal design lead and Meta FinTech consultant.",
+    "Lead Product Designer for regulated FinTech and AI-enabled systems. Former PayPal design lead and Meta FinTech consultant.",
+  /**
+   * Résumé-only copy, mirroring `TimV_Resume_2026.pdf`. Kept separate from the
+   * positioning fields above, which are written as full sentences for the
+   * homepage and metadata; the résumé needs the bare title and its own summary.
+   */
+  resumeTitle: "Lead Product Designer",
+  resumeSummaryLead:
+    "Lead Product Designer with 9+ years of experience simplifying complex digital products and turning friction into business growth.",
+  resumeSummaryCredential:
+    "My certifications in AI-assisted design workflows and product strategy for designing AI experiences",
+  resumeSummaryDetail:
+    "help me turn stakeholder requirements into user-centered concepts that accelerate alignment, sharpen product decisions, and drive measurable business outcomes.",
   url: "https://tim-ai-design.com",
   email: "valderramadesign@gmail.com",
   /** Downloadable résumé, served from `public/`. */
@@ -44,11 +56,11 @@ export const SITE = {
  * content sections of their own.
  */
 export const CAPABILITIES = [
-  "Product strategy",
+  "Design strategy",
   "Complex systems",
   "0→1 products",
   "AI product UX",
-  "Cross-functional leadership",
+  "Cross-functional collaboration",
 ] as const;
 
 /**
@@ -173,12 +185,16 @@ export type Project = {
 
 /**
  * The German products report separately, and each per-product figure is the one
- * stated on the résumé. `$710M` is their arithmetic sum, shown only on the
- * homepage card where a single combined figure is needed.
+ * stated on the résumé. The combined figures below span both products and are
+ * shown only on the homepage card and rollover, where a single view is needed.
  */
-const PAYPAL_DE_COMBINED_TPV: ProjectResult = {
-  value: "$710M",
-  label: "Combined monthly TPV",
+const PAYPAL_DE_COMBINED_TPV_INCREASE: ProjectResult = {
+  value: "63.7%",
+  label: "Combined monthly TPV increase",
+};
+const PAYPAL_DE_IREV_INCREASE: ProjectResult = {
+  value: "42.77%",
+  label: "Combined annual iRev increase",
 };
 const PAYPAL_DE_PAY_IN_30_TPV: ProjectResult = {
   value: "$529M",
@@ -196,9 +212,9 @@ const PAYPAL_PAY_IN_4_CONVERSION: ProjectResult = {
   value: "208%",
   label: "Of baseline Pay in 4 conversion",
 };
-const PAYPAL_TRENDING_TPV: ProjectResult = {
-  value: "$598M/mo.",
-  label: "Trending total purchase volume",
+const PAYPAL_TPV_INCREASE: ProjectResult = {
+  value: "67%",
+  label: "Increase in ave. monthly TPV",
 };
 
 /** Both Meta figures are H1 2025 targets/projections, never achieved results. */
@@ -207,7 +223,7 @@ const META_TARGET_CONVERSION: ProjectResult = {
   label: "Target conversion, up from 39%",
 };
 const META_PROJECTED_SAVINGS: ProjectResult = {
-  value: "~$20M/yr.",
+  value: "7.5%",
   label: "Projected annual savings",
 };
 
@@ -261,8 +277,8 @@ export const PROJECTS: Project[] = [
     cardScope: "Pay in 30 Days & Ratenzahlung · Germany · Mobile & desktop",
     cardProblem:
       "German customers were hesitant to use credit because existing payment options felt risky, inflexible, or inconsistent with responsible spending habits.",
-    cardResult: PAYPAL_DE_COMBINED_TPV,
-    panelResults: [PAYPAL_DE_COMBINED_TPV],
+    cardResult: PAYPAL_DE_COMBINED_TPV_INCREASE,
+    panelResults: [PAYPAL_DE_COMBINED_TPV_INCREASE, PAYPAL_DE_IREV_INCREASE],
   },
   {
     id: "paypal",
@@ -289,7 +305,7 @@ export const PROJECTS: Project[] = [
       "While this CEO-prioritized initiative optimized six credit products across the United States and United Kingdom, this case study highlights Pay in 4, which saw the most significant product and design changes.",
     ],
     primaryResult: PAYPAL_PAY_IN_4_CONVERSION,
-    supportingResults: [PAYPAL_TRENDING_TPV],
+    supportingResults: [PAYPAL_TPV_INCREASE],
     thumbnail: {
       image: paypalRollover,
       alt: "PayPal Pay in 4 application screen",
@@ -306,7 +322,7 @@ export const PROJECTS: Project[] = [
     cardProblem:
       "Paying with a credit card is seamless and nearly instant, while using a PayPal installment credit product requires customers to complete a rigorous, multi-step application at every checkout.",
     cardResult: PAYPAL_PAY_IN_4_CONVERSION,
-    panelResults: [PAYPAL_PAY_IN_4_CONVERSION, PAYPAL_TRENDING_TPV],
+    panelResults: [PAYPAL_PAY_IN_4_CONVERSION, PAYPAL_TPV_INCREASE],
     preview: {
       image: "/images/next-case-studies/paypal-hero.jpg",
       alt: "PayPal case study preview",
@@ -325,7 +341,7 @@ export const PROJECTS: Project[] = [
       products: ["Monthly Invoicing"],
     },
     description: [
-      "High-spend advertisers risk costly campaign pauses from card failures and funding gaps. Monthly Invoicing helps prevent disruptions while reducing Meta’s credit card processing costs, currently $2.46B annually and projected to reach $4.2B. Increasing adoption is expected to save at least $20M annually.",
+      "High-spend advertisers risk costly campaign pauses from card failures and funding gaps. Monthly Invoicing helps prevent disruptions while reducing Meta’s credit card processing costs, currently $2.46B annually and projected to reach $4.2B. Increasing adoption is expected to save at least 7.5% annually.",
     ],
     // Every Meta figure is an H1 2025 target or a projection, so none of them
     // qualifies as a verified result.
@@ -475,7 +491,7 @@ export const MAX_HOMEPAGE_FLAGSHIPS = 4;
  * section by inheriting a stale flag.
  */
 const HOMEPAGE_LAYOUT = {
-  flagship: ["paypal", "meta", "paypalde", "solo"],
+  flagship: ["paypalde", "paypal", "meta", "solo"],
   experiments: ["sutter", "doordash"],
 } as const satisfies Record<HomepageSection, readonly string[]>;
 

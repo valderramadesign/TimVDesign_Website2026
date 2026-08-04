@@ -25,16 +25,13 @@ import rzThreePhoneFanIphone from "@/components/images/PayPal DE/v1-Ratenzahlung
 import closingMacbook from "@/components/images/PayPal DE/macbook-paypal-4k.png";
 import {
   PROJECTS_BY_ID,
-  caseStudyResults,
   caseStudyEyebrowText,
   imageSrc,
   previewOf,
-  resultDetail,
 } from "@/lib/content";
 import { caseStudyMetadata } from "@/lib/seo";
 
 const project = PROJECTS_BY_ID.paypalde;
-const results = caseStudyResults(project);
 const nextPayPal = PROJECTS_BY_ID.paypal;
 const nextPayPalPreview = previewOf(nextPayPal);
 const nextMeta = PROJECTS_BY_ID.meta;
@@ -42,7 +39,7 @@ const nextMetaPreview = previewOf(nextMeta);
 
 export const metadata = caseStudyMetadata(
   project,
-  "Designing PayPal Pay in 30 Days and Ratenzahlung for Germany — two responsible credit products generating $529M and $181M in monthly total purchase volume.",
+  "Designing PayPal Pay in 30 Days and Ratenzahlung for Germany — two responsible credit products driving a 63.7% increase in combined monthly total purchase volume.",
 );
 
 const leagueSpartan = "var(--font-league-spartan)";
@@ -317,11 +314,23 @@ export default function PayPalGermanCreditCaseStudy() {
                 Pay in 30 Days
               </span>
             </h2>
-            <div className="flex flex-col gap-1 lg:w-[289em] lg:gap-[5em]">
-              <p className="font-serif text-[clamp(56px,12vw,96px)] leading-[1.135] tracking-[-0.01em] lg:text-[96em]">
-                <CounterNumber to={529} prefix="$" suffix="M" />
-              </p>
-              <p className="text-sm font-light leading-none lg:text-[24em]">Monthly TPV</p>
+            <div className="flex flex-col gap-6 lg:w-[289em] lg:gap-[32em]">
+              <div className="flex flex-col gap-[17px] lg:gap-[17em]">
+                <p className="metric-figure font-serif text-[clamp(56px,12vw,96px)] leading-[1.135] tracking-[-0.01em] lg:text-[96em]">
+                  <CounterNumber to={48.78} suffix="%" decimals={2} />
+                </p>
+                <p className="metric-label text-sm font-light leading-none lg:text-[24em]">
+                  Increase in monthly TPV
+                </p>
+              </div>
+              <div className="flex flex-col gap-[17px] lg:gap-[17em]">
+                <p className="metric-figure font-serif text-[clamp(56px,12vw,96px)] leading-[1.135] tracking-[-0.01em] lg:text-[96em]">
+                  <CounterNumber to={17.33} suffix="%" decimals={2} />
+                </p>
+                <p className="metric-label text-sm font-light leading-none lg:text-[24em]">
+                  Annual iRev increase
+                </p>
+              </div>
             </div>
           </ScrollFade>
 
@@ -343,7 +352,7 @@ export default function PayPalGermanCreditCaseStudy() {
           {/* PayPal Ratenzahlung */}
           <ScrollFade
             direction="right"
-            className="flex w-full flex-col items-start gap-6 lg:absolute lg:left-[1271em] lg:top-[403em] lg:w-[560em] lg:gap-[42em] lg:px-[24em] lg:py-[20em]"
+            className="flex w-full flex-col items-start gap-6 lg:absolute lg:bottom-0 lg:left-[1271em] lg:w-[560em] lg:gap-[42em] lg:px-[24em] lg:py-[20em]"
             style={{ fontFamily: leagueSpartan }}
           >
             <h2 className="lg:w-[536em]" style={{ fontFamily: ptSerif }}>
@@ -356,11 +365,23 @@ export default function PayPalGermanCreditCaseStudy() {
                 </span>
               ))}
             </h2>
-            <div className="flex flex-col gap-1 lg:w-[408em] lg:gap-[5em]">
-              <p className="font-serif text-[clamp(56px,12vw,96px)] leading-[1.135] tracking-[-0.01em] lg:text-[96em]">
-                <CounterNumber to={181} prefix="$" suffix="M" />
-              </p>
-              <p className="text-sm font-light leading-none lg:text-[24em]">Monthly TPV</p>
+            <div className="flex flex-col gap-6 lg:w-[408em] lg:gap-[32em]">
+              <div className="flex flex-col gap-[17px] lg:gap-[17em]">
+                <p className="metric-figure font-serif text-[clamp(56px,12vw,96px)] leading-[1.135] tracking-[-0.01em] lg:text-[96em]">
+                  <CounterNumber to={14.92} suffix="%" decimals={2} />
+                </p>
+                <p className="metric-label text-sm font-light leading-none lg:text-[24em]">
+                  Increase in monthly TPV
+                </p>
+              </div>
+              <div className="flex flex-col gap-[17px] lg:gap-[17em]">
+                <p className="metric-figure font-serif text-[clamp(56px,12vw,96px)] leading-[1.135] tracking-[-0.01em] lg:text-[96em]">
+                  <CounterNumber to={25.44} suffix="%" decimals={2} />
+                </p>
+                <p className="metric-label text-sm font-light leading-none lg:text-[24em]">
+                  Annual iRev increase
+                </p>
+              </div>
             </div>
           </ScrollFade>
 
@@ -439,7 +460,7 @@ export default function PayPalGermanCreditCaseStudy() {
             w={544}
             bodyW={542}
             label="Iteration 4"
-            body="Introduced a servicing snooze feature that transformed a non-revenue-generating gateway product into a revenue-generating one, scaling to $529M in monthly total purchase volume."
+            body="Introduced a servicing snooze feature that transformed a non-revenue-generating gateway product into a revenue-generating one, driving a 63.7% increase in monthly total purchase volume."
           />
           <TimelineShot
             x={5815}
@@ -496,7 +517,7 @@ export default function PayPalGermanCreditCaseStudy() {
           <TimelineShape x={5492} y={512} w={309} h={310} fill={CYAN} circle />
           <TimelineShape x={7420} y={512} w={309} h={310} fill={CYAN} circle />
           <div className="text-right" style={box(7420, 609, 289)}>
-            <p className="font-serif text-[92em] leading-[1.14] tracking-[-0.01em]">$529M</p>
+            <p className="font-serif text-[92em] leading-[1.14] tracking-[-0.01em]">63.7%</p>
           </div>
           <TimelineShape x={5492} y={180} w={309} h={310} fill={CYAN} circle />
           <TimelineShape x={1592} y={180} w={640} h={644} fill={PANEL} />
@@ -672,30 +693,11 @@ export default function PayPalGermanCreditCaseStudy() {
             <div className="flex flex-col gap-6 lg:gap-8">
               <p className="text-sm lg:text-[18px] font-light">Things I Did:</p>
 
-              <div className="flex flex-wrap gap-x-10 gap-y-6 lg:flex-nowrap lg:gap-x-[24px]">
-                <div className="lg:w-[289px]">
-                  <p className="font-serif text-[clamp(40px,9vw,72px)] lg:text-[72px] font-normal leading-none">
-                    {results[0].value}
-                  </p>
-                  <p className="mt-0 text-sm lg:text-[18px] font-light">
-                    {resultDetail(results[0])}
-                  </p>
-                </div>
-                <div className="lg:w-[301px]">
-                  <p className="font-serif text-[clamp(40px,9vw,72px)] lg:text-[72px] font-normal leading-none">
-                    {results[1].value}
-                  </p>
-                  <p className="mt-0 text-sm lg:text-[18px] font-light">
-                    {resultDetail(results[1])}
-                  </p>
-                </div>
-              </div>
-
               <ul className="ml-[24px] flex list-disc flex-col gap-3 lg:gap-[18px] text-base lg:text-[22px] font-light leading-[1.5] lg:leading-[1.4]">
                 <li>
                   Designed and scaled an award-winning, interest-free credit product from concept to
                   maturity, leading the design strategy and collaboration behind a seamless one-click
-                  application that generated $529M in monthly total purchase volume in a
+                  application that drove a 63.7% increase in monthly total purchase volume in a
                   credit-averse market.
                 </li>
                 <li>

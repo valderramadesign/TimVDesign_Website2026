@@ -104,10 +104,10 @@ export const CASE_STUDY_SUPPORTING_CLASS =
 
 /** Outcome figure. */
 export const CASE_STUDY_METRIC_VALUE_CLASS =
-  "font-serif text-[clamp(40px,9vw,72px)] lg:text-[72px] font-normal leading-none";
+  "metric-figure font-serif text-[clamp(40px,9vw,72px)] lg:text-[72px] font-normal leading-none";
 
-/** Wording under an outcome figure. */
-export const CASE_STUDY_METRIC_LABEL_CLASS = "mt-0 text-sm lg:text-[18px] font-light";
+/** Wording under an outcome figure. Sits 17px below it, measured ink-to-ink. */
+export const CASE_STUDY_METRIC_LABEL_CLASS = "metric-label mt-[17px] text-sm lg:text-[18px] font-light";
 
 /** Default vertical rhythm inside a block. */
 export const CASE_STUDY_STACK_CLASS = "flex w-full flex-col gap-[14px]";

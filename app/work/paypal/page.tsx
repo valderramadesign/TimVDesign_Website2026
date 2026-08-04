@@ -49,7 +49,7 @@ const nextSoloPreview = previewOf(nextSolo);
 
 export const metadata = caseStudyMetadata(
   project,
-  "Redesigning six US and UK PayPal credit products for the new checkout framework — cutting the Pay in 4 funnel from three steps to one and contributing to ~$784M in annual incremental revenue.",
+  "Redesigning six US and UK PayPal credit products for the new checkout framework — cutting the Pay in 4 funnel from three steps to one and contributing to a ~24.6% increase in annual incremental revenue.",
 );
 
 const leagueSpartan = "var(--font-league-spartan)";
@@ -264,8 +264,8 @@ export default function PayPal1CaseStudy() {
               sublabel="Increase of 28 percentage points"
             />
             <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-3 lg:gap-12 items-baseline lg:items-center pt-4">
-              <h3 className="font-[family-name:var(--font-league-spartan)] text-2xl lg:text-[40px] leading-[1.1] font-normal whitespace-pre-line">{"Annual incremental\nrevenue (iRev)"}</h3>
-              <p className="font-serif text-[clamp(48px,12vw,96px)] lg:text-[clamp(64px,8vw,96px)] leading-[1] tracking-[-0.96px]">$784M</p>
+              <h3 className="font-[family-name:var(--font-league-spartan)] text-2xl lg:text-[40px] leading-[1.1] font-normal whitespace-pre-line">{"Annual incremental\nrevenue (iRev) increase"}</h3>
+              <p className="font-serif text-[clamp(48px,12vw,96px)] lg:text-[clamp(64px,8vw,96px)] leading-[1] tracking-[-0.96px]">24.6%</p>
             </div>
           </div>
 
@@ -320,8 +320,8 @@ export default function PayPal1CaseStudy() {
                 <ul className="ml-[24px] flex list-disc flex-col gap-3 lg:gap-[18px] text-base lg:text-[24px] font-light leading-[1.5] lg:leading-[1.4]">
                   <li>
                     Ran an AI-assisted discovery-to-handoff workflow across six
-                    credit products, contributing to ~$784M in annual
-                    incremental revenue (iRev).
+                    credit products, contributing to a ~24.6% increase in
+                    annual incremental revenue (iRev).
                   </li>
                   <li>
                     Used ChatGPT to accelerate discovery, competitive synthesis,
@@ -368,17 +368,17 @@ export default function PayPal1CaseStudy() {
               </h2>
             </div>
             <div className="flex w-full flex-col gap-8 lg:gap-[46px]">
-              <div className="flex w-full lg:w-[200px] flex-col gap-[5px] text-white">
-                <p className="font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">2.3%</p>
-                <p className="text-sm lg:text-[18px] font-light leading-none">
+              <div className="flex w-full lg:w-[200px] flex-col gap-[17px] text-white">
+                <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">2.3%</p>
+                <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
                   Increase in conversion
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
-              <div className="flex w-full lg:w-[408px] flex-col gap-[5px] text-white">
-                <p className="font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">$167M</p>
-                <p className="text-sm lg:text-[18px] font-light leading-none">
-                  Annual iRev
+              <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
+                <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">21.3%</p>
+                <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
+                  Annual iRev increase
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
@@ -419,17 +419,17 @@ export default function PayPal1CaseStudy() {
               PayPal Credit US
             </h2>
             <div className="flex w-full flex-col gap-8 lg:gap-[46px]">
-              <div className="flex w-full lg:w-[200px] flex-col gap-[5px] text-white">
-                <p className="font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">6.3%</p>
-                <p className="text-sm lg:text-[18px] font-light leading-none">
+              <div className="flex w-full lg:w-[200px] flex-col gap-[17px] text-white">
+                <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">6.3%</p>
+                <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
                   Increase in conversion
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
-              <div className="flex w-full lg:w-[408px] flex-col gap-[5px] text-white">
-                <p className="font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">$316M</p>
-                <p className="text-sm lg:text-[18px] font-light leading-none">
-                  Annual iRev
+              <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
+                <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">40.31%</p>
+                <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
+                  Annual iRev increase
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
@@ -450,17 +450,17 @@ export default function PayPal1CaseStudy() {
               PayPal Mastercard
             </h2>
             <div className="flex w-full flex-col gap-8 lg:gap-[46px]">
-              <div className="flex w-full lg:w-[200px] flex-col gap-[5px] text-white">
-                <p className="font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">3.1%</p>
-                <p className="text-sm lg:text-[18px] font-light leading-none">
+              <div className="flex w-full lg:w-[200px] flex-col gap-[17px] text-white">
+                <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">3.1%</p>
+                <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
                   Increase in conversion
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
-              <div className="flex w-full lg:w-[408px] flex-col gap-[5px] text-white">
-                <p className="font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">$233M</p>
-                <p className="text-sm lg:text-[18px] font-light leading-none">
-                  Annual iRev
+              <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
+                <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">29.72%</p>
+                <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
+                  Annual iRev increase
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
@@ -501,17 +501,17 @@ export default function PayPal1CaseStudy() {
               PayPal Credit UK
             </h2>
             <div className="flex w-full flex-col gap-8 lg:gap-[46px]">
-              <div className="flex w-full lg:w-[200px] flex-col gap-[5px] text-white">
-                <p className="font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">5.3%</p>
-                <p className="text-sm lg:text-[18px] font-light leading-none">
+              <div className="flex w-full lg:w-[200px] flex-col gap-[17px] text-white">
+                <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">5.3%</p>
+                <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
                   Increase in conversion
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
-              <div className="flex w-full lg:w-[408px] flex-col gap-[5px] text-white">
-                <p className="font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">$68M</p>
-                <p className="text-sm lg:text-[18px] font-light leading-none">
-                  Annual iRev
+              <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
+                <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">8.67%</p>
+                <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
+                  Annual iRev increase
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
@@ -532,17 +532,17 @@ export default function PayPal1CaseStudy() {
               Pay in 3 UK
             </h2>
             <div className="flex w-full flex-col gap-8 lg:gap-[46px]">
-              <div className="flex w-full lg:w-[200px] flex-col gap-[5px] text-white">
-                <p className="font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">78%</p>
-                <p className="text-sm lg:text-[18px] font-light leading-none">
+              <div className="flex w-full lg:w-[200px] flex-col gap-[17px] text-white">
+                <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">78%</p>
+                <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
                   Increase in conversion
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
-              <div className="flex w-full lg:w-[408px] flex-col gap-[5px] text-white">
-                <p className="font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">$110M</p>
-                <p className="text-sm lg:text-[18px] font-light leading-none">
-                  Average monthly TPV
+              <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
+                <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">37%</p>
+                <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
+                  Increase in ave. monthly TPV
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
@@ -576,35 +576,38 @@ export default function PayPal1CaseStudy() {
               <ImpactCard
                 art={<Image src={cardArtPayIn4} alt="Pay in 4" width={96} height={96} />}
                 product="Pay in 4"
-                amount={7.1}
-                prefix="$"
-                suffix="B"
-                decimals={1}
+                amount={67}
+                prefix=""
+                suffix="%"
+                decimals={0}
                 label="TPV"
               />
               <ImpactCard
                 art={<Image src={cardArtPayMonthly} alt="Pay Monthly" width={96} height={96} />}
                 product="Pay Monthly"
-                amount={167}
-                prefix="$"
-                suffix="M"
-                label="Rev"
+                amount={21.3}
+                prefix=""
+                suffix="%"
+                decimals={1}
+                label="iRev"
               />
               <ImpactCard
                 art={<Image src={cardArtPayPalCredit} alt="PayPal Credit" width={96} height={96} />}
                 product="PayPal Credit"
-                amount={316}
-                prefix="$"
-                suffix="M"
-                label="Rev"
+                amount={40.31}
+                prefix=""
+                suffix="%"
+                decimals={2}
+                label="iRev"
               />
               <ImpactCard
                 art={<Image src={cardArtPayPalMastercard} alt="PayPal Mastercard" width={96} height={96} />}
                 product="PayPal Mastercard"
-                amount={233}
-                prefix="$"
-                suffix="M"
-                label="Rev"
+                amount={29.72}
+                prefix=""
+                suffix="%"
+                decimals={2}
+                label="iRev"
               />
             </div>
           </div>
@@ -615,33 +618,37 @@ export default function PayPal1CaseStudy() {
               UK Credit
             </h2>
             <div className="flex flex-col lg:flex-row items-start lg:items-end gap-10 lg:gap-0">
-              <div className="flex flex-wrap w-full lg:w-[862px] lg:shrink-0 items-end gap-x-12 gap-y-8 lg:gap-x-[155px]">
+              {/* 1190px puts the total block's left edge on the PayPal Mastercard
+                  card above (its offset in the US row: 153 + 198 + 227 + 3 × 204). */}
+              <div className="flex flex-wrap w-full lg:w-[1190px] lg:shrink-0 items-end gap-x-12 gap-y-8 lg:gap-x-[155px]">
                 <ImpactCard
                   art={<Image src={cardArtPayIn3} alt="Pay in 3" width={96} height={96} />}
                   product="Pay in 3"
-                  amount={1.32}
-                  prefix="$"
-                  suffix="B"
-                  decimals={2}
-                  label="TPV"
+                  amount={37}
+                  prefix=""
+                  suffix="%"
+                  decimals={0}
+                label="TPV"
                 />
                 <ImpactCard
                   art={<Image src={cardArtPayPalCredit} alt="PayPal Credit" width={96} height={96} />}
                   product="PayPal Credit"
-                  amount={68}
-                  prefix="$"
-                  suffix="M"
-                  label="Rev"
+                  amount={8.67}
+                  prefix=""
+                  suffix="%"
+                  decimals={2}
+                  label="iRev"
                 />
               </div>
-              <div className="flex w-full lg:h-[144px] lg:w-[477px] flex-col items-start gap-3 lg:gap-0 lg:justify-between text-white">
+              <div className="flex w-full lg:h-[144px] lg:w-[336px] flex-col items-start gap-3 lg:gap-0 lg:justify-between text-white">
                 <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px] tracking-[-0.32px]">
-                  Total annual iRev
+                  Total annual iRev increase
                 </p>
                 <CounterNumber
-                  to={784}
-                  prefix="$"
-                  suffix="M/yr."
+                  to={24.6}
+                  prefix=""
+                  suffix="%"
+                  decimals={1}
                   className="font-serif text-[clamp(56px,14vw,96px)] lg:text-[96px] font-normal leading-[1] lg:leading-[72px] tracking-[-0.96px] whitespace-nowrap"
                 />
               </div>

@@ -17,6 +17,10 @@ import { ActivityFlowCarousel } from "@/components/ui/activity-flow-carousel";
 import BackToHomeButton from "@/components/ui/back-to-home-button";
 import { CTA_PILL_SIZE } from "@/components/ui/cta-pill";
 import {
+  CASE_STUDY_METRIC_LABEL_CLASS,
+  CASE_STUDY_METRIC_VALUE_CLASS,
+} from "@/components/case-study";
+import {
   PROJECTS_BY_ID,
   caseStudyResults,
   caseStudyEyebrowText,
@@ -216,8 +220,8 @@ export default function SoloPage() {
               <p className="text-[18px] font-light leading-none text-white/60">Things I Did:</p>
               {results.map((result) => (
                 <div key={result.value}>
-                  <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>{result.value}</p>
-                  <p className="text-white/70 text-[18px] font-light mt-[0.48px]">{resultDetail(result)}</p>
+                  <p className={`${CASE_STUDY_METRIC_VALUE_CLASS} text-white`}>{result.value}</p>
+                  <p className={`${CASE_STUDY_METRIC_LABEL_CLASS} text-white/70`}>{resultDetail(result)}</p>
                 </div>
               ))}
               <p className="text-[clamp(18px,2.2vw,22px)] font-light leading-[1.32]">

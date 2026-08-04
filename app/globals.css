@@ -23,6 +23,27 @@ html, body {
   overflow-x: hidden;
 }
 
+/*
+ * Figure-over-label pairs (a percentage with its wording beneath it).
+ *
+ * A text box is taller than its ink: the display serif reserves ~12px of
+ * descender space under a row of digits, and the label reserves ~6px above its
+ * cap height, so a stated gap renders about 15px larger than it reads. Trimming
+ * the number's box to its baseline and the label's box to its cap height makes
+ * the gap measure ink-to-ink, so the value in the markup is the value on
+ * screen. The homepage panels sit at 14px; the case studies, whose figures are
+ * larger, sit at 17px.
+ *
+ * Browsers without `text-box` (Firefox) fall back to the untrimmed spacing.
+ */
+.metric-figure {
+  text-box: trim-end text alphabetic;
+}
+
+.metric-label {
+  text-box: trim-start cap text;
+}
+
 @keyframes ticker-scroll {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }

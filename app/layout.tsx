@@ -30,7 +30,7 @@ const jetbrainsMono = JetBrains_Mono({
 // Libertinus Serif Display is self-hosted via public/fonts/ + globals.css @font-face
 // Download from: https://github.com/alerque/libertinus/releases
 
-const siteTitle = `${SITE.name} — Principal Product Designer`;
+const siteTitle = `${SITE.name} — Lead Product Designer`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -68,7 +68,7 @@ const structuredData = {
       name: SITE.name,
       url: SITE.url,
       email: `mailto:${SITE.email}`,
-      jobTitle: "Principal Product Designer",
+      jobTitle: "Lead Product Designer",
       description: SITE.shortBio,
       address: {
         "@type": "PostalAddress",

@@ -6,11 +6,10 @@ import { SITE } from "@/lib/content";
 type HeroProps = {
   title?: React.ReactNode;
   titleKey?: string;
-  showSupporting?: boolean;
 };
 
-export default function Hero({ title, titleKey, showSupporting = true }: HeroProps) {
-  const content = title ?? SITE.name;
+export default function Hero({ title, titleKey }: HeroProps) {
+  const content = title ?? SITE.homeName;
 
   return (
     <div className="flex items-end justify-between gap-[48px] w-full shrink-0">
@@ -28,17 +27,10 @@ export default function Hero({ title, titleKey, showSupporting = true }: HeroPro
         </motion.h1>
       </AnimatePresence>
 
-      {/* Kept mounted (opacity-only fade) so the column it occupies stays
-          reserved and the headline beside it doesn't reflow as project
-          rollovers, which use this side of the band, toggle it. */}
-      <motion.p
-        className="text-white/80 font-light font-sans text-[19px] leading-[26px] tracking-[-0.01em] text-right w-[480px] shrink-0"
-        animate={{ opacity: showSupporting ? 1 : 0 }}
-        transition={{ duration: 0.25 }}
-        aria-hidden={!showSupporting}
-      >
-        {SITE.supporting} {SITE.practice}
-      </motion.p>
+      {/* The supporting copy moved up beside the left nav; this column stays
+          reserved so the headline keeps its measure and the rollover panels
+          that use this side of the band have room. */}
+      <div aria-hidden className="w-[480px] shrink-0" />
     </div>
   );
 }

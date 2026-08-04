@@ -80,10 +80,10 @@ export default function ResumePanel() {
                 <span className="text-[#7c8896]">{`>`}</span>
               </a>
               <span className="text-[#7c8896]">{` <`}</span>
-              <span className="text-black">San Mateo, CA</span>
+              <span className="text-black">tim-ai-design.com</span>
               <span className="text-[#7c8896]">{`>`}</span>
               <span className="text-[#7c8896]">{` <`}</span>
-              <span className="text-black">US Citizen</span>
+              <span className="text-black">San Mateo, CA</span>
               <span className="text-[#7c8896]">{`>`}</span>
             </p>
           </div>
@@ -94,13 +94,8 @@ export default function ResumePanel() {
               <span className="text-[#7c8896]">who am I</span>
               <span className="text-black">=</span>
               <span className="text-[#fd0]">{`{`}</span>
-              <span className="text-black">&quot;{SITE.title} {SITE.supporting}&quot;</span>
+              <span className="text-black">&quot;{SITE.resumeSummaryLead}&quot;</span>
               <span className="text-[#fd0]">{`}`}</span>
-              <span>{` `}</span>
-              <span className="text-[#fd0]">{`{`}</span>
-              <span className="text-black">!</span>
-              <span className="text-[#00b0d8]">20+ years of total design experience, including 9+ years in UX</span>
-              <span className="text-[#d9be0f]">{`}`}</span>
             </p>
 
             <p className="text-[14px] leading-[20px]">
@@ -108,8 +103,8 @@ export default function ResumePanel() {
               <span className="text-black">=</span>
               <span className="text-[#fd0]">{`{`}</span>
               <span className="text-black">&quot;</span>
-              <span className="text-black" style={blueHL}>Certified in AI-design workflows, AI product strategy and designing AI-powered experiences</span>
-              <span className="text-black">, I turn stakeholder requirements into user-centered concepts that accelerate alignment, sharpen product decisions, and drive measurable business outcomes.&quot;</span>
+              <span className="text-black" style={blueHL}>{SITE.resumeSummaryCredential}</span>
+              <span className="text-black">{` `}{SITE.resumeSummaryDetail}&quot;</span>
               <span className="text-[#fd0]">{`}`}</span>
             </p>
 
@@ -117,7 +112,7 @@ export default function ResumePanel() {
               <span className="text-[#7c8896]">Next role</span>
               <span className="text-black">=</span>
               <span className="text-[#fd0]">{`{`}</span>
-              <span className="text-black">&quot;Seeking a principal product design role leading end-to-end UX initiatives that optimize customer experience, drive business impact, mentor designers, and elevate product quality—while using{` `}<span style={blueHL}>AI-assisted workflows to accelerate research, ideation, prototyping, and design execution</span>.&quot;</span>
+              <span className="text-black">&quot;Seeking a lead product design role owning end-to-end UX initiatives that optimize customer experience, drive business impact, mentor designers, and elevate product quality—while using{` `}<span style={blueHL}>AI-assisted workflows to accelerate research, ideation, prototyping, and design execution</span>.&quot;</span>
               <span className="text-[#fd0]">{`}`}</span>
             </p>
 
@@ -150,7 +145,7 @@ export default function ResumePanel() {
                   &quot;Designed and developed an{` `}
                   <span style={blueHL}>AI-powered preschool activity reporting app</span>{` `}
                   for Sunshine Little House of Learning, automating real-time parent updates and end-of-day summaries while{` `}
-                  <span style={yellowHL}>saving the head teacher an estimated 2 hours per day</span>.&quot;
+                  <span style={yellowHL}>saving the head teacher an estimated 480 hours annually</span>.&quot;
                   <span className="text-[#fd0]">{`}`}</span>
                 </p>
               </div>
@@ -181,7 +176,7 @@ export default function ResumePanel() {
                   <span className="text-[#fd0]">{`{`}</span>
                   &quot;Designed solutions to reduce ad billing credit card costs by promoting Monthly Invoicing and optimizing the{` `}
                   <span style={blueHL}>AI- and automation-driven application flow</span>;{` `}
-                  <span style={yellowHL}>targeting a lift in conversion from a 39% baseline to 97% and ~$20M in projected annual savings</span> in credit card fees.&quot;
+                  <span style={yellowHL}>targeting a lift in conversion from a 39% baseline to 97% and ~7.5% in projected annual savings</span> in credit card fees.&quot;
                   <span className="text-[#fd0]">{`}`}</span>
                 </p>
               </div>
@@ -203,13 +198,13 @@ export default function ResumePanel() {
                   <span className="text-[#fd0]">{`{`}</span>
                   &quot;Modernized PayPal&apos;s installment products, a top-priority leadership initiative, by migrating to UI 4.0 and the Checkout Product System; used{` `}
                   <span style={blueHL}>Figma, ChatGPT, and Claude for research synthesis, UX writing variants, flow critique, and product narrative development</span>,{` `}
-                  <span style={yellowHL}>lifting conversion to 208% of its baseline and growing monthly TPV to $598M</span> for Pay in 4.&quot;
+                  <span style={yellowHL}>lifting conversion to 208% of its baseline and driving a 67% increase in average monthly TPV</span> for Pay in 4.&quot;
                   <span className="text-[#fd0]">{`}`}</span>
                 </p>
                 <p className="mb-0">
                   <span className="text-[#fd0]">{`{`}</span>
                   &quot;Led design strategy and end-to-end implementation across all German installment products, translating complex regulatory, customer, and business requirements into scalable product experiences that{` `}
-                  <span style={yellowHL}>generated $181M in monthly TPV for PayPal Monthly Installments and $529M for Pay in 30 Days</span>.&quot;
+                  <span style={yellowHL}>drove a 14.92% increase in monthly TPV for PayPal Monthly Installments and 48.78% for Pay in 30 Days</span>.&quot;
                   <span className="text-[#fd0]">{`}`}</span>
                 </p>
                 <p className="mb-0">
@@ -272,7 +267,7 @@ export default function ResumePanel() {
                 <span className="text-black">&quot;Master Certificate&quot;</span>
                 <span className="text-[#fd0]">{`}`}</span>
                 <span>{` `}</span>
-                <span className="text-[#00b0d8]">Human Computer Interaction</span>
+                <span className="text-[#00b0d8]">Human Computer Interaction, AI assisted design and product strategy for AI experiences</span>
               </p>
               <p className="text-[14px] leading-[21px]">
                 <span className="text-[#7c8896]">Education</span>

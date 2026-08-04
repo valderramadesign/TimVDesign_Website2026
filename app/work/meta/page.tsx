@@ -52,7 +52,7 @@ const nextSoloPreview = previewOf(nextSolo);
 
 export const metadata = caseStudyMetadata(
   project,
-  "Rebuilding Meta Monthly Invoicing onboarding from 9 screens to 3, against an H1 2025 target of lifting conversion from a 39% baseline to 97% and ~$20M/yr in projected savings.",
+  "Rebuilding Meta Monthly Invoicing onboarding from 9 screens to 3, against an H1 2025 target of lifting conversion from a 39% baseline to 97% and ~7.5%/yr in projected savings.",
 );
 
 function PromoCard() {
@@ -277,7 +277,7 @@ export default function MetaPage() {
               Projected savings
             </h3>
             <p className="font-serif text-[clamp(40px,10vw,96px)] lg:text-[clamp(64px,8vw,96px)] leading-[1] tracking-[-0.96px]">
-              ~ $20M/yr.
+              ~ 7.5%/yr.
             </p>
           </div>
         </div>
@@ -339,7 +339,7 @@ export default function MetaPage() {
                   Simplified the application from 9 &rarr; 3 screens, against an H1 2025 target of lifting conversion from a 39% baseline to 97%.
                 </li>
                 <li>
-                  Partnered with Content on banner copy and with teams to surface it in higher-traffic areas, targeting expanded eligibility (27%&rarr;67%) and awareness (8%&rarr;41%) toward ~$20M/yr in projected savings.
+                  Partnered with Content on banner copy and with teams to surface it in higher-traffic areas, targeting expanded eligibility (27%&rarr;67%) and awareness (8%&rarr;41%) toward ~7.5%/yr in projected savings.
                 </li>
               </ul>
             </div>

@@ -39,10 +39,10 @@ function PanelResults({ results }: { results: ProjectResult[] }) {
     <>
       {results.map((result) => (
         <div key={result.value} className="text-right">
-          <p className="text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>
+          <p className="metric-figure text-white font-normal leading-none font-serif" style={{ fontSize: "58px" }}>
             {result.value}
           </p>
-          <p className="text-white/70 text-[18px] font-light mt-[0.48px]">
+          <p className="metric-label text-white/70 text-[18px] font-light mt-3.5">
             {resultDetail(result)}
           </p>
         </div>
@@ -144,10 +144,10 @@ function WorkCard({ project, priority }: { project: Project; priority: boolean }
           </div>
           {project.cardResult && (
             <div className="shrink-0 text-right">
-              <p className="text-white font-serif leading-none text-3xl sm:text-4xl">
+              <p className="metric-figure text-white font-serif leading-none text-3xl sm:text-4xl">
                 {project.cardResult.value}
               </p>
-              <p className="mt-1 text-white/55 text-[10px] uppercase tracking-[0.15em] font-sans max-w-[12ch]">
+              <p className="metric-label mt-3.5 text-white/55 text-[10px] uppercase tracking-[0.15em] font-sans max-w-[12ch]">
                 {project.cardResult.label}
               </p>
             </div>
@@ -303,22 +303,32 @@ export default function HomeClient() {
                 here would drag the nav up out from under the pointer. Re-tuned
                 down from the original clamp so the introduction still clears
                 the fold at 1280x800. */}
-            <div
-              id="selected-work"
-              tabIndex={-1}
-              className="relative w-fit shrink-0 rounded-[28px] focus:outline-2 focus:outline-offset-8 focus:outline-white/70 mt-[clamp(40px,calc(18vh_-_100px),140px)]"
-            >
-              <LeftNav onHover={setHoveredProject} />
+            <div className="flex shrink-0 items-start justify-between gap-[48px] mt-[clamp(40px,calc(18vh_-_100px),140px)]">
+              <div
+                id="selected-work"
+                tabIndex={-1}
+                className="relative w-fit shrink-0 rounded-[28px] focus:outline-2 focus:outline-offset-8 focus:outline-white/70"
+              >
+                <LeftNav onHover={setHoveredProject} />
+              </div>
+
+              {/* Top-aligned with the first nav pill. Kept mounted and faded
+                  rather than unmounted because the rollover panels share this
+                  column and an unmount would reflow the band. */}
+              <motion.p
+                className="w-[480px] shrink-0 text-right text-white/80 font-light font-sans text-[19px] leading-[26px] tracking-[-0.01em]"
+                animate={{ opacity: hovered ? 0 : 1 }}
+                transition={{ duration: 0.25 }}
+                aria-hidden={Boolean(hovered)}
+              >
+                {SITE.supporting} {SITE.practice}
+              </motion.p>
             </div>
 
             <div className="flex-1 min-h-[32px]" />
 
             <div className="shrink-0 pb-[14px]">
-              <Hero
-                title={heroTitle}
-                titleKey={heroKey}
-                showSupporting={!hovered}
-              />
+              <Hero title={heroTitle} titleKey={heroKey} />
               {/* Kept mounted and faded rather than unmounted so the band keeps
                   its height and the headline above it doesn't shift as project
                   rollovers toggle this copy off. */}
@@ -328,7 +338,7 @@ export default function HomeClient() {
                 aria-hidden={Boolean(hovered)}
               >
                 <p className="mt-[22px] text-white font-light font-sans text-2xl leading-7 tracking-[-0.015em]">
-                  {SITE.homeTitle}
+                  {SITE.title}
                 </p>
                 {/* Held to the headline's measure (the 480px supporting column
                     plus its 48px gap), which also keeps the signals clear of the
@@ -568,10 +578,10 @@ export default function HomeClient() {
               className="text-white font-serif leading-[0.96] tracking-[-0.015em]"
               style={{ fontSize: "clamp(40px, 11vw, 72px)" }}
             >
-              {SITE.name}
+              {SITE.homeName}
             </h1>
             <p className="text-white font-light font-sans text-xl sm:text-2xl leading-snug tracking-[-0.015em] max-w-[26ch]">
-              {SITE.homeTitle}
+              {SITE.title}
             </p>
             <p className="text-white/75 font-light font-sans text-base sm:text-lg leading-relaxed max-w-[46ch]">
               {SITE.supporting} {SITE.practice}
