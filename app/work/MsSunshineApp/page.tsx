@@ -87,21 +87,18 @@ export default function SoloPage() {
         </div>
       </section>
 
-      {/* Hero video — full bleed */}
+      {/* DaySchedule — full bleed */}
       <section className="w-full">
-        <video
-          src="/videos/TeacherInterview/TeacherAppInterview_3.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
+        <Image
+          src={daySchedule}
+          alt="A teacher's daily schedule"
+          priority
           className="w-full h-auto object-cover"
         />
       </section>
 
       {/* Introduction / Problem */}
-      <section className="w-full px-5 lg:px-[24px] pt-10 lg:pt-[24px] pb-16 lg:pb-[125px]" style={{ fontFamily: leagueSpartan }}>
+      <section className="w-full px-5 lg:px-[24px] pt-10 lg:pt-[24px]" style={{ fontFamily: leagueSpartan }}>
         <div className="flex w-full max-w-[1539px] flex-col gap-[14px]">
           <p className="text-[18px] font-light leading-none text-white/60">Problem</p>
           <div className="text-[clamp(20px,4.5vw,48px)] lg:text-[48px] font-light leading-[1.2] lg:leading-[56px] space-y-8 lg:space-y-[56px]">
@@ -110,15 +107,6 @@ export default function SoloPage() {
             ))}
           </div>
         </div>
-      </section>
-
-      {/* DaySchedule — full bleed */}
-      <section className="w-full">
-        <Image
-          src={daySchedule}
-          alt="A teacher's daily schedule"
-          className="w-full h-auto object-cover"
-        />
       </section>
 
       {/* Competitive Analysis */}

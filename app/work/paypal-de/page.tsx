@@ -3,7 +3,6 @@ import Link from "next/link";
 import NextCaseStudyTicker from "@/components/ui/next-case-study-ticker";
 import CaseStudyTopBar from "@/components/ui/case-study-top-bar";
 import ScrollFade from "@/components/ui/scroll-fade";
-import HeroVideo from "@/components/ui/hero-video";
 import CounterNumber from "@/components/ui/counter-number";
 import BackToHomeButton from "@/components/ui/back-to-home-button";
 import { CTA_PILL_SIZE } from "@/components/ui/cta-pill";
@@ -262,15 +261,226 @@ export default function PayPalGermanCreditCaseStudy() {
         </div>
       </section>
 
-      {/* Hero video */}
-      <section className="relative w-full">
-        <div className="relative aspect-[16/10] lg:aspect-auto lg:h-[1043px] w-full overflow-hidden">
-          <HeroVideo src="/videos/PayPalDE/HeroMovie_PayPalDE.mp4" />
-        </div>
+      {/* Pay in 30 Days timeline.
+          Figma nests the "Iteration" intro inside this canvas at (24, 0); it lives in its own
+          section further down so it stays readable at mobile widths instead of scrolling
+          horizontally with the rail. */}
+      <section className="relative w-full mt-1 lg:mt-[8px]">
+        <TimelineCanvas width={9358} height={846} label="Pay in 30 Days timeline">
+          <TimelineCopy
+            x={7420}
+            y={180}
+            w={544}
+            bodyW={542}
+            label="Iteration 4"
+            body="Introduced a servicing snooze feature that transformed a non-revenue-generating gateway product into a revenue-generating one, driving a 63.7% increase in monthly total purchase volume."
+          />
+          <TimelineShot
+            x={5815}
+            y={166}
+            w={1584}
+            h={679.5}
+            src={pi30FivePhoneRow}
+            alt="Servicing flow for rescheduling a Pay in 30 Days payment"
+          />
+          <TimelineCopy
+            x={4284}
+            y={222}
+            w={504}
+            bodyW={490}
+            align="right"
+            label="Iteration 3"
+            body="Applied research insights to streamline checkout, allowing users to update their bank preferences in-flow and moving legal disclosures to the review page for greater transparency."
+          />
+          <TimelineTitle x={930} y={248} w={542} lines={["Pay in 30 Days", "Timeline"]} />
+          <TimelineShape x={294} y={494} w={1232} h={330} fill={CYAN} />
+          <TimelineShape x={3930} y={514} w={1232} h={310} fill={PANEL} />
+          <TimelineShape x={7750} y={514} w={1584} h={310} fill={PANEL} />
+          <TimelineCopy
+            x={8763}
+            y={549}
+            w={540}
+            bodyW={534}
+            label="Iteration 7"
+            body="Integrated the design into the new checkout framework, introducing more upfront options that improved user choice and enabled more accurate loan estimates from the start."
+          />
+          <TimelineShot
+            x={8077}
+            y={279}
+            w={690}
+            h={534.4}
+            src={pi30CheckoutFan}
+            alt="Pay in 30 Days inside the new checkout framework"
+          />
+          <TimelineShape x={2363} y={514} w={107} h={310} fill={CYAN} />
+          <TimelineShape x={2363} y={180} w={107} h={310} fill={CYAN} />
+          <TimelineShape x={2494} y={514} w={107} h={310} fill={CYAN} />
+          <TimelineShape x={2494} y={180} w={107} h={310} fill={CYAN} />
+          <TimelineShape x={2625} y={514} w={107} h={310} fill={CYAN} />
+          <TimelineShape x={2625} y={180} w={1565} h={310} fill={CYAN} />
+          <TimelineCopy
+            x={3304}
+            y={551}
+            w={506}
+            bodyW={347}
+            label="Usability Research in Germany"
+            body={usabilityCopy}
+          />
+          <TimelineShape x={5162} y={512} w={309} h={310} fill={CYAN} circle />
+          <TimelineShape x={5492} y={512} w={309} h={310} fill={CYAN} circle />
+          <TimelineShape x={7420} y={512} w={309} h={310} fill={CYAN} circle />
+          <div className="text-right" style={box(7420, 609, 289)}>
+            <p className="font-serif text-[92em] leading-[1.14] tracking-[-0.01em]">63.7%</p>
+          </div>
+          <TimelineShape x={5492} y={180} w={309} h={310} fill={CYAN} circle />
+          <TimelineShape x={1592} y={180} w={640} h={644} fill={PANEL} />
+          <TimelineCopy
+            x={1640}
+            y={498}
+            w={350}
+            bodyW={240}
+            label="Iteration 2"
+            body="Enabled users to select a different bank that is not on file or add a new bank directly within the flow."
+          />
+          <TimelineCopy
+            x={930}
+            y={582}
+            w={439}
+            bodyW={548}
+            label="Iteration 1"
+            body={iterationOneCopy}
+          />
+          <TimelineShot
+            x={86}
+            y={180}
+            w={824}
+            h={644}
+            src={pi30AndroidFan}
+            alt="Early Pay in 30 Days concepts explored on Android"
+          />
+          <TimelineShot
+            x={1900}
+            y={0}
+            w={1150}
+            h={789}
+            src={pi30ThreePhoneRow}
+            alt="Bank selection and add-a-bank screens tested in checkout"
+          />
+          <TimelineShot
+            x={3603}
+            y={309}
+            w={489}
+            h={491}
+            src={pi30AndroidVFan}
+            alt="Three concepts taken into German usability research"
+          />
+          <TimelineShot
+            x={4803}
+            y={198}
+            w={554}
+            h={595}
+            src={pi30TwoPhoneRow}
+            alt="Streamlined checkout with in-flow bank preferences"
+          />
+        </TimelineCanvas>
+      </section>
+
+      {/* PayPal Ratenzahlung timeline */}
+      <section className="relative w-full mt-5 lg:mt-[40px]">
+        <TimelineCanvas width={10732} height={1017} label="PayPal Ratenzahlung timeline">
+          <TimelineShape x={5270} y={74} w={4420} h={316} fill={PANEL} />
+          <TimelineShape x={1929} y={57} w={340} h={341} fill={PANEL} circle />
+          <TimelineShape x={1929} y={422} w={340} h={341} fill={PANEL} circle />
+          <TimelineShape x={2292} y={422} w={340} h={341} fill={PANEL} circle />
+          <TimelineTitle x={47} y={51} w={542} lines={["PayPal Ratenzahlung", "Timeline"]} />
+          <TimelineCopy
+            x={39}
+            y={455}
+            w={506}
+            bodyW={493}
+            label="Iteration 1"
+            body={iterationOneCopy}
+          />
+          <TimelineShot
+            x={555}
+            y={43}
+            w={1349}
+            h={720}
+            src={rzFourPhoneRow}
+            alt="First PayPal Ratenzahlung installment concepts"
+          />
+          <TimelineShot
+            x={2422}
+            y={43}
+            w={1685}
+            h={720}
+            src={rzFivePhoneRow}
+            alt="Expanded set of installment options in checkout"
+          />
+          <TimelineCopy
+            x={4165}
+            y={52.5}
+            w={537}
+            bodyW={386}
+            label="Iteration 2"
+            body="Added 4 other installment options. Collaborated with my cross-functional counterpart to integrate PayPal Ratenzahlung into checkout teams&rsquo; many experiments."
+          />
+          <TimelineShape x={4173} y={404.5} w={340} h={341} fill={CYAN} circle />
+          <TimelineShape x={4561} y={403} w={1013} h={330} fill={CYAN} />
+          <TimelineCopy
+            x={5613}
+            y={492}
+            w={365}
+            bodyW={347}
+            label="Usability Research in Germany"
+            body={usabilityCopy}
+          />
+          <TimelineShot
+            x={4799}
+            y={0}
+            w={764}
+            h={717}
+            src={rzThreePhoneFan}
+            alt="Concepts taken into German usability research"
+          />
+          <TimelineShot
+            x={6203}
+            y={118}
+            w={2930}
+            h={899}
+            src={rzSevenPhoneRow}
+            alt="Single-page loan application and servicing screens"
+          />
+          <TimelineCopy
+            x={9160}
+            y={118}
+            w={544}
+            bodyW={494}
+            label="Iteration 3"
+            body="Integrated research findings into new PayPal UI for checkout and servicing. Optimized loan application from 4&rarr;1 page flow."
+          />
+          <TimelineCopy
+            x={9268}
+            y={715}
+            w={540}
+            bodyW={534}
+            align="right"
+            label="Iteration 4"
+            body="Optimized to fit within the latest checkout framework."
+          />
+          <TimelineShot
+            x={9808}
+            y={118}
+            w={924}
+            h={823}
+            src={rzThreePhoneFanIphone}
+            alt="PayPal Ratenzahlung in the latest checkout framework"
+          />
+        </TimelineCanvas>
       </section>
 
       {/* Problem */}
-      <section className="relative w-full px-5 lg:px-[24px] pt-6 lg:pt-[24px]">
+      <section className="relative w-full px-5 lg:px-[24px] pt-6 lg:pt-[32px]">
         <ScrollFade direction="left">
           <div
             className="flex w-full max-w-[1649px] flex-col gap-[14px]"
@@ -447,223 +657,6 @@ export default function PayPalGermanCreditCaseStudy() {
             </p>
           </div>
         </ScrollFade>
-      </section>
-
-      {/* Pay in 30 Days timeline.
-          Figma nests the "Iteration" intro inside this canvas at (24, 0); it is kept outside so it
-          stays readable at mobile widths instead of scrolling horizontally with the rail. */}
-      <section className="relative w-full mt-10 lg:mt-[24px]">
-        <TimelineCanvas width={9358} height={904} label="Pay in 30 Days timeline">
-          <TimelineCopy
-            x={7420}
-            y={180}
-            w={544}
-            bodyW={542}
-            label="Iteration 4"
-            body="Introduced a servicing snooze feature that transformed a non-revenue-generating gateway product into a revenue-generating one, driving a 63.7% increase in monthly total purchase volume."
-          />
-          <TimelineShot
-            x={5815}
-            y={166}
-            w={1584}
-            h={679.5}
-            src={pi30FivePhoneRow}
-            alt="Servicing flow for rescheduling a Pay in 30 Days payment"
-          />
-          <TimelineCopy
-            x={4284}
-            y={222}
-            w={504}
-            bodyW={490}
-            align="right"
-            label="Iteration 3"
-            body="Applied research insights to streamline checkout, allowing users to update their bank preferences in-flow and moving legal disclosures to the review page for greater transparency."
-          />
-          <TimelineTitle x={930} y={248} w={542} lines={["Pay in 30 Days", "Timeline"]} />
-          <TimelineShape x={294} y={494} w={1232} h={330} fill={CYAN} />
-          <TimelineShape x={3930} y={514} w={1232} h={310} fill={PANEL} />
-          <TimelineShape x={7750} y={514} w={1584} h={310} fill={PANEL} />
-          <TimelineCopy
-            x={8763}
-            y={549}
-            w={540}
-            bodyW={534}
-            label="Iteration 7"
-            body="Integrated the design into the new checkout framework, introducing more upfront options that improved user choice and enabled more accurate loan estimates from the start."
-          />
-          <TimelineShot
-            x={8077}
-            y={279}
-            w={690}
-            h={534.4}
-            src={pi30CheckoutFan}
-            alt="Pay in 30 Days inside the new checkout framework"
-          />
-          <TimelineShape x={2363} y={514} w={107} h={310} fill={CYAN} />
-          <TimelineShape x={2363} y={180} w={107} h={310} fill={CYAN} />
-          <TimelineShape x={2494} y={514} w={107} h={310} fill={CYAN} />
-          <TimelineShape x={2494} y={180} w={107} h={310} fill={CYAN} />
-          <TimelineShape x={2625} y={514} w={107} h={310} fill={CYAN} />
-          <TimelineShape x={2625} y={180} w={1565} h={310} fill={CYAN} />
-          <TimelineCopy
-            x={3304}
-            y={551}
-            w={506}
-            bodyW={347}
-            label="Usability Research in Germany"
-            body={usabilityCopy}
-          />
-          <TimelineShape x={5162} y={512} w={309} h={310} fill={CYAN} circle />
-          <TimelineShape x={5492} y={512} w={309} h={310} fill={CYAN} circle />
-          <TimelineShape x={7420} y={512} w={309} h={310} fill={CYAN} circle />
-          <div className="text-right" style={box(7420, 609, 289)}>
-            <p className="font-serif text-[92em] leading-[1.14] tracking-[-0.01em]">63.7%</p>
-          </div>
-          <TimelineShape x={5492} y={180} w={309} h={310} fill={CYAN} circle />
-          <TimelineShape x={1592} y={180} w={640} h={644} fill={PANEL} />
-          <TimelineCopy
-            x={1640}
-            y={498}
-            w={350}
-            bodyW={240}
-            label="Iteration 2"
-            body="Enabled users to select a different bank that is not on file or add a new bank directly within the flow."
-          />
-          <TimelineCopy
-            x={930}
-            y={582}
-            w={439}
-            bodyW={548}
-            label="Iteration 1"
-            body={iterationOneCopy}
-          />
-          <TimelineShot
-            x={86}
-            y={180}
-            w={824}
-            h={644}
-            src={pi30AndroidFan}
-            alt="Early Pay in 30 Days concepts explored on Android"
-          />
-          <TimelineShot
-            x={1900}
-            y={0}
-            w={1150}
-            h={789}
-            src={pi30ThreePhoneRow}
-            alt="Bank selection and add-a-bank screens tested in checkout"
-          />
-          <TimelineShot
-            x={3603}
-            y={309}
-            w={489}
-            h={491}
-            src={pi30AndroidVFan}
-            alt="Three concepts taken into German usability research"
-          />
-          <TimelineShot
-            x={4803}
-            y={198}
-            w={554}
-            h={595}
-            src={pi30TwoPhoneRow}
-            alt="Streamlined checkout with in-flow bank preferences"
-          />
-        </TimelineCanvas>
-      </section>
-
-      {/* PayPal Ratenzahlung timeline */}
-      <section className="relative w-full mt-20 lg:mt-[167px]">
-        <TimelineCanvas width={10732} height={1017} label="PayPal Ratenzahlung timeline">
-          <TimelineShape x={5270} y={74} w={4420} h={316} fill={PANEL} />
-          <TimelineShape x={1929} y={57} w={340} h={341} fill={PANEL} circle />
-          <TimelineShape x={1929} y={422} w={340} h={341} fill={PANEL} circle />
-          <TimelineShape x={2292} y={422} w={340} h={341} fill={PANEL} circle />
-          <TimelineTitle x={47} y={51} w={542} lines={["PayPal Ratenzahlung", "Timeline"]} />
-          <TimelineCopy
-            x={39}
-            y={455}
-            w={506}
-            bodyW={493}
-            label="Iteration 1"
-            body={iterationOneCopy}
-          />
-          <TimelineShot
-            x={555}
-            y={43}
-            w={1349}
-            h={720}
-            src={rzFourPhoneRow}
-            alt="First PayPal Ratenzahlung installment concepts"
-          />
-          <TimelineShot
-            x={2422}
-            y={43}
-            w={1685}
-            h={720}
-            src={rzFivePhoneRow}
-            alt="Expanded set of installment options in checkout"
-          />
-          <TimelineCopy
-            x={4165}
-            y={52.5}
-            w={537}
-            bodyW={386}
-            label="Iteration 2"
-            body="Added 4 other installment options. Collaborated with my cross-functional counterpart to integrate PayPal Ratenzahlung into checkout teams&rsquo; many experiments."
-          />
-          <TimelineShape x={4173} y={404.5} w={340} h={341} fill={CYAN} circle />
-          <TimelineShape x={4561} y={403} w={1013} h={330} fill={CYAN} />
-          <TimelineCopy
-            x={5613}
-            y={492}
-            w={365}
-            bodyW={347}
-            label="Usability Research in Germany"
-            body={usabilityCopy}
-          />
-          <TimelineShot
-            x={4799}
-            y={0}
-            w={764}
-            h={717}
-            src={rzThreePhoneFan}
-            alt="Concepts taken into German usability research"
-          />
-          <TimelineShot
-            x={6203}
-            y={118}
-            w={2930}
-            h={899}
-            src={rzSevenPhoneRow}
-            alt="Single-page loan application and servicing screens"
-          />
-          <TimelineCopy
-            x={9160}
-            y={118}
-            w={544}
-            bodyW={494}
-            label="Iteration 3"
-            body="Integrated research findings into new PayPal UI for checkout and servicing. Optimized loan application from 4&rarr;1 page flow."
-          />
-          <TimelineCopy
-            x={9268}
-            y={715}
-            w={540}
-            bodyW={534}
-            align="right"
-            label="Iteration 4"
-            body="Optimized to fit within the latest checkout framework."
-          />
-          <TimelineShot
-            x={9808}
-            y={118}
-            w={924}
-            h={823}
-            src={rzThreePhoneFanIphone}
-            alt="PayPal Ratenzahlung in the latest checkout framework"
-          />
-        </TimelineCanvas>
       </section>
 
       {/* Closing */}

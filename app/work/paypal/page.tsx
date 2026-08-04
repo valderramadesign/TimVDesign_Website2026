@@ -132,7 +132,7 @@ export default function PayPal1CaseStudy() {
       {/* Hero video */}
       <section className="relative w-full">
         <div className="relative aspect-[16/10] lg:aspect-auto lg:h-[1034px] w-full overflow-hidden">
-          <HeroVideo src="/videos/HeroPayPal1_Video.mp4" />
+          <HeroVideo src="/videos/HeroPayPal_PayIn4.mp4" />
         </div>
       </section>
 

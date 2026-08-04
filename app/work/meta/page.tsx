@@ -181,28 +181,7 @@ export default function MetaPage() {
         </div>
       </section>
 
-      <section className="w-full">
-        <video
-          src="/MI_Presentation_Video.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className="w-full h-auto object-cover"
-        />
-      </section>
-
-      <section className="relative w-full px-5 lg:px-[37px] pt-10 lg:pt-[36px] pb-16 lg:pb-[125px]">
-        <div className="flex w-full max-w-[1563px] flex-col gap-[14px]" style={{ fontFamily: leagueSpartan }}>
-          <p className="text-[18px] font-light text-white/60">Problem</p>
-          <p className="text-[clamp(20px,4.5vw,48px)] lg:text-[48px] font-light leading-[1.3]">
-            {project.description[0]}
-          </p>
-        </div>
-      </section>
-
-      <section className="w-full pb-24 lg:pb-[76px] px-5 lg:px-8">
+      <section className="w-full pt-10 lg:pt-[36px] pb-24 lg:pb-[76px] px-5 lg:px-8">
         <p className="text-center text-[18px] font-light mb-[13px] lg:mb-[17px]" style={{ fontFamily: leagueSpartan }}>Old 9-Step Onboarding Flow</p>
         <CardStack
           items={oldFlowItems}
@@ -215,6 +194,28 @@ export default function MetaPage() {
           loop
           showDots
         />
+      </section>
+
+      <section className="relative w-full px-5 lg:px-[37px] pt-10 lg:pt-[36px] pb-16 lg:pb-[125px]">
+        <div className="flex w-full max-w-[1563px] flex-col gap-[14px]" style={{ fontFamily: leagueSpartan }}>
+          <p className="text-[18px] font-light text-white/60">Problem</p>
+          <p className="text-[clamp(20px,4.5vw,48px)] lg:text-[48px] font-light leading-[1.3]">
+            {project.description[0]}
+          </p>
+        </div>
+      </section>
+
+      <section className="w-full flex justify-center px-5 lg:px-8 pb-24 lg:pb-[76px]">
+        <div className="w-full max-w-[1417px]">
+          <a
+            href="https://montly-invoicing-prototype.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block"
+          >
+            <MiNewFlowSlideshow />
+          </a>
+        </div>
       </section>
 
       <section className="px-5 lg:px-[37px] pt-12 lg:pt-0 pb-20 lg:pb-[220px] w-full flex lg:justify-center">
@@ -283,7 +284,7 @@ export default function MetaPage() {
         </div>
       </section>
 
-      <section className="w-full flex justify-center px-5 lg:px-8 pb-12 lg:pb-[80px]">
+      <section className="w-full flex justify-center px-5 lg:px-8 pb-[117px] lg:pb-[185px]">
         <div className="w-full max-w-[1417px] lg:pl-[9.3%] lg:pr-[9.33%]">
           <div className="flex w-full max-w-[1279px] flex-col gap-[14px]" style={{ fontFamily: leagueSpartan }}>
             <p className="text-[18px] font-light text-white/60">Execution &amp; Iteration</p>
@@ -291,19 +292,6 @@ export default function MetaPage() {
               Working from that spec, I rebuilt onboarding from 9 screens to 3, using Metamate to draft and pressure-test flows and to refine banner copy with Content for stronger value articulation. Each iteration was reviewed against the eligibility, awareness, and conversion targets.
             </p>
           </div>
-        </div>
-      </section>
-
-      <section className="w-full flex justify-center pb-[117px] lg:pb-[185px] px-5 lg:px-8">
-        <div className="w-full max-w-[1417px]">
-          <a
-            href="https://montly-invoicing-prototype.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block"
-          >
-            <MiNewFlowSlideshow />
-          </a>
         </div>
       </section>
 
