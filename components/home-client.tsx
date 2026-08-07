@@ -54,6 +54,15 @@ function PanelResults({ results }: { results: ProjectResult[] }) {
 const FACT_LABEL_CLASS =
   "text-white/45 text-[11px] uppercase tracking-[0.18em] font-sans";
 
+/**
+ * The copy column beside every rollover image. One class for all six panels so
+ * the measure stays identical whatever the image beside it is doing: 350px, the
+ * narrowest the columns had grown to, and 80px of padding beneath. The panels
+ * bottom-align their columns with their image, so that padding is what lifts the
+ * text off the image's bottom edge rather than sitting flush with it.
+ */
+const PANEL_COPY_CLASS = "w-[350px] shrink-0 pb-[80px]";
+
 /** Capability signals, set as one quiet metadata line rather than a section. */
 function CapabilitySignals({ className = "" }: { className?: string }) {
   return (
@@ -352,12 +361,12 @@ export default function HomeClient() {
               {showPayPalDE && (
                 <motion.div
                   key="paypalde-panel"
-                  className="absolute top-[120px] right-[69px] z-[5] flex items-end gap-[40px]"
+                  className="absolute top-[139px] right-[69px] z-[5] flex items-end gap-[40px]"
                   initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
                   <motion.div
-                    className="w-[350px] shrink-0"
+                    className={PANEL_COPY_CLASS}
                     initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                     transition={{ duration: 0.35, delay: 0.25 }}
                   >
@@ -367,8 +376,18 @@ export default function HomeClient() {
                     </div>
                   </motion.div>
 
+                  {/* The German photo frames its phone tighter than the other
+                      sources do, so matching the PayPal panel's 350px width
+                      pushed the phone past its siblings in size and left it
+                      almost touching the bottom edge. 311px is the width that
+                      renders the phone at ~431px — the size of the PayPal phone
+                      beside it — and buys back the bottom clearance. The frame
+                      is sized to the uncropped image rather than the other way
+                      round, so nothing shows around it; the 30px rounding
+                      overrides the smaller radius baked into the source, which
+                      would otherwise leave its dark corners exposed. */}
                   <motion.div
-                    className="w-[350px] shrink-0"
+                    className="w-[311px] shrink-0 rounded-[30px] overflow-hidden"
                     initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
                     animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
                     exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
@@ -390,7 +409,7 @@ export default function HomeClient() {
                   transition={{ duration: 0.2 }}
                 >
                   <motion.div
-                    className="w-[350px] shrink-0"
+                    className={PANEL_COPY_CLASS}
                     initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                     transition={{ duration: 0.35, delay: 0.25 }}
                   >
@@ -423,7 +442,7 @@ export default function HomeClient() {
                   transition={{ duration: 0.2 }}
                 >
                   <motion.div
-                    className="w-[350px] shrink-0"
+                    className={PANEL_COPY_CLASS}
                     initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                     transition={{ duration: 0.35, delay: 0.25 }}
                   >
@@ -456,7 +475,7 @@ export default function HomeClient() {
                   transition={{ duration: 0.2 }}
                 >
                   <motion.div
-                    className="w-[350px] shrink-0"
+                    className={PANEL_COPY_CLASS}
                     initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                     transition={{ duration: 0.35, delay: 0.25 }}
                   >
@@ -489,7 +508,7 @@ export default function HomeClient() {
                   transition={{ duration: 0.2 }}
                 >
                   <motion.div
-                    className="w-[438px] shrink-0"
+                    className={PANEL_COPY_CLASS}
                     initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                     transition={{ duration: 0.35, delay: 0.25 }}
                   >
@@ -525,7 +544,7 @@ export default function HomeClient() {
                   transition={{ duration: 0.2 }}
                 >
                   <motion.div
-                    className="w-[370px] shrink-0"
+                    className={PANEL_COPY_CLASS}
                     initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                     transition={{ duration: 0.35, delay: 0.25 }}
                   >
@@ -537,7 +556,7 @@ export default function HomeClient() {
                   </motion.div>
 
                   <motion.div
-                    className="w-[672px] h-[419px] shrink-0 rounded-[30px] overflow-hidden"
+                    className="w-[536px] h-[394px] shrink-0 rounded-[30px] overflow-hidden"
                     initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
                     animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
                     exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
