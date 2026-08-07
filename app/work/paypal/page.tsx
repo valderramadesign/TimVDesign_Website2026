@@ -47,12 +47,68 @@ const nextMetaPreview = previewOf(nextMeta);
 const nextSolo = PROJECTS_BY_ID.solo;
 const nextSoloPreview = previewOf(nextSolo);
 
+/* ── iRev ────────────────────────────────────────────────────────────────
+   The work lifted annual incremental revenue by 25.6%, and each product
+   carried a share of that lift. The shares are the authored figures; every
+   iRev percentage on the page is rendered as its slice of the total, so the
+   product sections, the Overall Impact cards and the stated total are all one
+   set of numbers that add up. */
+const ANNUAL_IREV_INCREASE = 25.6;
+
+/** Each product's share of the increase. These sum to 100. */
+const IREV_SHARE = {
+  payMonthly: 21.3,
+  payPalCreditUS: 40.31,
+  payPalMastercard: 29.72,
+  payPalCreditUK: 8.67,
+} as const;
+
+/** A share expressed in points of the annual increase, as it is displayed. */
+const irevPoints = (share: number) =>
+  Number(((ANNUAL_IREV_INCREASE * share) / 100).toFixed(2));
+
+/** The parts exactly as they appear on the page, summed. */
+const TOTAL_IREV_INCREASE = Number(
+  Object.values(IREV_SHARE)
+    .reduce((total, share) => total + irevPoints(share), 0)
+    .toFixed(2),
+);
+
+const TOTAL_IREV_TEXT = `${TOTAL_IREV_INCREASE.toFixed(1)}%`;
+
 export const metadata = caseStudyMetadata(
   project,
-  "Redesigning six US and UK PayPal credit products for the new checkout framework — cutting the Pay in 4 funnel from three steps to one and contributing to a ~24.6% increase in annual incremental revenue.",
+  `Redesigning six US and UK PayPal credit products for the new checkout framework — cutting the Pay in 4 funnel from three steps to one and contributing to a ~${TOTAL_IREV_TEXT} increase in annual incremental revenue.`,
 );
 
 const leagueSpartan = "var(--font-league-spartan)";
+
+/* ── Overall Impact ──────────────────────────────────────────────────────
+   The two rows are authored as data and rendered through one shared column
+   template, so a UK card always sits under the US card it belongs with. The
+   iRev figures come from IREV_SHARE, so they always add up to the total
+   stated beside them. TPV is volume, not revenue, and stands on its own. */
+const US_CREDIT_IMPACT = [
+  { art: cardArtPayIn4, product: "Pay in 4", amount: 67, decimals: 0, label: "TPV" },
+  { art: cardArtPayMonthly, product: "Pay Monthly", amount: irevPoints(IREV_SHARE.payMonthly), decimals: 2, label: "iRev" },
+  { art: cardArtPayPalCredit, product: "PayPal Credit", amount: irevPoints(IREV_SHARE.payPalCreditUS), decimals: 2, label: "iRev" },
+  { art: cardArtPayPalMastercard, product: "PayPal Mastercard", amount: irevPoints(IREV_SHARE.payPalMastercard), decimals: 2, label: "iRev" },
+];
+
+const UK_CREDIT_IMPACT = [
+  { art: cardArtPayIn3, product: "Pay in 3", amount: 37, decimals: 0, label: "TPV" },
+  { art: cardArtPayPalCredit, product: "PayPal Credit", amount: irevPoints(IREV_SHARE.payPalCreditUK), decimals: 2, label: "iRev" },
+];
+
+/*
+ * One template for both rows. A card needs ~340px and four of them plus the
+ * 60px gutters need the full 1526px content width, so the four-up tier waits
+ * for a 1600px viewport; under that the row folds to two columns rather than
+ * stranding a single card on a line of its own. The 732px cap keeps those two
+ * columns at their design width instead of stretching them across the page.
+ */
+const IMPACT_GRID =
+  "grid w-full grid-cols-1 items-end gap-x-[60px] gap-y-10 md:max-w-[732px] md:grid-cols-2 lg:gap-y-[64px] min-[1600px]:max-w-none min-[1600px]:grid-cols-4";
 
 function ImpactCard({
   art,
@@ -265,7 +321,7 @@ export default function PayPal1CaseStudy() {
             />
             <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-3 lg:gap-12 items-baseline lg:items-center pt-4">
               <h3 className="font-[family-name:var(--font-league-spartan)] text-2xl lg:text-[40px] leading-[1.1] font-normal whitespace-pre-line">{"Annual incremental\nrevenue (iRev) increase"}</h3>
-              <p className="font-serif text-[clamp(48px,12vw,96px)] lg:text-[clamp(64px,8vw,96px)] leading-[1] tracking-[-0.96px]">24.6%</p>
+              <p className="font-serif text-[clamp(48px,12vw,96px)] lg:text-[clamp(64px,8vw,96px)] leading-[1] tracking-[-0.96px]">{TOTAL_IREV_TEXT}</p>
             </div>
           </div>
 
@@ -320,7 +376,7 @@ export default function PayPal1CaseStudy() {
                 <ul className="ml-[24px] flex list-disc flex-col gap-3 lg:gap-[18px] text-base lg:text-[24px] font-light leading-[1.5] lg:leading-[1.4]">
                   <li>
                     Ran an AI-assisted discovery-to-handoff workflow across six
-                    credit products, contributing to a ~24.6% increase in
+                    credit products, contributing to a ~{TOTAL_IREV_TEXT} increase in
                     annual incremental revenue (iRev).
                   </li>
                   <li>
@@ -376,7 +432,7 @@ export default function PayPal1CaseStudy() {
               </div>
               <div className="h-px w-full bg-white/25" />
               <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
-                <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">21.3%</p>
+                <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">{irevPoints(IREV_SHARE.payMonthly).toFixed(2)}%</p>
                 <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
                   Annual iRev increase
                 </p>
@@ -427,7 +483,7 @@ export default function PayPal1CaseStudy() {
               </div>
               <div className="h-px w-full bg-white/25" />
               <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
-                <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">40.31%</p>
+                <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">{irevPoints(IREV_SHARE.payPalCreditUS).toFixed(2)}%</p>
                 <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
                   Annual iRev increase
                 </p>
@@ -458,7 +514,7 @@ export default function PayPal1CaseStudy() {
               </div>
               <div className="h-px w-full bg-white/25" />
               <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
-                <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">29.72%</p>
+                <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">{irevPoints(IREV_SHARE.payPalMastercard).toFixed(2)}%</p>
                 <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
                   Annual iRev increase
                 </p>
@@ -509,7 +565,7 @@ export default function PayPal1CaseStudy() {
               </div>
               <div className="h-px w-full bg-white/25" />
               <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
-                <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">8.67%</p>
+                <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">{irevPoints(IREV_SHARE.payPalCreditUK).toFixed(2)}%</p>
                 <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
                   Annual iRev increase
                 </p>
@@ -572,43 +628,19 @@ export default function PayPal1CaseStudy() {
             <h2 className="font-serif text-[clamp(40px,10vw,64px)] lg:text-[64px] leading-none text-white">
               US Credit
             </h2>
-            <div className="flex flex-wrap gap-x-12 lg:gap-x-[204px] gap-y-10 lg:gap-y-[64px]">
-              <ImpactCard
-                art={<Image src={cardArtPayIn4} alt="Pay in 4" width={96} height={96} />}
-                product="Pay in 4"
-                amount={67}
-                prefix=""
-                suffix="%"
-                decimals={0}
-                label="TPV"
-              />
-              <ImpactCard
-                art={<Image src={cardArtPayMonthly} alt="Pay Monthly" width={96} height={96} />}
-                product="Pay Monthly"
-                amount={21.3}
-                prefix=""
-                suffix="%"
-                decimals={1}
-                label="iRev"
-              />
-              <ImpactCard
-                art={<Image src={cardArtPayPalCredit} alt="PayPal Credit" width={96} height={96} />}
-                product="PayPal Credit"
-                amount={40.31}
-                prefix=""
-                suffix="%"
-                decimals={2}
-                label="iRev"
-              />
-              <ImpactCard
-                art={<Image src={cardArtPayPalMastercard} alt="PayPal Mastercard" width={96} height={96} />}
-                product="PayPal Mastercard"
-                amount={29.72}
-                prefix=""
-                suffix="%"
-                decimals={2}
-                label="iRev"
-              />
+            <div className={IMPACT_GRID}>
+              {US_CREDIT_IMPACT.map((metric) => (
+                <ImpactCard
+                  key={metric.product}
+                  art={<Image src={metric.art} alt={metric.product} width={96} height={96} />}
+                  product={metric.product}
+                  amount={metric.amount}
+                  prefix=""
+                  suffix="%"
+                  decimals={metric.decimals}
+                  label={metric.label}
+                />
+              ))}
             </div>
           </div>
 
@@ -617,35 +649,27 @@ export default function PayPal1CaseStudy() {
             <h2 className="font-serif text-[clamp(40px,10vw,64px)] lg:text-[64px] leading-none text-white">
               UK Credit
             </h2>
-            <div className="flex flex-col lg:flex-row items-start lg:items-end gap-10 lg:gap-0">
-              {/* 1190px puts the total block's left edge on the PayPal Mastercard
-                  card above (its offset in the US row: 153 + 198 + 227 + 3 × 204). */}
-              <div className="flex flex-wrap w-full lg:w-[1190px] lg:shrink-0 items-end gap-x-12 gap-y-8 lg:gap-x-[155px]">
+            <div className={IMPACT_GRID}>
+              {UK_CREDIT_IMPACT.map((metric) => (
                 <ImpactCard
-                  art={<Image src={cardArtPayIn3} alt="Pay in 3" width={96} height={96} />}
-                  product="Pay in 3"
-                  amount={37}
+                  key={metric.product}
+                  art={<Image src={metric.art} alt={metric.product} width={96} height={96} />}
+                  product={metric.product}
+                  amount={metric.amount}
                   prefix=""
                   suffix="%"
-                  decimals={0}
-                label="TPV"
+                  decimals={metric.decimals}
+                  label={metric.label}
                 />
-                <ImpactCard
-                  art={<Image src={cardArtPayPalCredit} alt="PayPal Credit" width={96} height={96} />}
-                  product="PayPal Credit"
-                  amount={8.67}
-                  prefix=""
-                  suffix="%"
-                  decimals={2}
-                  label="iRev"
-                />
-              </div>
-              <div className="flex w-full lg:h-[144px] lg:w-[336px] flex-col items-start gap-3 lg:gap-0 lg:justify-between text-white">
+              ))}
+              {/* Four across, the total takes the last column, level with the
+                  cards; two across, it drops to the column under Pay in 3. */}
+              <div className="flex w-full flex-col items-start gap-3 text-white min-[1600px]:col-start-4 min-[1600px]:h-[144px] min-[1600px]:justify-between min-[1600px]:gap-0">
                 <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px] tracking-[-0.32px]">
                   Total annual iRev increase
                 </p>
                 <CounterNumber
-                  to={24.6}
+                  to={TOTAL_IREV_INCREASE}
                   prefix=""
                   suffix="%"
                   decimals={1}
