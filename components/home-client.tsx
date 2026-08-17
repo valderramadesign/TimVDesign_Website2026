@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import LiquidMetalBackground from "@/components/ui/liquid-metal-background";
+import IntroMontageBackground from "@/components/ui/intro-montage-background";
 import Header from "@/components/layout/header";
 import LeftNav from "@/components/layout/left-nav";
 import Hero from "@/components/sections/hero";
@@ -247,7 +248,7 @@ export default function HomeClient() {
         {/* Main homepage content — compresses as resume opens */}
         <div className="flex-1 min-w-0 relative min-h-screen">
           {/* Background */}
-          {!hovered && <LiquidMetalBackground />}
+          <IntroMontageBackground active={!hovered} />
           {/* All video/image backgrounds always in the DOM so they preload immediately */}
           <div className={`absolute inset-0 z-[-10] bg-black ${showPayPalDE ? "opacity-100" : "opacity-0"}`}>
             <video
@@ -293,10 +294,10 @@ export default function HomeClient() {
             />
           </div>
 
-          {/* The liquid-metal background tracks the cursor, so it drifts over the
-              introduction whenever the pointer is near the actions. This scrim
-              sits above every background layer and below `main`, keeping the
-              copy legible without dimming the top of the frame. */}
+          {/* The montage and the rollover footage both carry bright frames, so the
+              introduction can land on anything. This scrim sits above every
+              background layer and below `main`, keeping the copy legible without
+              dimming the top of the frame. */}
           <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[58%] bg-gradient-to-t from-black via-black/75 to-transparent" />
 
           <main className="relative z-10 flex flex-col p-[24px] h-screen">
