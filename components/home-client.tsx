@@ -350,10 +350,14 @@ export default function HomeClient() {
                 <p className="mt-[22px] text-white font-light font-sans text-2xl leading-7 tracking-[-0.015em]">
                   {SITE.title}
                 </p>
-                {/* Held to the headline's measure (the 480px supporting column
-                    plus its 48px gap), which also keeps the signals clear of the
-                    rollover panel artwork on the right. */}
-                <CapabilitySignals className="mt-[18px] max-w-[calc(100%_-_528px)]" />
+                {/* Runs the full column rather than the headline's measure: the
+                    five labels come to 786px, so reserving the 528px supporting
+                    column broke them onto a second line at every desktop width.
+                    Nothing needs that clearance — this block fades to 0 while a
+                    rollover is up, and the panel art sits in the band above it.
+                    Wrapping is left to the flex row, so the line breaks only
+                    where the column genuinely cannot carry it. */}
+                <CapabilitySignals className="mt-[18px]" />
               </motion.div>
             </div>
 
