@@ -23,7 +23,7 @@ export default function PillButton({
   const className = `px-4 pt-[10.28px] pb-[5.72px] rounded-full text-base font-normal font-sans leading-none whitespace-nowrap border transition-colors duration-150 cursor-pointer ${
     active
       ? "bg-white text-black border-white"
-      : "bg-[#484848] text-white border-transparent hover:border-white"
+      : "bg-[#262626] text-white border-transparent hover:border-white"
   }`;
 
   if (href) {

@@ -16,7 +16,7 @@ export default function BackToHomeButton({
   return (
     <Link
       href="/"
-      className={`inline-flex items-center rounded-full bg-[#484848] px-6 lg:px-[30px] font-normal leading-none whitespace-nowrap text-white transition-colors duration-150 hover:bg-[#606060] ${CTA_PILL_SIZE[size]} ${className}`}
+      className={`inline-flex items-center rounded-full bg-[#262626] px-6 lg:px-[30px] font-normal leading-none whitespace-nowrap text-white transition-colors duration-150 hover:bg-[#333333] ${CTA_PILL_SIZE[size]} ${className}`}
       style={{ fontFamily }}
     >
       Back to Homepage

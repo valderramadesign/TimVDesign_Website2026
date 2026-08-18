@@ -28,7 +28,7 @@ export default function CaseStudyTopBar() {
           sits on the pill's midline; total height is unchanged. */}
       <Link
         href="/"
-        className="rounded-full border border-transparent bg-[#484848] px-4 pt-[10.28px] pb-[5.72px] text-base font-normal font-sans leading-none whitespace-nowrap text-white transition-colors duration-150 hover:border-white"
+        className="rounded-full border border-transparent bg-[#262626] px-4 pt-[10.28px] pb-[5.72px] text-base font-normal font-sans leading-none whitespace-nowrap text-white transition-colors duration-150 hover:border-white"
       >
         Home
       </Link>
