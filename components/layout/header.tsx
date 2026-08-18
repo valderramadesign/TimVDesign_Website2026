@@ -17,7 +17,7 @@ export default function Header({ onResumeToggle, resumeOpen }: HeaderProps) {
         onClick={onResumeToggle}
         aria-expanded={resumeOpen}
         aria-label={resumeOpen ? "Close résumé" : "Open résumé"}
-        className="bg-[#484848] text-white text-base font-normal font-sans leading-none px-4 pt-[10.28px] pb-[5.72px] rounded-full whitespace-nowrap border border-transparent hover:border-white transition-colors duration-150"
+        className="bg-[#262626] text-white text-base font-normal font-sans leading-none px-4 pt-[10.28px] pb-[5.72px] rounded-full whitespace-nowrap border border-transparent hover:border-white transition-colors duration-150"
       >
         {resumeOpen ? "Close" : "Résumé"}
       </button>

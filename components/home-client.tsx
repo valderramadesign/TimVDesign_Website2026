@@ -593,7 +593,7 @@ export default function HomeClient() {
             onClick={() => setResumeOpen(true)}
             aria-expanded={resumeOpen}
             aria-controls="resume-sheet"
-            className="rounded-full border border-transparent bg-[#484848] px-4 pt-[11.62px] pb-[8.38px] text-sm font-normal leading-none whitespace-nowrap text-white active:scale-[0.98] transition-all duration-150"
+            className="rounded-full border border-transparent bg-[#262626] px-4 pt-[11.62px] pb-[8.38px] text-sm font-normal leading-none whitespace-nowrap text-white active:scale-[0.98] transition-all duration-150"
           >
             Résumé
           </button>
