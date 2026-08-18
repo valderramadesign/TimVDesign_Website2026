@@ -72,6 +72,18 @@ const FACT_LABEL_CLASS =
 const PANEL_COPY_CLASS =
   "absolute bottom-[80px] right-[calc(100%+40px)] w-[350px]";
 
+/**
+ * Meta's own variant. Its image (536x394) is the short, wide "laptop on a
+ * desk" crop rather than the tall phone shots the other panels bottom-align
+ * against, and Meta is the only panel stacking both a two-up PanelResults
+ * block and a full problem paragraph in the copy column. Bottom-anchoring
+ * that much text 80px above such a short image pushed its top edge well
+ * above the image's — and past the nav — instead of sitting beside it, so
+ * this centers the column on the image's vertical midpoint instead.
+ */
+const META_PANEL_COPY_CLASS =
+  "absolute top-1/2 -translate-y-1/2 right-[calc(100%+40px)] w-[350px]";
+
 /** Capability signals, set as one quiet metadata line rather than a section. */
 function CapabilitySignals({ className = "" }: { className?: string }) {
   return (
@@ -294,12 +306,6 @@ export default function HomeClient() {
             />
           </div>
 
-          {/* The montage and the rollover footage both carry bright frames, so the
-              introduction can land on anything. This scrim sits above every
-              background layer and below `main`, keeping the copy legible without
-              dimming the top of the frame. */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[58%] bg-gradient-to-t from-black via-black/75 to-transparent" />
-
           <main className="relative z-10 flex flex-col p-[24px] h-screen">
             <div className="shrink-0">
               <Header
@@ -452,7 +458,7 @@ export default function HomeClient() {
                   transition={{ duration: 0.2 }}
                 >
                   <motion.div
-                    className={PANEL_COPY_CLASS}
+                    className={META_PANEL_COPY_CLASS}
                     initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                     transition={{ duration: 0.35, delay: 0.25 }}
                   >

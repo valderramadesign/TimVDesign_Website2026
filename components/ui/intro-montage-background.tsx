@@ -66,6 +66,30 @@ export default function IntroMontageBackground({ active }: { active: boolean }) 
           />
         )}
       </div>
+
+      {/* Full-bleed scrims, not boxes cropped to a band — sizing the fade
+          entirely through the gradient stops (rather than clipping a shorter
+          div) means there's no edge for the feather to hit before it reaches
+          zero alpha. Grounds the headline/signals at the bottom and the logo
+          up top without ever reading as a hard-edged panel. Idle-only: both
+          live inside this component's own opacity toggle, so they fade out
+          with the footage the instant a rollover starts. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage:
+            "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.65) 12%, rgba(0,0,0,0.45) 24%, rgba(0,0,0,0.28) 36%, rgba(0,0,0,0.14) 48%, rgba(0,0,0,0.04) 58%, rgba(0,0,0,0) 68%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage:
+            "radial-gradient(ellipse 48% 42% at 100% 0%, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.50) 25%, rgba(0,0,0,0.31) 45%, rgba(0,0,0,0.15) 65%, rgba(0,0,0,0.06) 82%, rgba(0,0,0,0) 100%)",
+        }}
+      />
     </div>
   );
 }
