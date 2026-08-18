@@ -53,3 +53,24 @@ html, body {
 @media (hover: none) {
   .cursor-none { cursor: auto !important; }
 }
+
+/*
+ * Vertical room a desktop rollover panel has before it reaches the hero
+ * headline. The panels hang from the nav band at the top of the screen and the
+ * headline is anchored 50px off the bottom, so the gap between them closes as
+ * the viewport shortens — and closes faster than the viewport does, because the
+ * headline scales with height as well (see hero.tsx).
+ *
+ * Derived rather than stepped in media queries, so only the panels tall enough
+ * to actually collide give anything up and their copy keeps its size. The
+ * headline's top is `100vh - 50px - lines * 0.96 * min(77px, 9.6vh)`; subtract
+ * the panel's top offset (148px under a two-line eyebrow, 143px under a
+ * one-line one) and 16px of clearance. It reduces to a single expression in vh
+ * because below 9.6vh the headline is height-driven; above it the headline
+ * holds at 77px and these under-state the real gap, which is the safe way to be
+ * wrong. Panel images cap their height against them.
+ */
+:root {
+  --rollover-band-2: calc(81.5vh - 214px);
+  --rollover-band-1: calc(90.7vh - 209px);
+}

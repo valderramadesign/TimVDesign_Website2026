@@ -20,6 +20,7 @@ import {
   HOMEPAGE_PROJECTS,
   PROJECTS_BY_ID,
   SITE,
+  cardProblem,
   homepageEyebrow,
   homepageEyebrowText,
   resultDetail,
@@ -58,11 +59,18 @@ const FACT_LABEL_CLASS =
 /**
  * The copy column beside every rollover image. One class for all six panels so
  * the measure stays identical whatever the image beside it is doing: 350px, the
- * narrowest the columns had grown to, and 80px of padding beneath. The panels
- * bottom-align their columns with their image, so that padding is what lifts the
- * text off the image's bottom edge rather than sitting flush with it.
+ * narrowest the columns had grown to, sitting 80px above the image's bottom edge
+ * rather than flush with it.
+ *
+ * Taken out of flow so the image alone sets the panel's height. Bottom-aligned
+ * in the flex row the tallest child won, and a long problem statement made that
+ * the text — which pushed the image down the screen and ran the whole group into
+ * the headline below. Out of flow the image holds its position and the copy
+ * grows upward into the empty band beside it. `right: 100% + 40px` puts the
+ * column a 40px gutter clear of the image's left edge whatever its width.
  */
-const PANEL_COPY_CLASS = "w-[350px] shrink-0 pb-[80px]";
+const PANEL_COPY_CLASS =
+  "absolute bottom-[80px] right-[calc(100%+40px)] w-[350px]";
 
 /** Capability signals, set as one quiet metadata line rather than a section. */
 function CapabilitySignals({ className = "" }: { className?: string }) {
@@ -88,31 +96,25 @@ function cardFacts(project: Project): CardFact[] {
 }
 
 /**
- * A flagship's problem statement, sized for the desktop rollover panel.
+ * A project's problem statement, sized for the desktop rollover panel.
  *
  * The panel is a hover preview, not a card: it carries the result and the
  * problem only. Role and scope live on the cards and on the case study, because
  * the rollover shares its band with the hero headline and a facts block tall
  * enough to hold them overruns the headline on a 1280x800 viewport.
- *
- * Panels carrying this block pin their text column with `self-start` rather
- * than centering it beside the image, which keeps the longer copy clear of the
- * headline on short viewports.
  */
 function PanelCopy({ project }: { project: Project }) {
-  if (!project.cardProblem) return null;
-
   return (
     <p className="text-white/80 text-[19px] font-light leading-[24px] text-right">
-      {project.cardProblem}
+      {cardProblem(project)}
     </p>
   );
 }
 
 /**
- * A selected-work card for the mobile and tablet layout. Flagships carry a
- * problem sentence plus role and scope; experiments carry neither, so the card
- * renders only what the record actually states.
+ * A selected-work card for the mobile and tablet layout. Every card carries the
+ * problem; role and scope are flagship-only, so the card renders those two only
+ * where the record states them.
  */
 function WorkCard({ project, priority }: { project: Project; priority: boolean }) {
   const facts = cardFacts(project);
@@ -163,11 +165,9 @@ function WorkCard({ project, priority }: { project: Project; priority: boolean }
             </div>
           )}
         </div>
-        {project.cardProblem && (
-          <p className="mt-4 text-white/70 text-sm sm:text-[15px] font-light font-sans leading-relaxed">
-            {project.cardProblem}
-          </p>
-        )}
+        <p className="mt-4 text-white/70 text-sm sm:text-[15px] font-light font-sans leading-relaxed">
+          {cardProblem(project)}
+        </p>
         {facts.length > 0 && (
           <dl className="mt-4 grid grid-cols-1 gap-3 border-t border-white/10 pt-4 sm:grid-cols-2 sm:gap-6">
             {facts.map((fact) => (
@@ -339,11 +339,15 @@ export default function HomeClient() {
 
             <div className="shrink-0 pb-[14px]">
               <Hero title={heroTitle} titleKey={heroKey} />
-              {/* Kept mounted and faded rather than unmounted so the band keeps
-                  its height and the headline above it doesn't shift as project
-                  rollovers toggle this copy off. */}
+              {/* Kept mounted rather than unmounted so the exit fade can play.
+                  Collapsed as well as faded while a rollover is up: left
+                  at full height the headline floats ~120px above the bottom of
+                  the screen with nothing under it. Height animates to 12px so
+                  that, with the 14px block padding and the 24px page gutter, the
+                  headline lands 50px off the bottom edge. */}
               <motion.div
-                animate={{ opacity: hovered ? 0 : 1 }}
+                className="overflow-hidden"
+                animate={{ opacity: hovered ? 0 : 1, height: hovered ? 12 : "auto" }}
                 transition={{ duration: 0.25 }}
                 aria-hidden={Boolean(hovered)}
               >
@@ -366,7 +370,7 @@ export default function HomeClient() {
               {showPayPalDE && (
                 <motion.div
                   key="paypalde-panel"
-                  className="absolute top-[139px] right-[69px] z-[5] flex items-end gap-[40px]"
+                  className="absolute top-[139px] right-[69px] z-[5] flex items-end"
                   initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
@@ -384,21 +388,21 @@ export default function HomeClient() {
                   {/* The German photo frames its phone tighter than the other
                       sources do, so matching the PayPal panel's 350px width
                       pushed the phone past its siblings in size and left it
-                      almost touching the bottom edge. 311px is the width that
-                      renders the phone at ~431px — the size of the PayPal phone
-                      beside it — and buys back the bottom clearance. The frame
-                      is sized to the uncropped image rather than the other way
-                      round, so nothing shows around it; the 30px rounding
-                      overrides the smaller radius baked into the source, which
-                      would otherwise leave its dark corners exposed. */}
+                      almost touching the bottom edge; 311x513 is where it sits
+                      level with the PayPal phone beside it. The aspect ratio is
+                      the uncropped image's, so nothing shows around it, and the
+                      30px rounding overrides the smaller radius baked into the
+                      source, which would otherwise leave its dark corners
+                      exposed. */}
                   <motion.div
-                    className="w-[311px] shrink-0 rounded-[30px] overflow-hidden"
+                    className="shrink-0 rounded-[30px] overflow-hidden"
+                    style={{ height: "min(513px, var(--rollover-band-2))", aspectRatio: "311 / 513" }}
                     initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
                     animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
                     exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <Image src={PAYPAL_DE.thumbnail.image} alt="PayPal Germany checkout screen" className="w-full h-auto" priority />
+                    <Image src={PAYPAL_DE.thumbnail.image} alt="PayPal Germany checkout screen" className="w-full h-full object-cover" priority />
                   </motion.div>
                 </motion.div>
               )}
@@ -409,7 +413,7 @@ export default function HomeClient() {
               {showPayPal && (
                 <motion.div
                   key="paypal-panel"
-                  className="absolute top-[139px] right-[69px] z-[5] flex items-end gap-[40px]"
+                  className="absolute top-[139px] right-[69px] z-[5] flex items-end"
                   initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
@@ -425,13 +429,14 @@ export default function HomeClient() {
                   </motion.div>
 
                   <motion.div
-                    className="w-[350px] shrink-0"
+                    className="shrink-0"
+                    style={{ height: "min(532px, var(--rollover-band-1))", aspectRatio: "350 / 532" }}
                     initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
                     animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
                     exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <Image src={PAYPAL.thumbnail.image} alt={PAYPAL.thumbnail.alt} className="w-full h-auto" priority />
+                    <Image src={PAYPAL.thumbnail.image} alt={PAYPAL.thumbnail.alt} className="w-full h-full object-cover" priority />
                   </motion.div>
                 </motion.div>
               )}
@@ -442,7 +447,7 @@ export default function HomeClient() {
               {showMeta && (
                 <motion.div
                   key="meta-panel"
-                  className="absolute top-[148px] right-[69px] z-[5] flex items-end gap-[40px]"
+                  className="absolute top-[148px] right-[69px] z-[5] flex items-end"
                   initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
@@ -458,7 +463,8 @@ export default function HomeClient() {
                   </motion.div>
 
                   <motion.div
-                    className="w-[536px] h-[394px] shrink-0 rounded-[30px] overflow-hidden"
+                    className="shrink-0 rounded-[30px] overflow-hidden"
+                    style={{ height: "min(394px, var(--rollover-band-2))", aspectRatio: "536 / 394" }}
                     initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
                     animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
                     exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
@@ -475,7 +481,7 @@ export default function HomeClient() {
               {showSolo && (
                 <motion.div
                   key="solo-panel"
-                  className="absolute top-[143px] right-[93px] z-[5] flex items-end gap-[40px]"
+                  className="absolute top-[143px] right-[93px] z-[5] flex items-end"
                   initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
@@ -491,7 +497,8 @@ export default function HomeClient() {
                   </motion.div>
 
                   <motion.div
-                    className="w-[290px] h-[466px] shrink-0 rounded-[30px] overflow-hidden"
+                    className="shrink-0 rounded-[30px] overflow-hidden"
+                    style={{ height: "min(466px, var(--rollover-band-1))", aspectRatio: "290 / 466" }}
                     initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
                     animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
                     exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
@@ -508,7 +515,7 @@ export default function HomeClient() {
               {showSutter && (
                 <motion.div
                   key="sutter-panel"
-                  className="absolute top-[143px] right-[69px] z-[5] flex items-end gap-[40px]"
+                  className="absolute top-[143px] right-[69px] z-[5] flex items-end"
                   initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
@@ -517,17 +524,12 @@ export default function HomeClient() {
                     initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                     transition={{ duration: 0.35, delay: 0.25 }}
                   >
-                    <p className="text-white/80 text-[19px] font-light leading-[24px] text-right">
-                      For this design exercise, I created an end-to-end patient
-                      portal concept for a leadership proposal, focused on
-                      reducing clutter and prioritizing essential patient
-                      tasks. Desktop research and persona jobs-to-be-done
-                      informed a streamlined experience for accessing care.
-                    </p>
+                    <PanelCopy project={SUTTER} />
                   </motion.div>
 
                   <motion.div
-                    className="w-[367px] h-[504px] shrink-0 rounded-[30px] overflow-hidden"
+                    className="shrink-0 rounded-[30px] overflow-hidden"
+                    style={{ height: "min(504px, var(--rollover-band-1))", aspectRatio: "367 / 504" }}
                     initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
                     animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
                     exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
@@ -544,7 +546,7 @@ export default function HomeClient() {
               {showDoorDash && (
                 <motion.div
                   key="doordash-panel"
-                  className="absolute top-[148px] right-[69px] z-[5] flex items-end gap-[40px]"
+                  className="absolute top-[148px] right-[69px] z-[5] flex items-end"
                   initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
@@ -553,15 +555,12 @@ export default function HomeClient() {
                     initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                     transition={{ duration: 0.35, delay: 0.25 }}
                   >
-                    <p className="text-white/80 text-[19px] font-light leading-[24px] text-right">
-                      This self-initiated concept reimagines a traditional DoorDash dashboard around
-                      <br />
-                      the jobs-to-be-done of Marketplace Operations, Merchant Success, and Growth &amp; Finance teams &mdash; reducing friction across their daily workflows.
-                    </p>
+                    <PanelCopy project={DOORDASH} />
                   </motion.div>
 
                   <motion.div
-                    className="w-[536px] h-[394px] shrink-0 rounded-[30px] overflow-hidden"
+                    className="shrink-0 rounded-[30px] overflow-hidden"
+                    style={{ height: "min(394px, var(--rollover-band-2))", aspectRatio: "536 / 394" }}
                     initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
                     animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
                     exit={{ clipPath: "inset(100% 0% 0% 0%)" }}

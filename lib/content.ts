@@ -167,11 +167,10 @@ export type Project = {
   /** Scope compressed to one scannable line. Required on every flagship. */
   cardScope?: string;
   /**
-   * The problem in a single sentence, taken verbatim from `description` where
-   * one sentence already states it. Required on every homepage flagship.
+   * Headline figure shown on the homepage card. Null on the experiments: a
+   * self-directed sprint has no measured outcome to put a number against, and
+   * quoting its duration there read as one.
    */
-  cardProblem?: string;
-  /** Headline figure shown on the homepage card. */
   cardResult: ProjectResult | null;
   /** Figures stacked in the desktop rollover panel, top to bottom. */
   panelResults: ProjectResult[];
@@ -232,16 +231,6 @@ const SOLO_TIME_SAVED: ProjectResult = {
   label: "Estimated annual time saved",
 };
 
-/** Durations, not outcomes. Shown where the other cards show a result. */
-const SUTTER_SPRINT_LENGTH: ProjectResult = {
-  value: "2.5 days",
-  label: "From concept to prototype",
-};
-const DOORDASH_SPRINT_LENGTH: ProjectResult = {
-  value: "2 days",
-  label: "Concept sprint",
-};
-
 export const PROJECTS: Project[] = [
   {
     id: "paypalde",
@@ -256,7 +245,7 @@ export const PROJECTS: Project[] = [
       markets: ["Germany"],
     },
     description: [
-      "German customers were hesitant to use credit because existing payment options felt risky, inflexible, or inconsistent with responsible spending habits. They needed a way to inspect online purchases before money left their bank account, while still having the flexibility to spread the cost of larger purchases into manageable payments.",
+      "German customers hesitated to use credit: the options available felt risky, rigid, and at odds with responsible spending. They wanted to inspect a purchase before money left their account — and still spread larger costs into manageable payments.",
     ],
     // Two products report separately and neither is identified as the primary
     // outcome, so both are supporting results and no total is derived.
@@ -275,8 +264,6 @@ export const PROJECTS: Project[] = [
     cardTitle: "PayPal Credit Products for Germany",
     cardRole: "Lead Product Designer",
     cardScope: "Pay in 30 Days & Ratenzahlung · Germany · Mobile & desktop",
-    cardProblem:
-      "German customers were hesitant to use credit because existing payment options felt risky, inflexible, or inconsistent with responsible spending habits.",
     cardResult: PAYPAL_DE_COMBINED_TPV_INCREASE,
     panelResults: [PAYPAL_DE_COMBINED_TPV_INCREASE, PAYPAL_DE_IREV_INCREASE],
   },
@@ -301,8 +288,8 @@ export const PROJECTS: Project[] = [
       markets: ["United States", "United Kingdom"],
     },
     description: [
-      "Paying with a credit card is seamless and nearly instant, while using a PayPal installment credit product requires customers to complete a rigorous, multi-step application at every checkout. This added friction disrupts the purchase flow, hurting conversion, repeat usage, and adoption of one of PayPal's key revenue-driving products.",
-      "While this CEO-prioritized initiative optimized six credit products across the United States and United Kingdom, this case study highlights Pay in 4, which saw the most significant product and design changes.",
+      "A credit card takes seconds at checkout. A PayPal installment product takes a rigorous, multi-step application — every time. That friction breaks the purchase flow and costs conversion, repeat usage, and adoption of one of PayPal’s key revenue-driving products.",
+      "This CEO-prioritized initiative optimized six credit products across the United States and United Kingdom; the case study follows Pay in 4, which changed the most.",
     ],
     primaryResult: PAYPAL_PAY_IN_4_CONVERSION,
     supportingResults: [PAYPAL_TPV_INCREASE],
@@ -319,8 +306,6 @@ export const PROJECTS: Project[] = [
     cardTitle: "Optimizing Loan Application Flows",
     cardRole: "Lead Product Designer",
     cardScope: "6 credit products · US & UK · Mobile and desktop",
-    cardProblem:
-      "Paying with a credit card is seamless and nearly instant, while using a PayPal installment credit product requires customers to complete a rigorous, multi-step application at every checkout.",
     cardResult: PAYPAL_PAY_IN_4_CONVERSION,
     panelResults: [PAYPAL_PAY_IN_4_CONVERSION, PAYPAL_TPV_INCREASE],
     preview: {
@@ -341,7 +326,7 @@ export const PROJECTS: Project[] = [
       products: ["Monthly Invoicing"],
     },
     description: [
-      "High-spend advertisers risk costly campaign pauses from card failures and funding gaps. Monthly Invoicing helps prevent disruptions while reducing Meta’s credit card processing costs, currently $2.46B annually and projected to reach $4.2B. Increasing adoption is expected to save at least 7.5% annually.",
+      "High-spend advertisers risk costly campaign pauses from card failures and funding gaps. Monthly Invoicing prevents them while cutting Meta’s card processing costs — $2.46B a year now, projected to reach $4.2B. Wider adoption should save at least 7.5% annually.",
     ],
     // Every Meta figure is an H1 2025 target or a projection, so none of them
     // qualifies as a verified result.
@@ -361,8 +346,6 @@ export const PROJECTS: Project[] = [
     cardTitle: "Monthly Invoicing for Meta Ads",
     cardRole: "Staff Product Designer (consultant)",
     cardScope: "Monthly Invoicing onboarding · Desktop",
-    cardProblem:
-      "High-spend advertisers risk costly campaign pauses from card failures and funding gaps.",
     cardResult: META_TARGET_CONVERSION,
     panelResults: [META_TARGET_CONVERSION, META_PROJECTED_SAVINGS],
     preview: {
@@ -381,8 +364,8 @@ export const PROJECTS: Project[] = [
       platforms: ["Mobile"],
     },
     description: [
-      "Schools need a more efficient, scalable way to document and communicate each child’s daily activities without relying on a labor-intensive end-of-day reporting process. Parents need timely visibility into their child’s school day so they feel informed, reassured, and confident about their child’s safety and well-being.",
-      "The app solves both needs by giving parents real-time updates throughout the day while automating activity tracking and report generation for school staff.",
+      "Schools document each child’s day through a labor-intensive end-of-day report that doesn’t scale. Parents wait until pickup to hear how the day went, when what they need is reassurance in the moment.",
+      "The app answers both: real-time updates for parents, automated tracking and reporting for staff.",
     ],
     primaryResult: SOLO_TIME_SAVED,
     supportingResults: [],
@@ -399,8 +382,6 @@ export const PROJECTS: Project[] = [
     cardTitle: "Daily Reporting App for Teachers",
     cardRole: "Solo designer and developer",
     cardScope: "Daily reporting app · Mobile",
-    cardProblem:
-      "Schools need a more efficient, scalable way to document and communicate each child’s daily activities without relying on a labor-intensive end-of-day reporting process.",
     cardResult: SOLO_TIME_SAVED,
     panelResults: [SOLO_TIME_SAVED],
     preview: {
@@ -420,8 +401,8 @@ export const PROJECTS: Project[] = [
       products: ["MyHealthOnline"],
     },
     description: [
-      "Patients who are already feeling unwell struggle to book appointments through the MyHealthOnline portal. Research shows the experience feels overly complicated, and analytics confirm significant drop-off throughout the booking flow, with only a 67% completion rate.",
-      "How might we simplify the appointment booking experience so patients can quickly and confidently get the care they need?",
+      "Patients already feeling unwell struggle to book appointments through the MyHealthOnline portal. Research found the experience overly complicated, and analytics confirm the drop-off: only 67% of bookings are completed.",
+      "How might we simplify booking so patients can get the care they need quickly and confidently?",
     ],
     // The 67% completion rate is the problem baseline, not an outcome of this
     // design exercise, so there is no verified result to report.
@@ -438,7 +419,7 @@ export const PROJECTS: Project[] = [
     homepageEyebrowLines: ["Less Portal. More Care."],
     cardLabel: "Sutter Health",
     cardTitle: "Redesigning the Patient Portal",
-    cardResult: SUTTER_SPRINT_LENGTH,
+    cardResult: null,
     panelResults: [],
   },
   {
@@ -452,8 +433,8 @@ export const PROJECTS: Project[] = [
       platforms: ["Mobile & desktop"],
     },
     description: [
-      "Operations, merchant success, and finance teams all rely on the same marketplace data, but the signals that matter most to each of them are buried across cluttered, one-size-fits-all reporting. By the time an issue is spotted, it's already cost the business time, revenue, or merchant trust.",
-      "This self-initiated concept explores how a single dashboard experience could surface the right signal, to the right person, at the right moment — and turn that signal directly into action.",
+      "Operations, merchant success, and finance teams share the same marketplace data, but each team’s critical signals sit buried in cluttered, one-size-fits-all reporting. By the time an issue surfaces, it has already cost time, revenue, or merchant trust.",
+      "This self-initiated concept explores how one dashboard could put the right signal in front of the right person at the right moment — and turn it directly into action.",
     ],
     // Self-initiated concept with no shipped outcome.
     primaryResult: null,
@@ -469,7 +450,7 @@ export const PROJECTS: Project[] = [
     homepageEyebrowLines: ["See the Signal.", "Seize the Opportunity."],
     cardLabel: "DoorDash Dashboard",
     cardTitle: "Turning Marketplace Signals Into Action",
-    cardResult: DOORDASH_SPRINT_LENGTH,
+    cardResult: null,
     panelResults: [],
   },
 ];
@@ -528,11 +509,21 @@ for (const project of HOMEPAGE_FLAGSHIPS) {
   if (project.category === "Experiments") {
     throw new Error(`"${project.id}" is an experiment and cannot be a flagship.`);
   }
-  if (!project.cardRole || !project.cardScope || !project.cardProblem) {
-    throw new Error(
-      `Flagship "${project.id}" needs cardRole, cardScope, and cardProblem.`,
-    );
+  if (!project.cardRole || !project.cardScope) {
+    throw new Error(`Flagship "${project.id}" needs cardRole and cardScope.`);
   }
+}
+
+/**
+ * The problem as the homepage states it, on cards and in the desktop rollover.
+ *
+ * Derived rather than authored so the homepage says exactly what the case study
+ * opens with. Projects whose problem runs to a second paragraph use that one for
+ * scope or for the question the work went on to ask, which the case study needs
+ * and a hover preview does not — so the homepage takes the lead paragraph.
+ */
+export function cardProblem(project: Project): string {
+  return project.description[0];
 }
 
 /** Homepage hero eyebrow, one entry per rendered line. */
