@@ -3,7 +3,7 @@
 import { Fragment, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Transition } from "framer-motion";
 import LiquidMetalBackground from "@/components/ui/liquid-metal-background";
 import IntroMontageBackground from "@/components/ui/intro-montage-background";
 import Header from "@/components/layout/header";
@@ -35,6 +35,92 @@ const SOLO = PROJECTS_BY_ID.solo;
 const SUTTER = PROJECTS_BY_ID.sutter;
 const DOORDASH = PROJECTS_BY_ID.doordash;
 
+/**
+ * Idle showreel timings, in seconds. With no pointer on the nav the homepage
+ * plays the rollover panels itself, one project at a time in nav order.
+ *
+ * Every step is strictly sequential: the outgoing panel finishes its fade and
+ * the band sits empty for GAP before the next project arrives, so two projects
+ * are never on screen together. HOLD is measured at full opacity — the fades
+ * sit either side of it rather than inside it, which is what takes a step to
+ * five seconds and the full loop to thirty.
+ */
+const SHOWREEL = {
+  /** Copy trails the image in by this much, so the panel resolves rather than appears. */
+  COPY_LEAD: 0.15,
+  FADE_IN: 0.9,
+  HOLD: 3,
+  FADE_OUT: 0.7,
+  /**
+   * Empty beat before a project arrives — long enough to also cover the hover
+   * wipe, so letting go of the nav does not cut a panel in over a retreating one.
+   */
+  GAP: 0.6,
+};
+
+/** Symmetric curve, so neither end of a fade snaps. */
+const SHOWREEL_EASE: [number, number, number, number] = [0.4, 0, 0.6, 1];
+
+const SHOWREEL_LEAD_MS = SHOWREEL.GAP * 1000;
+const SHOWREEL_ENTER_MS = (SHOWREEL.COPY_LEAD + SHOWREEL.FADE_IN) * 1000;
+const SHOWREEL_EXIT_AT_MS =
+  SHOWREEL_LEAD_MS + SHOWREEL_ENTER_MS + SHOWREEL.HOLD * 1000;
+const SHOWREEL_STEP_MS = SHOWREEL_EXIT_AT_MS + SHOWREEL.FADE_OUT * 1000;
+
+const SHOWREEL_IN: Transition = { duration: SHOWREEL.FADE_IN, ease: SHOWREEL_EASE };
+const SHOWREEL_OUT: Transition = { duration: SHOWREEL.FADE_OUT, ease: SHOWREEL_EASE };
+
+/**
+ * The two modes a rollover panel plays in.
+ *
+ * `hover` is the original pointer reveal — the image wipes up from its bottom
+ * edge and the copy lands behind it. `showreel` is a plain fade: nothing is
+ * chasing a pointer there, and a wipe on an untouched page reads as a swipe at
+ * the viewer rather than an answer to them.
+ *
+ * The shell carries no fade of its own in showreel mode. At 0.2s it would pull
+ * the group out from under the children's longer one; AnimatePresence still
+ * holds the unmount until the children have finished.
+ */
+const PANEL_MOTION = {
+  hover: {
+    shell: {
+      initial: { opacity: 1 },
+      animate: { opacity: 1 },
+      exit: { opacity: 0 },
+      transition: { duration: 0.2 },
+    },
+    copy: {
+      initial: { opacity: 0 },
+      animate: { opacity: 1 },
+      exit: { opacity: 0 },
+      transition: { duration: 0.35, delay: 0.25 },
+    },
+    image: {
+      initial: { clipPath: "inset(100% 0% 0% 0%)" },
+      animate: { clipPath: "inset(0% 0% 0% 0%)" },
+      exit: { clipPath: "inset(100% 0% 0% 0%)" },
+      transition: {
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+      },
+    },
+  },
+  showreel: {
+    shell: { initial: { opacity: 1 }, animate: { opacity: 1 }, exit: { opacity: 1 } },
+    copy: {
+      initial: { opacity: 0 },
+      animate: { opacity: 1, transition: { ...SHOWREEL_IN, delay: SHOWREEL.COPY_LEAD } },
+      exit: { opacity: 0, transition: SHOWREEL_OUT },
+    },
+    image: {
+      initial: { opacity: 0 },
+      animate: { opacity: 1, transition: SHOWREEL_IN },
+      exit: { opacity: 0, transition: SHOWREEL_OUT },
+    },
+  },
+};
+
 /** Figures stacked in a rollover panel. Renders nothing when there are none. */
 function PanelResults({ results }: { results: ProjectResult[] }) {
   return (
@@ -57,10 +143,11 @@ const FACT_LABEL_CLASS =
   "text-white/45 text-[11px] uppercase tracking-[0.18em] font-sans";
 
 /**
- * The copy column beside every rollover image. One class for all six panels so
- * the measure stays identical whatever the image beside it is doing: 350px, the
- * narrowest the columns had grown to, sitting 80px above the image's bottom edge
- * rather than flush with it.
+ * The copy column beside a rollover image. One class for the three panels whose
+ * art outmeasures their copy, so the measure stays identical whatever the image
+ * beside it is doing: 350px, the narrowest the columns had grown to, sitting
+ * 80px above the image's bottom edge rather than flush with it. The other three
+ * take CENTERED_PANEL_COPY_CLASS below.
  *
  * Taken out of flow so the image alone sets the panel's height. Bottom-aligned
  * in the flex row the tallest child won, and a long problem statement made that
@@ -73,16 +160,33 @@ const PANEL_COPY_CLASS =
   "absolute bottom-[80px] right-[calc(100%+40px)] w-[350px]";
 
 /**
- * Meta's own variant. Its image (536x394) is the short, wide "laptop on a
- * desk" crop rather than the tall phone shots the other panels bottom-align
- * against, and Meta is the only panel stacking both a two-up PanelResults
- * block and a full problem paragraph in the copy column. Bottom-anchoring
- * that much text 80px above such a short image pushed its top edge well
- * above the image's — and past the nav — instead of sitting beside it, so
- * this centers the column on the image's vertical midpoint instead.
+ * The centered variant, for panels whose copy outgrows the image beside it.
+ * The 80px bottom anchor only reads as an alignment while the column is the
+ * shorter of the two; past that the text climbs out of the image's top edge and
+ * runs at the nav. Centering on the image's vertical midpoint keeps the pair
+ * visually tied however far the band clamps the art.
+ *
+ * Three panels need it, and all three carry the same 362px column — a two-up
+ * PanelResults block above a full problem paragraph, which with the 80px anchor
+ * wants 442px of image to sit against. Meta's crop is the short, wide "laptop
+ * on a desk" one at 394px. PayPal Germany and PayPal both stand 438px once the
+ * shared portrait height caps them, four short of the 442.
  */
-const META_PANEL_COPY_CLASS =
+const CENTERED_PANEL_COPY_CLASS =
   "absolute top-1/2 -translate-y-1/2 right-[calc(100%+40px)] w-[350px]";
+
+/**
+ * One height per orientation, shared by every panel of that shape. The six
+ * sources are different crops at different ratios, so their widths still differ —
+ * but the showreel steps through them on a timer, and a frame that resized on
+ * every step read as a stutter rather than a sequence.
+ *
+ * The portrait figure is the tallest of the four it replaces (PayPal's 532), so
+ * nothing gives up size at viewports tall enough to clear the band; below that
+ * the band is what both values resolve to anyway.
+ */
+const PORTRAIT_PANEL_HEIGHT = "min(532px, var(--rollover-band))";
+const LANDSCAPE_PANEL_HEIGHT = "min(394px, var(--rollover-band))";
 
 /** Capability signals, set as one quiet metadata line rather than a section. */
 function CapabilitySignals({ className = "" }: { className?: string }) {
@@ -200,6 +304,13 @@ function WorkCard({ project, priority }: { project: Project; priority: boolean }
 export default function HomeClient() {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [resumeOpen, setResumeOpen] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
+  const [showreelStep, setShowreelStep] = useState(0);
+  const [showreelUp, setShowreelUp] = useState(false);
+
+  // Backgrounds, the hero headline and the positioning block answer to the
+  // pointer alone. The showreel drives the panels and leaves the rest still —
+  // a page that rewrote its own headline every three seconds would be unreadable.
   const showPayPalDE = hoveredProject === "paypalde";
   const showPayPal = hoveredProject === "paypal";
   const showMeta   = hoveredProject === "meta";
@@ -219,6 +330,52 @@ export default function HomeClient() {
       return () => { document.body.style.overflow = prev; };
     }
   }, [resumeOpen]);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setReducedMotion(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  const showreelPaused = Boolean(hoveredProject) || reducedMotion;
+
+  // One step of the loop: an empty beat, a fade in, three seconds at full
+  // opacity, a fade out. Re-runs per project, and whenever the pointer takes
+  // over — so a hover both stops the loop and drops whatever it was holding,
+  // and letting go replays that step from its opening beat rather than cutting
+  // into the middle of a fade.
+  useEffect(() => {
+    if (showreelPaused || HOMEPAGE_PROJECTS.length === 0) {
+      setShowreelUp(false);
+      return;
+    }
+    const fadeIn = setTimeout(() => setShowreelUp(true), SHOWREEL_LEAD_MS);
+    const fadeOut = setTimeout(() => setShowreelUp(false), SHOWREEL_EXIT_AT_MS);
+    const advance = setTimeout(
+      () => setShowreelStep((step) => (step + 1) % HOMEPAGE_PROJECTS.length),
+      SHOWREEL_STEP_MS
+    );
+    return () => {
+      clearTimeout(fadeIn);
+      clearTimeout(fadeOut);
+      clearTimeout(advance);
+    };
+  }, [showreelStep, showreelPaused]);
+
+  const showreelProject = showreelUp
+    ? HOMEPAGE_PROJECTS[showreelStep]?.id ?? null
+    : null;
+  const panelProject = hoveredProject ?? showreelProject;
+  const panelMotion = hoveredProject ? PANEL_MOTION.hover : PANEL_MOTION.showreel;
+
+  const panelPayPalDE = panelProject === "paypalde";
+  const panelPayPal   = panelProject === "paypal";
+  const panelMeta     = panelProject === "meta";
+  const panelSolo     = panelProject === "solo";
+  const panelSutter   = panelProject === "sutter";
+  const panelDoorDash = panelProject === "doordash";
 
   const hovered = hoveredProject ? PROJECTS_BY_ID[hoveredProject] : undefined;
 
@@ -306,7 +463,11 @@ export default function HomeClient() {
             />
           </div>
 
-          <main className="relative z-10 flex flex-col p-[24px] h-screen">
+          <main
+            className={`relative z-10 flex flex-col p-[24px] h-screen ${
+              hoveredProject ? "" : "rollover-band-idle"
+            }`}
+          >
             <div className="shrink-0">
               <Header
                 onResumeToggle={() => setResumeOpen((v) => !v)}
@@ -327,18 +488,6 @@ export default function HomeClient() {
               >
                 <LeftNav onHover={setHoveredProject} />
               </div>
-
-              {/* Top-aligned with the first nav pill. Kept mounted and faded
-                  rather than unmounted because the rollover panels share this
-                  column and an unmount would reflow the band. */}
-              <motion.p
-                className="w-[480px] shrink-0 text-right text-white/80 font-light font-sans text-[19px] leading-[26px] tracking-[-0.01em]"
-                animate={{ opacity: hovered ? 0 : 1 }}
-                transition={{ duration: 0.25 }}
-                aria-hidden={Boolean(hovered)}
-              >
-                {SITE.supporting} {SITE.practice}
-              </motion.p>
             </div>
 
             <div className="flex-1 min-h-[32px]" />
@@ -373,17 +522,15 @@ export default function HomeClient() {
 
             {/* PayPal Germany rollover panel */}
             <AnimatePresence>
-              {showPayPalDE && (
+              {panelPayPalDE && (
                 <motion.div
                   key="paypalde-panel"
                   className="absolute top-[139px] right-[69px] z-[5] flex items-end"
-                  initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
+                  {...panelMotion.shell}
                 >
                   <motion.div
-                    className={PANEL_COPY_CLASS}
-                    initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                    transition={{ duration: 0.35, delay: 0.25 }}
+                    className={CENTERED_PANEL_COPY_CLASS}
+                    {...panelMotion.copy}
                   >
                     <div className="flex flex-col gap-[26px] items-end">
                       <PanelResults results={PAYPAL_DE.panelResults} />
@@ -402,11 +549,8 @@ export default function HomeClient() {
                       exposed. */}
                   <motion.div
                     className="shrink-0 rounded-[30px] overflow-hidden"
-                    style={{ height: "min(513px, var(--rollover-band-2))", aspectRatio: "311 / 513" }}
-                    initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
-                    animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
-                    exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    style={{ height: PORTRAIT_PANEL_HEIGHT, aspectRatio: "311 / 513" }}
+                    {...panelMotion.image}
                   >
                     <Image src={PAYPAL_DE.thumbnail.image} alt="PayPal Germany checkout screen" className="w-full h-full object-cover" priority />
                   </motion.div>
@@ -416,17 +560,15 @@ export default function HomeClient() {
 
             {/* PayPal rollover panel */}
             <AnimatePresence>
-              {showPayPal && (
+              {panelPayPal && (
                 <motion.div
                   key="paypal-panel"
                   className="absolute top-[139px] right-[69px] z-[5] flex items-end"
-                  initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
+                  {...panelMotion.shell}
                 >
                   <motion.div
-                    className={PANEL_COPY_CLASS}
-                    initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                    transition={{ duration: 0.35, delay: 0.25 }}
+                    className={CENTERED_PANEL_COPY_CLASS}
+                    {...panelMotion.copy}
                   >
                     <div className="flex flex-col gap-[26px] items-end">
                       <PanelResults results={PAYPAL.panelResults} />
@@ -436,11 +578,8 @@ export default function HomeClient() {
 
                   <motion.div
                     className="shrink-0"
-                    style={{ height: "min(532px, var(--rollover-band-1))", aspectRatio: "350 / 532" }}
-                    initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
-                    animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
-                    exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    style={{ height: PORTRAIT_PANEL_HEIGHT, aspectRatio: "350 / 532" }}
+                    {...panelMotion.image}
                   >
                     <Image src={PAYPAL.thumbnail.image} alt={PAYPAL.thumbnail.alt} className="w-full h-full object-cover" priority />
                   </motion.div>
@@ -450,17 +589,15 @@ export default function HomeClient() {
 
             {/* Meta rollover panel */}
             <AnimatePresence>
-              {showMeta && (
+              {panelMeta && (
                 <motion.div
                   key="meta-panel"
                   className="absolute top-[148px] right-[69px] z-[5] flex items-end"
-                  initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
+                  {...panelMotion.shell}
                 >
                   <motion.div
-                    className={META_PANEL_COPY_CLASS}
-                    initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                    transition={{ duration: 0.35, delay: 0.25 }}
+                    className={CENTERED_PANEL_COPY_CLASS}
+                    {...panelMotion.copy}
                   >
                     <div className="flex flex-col gap-[26px] items-end">
                       <PanelResults results={META.panelResults} />
@@ -470,11 +607,8 @@ export default function HomeClient() {
 
                   <motion.div
                     className="shrink-0 rounded-[30px] overflow-hidden"
-                    style={{ height: "min(394px, var(--rollover-band-2))", aspectRatio: "536 / 394" }}
-                    initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
-                    animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
-                    exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    style={{ height: LANDSCAPE_PANEL_HEIGHT, aspectRatio: "536 / 394" }}
+                    {...panelMotion.image}
                   >
                     <Image src={META.thumbnail.image} alt={META.thumbnail.alt} className="w-full h-full object-cover" priority />
                   </motion.div>
@@ -484,17 +618,15 @@ export default function HomeClient() {
 
             {/* Solo rollover panel */}
             <AnimatePresence>
-              {showSolo && (
+              {panelSolo && (
                 <motion.div
                   key="solo-panel"
                   className="absolute top-[143px] right-[93px] z-[5] flex items-end"
-                  initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
+                  {...panelMotion.shell}
                 >
                   <motion.div
                     className={PANEL_COPY_CLASS}
-                    initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                    transition={{ duration: 0.35, delay: 0.25 }}
+                    {...panelMotion.copy}
                   >
                     <div className="flex flex-col gap-[26px] items-end">
                       <PanelResults results={SOLO.panelResults} />
@@ -504,11 +636,8 @@ export default function HomeClient() {
 
                   <motion.div
                     className="shrink-0 rounded-[30px] overflow-hidden"
-                    style={{ height: "min(466px, var(--rollover-band-1))", aspectRatio: "290 / 466" }}
-                    initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
-                    animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
-                    exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    style={{ height: PORTRAIT_PANEL_HEIGHT, aspectRatio: "290 / 466" }}
+                    {...panelMotion.image}
                   >
                     <Image src={SOLO.thumbnail.image} alt="Ms. Sunshine App daily reporting screen on phone" className="w-full h-full object-cover" priority />
                   </motion.div>
@@ -518,28 +647,23 @@ export default function HomeClient() {
 
             {/* Sutter Health rollover panel */}
             <AnimatePresence>
-              {showSutter && (
+              {panelSutter && (
                 <motion.div
                   key="sutter-panel"
                   className="absolute top-[143px] right-[69px] z-[5] flex items-end"
-                  initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
+                  {...panelMotion.shell}
                 >
                   <motion.div
                     className={PANEL_COPY_CLASS}
-                    initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                    transition={{ duration: 0.35, delay: 0.25 }}
+                    {...panelMotion.copy}
                   >
                     <PanelCopy project={SUTTER} />
                   </motion.div>
 
                   <motion.div
                     className="shrink-0 rounded-[30px] overflow-hidden"
-                    style={{ height: "min(504px, var(--rollover-band-1))", aspectRatio: "367 / 504" }}
-                    initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
-                    animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
-                    exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    style={{ height: PORTRAIT_PANEL_HEIGHT, aspectRatio: "367 / 504" }}
+                    {...panelMotion.image}
                   >
                     <Image src={SUTTER.thumbnail.image} alt="Sutter Health patient portal app" className="w-full h-full object-cover" priority />
                   </motion.div>
@@ -549,28 +673,23 @@ export default function HomeClient() {
 
             {/* DoorDash Dashboard rollover panel */}
             <AnimatePresence>
-              {showDoorDash && (
+              {panelDoorDash && (
                 <motion.div
                   key="doordash-panel"
                   className="absolute top-[148px] right-[69px] z-[5] flex items-end"
-                  initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
+                  {...panelMotion.shell}
                 >
                   <motion.div
                     className={PANEL_COPY_CLASS}
-                    initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                    transition={{ duration: 0.35, delay: 0.25 }}
+                    {...panelMotion.copy}
                   >
                     <PanelCopy project={DOORDASH} />
                   </motion.div>
 
                   <motion.div
                     className="shrink-0 rounded-[30px] overflow-hidden"
-                    style={{ height: "min(394px, var(--rollover-band-2))", aspectRatio: "536 / 394" }}
-                    initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
-                    animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
-                    exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    style={{ height: LANDSCAPE_PANEL_HEIGHT, aspectRatio: "536 / 394" }}
+                    {...panelMotion.image}
                   >
                     <Image src={DOORDASH.thumbnail.image} alt="DoorDash Dashboard" className="w-full h-full object-cover" priority />
                   </motion.div>
