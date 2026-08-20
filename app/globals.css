@@ -19,8 +19,21 @@
   --breakpoint-xl: 1280px;
 }
 
+/* `clip` guards against stray horizontal overflow exactly like `hidden`, but
+   without turning body into a scroll container — which would capture every
+   `position: sticky` descendant (e.g. the PayPal DE equation). */
 html, body {
-  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+/* Horizontal strips that state their position with their own indicator, so the
+   native scrollbar would only sit under the content repeating it. */
+.scrollbar-none {
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
 
 /*

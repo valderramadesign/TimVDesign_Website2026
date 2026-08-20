@@ -238,7 +238,7 @@ export const PROJECTS: Project[] = [
     caseStudyHeadline: "Building Trust Through Responsible Credit",
     company: "PayPal",
     status: "Shipped",
-    role: "I led the product design from 0→1, turning an ambiguous idea into a validated, polished digital experience. I owned the end-to-end process—from early concepts and complex AI workflows to final UI and developer handoff—working closely with product and engineering to move quickly, navigate trade-offs, and make the product clear and useful for non-expert users.",
+    role: "Led 0→1 design for PayPal’s German credit products, aligning cross-functional teams to simplify complex lending into trustworthy experiences—cutting the application from four pages to one and helping increase monthly TPV by 63.7%.",
     scope: {
       platforms: ["Mobile & desktop"],
       products: ["Pay in 30 Days", "PayPal Ratenzahlung"],
