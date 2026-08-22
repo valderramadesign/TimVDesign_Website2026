@@ -1058,7 +1058,7 @@ export default function PayPal1CaseStudy() {
           </Link>
 
           {/* Solo */}
-          <Link href={nextSolo.route} className="group flex w-full min-w-0 max-w-[437px] flex-col gap-4 lg:w-[437px] lg:gap-[27px]">
+          <Link href={nextSolo.route} className="group flex w-full min-w-0 max-w-[437px] flex-col gap-4 lg:w-[437px] lg:shrink-0 lg:gap-[27px]">
             <div className="relative aspect-[437/666] w-full overflow-hidden rounded-2xl lg:rounded-[30px]">
               <Image
                 src={nextSoloPreview.image}
@@ -1068,7 +1068,7 @@ export default function PayPal1CaseStudy() {
                 sizes="(max-width: 1024px) 100vw, 437px"
               />
             </div>
-            <p className="font-serif text-[clamp(36px,9vw,64px)] lg:text-[64px] leading-[1.1] lg:leading-[72px] tracking-[-0.64px] text-white transition-opacity duration-300 group-hover:opacity-70 whitespace-nowrap">
+            <p className="font-serif text-[clamp(36px,9vw,60px)] lg:text-[60px] leading-[1.1] lg:leading-[72px] tracking-[-0.64px] text-white transition-opacity duration-300 group-hover:opacity-70 whitespace-nowrap">
               {nextSolo.cardLabel}
             </p>
           </Link>

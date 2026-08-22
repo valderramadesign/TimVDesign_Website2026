@@ -391,7 +391,7 @@ export default function MetaPage() {
           </Link>
 
           {/* Solo */}
-          <Link href={nextSolo.route} className="group flex w-full max-w-[437px] lg:w-[437px] flex-col gap-4 lg:gap-[27px] items-start">
+          <Link href={nextSolo.route} className="group flex w-full max-w-[437px] lg:w-[437px] lg:shrink-0 flex-col gap-4 lg:gap-[27px] items-start">
             <div className="aspect-[437/666] w-full lg:h-[666px] lg:w-[438px] relative rounded-[30px] lg:shrink-0 overflow-hidden">
               <Image
                 src={nextSoloPreview.image}
@@ -401,7 +401,7 @@ export default function MetaPage() {
                 sizes="(max-width: 1024px) 100vw, 437px"
               />
             </div>
-            <p className="font-serif text-[clamp(36px,9vw,64px)] lg:text-[64px] leading-[1.1] lg:leading-[72px] text-white tracking-[-0.64px] whitespace-nowrap">
+            <p className="font-serif text-[clamp(36px,9vw,60px)] lg:text-[60px] leading-[1.1] lg:leading-[72px] text-white tracking-[-0.64px] whitespace-nowrap">
               {nextSolo.cardLabel}
             </p>
           </Link>

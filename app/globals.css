@@ -38,9 +38,16 @@ html, body {
  * and an explicit <br> are not break opportunities, so the two-line chart
  * labels keep the shape they were written with. Headings are left alone: a
  * title is a label, and a label is allowed to hang its last word.
+ *
+ * Layered under Tailwind's utilities so a `whitespace-nowrap` on the same
+ * element still wins — `text-wrap` and `white-space` share the underlying
+ * `text-wrap-mode` longhand, and unlayered CSS beats layered utilities
+ * regardless of selector specificity.
  */
-p, li, blockquote, dd, dt, figcaption {
-  text-wrap: pretty;
+@layer base {
+  p, li, blockquote, dd, dt, figcaption {
+    text-wrap: pretty;
+  }
 }
 
 /* Horizontal strips that state their position with their own indicator, so the

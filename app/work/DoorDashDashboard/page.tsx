@@ -378,7 +378,7 @@ export default function DoorDashDashboardCaseStudy() {
                 sizes="(max-width: 1024px) 100vw, 437px"
               />
             </div>
-            <p className="font-serif text-[clamp(36px,9vw,64px)] lg:text-[64px] leading-[1.1] lg:leading-[72px] tracking-[-0.64px] text-white transition-opacity duration-300 group-hover:opacity-70 whitespace-nowrap">
+            <p className="font-serif text-[clamp(36px,9vw,60px)] lg:text-[60px] leading-[1.1] lg:leading-[72px] tracking-[-0.64px] text-white transition-opacity duration-300 group-hover:opacity-70 whitespace-nowrap">
               {nextSolo.cardLabel}
             </p>
           </Link>
