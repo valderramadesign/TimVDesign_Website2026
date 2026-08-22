@@ -73,16 +73,6 @@ export default function SoloPage() {
                 {project.role}
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row items-start gap-8 sm:gap-[80px] lg:ml-auto">
-              <div className="flex flex-col gap-[14px]">
-                <p className="text-[18px] font-light leading-none text-white/60">Timeline</p>
-                <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">{project.timeline}</p>
-              </div>
-              <div className="flex flex-col gap-[14px]">
-                <p className="text-[18px] font-light leading-none text-white/60">Platforms</p>
-                <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">{project.scope.platforms.join(", ")}</p>
-              </div>
-            </div>
           </div>
         </div>
       </section>

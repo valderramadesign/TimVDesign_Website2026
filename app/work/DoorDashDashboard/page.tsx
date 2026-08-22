@@ -125,7 +125,7 @@ export default function DoorDashDashboardCaseStudy() {
             </div>
           </ScrollFade>
 
-          {/* Project specs */}
+          {/* My role */}
           <div
             className="flex flex-col lg:flex-row w-full items-start gap-10 lg:gap-[64px] py-6 lg:py-[42px]"
             style={{ fontFamily: leagueSpartan }}
@@ -136,22 +136,6 @@ export default function DoorDashDashboardCaseStudy() {
                 <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
                   {project.role}
                 </p>
-              </div>
-            </ScrollFade>
-            <ScrollFade direction="right" once={true} className="lg:ml-auto w-full lg:w-auto">
-              <div className="flex flex-col sm:flex-row items-start gap-6 sm:gap-10 lg:gap-[80px]">
-                <div className="flex flex-col gap-[14px]">
-                  <p className="text-sm lg:text-[18px] font-light leading-none text-white/60">Timeline</p>
-                  <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
-                    {project.timeline}
-                  </p>
-                </div>
-                <div className="flex w-full sm:w-[486px] lg:w-[260px] flex-col gap-[14px]">
-                  <p className="text-sm lg:text-[18px] font-light leading-none text-white/60">Platforms</p>
-                  <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
-                    {project.scope.platforms.join(", ")}
-                  </p>
-                </div>
               </div>
             </ScrollFade>
           </div>
@@ -194,7 +178,7 @@ export default function DoorDashDashboardCaseStudy() {
         <div className="mt-24 lg:mt-[200px] flex flex-col gap-10 lg:gap-[54px]">
           <ScrollFade direction="left">
             <p className="text-sm lg:text-[18px] font-light text-white/60" style={{ fontFamily: leagueSpartan }}>
-              Personas and Jobs-to-be-done
+              Personas and Jobs-to-Be-Done
             </p>
           </ScrollFade>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-[68px] lg:gap-[81px]">

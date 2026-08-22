@@ -3,7 +3,7 @@ import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import NextCaseStudyTicker from "@/components/ui/next-case-study-ticker";
 import CaseStudyTopBar from "@/components/ui/case-study-top-bar";
-import BeforeAfterSwap from "@/components/ui/before-after-swap";
+import RevealSlider from "@/components/ui/reveal-slider";
 import Pi4Walkthrough from "@/components/ui/pi4-walkthrough";
 import ScrollFade from "@/components/ui/scroll-fade";
 import CounterNumber from "@/components/ui/counter-number";
@@ -142,9 +142,9 @@ const UK_CREDIT_IMPACT = [
 
 /*
  * One template for both rows, so a UK card always sits under the US card it
- * belongs with. The widest card is "PayPal Mastercard" at 229px, so four of
- * them plus the 60px gutters need 1096px of content and clear a 1280px
- * viewport with room over; under that the row folds to two columns rather than
+ * belongs with. The widest card is "PayPal Mastercard"; four of them set in
+ * body type plus the 60px gutters clear a 1280px viewport with room over,
+ * so under that the row folds to two columns rather than
  * squeezing the product names into wraps. The 732px cap keeps those two
  * columns at their design width instead of stretching them across the page.
  */
@@ -174,9 +174,7 @@ function ImpactCard({
       style={{ fontFamily: "var(--font-league-spartan)" }}
     >
       {art}
-      <p className="mt-2 text-xl lg:text-[32px] font-light leading-snug lg:leading-[42px] tracking-[-0.32px]">
-        {product}
-      </p>
+      <p className={cx(CASE_STUDY_BODY_CLASS, "mt-2")}>{product}</p>
       <div className="mt-[10px] flex items-baseline gap-3 lg:gap-[16px]">
         <p className="font-serif text-[clamp(40px,10vw,64px)] lg:text-[64px] font-normal leading-none tracking-[-0.64px] whitespace-nowrap">
           <CounterNumber
@@ -186,42 +184,29 @@ function ImpactCard({
             decimals={decimals}
           />
         </p>
-        <p className="text-lg lg:text-[24px] font-normal leading-none tracking-[-0.24px]">
-          {label}
-        </p>
+        <p className={CASE_STUDY_BODY_CLASS}>{label}</p>
       </div>
     </div>
   );
 }
 
 /* ── The Pay in 4 deep dive ──────────────────────────────────────────────
-   Five finishes from the current lineup, one per screen, so the row reads
-   as five devices rather than five crops of the same one. The last is the
-   Pro's Cosmic Orange rather than a black body, which would have dissolved
-   into the page and read as a missing frame. The rail is a gradient
-   because a flat fill reads as paper rather than anodised aluminium, and
-   each button tone is that colour pulled down so the hardware sits in the
-   frame instead of on top of it. */
+   Two finishes, one per state. The five legacy screens are white and the
+   three that replaced them are blue, so the divider changes the colour of
+   the row as well as its count and the swap is legible before a single
+   screen is read — so the blue carries real chroma rather than the grey cast
+   a "mist" finish would have, which at this size was too close to the warm
+   white to tell apart. The rail is a gradient because a flat fill reads as
+   paper rather than anodised aluminium, and each button tone is that colour
+   pulled down so the hardware sits in the frame instead of on top of it. */
 const IPHONE_FINISHES = {
   white: {
     rail: "linear-gradient(155deg,#FBFAF7 0%,#E7E4DD 30%,#C6C2B8 55%,#F5F3ED 78%,#D8D4CA 100%)",
     button: "#C4C0B6",
   },
-  lavender: {
-    rail: "linear-gradient(155deg,#F0EBF8 0%,#D3C7E9 30%,#AB9CCB 55%,#E5DDF3 78%,#C2B5DD 100%)",
-    button: "#A899C9",
-  },
-  mistBlue: {
-    rail: "linear-gradient(155deg,#EBF2F8 0%,#C5D6E6 30%,#9AB1C7 55%,#DDE9F2 78%,#B4C8D9 100%)",
-    button: "#96AEC5",
-  },
-  sage: {
-    rail: "linear-gradient(155deg,#EDF2E9 0%,#C9D6C2 30%,#9BAD93 55%,#DFE8DA 78%,#B6C5AE 100%)",
-    button: "#97A98F",
-  },
-  cosmicOrange: {
-    rail: "linear-gradient(155deg,#F7B283 0%,#E5813E 30%,#B85D1D 55%,#F1A268 78%,#D2702F 100%)",
-    button: "#C96827",
+  skyBlue: {
+    rail: "linear-gradient(155deg,#EAF4FF 0%,#BEDBF5 30%,#7FAAD4 55%,#DCEDFF 78%,#A6CAEA 100%)",
+    button: "#7DA8D2",
   },
 } as const;
 
@@ -237,57 +222,67 @@ const LEGACY_STEPS = [
   {
     screen: 2,
     src: legacyStep2,
-    finish: IPHONE_FINISHES.lavender,
+    finish: IPHONE_FINISHES.white,
     alt: "Legacy Pay in 4, screen two: the offer, showing four payments of $71.25 and the terms attached to them.",
   },
   {
     screen: 3,
     src: legacyStep3,
-    finish: IPHONE_FINISHES.mistBlue,
+    finish: IPHONE_FINISHES.white,
     alt: "Legacy Pay in 4, screen three: a Review your info step for billing address and phone number, ending in Agree and Apply.",
   },
   {
     screen: 4,
     src: legacyStep4,
-    finish: IPHONE_FINISHES.sage,
+    finish: IPHONE_FINISHES.white,
     alt: "Legacy Pay in 4, screen four: an autopay step for choosing a payment method and accepting the loan agreement.",
   },
   {
     screen: 5,
     src: legacyStep5,
-    finish: IPHONE_FINISHES.cosmicOrange,
+    finish: IPHONE_FINISHES.white,
     alt: "Legacy Pay in 4, screen five: checkout again, with Pay in 4 approved and a Complete Purchase button.",
   },
 ];
 
-/* Each set was captured at its own canvas size, and the redesigned three do
-   not even agree with each other. The screen is pinned to one ratio per row
-   and the captures fill it, which costs about a pixel off the outer edge of
-   the widest one and buys every device in a row the same height. The fill
-   behind them is the colour those captures end on, so no seam can show. */
-const LEGACY_SCREEN = { aspect: "1500 / 3408", fill: "#FFFFFF" };
-const REDESIGN_SCREEN = { aspect: "1572 / 3480", fill: "#F9F9F9" };
+/* Each set was captured at its own canvas size — 1500 x 3408 for the legacy
+   run, 1572 x 3480 for the redesign — and the two rows now have to be
+   interchangeable, so every screen is pinned to one ratio and the captures
+   fill it. It costs about a pixel off the outer edge of the wider set and
+   buys the two rows identical devices, which is what lets three of them
+   take the place of three others without anything moving. */
+const PI4_SCREEN = { aspect: "1500 / 3408", fill: "#FFFFFF" };
+
+/* Every row inside the comparison frame carries the same horizontal padding
+   and sits on the same five-column bed: the divider then cuts each of them
+   at the same pixel, and the three redesigned screens land in the seats the
+   middle three legacy screens vacate. Below md the two device rows fall
+   back to snap filmstrips, where five across would shrink past reading. */
+const PI4_ROW_PAD = "px-6 md:px-8 lg:px-12";
+const PI4_ROW_GRID = "md:grid md:grid-cols-5 md:gap-4 lg:gap-6 xl:gap-[32px]";
+const PI4_FILMSTRIP =
+  "-mx-6 flex list-none snap-x snap-mandatory scroll-px-6 gap-5 overflow-x-auto pb-1 [scrollbar-width:none] md:mx-0 md:overflow-visible md:pb-0 [&::-webkit-scrollbar]:hidden";
+const PI4_CELL = "@container w-[64%] max-w-[300px] shrink-0 snap-start md:w-auto md:max-w-none";
 
 /* The same journey after the consolidation: checkout, the one page that
-   replaced the funnel, and checkout again with the decision already made.
-   White sits in the middle because the middle screen is the argument. */
+   replaced the funnel, and checkout again with the decision already made. */
 const REDESIGN_STEPS = [
   {
     screen: 1,
     src: redesignStep1,
-    finish: IPHONE_FINISHES.mistBlue,
+    finish: IPHONE_FINISHES.skyBlue,
     alt: "Redesigned Pay in 4, screen one: checkout with Pay in 4 pre-approved, showing four payments of $52.50 and their due dates in place.",
   },
   {
     screen: 2,
     src: redesignStep2,
-    finish: IPHONE_FINISHES.white,
+    finish: IPHONE_FINISHES.skyBlue,
     alt: "Redesigned Pay in 4, screen two: a single Confirm a few details to apply page holding billing address, autopay, date of birth and the agreements, ending in Agree and Apply.",
   },
   {
     screen: 3,
     src: redesignStep3,
-    finish: IPHONE_FINISHES.cosmicOrange,
+    finish: IPHONE_FINISHES.skyBlue,
     alt: "Redesigned Pay in 4, screen three: checkout with Pay in 4 approved, a You are approved confirmation, and a Pay $52.50 Today button.",
   },
 ];
@@ -421,7 +416,7 @@ export default function PayPal1CaseStudy() {
         style={{ fontFamily: leagueSpartan }}
       >
         <ScrollFade once>
-          <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>The scope</p>
+          <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>The Scope</p>
           <h2
             id="paypal-scope-title"
             className="mt-4 lg:mt-[18px] max-w-[1100px] text-balance font-serif text-[clamp(40px,7vw,72px)] font-normal leading-[1.05] tracking-[-0.015em]"
@@ -500,88 +495,96 @@ export default function PayPal1CaseStudy() {
         </ScrollFade>
       </section>
 
-      {/* ── The Pay in 4 deep dive ──────────────────────────────────────
-          One product carrying the whole argument. The chapter runs as two
-          acts with the consolidation set between them, so the change reads
-          as a sequence collapsing rather than as a claim about a redesign.
-          Placeholders stand in for the screens until the real ones land. */}
+      {/* ── The Pay in 4 deep dive ──────────────────────────
+          One product carrying the whole argument, held in a single frame the
+          reader splits themselves. Left of the divider is the problem and
+          the five screens that produced it; right of it are the three that
+          replaced them and the sentence they earn. Both rows sit on the same
+          five-column bed, so the three arrive in the seats the middle three
+          were already in and the reader watches two of them leave rather
+          than watching a new row appear. The frame plays the wipe through
+          once on its own, the first time its top reaches the sticky bar, so
+          the reader is shown the answer before being handed the control. */}
       <section
         aria-labelledby="paypal-payin4-title"
         className={cx("px-5 lg:px-[24px]", SECTION_GAP)}
         style={{ fontFamily: leagueSpartan }}
       >
         <ScrollFade once>
-          <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>Deep dive</p>
-          <h2
-            id="paypal-payin4-title"
-            className="mt-4 lg:mt-[18px] max-w-[1100px] text-balance font-serif text-[clamp(40px,7vw,72px)] font-normal leading-[1.05] tracking-[-0.015em]"
-          >
-            Pay in 4 made the problem impossible to ignore.
-          </h2>
-        </ScrollFade>
-
-        {/* The comparison plays as one exchange rather than two exhibits.
-            Both rows are ordered lists, because the screens are a sequence
-            and not a gallery. The sentence about the three steps travels
-            with the screens it describes: it parks ten pixels under the top
-            bar and dissolves along with them, so the claim is still on the
-            page as the evidence for it is replaced. Snap filmstrips below
-            md, where five across would shrink past reading. */}
-        <BeforeAfterSwap
-          className="mt-6 lg:mt-[32px]"
-          pinTop="calc(var(--case-study-bar-h, 82px) + 10px)"
-          before={
-            <>
-              <p className={cx(CASE_STUDY_BODY_CLASS, "max-w-[860px] text-white/80")}>
-                Among the six products, Pay in 4 exposed the clearest version of the shared
-                problem: customers moved through three application steps before they could
-                complete their purchase. Each transition added distance between choosing Pay
-                in 4 and completing the purchase.
-              </p>
-              <ol className="mt-[50px] -mx-5 flex list-none snap-x snap-mandatory scroll-px-5 gap-5 overflow-x-auto px-5 pb-1 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-5 md:gap-4 md:overflow-visible md:px-0 md:pb-0 lg:gap-6 xl:gap-[32px] [&::-webkit-scrollbar]:hidden">
-                {LEGACY_STEPS.map(({ screen, src, alt, finish }) => (
-                  <li
-                    key={screen}
-                    className="@container w-[64%] max-w-[300px] shrink-0 snap-start md:w-auto md:max-w-none"
-                  >
-                    <DeviceShell src={src} alt={alt} finish={finish} screen={LEGACY_SCREEN} />
-                  </li>
-                ))}
-              </ol>
-            </>
-          }
-          after={
-            /* Three devices where there were five, held a size larger and
-               carried to the right edge of the page, so the row reads as
-               fewer and closer rather than as the same grid with two seats
-               empty. */
-            <ol className="-mx-5 flex list-none snap-x snap-mandatory scroll-px-5 gap-5 overflow-x-auto px-5 pb-1 [scrollbar-width:none] md:ml-auto md:mr-0 md:grid md:max-w-[960px] md:grid-cols-3 md:gap-4 md:overflow-visible md:px-0 md:pb-0 lg:gap-6 xl:gap-[32px] [&::-webkit-scrollbar]:hidden">
-              {REDESIGN_STEPS.map(({ screen, src, alt, finish }) => (
-                <li
-                  key={screen}
-                  className="@container w-[64%] max-w-[300px] shrink-0 snap-start md:w-auto md:max-w-none"
-                >
-                  <DeviceShell src={src} alt={alt} finish={finish} screen={REDESIGN_SCREEN} />
-                </li>
-              ))}
-            </ol>
-          }
-        />
-
-        {/* The redesign needs no label once it has arrived: the copy comes
-            in from the right, under its own screens and sharing their right
-            edge. */}
-        <ScrollFade once direction="right">
-          <div className="mt-[50px] md:ml-auto md:max-w-[960px] md:text-right">
-            <h3 className="max-w-[18em] text-balance font-serif text-[clamp(26px,3.6vw,40px)] font-normal leading-[1.1] tracking-[-0.01em] md:ml-auto">
-              One page brought the decision back into focus.
-            </h3>
-            <p className={cx(CASE_STUDY_BODY_CLASS, "mt-5 max-w-[760px] text-white/70 md:ml-auto md:max-w-none lg:mt-[24px]")}>
-              The redesign consolidated the journey into a single review-and-apply page,
-              allowing customers to understand the information and act without navigating a
-              multi-step funnel.
-            </p>
-          </div>
+          <RevealSlider
+            autoReveal
+            label="Compare the Pay in 4 flow before and after the redesign"
+            rows={[
+              {
+                /* Both states of the argument share one row, pinned to its
+                   bottom edge, so their closing lines finish on the same line
+                   and the after copy hangs off the screens it describes rather
+                   than costing the page a block of height below them. */
+                align: "end",
+                before: (
+                  <div className={PI4_ROW_PAD}>
+                    <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>Deep Dive</p>
+                    <h2
+                      id="paypal-payin4-title"
+                      className="mt-4 max-w-[1100px] text-balance font-serif text-[clamp(40px,7vw,72px)] font-normal leading-[1.05] tracking-[-0.015em] lg:mt-[18px]"
+                    >
+                      Pay in 4 made the problem impossible to ignore.
+                    </h2>
+                    <p className={cx(CASE_STUDY_BODY_CLASS, "mt-4 max-w-[860px] text-white/80 lg:mt-[18px]")}>
+                      Among the six products, Pay in 4 exposed the clearest version of the shared
+                      problem: customers moved through three application steps before they could
+                      complete their purchase. Each transition added distance between choosing Pay
+                      in 4 and completing the purchase.
+                    </p>
+                  </div>
+                ),
+                after: (
+                  /* The redesign needs no label once it has arrived. The copy
+                     shares the three columns its screens occupy, so it reads as
+                     their caption rather than as the next section, and it is set
+                     right so both edges finish on the last screen's — the one
+                     edge the eye is already resting against when the wipe ends. */
+                  <div className={cx(PI4_ROW_PAD, PI4_ROW_GRID)}>
+                    <div className="md:col-span-3 md:col-start-2 md:text-right">
+                      <h3 className="text-balance font-serif text-[clamp(26px,3.6vw,40px)] font-normal leading-[1.1] tracking-[-0.01em]">
+                        One page brought the decision back into focus.
+                      </h3>
+                      <p className={cx(CASE_STUDY_BODY_CLASS, "mt-5 text-white/70 lg:mt-[24px]")}>
+                        The redesign consolidated the journey into a single review-and-apply page,
+                        allowing customers to understand the information and act without navigating a
+                        multi-step funnel.
+                      </p>
+                    </div>
+                  </div>
+                ),
+              },
+              {
+                before: (
+                  /* Ordered lists, because the screens are a sequence and not a
+                     gallery. */
+                  <ol className={cx(PI4_FILMSTRIP, PI4_ROW_PAD, PI4_ROW_GRID)}>
+                    {LEGACY_STEPS.map(({ screen, src, alt, finish }) => (
+                      <li key={screen} className={PI4_CELL}>
+                        <DeviceShell src={src} alt={alt} finish={finish} screen={PI4_SCREEN} />
+                      </li>
+                    ))}
+                  </ol>
+                ),
+                after: (
+                  /* Columns two through four of the same five, so each of the
+                     three lands exactly where a legacy screen stood and the two
+                     outer seats are the ones that empty. */
+                  <ol className={cx(PI4_FILMSTRIP, PI4_ROW_PAD, PI4_ROW_GRID)}>
+                    {REDESIGN_STEPS.map(({ screen, src, alt, finish }, index) => (
+                      <li key={screen} className={cx(PI4_CELL, index === 0 && "md:col-start-2")}>
+                        <DeviceShell src={src} alt={alt} finish={finish} screen={PI4_SCREEN} />
+                      </li>
+                    ))}
+                  </ol>
+                ),
+              },
+            ]}
+          />
         </ScrollFade>
 
         {/* The decisions beside the flow they produced: the redesigned run
@@ -697,11 +700,6 @@ export default function PayPal1CaseStudy() {
           <p className="max-w-[16.5em] font-serif text-[clamp(28px,5vw,48px)] font-normal leading-[1.15] tracking-[-0.01em] text-white/90">
             <span className="inline-block">One product proved the pattern.</span>{" "}
             <span className="inline-block">Six products demonstrated its value.</span>
-          </p>
-          <p className={cx(CASE_STUDY_BODY_CLASS, "mt-6 lg:mt-[32px] max-w-[860px] text-white/80")}>
-            Show the other five products as a compact visual constellation&mdash;not five
-            additional mini case studies. Their purpose in the main narrative is to prove
-            scale.
           </p>
         </div>
       </ScrollFade>
@@ -958,13 +956,14 @@ export default function PayPal1CaseStudy() {
               ))}
               {/* Four across, the total takes the last column so it reads under
                   PayPal Mastercard, level with the cards; two across, it drops
-                  to the column under Pay in 3. The height is a floor rather
-                  than a fixture, so the narrower columns below 1600px can wrap
-                  the label without pushing the figure out of the row. */}
-              <div className="flex w-full flex-col items-start gap-3 text-white xl:col-start-4 xl:min-h-[144px] xl:justify-between xl:gap-0">
-                <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px] tracking-[-0.32px]">
-                  Total annual iRev increase
-                </p>
+                  to the column under Pay in 3. Every cell hangs off the row's
+                  bottom edge, so this gap is what lands the label on the same
+                  line as the product names beside it: their figures stand 64px
+                  tall and sit 14px below their label, this one stands 72px and
+                  so needs 6px. A label that wraps in a narrow column then grows
+                  upward off that line instead of pushing the figure down. */}
+              <div className="flex w-full flex-col items-start gap-3 text-white xl:col-start-4 xl:gap-[6px]">
+                <p className={CASE_STUDY_BODY_CLASS}>Total annual iRev increase</p>
                 <CounterNumber
                   to={TOTAL_IREV_INCREASE}
                   prefix=""
@@ -985,7 +984,7 @@ export default function PayPal1CaseStudy() {
       <div className="px-5 lg:px-[24px]">
         <SupportingAppendix
           id="behind-the-work"
-          title="Behind the work"
+          title="Behind the Work"
           summary="How the work ran: AI-assisted discovery, cross-functional review, and six-product delivery"
         >
           <p className="text-white/70">

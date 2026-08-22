@@ -68,7 +68,7 @@ export default function PayPalDePage() {
         <SupportingAppendix
           id="behind-the-work"
           className="mt-[50px]"
-          title="Behind the work"
+          title="Behind the Work"
           summary="How the work ran: AI-assisted workflow, iteration history, and testing"
         >
           <p className="text-white/70">
