@@ -192,7 +192,7 @@ export default function PatientPortalPage() {
               <p className="text-[18px] font-light leading-none text-white/60">Things I Did:</p>
               <ul className="text-[clamp(18px,2.2vw,22px)] font-light leading-[1.4] list-disc pl-6 lg:pl-[36px] space-y-4 sm:space-y-5 lg:space-y-[24px]">
                 <li>
-                  After thoroughly researching the industry, key personas, and their pain points, I used an AI-assisted, context-engineered workflow to accelerate the design process from discovery to a working appointment-booking prototype.
+                  After thoroughly researching the industry, key personas, and their pain points, I used an AI-assisted, context-engineered workflow to accelerate the design process from discovery to a working <span className="whitespace-nowrap">appointment-booking prototype.</span>
                 </li>
                 <li>
                   Drawing on my research and an AI-assisted design-strategy brief, I combined the Next Best Action, Care Journey, and Guided Concierge concepts into a cleaner, more efficient dashboard that removes unnecessary content and prioritizes patients&rsquo; needs based on their key friction points and jobs to be done.

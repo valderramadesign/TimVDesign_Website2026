@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Logo from "@/components/ui/logo";
 
@@ -9,6 +9,23 @@ const barClasses =
 
 export default function CaseStudyTopBar() {
   const [visible, setVisible] = useState(true);
+  const bar = useRef<HTMLDivElement | null>(null);
+
+  /* Published so sections that pin under the bar can say where they land
+     without hard-coding a height that only this file knows. */
+  useEffect(() => {
+    const node = bar.current;
+    if (!node) return;
+    const publish = () =>
+      document.documentElement.style.setProperty(
+        "--case-study-bar-h",
+        `${node.offsetHeight}px`
+      );
+    publish();
+    const observer = new ResizeObserver(publish);
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const target = document.getElementById("next-case-study-section");
@@ -46,6 +63,7 @@ export default function CaseStudyTopBar() {
       </div>
       {/* Fixed bar: stays visible while page scrolls behind it */}
       <div
+        ref={bar}
         className={`fixed top-0 left-0 right-0 z-50 bg-black transition-opacity duration-500 ease-out ${barClasses}`}
         style={{ opacity: visible ? 1 : 0, pointerEvents: visible ? "auto" : "none" }}
       >

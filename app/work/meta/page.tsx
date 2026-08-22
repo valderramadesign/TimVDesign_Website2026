@@ -237,18 +237,21 @@ export default function MetaPage() {
       </section>
 
       <section className="px-5 lg:px-8 pb-24 lg:pb-[178px] max-w-[1600px] mx-auto w-full -mt-5">
-        <p className="font-light text-[18px] mb-8" style={{ fontFamily: leagueSpartan }}>Impact targets</p>
-
-        {/* Column headers */}
-        <div className="grid grid-cols-[110px_1fr] lg:grid-cols-[280px_1fr] gap-4 lg:gap-12 mb-6">
-          <div />
+        {/* The section title sits on the scale's baseline, so one line
+            reads across the top of the chart instead of two stacked ones.
+            Same header as the PayPal chart, so the two read as one system. */}
+        <div className="grid grid-cols-[110px_1fr] items-baseline gap-x-4 mb-[12px] lg:grid-cols-[280px_1fr] lg:gap-x-12">
+          <p className="font-light text-sm lg:text-[18px]" style={{ fontFamily: leagueSpartan }}>Impact</p>
           <div className="flex justify-between">
-            <p className="font-[family-name:var(--font-league-spartan)] font-bold text-base lg:text-[24px] text-white/60 tracking-[-0.24px]">Baseline</p>
-            <p className="font-[family-name:var(--font-league-spartan)] font-bold text-base lg:text-[24px] text-white/60 tracking-[-0.24px]">H1 2025 target</p>
+            <p className="font-[family-name:var(--font-league-spartan)] text-base lg:text-[24px] font-light leading-[1.5] lg:leading-[1.4] text-white/60">Baseline</p>
+            <p className="font-[family-name:var(--font-league-spartan)] text-base lg:text-[24px] font-light leading-[1.5] lg:leading-[1.4] text-white/60">H1 2026 target</p>
           </div>
         </div>
 
-        <div className="space-y-10 lg:space-y-14">
+        {/* Wider than the PayPal chart's rhythm: every row here carries a
+            sublabel under its bar, which needs room of its own before the
+            next label starts. */}
+        <div className="space-y-16 lg:space-y-20">
           <AnimatedImpactRow
             label="Expand eligibility"
             todayPct={27}
@@ -273,8 +276,8 @@ export default function MetaPage() {
             futureLabel="97%"
             sublabel="Target: +58 percentage points"
           />
-          <div className="grid grid-cols-[110px_1fr] lg:grid-cols-[280px_1fr] gap-4 lg:gap-12 items-center pt-4">
-            <h3 className="font-[family-name:var(--font-league-spartan)] text-[clamp(20px,5vw,40px)] lg:text-[40px] leading-[1.1] font-normal">
+          <div className="grid grid-cols-[110px_1fr] lg:grid-cols-[280px_1fr] gap-4 lg:gap-12 items-center">
+            <h3 className="font-serif text-[clamp(18px,4.5vw,32px)] lg:text-[clamp(24px,2.6vw,32px)] font-normal leading-[1.15] tracking-[-0.01em]">
               Projected savings
             </h3>
             <p className="font-serif text-[clamp(40px,10vw,96px)] lg:text-[clamp(64px,8vw,96px)] leading-[1] tracking-[-0.96px]">

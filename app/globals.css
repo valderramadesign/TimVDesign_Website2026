@@ -26,6 +26,23 @@ html, body {
   overflow-x: clip;
 }
 
+/*
+ * Running copy never closes on a lone word.
+ *
+ * `pretty` lets the browser rework the last few lines of a text block, pulling
+ * a word down so the closing line always has company. It is a layout rule
+ * rather than a set of hand-tuned widths, so it holds at every width — the
+ * ones between the breakpoints included.
+ *
+ * Deliberate breaks still win: a hard newline under `white-space: pre-line`
+ * and an explicit <br> are not break opportunities, so the two-line chart
+ * labels keep the shape they were written with. Headings are left alone: a
+ * title is a label, and a label is allowed to hang its last word.
+ */
+p, li, blockquote, dd, dt, figcaption {
+  text-wrap: pretty;
+}
+
 /* Horizontal strips that state their position with their own indicator, so the
    native scrollbar would only sit under the content repeating it. */
 .scrollbar-none {

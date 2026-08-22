@@ -1,26 +1,36 @@
-import Image from "next/image";
+import type { CSSProperties } from "react";
+import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import NextCaseStudyTicker from "@/components/ui/next-case-study-ticker";
 import CaseStudyTopBar from "@/components/ui/case-study-top-bar";
-import VideoOverlay from "@/components/ui/video-overlay";
+import BeforeAfterSwap from "@/components/ui/before-after-swap";
+import Pi4Walkthrough from "@/components/ui/pi4-walkthrough";
 import ScrollFade from "@/components/ui/scroll-fade";
-import HeroVideo from "@/components/ui/hero-video";
 import CounterNumber from "@/components/ui/counter-number";
 import { AnimatedImpactRow } from "@/components/ui/animated-impact-row";
-import ImageSpotlight from "@/components/ui/image-spotlight";
+import quantumLeap from "@/components/images/PayPalQuantumLeap/PayPalQuantumLeap.png";
 import workflow from "@/components/images/WorkflowDiagram.png";
 import circleLg from "@/components/images/paypal1-circle-lg.png";
-import prdImage from "@/components/images/PRD.png";
-import productMetricsImage from "@/components/images/ProductMetrics.png";
-import folderStructureImage from "@/components/images/FolderStructure.png";
-import squareBottomLeft from "@/components/images/SquareBottomLeft.png";
+import wireframePayIn4 from "@/components/images/PayPalQuantumLeap/Wireframes/Pay in 4 - Wireframe.png";
+import wireframePayMonthly from "@/components/images/PayPalQuantumLeap/Wireframes/Pay Monthly - Wireframe.png";
+import wireframeCreditUS from "@/components/images/PayPalQuantumLeap/Wireframes/PayPal Credit US - Wireframe.png";
+import wireframeMastercardUS from "@/components/images/PayPalQuantumLeap/Wireframes/Mastercard US - Wireframe.png";
+import wireframePayIn3 from "@/components/images/PayPalQuantumLeap/Wireframes/Pay in 3 - Wireframe.png";
+import wireframeCreditUK from "@/components/images/PayPalQuantumLeap/Wireframes/PayPal Credit UK - Wireframe.png";
+import legacyStep1 from "@/components/images/PayPalQuantumLeap/Pay in 4 - Old 3 pager/Pi4_3-1.png";
+import legacyStep2 from "@/components/images/PayPalQuantumLeap/Pay in 4 - Old 3 pager/Pi4_3-2.png";
+import legacyStep3 from "@/components/images/PayPalQuantumLeap/Pay in 4 - Old 3 pager/Pi4_3-3.png";
+import legacyStep4 from "@/components/images/PayPalQuantumLeap/Pay in 4 - Old 3 pager/Pi4_3-4.png";
+import legacyStep5 from "@/components/images/PayPalQuantumLeap/Pay in 4 - Old 3 pager/Pi4_3-5.png";
+import redesignStep1 from "@/components/images/PayPalQuantumLeap/Pay in 4 - New 1 pager/Pi4_1-1.png";
+import redesignStep2 from "@/components/images/PayPalQuantumLeap/Pay in 4 - New 1 pager/Pi4_1-2.png";
+import redesignStep3 from "@/components/images/PayPalQuantumLeap/Pay in 4 - New 1 pager/Pi4_1-3.png";
 import flow1 from "@/components/images/1StepFlow_1.png";
 import flow2 from "@/components/images/1StepFlow_2.png";
 import flow3 from "@/components/images/1StepFlow_3.png";
 import payMonthlyScreens from "@/components/images/PayMonthlyScreens.png";
 import payPalCreditScreens from "@/components/images/PayPalCreditScreens.png";
 import payPalMastercardScreens from "@/components/images/PayPalMastercardScreens.png";
-import BackToHomeButton from "@/components/ui/back-to-home-button";
 import { CTA_PILL_SIZE } from "@/components/ui/cta-pill";
 import payPalCreditUKScreens from "@/components/images/PayPalCreditUKScreens.png";
 import payIn3UKScreens from "@/components/images/PayIn3UKScreens.png";
@@ -31,17 +41,19 @@ import cardArtPayPalMastercard from "@/components/images/PayPalMastercard_CardAr
 import cardArtPayIn3 from "@/components/images/PayIn3_CardArt.png";
 import {
   CaseStudyHeader,
-  OutcomeMetrics,
-  ProblemAndStakes,
   ProjectFacts,
-  outcomeMetricsFromResults,
+  SupportingAppendix,
+  CASE_STUDY_BODY_CLASS,
+  CASE_STUDY_CAPTION_CLASS,
+  CASE_STUDY_LABEL_TIGHT_CLASS,
+  CASE_STUDY_STACK_CLASS,
+  CASE_STUDY_SUPPORTING_CLASS,
+  cx,
 } from "@/components/case-study";
-import { PROJECTS_BY_ID, caseStudyResults, previewOf } from "@/lib/content";
+import { PROJECTS_BY_ID, previewOf } from "@/lib/content";
 import { caseStudyMetadata } from "@/lib/seo";
 
 const project = PROJECTS_BY_ID.paypal;
-const results = caseStudyResults(project);
-const thingsIDid = outcomeMetricsFromResults(results, "achieved");
 const nextMeta = PROJECTS_BY_ID.meta;
 const nextMetaPreview = previewOf(nextMeta);
 const nextSolo = PROJECTS_BY_ID.solo;
@@ -83,6 +95,34 @@ export const metadata = caseStudyMetadata(
 
 const leagueSpartan = "var(--font-league-spartan)";
 
+/* ── Section rhythm ──────────────────────────────────────────────────────
+   One value for the air between the page's major beats, so they can never
+   drift apart: 200px at the width this was drawn for, stepping down twice on
+   the way to a phone, where 200px of nothing is just scrolling. */
+const SECTION_GAP = "mt-24 md:mt-[140px] lg:mt-[200px]";
+
+/* ── The scope ───────────────────────────────────────────────────────────
+   Scope facts, not outcomes: authored flat and rendered without counters so
+   they read as the brief rather than as results. */
+const SCOPE_FACTS = [
+  { value: "6", label: "Credit products" },
+  { value: "2", label: "Markets" },
+  { value: "1", label: "Checkout framework" },
+  { value: "1.5", label: "Months" },
+];
+
+/* Six implementations, not six products. PayPal Credit is authored twice
+   because it shipped into two markets, each with its own funnel and its own
+   regulatory constraints; collapsing them to five would hide half the work. */
+const CREDIT_PORTFOLIO = [
+  { art: wireframePayIn4, name: "Pay in 4", market: "United States" },
+  { art: wireframePayMonthly, name: "Pay Monthly", market: "United States" },
+  { art: wireframeCreditUS, name: "PayPal Credit", market: "United States" },
+  { art: wireframeMastercardUS, name: "PayPal Mastercard", market: "United States" },
+  { art: wireframePayIn3, name: "Pay in 3", market: "United Kingdom" },
+  { art: wireframeCreditUK, name: "PayPal Credit", market: "United Kingdom" },
+];
+
 /* ── Overall Impact ──────────────────────────────────────────────────────
    The two rows are authored as data and rendered through one shared column
    template, so a UK card always sits under the US card it belongs with. The
@@ -101,14 +141,15 @@ const UK_CREDIT_IMPACT = [
 ];
 
 /*
- * One template for both rows. A card needs ~340px and four of them plus the
- * 60px gutters need the full 1526px content width, so the four-up tier waits
- * for a 1600px viewport; under that the row folds to two columns rather than
- * stranding a single card on a line of its own. The 732px cap keeps those two
+ * One template for both rows, so a UK card always sits under the US card it
+ * belongs with. The widest card is "PayPal Mastercard" at 229px, so four of
+ * them plus the 60px gutters need 1096px of content and clear a 1280px
+ * viewport with room over; under that the row folds to two columns rather than
+ * squeezing the product names into wraps. The 732px cap keeps those two
  * columns at their design width instead of stretching them across the page.
  */
 const IMPACT_GRID =
-  "grid w-full grid-cols-1 items-end gap-x-[60px] gap-y-10 md:max-w-[732px] md:grid-cols-2 lg:gap-y-[64px] min-[1600px]:max-w-none min-[1600px]:grid-cols-4";
+  "grid w-full grid-cols-1 items-end gap-x-[60px] gap-y-10 md:max-w-[732px] md:grid-cols-2 lg:gap-y-[64px] xl:max-w-none xl:grid-cols-4";
 
 function ImpactCard({
   art,
@@ -153,154 +194,466 @@ function ImpactCard({
   );
 }
 
+/* ── The Pay in 4 deep dive ──────────────────────────────────────────────
+   Five finishes from the current lineup, one per screen, so the row reads
+   as five devices rather than five crops of the same one. The last is the
+   Pro's Cosmic Orange rather than a black body, which would have dissolved
+   into the page and read as a missing frame. The rail is a gradient
+   because a flat fill reads as paper rather than anodised aluminium, and
+   each button tone is that colour pulled down so the hardware sits in the
+   frame instead of on top of it. */
+const IPHONE_FINISHES = {
+  white: {
+    rail: "linear-gradient(155deg,#FBFAF7 0%,#E7E4DD 30%,#C6C2B8 55%,#F5F3ED 78%,#D8D4CA 100%)",
+    button: "#C4C0B6",
+  },
+  lavender: {
+    rail: "linear-gradient(155deg,#F0EBF8 0%,#D3C7E9 30%,#AB9CCB 55%,#E5DDF3 78%,#C2B5DD 100%)",
+    button: "#A899C9",
+  },
+  mistBlue: {
+    rail: "linear-gradient(155deg,#EBF2F8 0%,#C5D6E6 30%,#9AB1C7 55%,#DDE9F2 78%,#B4C8D9 100%)",
+    button: "#96AEC5",
+  },
+  sage: {
+    rail: "linear-gradient(155deg,#EDF2E9 0%,#C9D6C2 30%,#9BAD93 55%,#DFE8DA 78%,#B6C5AE 100%)",
+    button: "#97A98F",
+  },
+  cosmicOrange: {
+    rail: "linear-gradient(155deg,#F7B283 0%,#E5813E 30%,#B85D1D 55%,#F1A268 78%,#D2702F 100%)",
+    button: "#C96827",
+  },
+} as const;
+
+/* The legacy flow in the order a customer met it: two checkout screens with
+   the three application steps caught between them. */
+const LEGACY_STEPS = [
+  {
+    screen: 1,
+    src: legacyStep1,
+    finish: IPHONE_FINISHES.white,
+    alt: "Legacy Pay in 4, screen one: the PayPal checkout wallet, with Pay in 4 chosen under Pay Later.",
+  },
+  {
+    screen: 2,
+    src: legacyStep2,
+    finish: IPHONE_FINISHES.lavender,
+    alt: "Legacy Pay in 4, screen two: the offer, showing four payments of $71.25 and the terms attached to them.",
+  },
+  {
+    screen: 3,
+    src: legacyStep3,
+    finish: IPHONE_FINISHES.mistBlue,
+    alt: "Legacy Pay in 4, screen three: a Review your info step for billing address and phone number, ending in Agree and Apply.",
+  },
+  {
+    screen: 4,
+    src: legacyStep4,
+    finish: IPHONE_FINISHES.sage,
+    alt: "Legacy Pay in 4, screen four: an autopay step for choosing a payment method and accepting the loan agreement.",
+  },
+  {
+    screen: 5,
+    src: legacyStep5,
+    finish: IPHONE_FINISHES.cosmicOrange,
+    alt: "Legacy Pay in 4, screen five: checkout again, with Pay in 4 approved and a Complete Purchase button.",
+  },
+];
+
+/* Each set was captured at its own canvas size, and the redesigned three do
+   not even agree with each other. The screen is pinned to one ratio per row
+   and the captures fill it, which costs about a pixel off the outer edge of
+   the widest one and buys every device in a row the same height. The fill
+   behind them is the colour those captures end on, so no seam can show. */
+const LEGACY_SCREEN = { aspect: "1500 / 3408", fill: "#FFFFFF" };
+const REDESIGN_SCREEN = { aspect: "1572 / 3480", fill: "#F9F9F9" };
+
+/* The same journey after the consolidation: checkout, the one page that
+   replaced the funnel, and checkout again with the decision already made.
+   White sits in the middle because the middle screen is the argument. */
+const REDESIGN_STEPS = [
+  {
+    screen: 1,
+    src: redesignStep1,
+    finish: IPHONE_FINISHES.mistBlue,
+    alt: "Redesigned Pay in 4, screen one: checkout with Pay in 4 pre-approved, showing four payments of $52.50 and their due dates in place.",
+  },
+  {
+    screen: 2,
+    src: redesignStep2,
+    finish: IPHONE_FINISHES.white,
+    alt: "Redesigned Pay in 4, screen two: a single Confirm a few details to apply page holding billing address, autopay, date of birth and the agreements, ending in Agree and Apply.",
+  },
+  {
+    screen: 3,
+    src: redesignStep3,
+    finish: IPHONE_FINISHES.cosmicOrange,
+    alt: "Redesigned Pay in 4, screen three: checkout with Pay in 4 approved, a You are approved confirmation, and a Pay $52.50 Today button.",
+  },
+];
+
+/* What changed, in the order it had to change: collapse the journey, then
+   clarify what sits inside it, then make the result travel to the others. */
+const DESIGN_DECISIONS = [
+  {
+    number: "01",
+    title: "Consolidate",
+    body: "Bring the three application steps into one review-and-apply moment.",
+  },
+  {
+    number: "02",
+    title: "Clarify",
+    body: "Present customer details, autopay information, and agreements together before commitment.",
+  },
+  {
+    number: "03",
+    title: "Unify",
+    body: "Create content and interaction patterns that could be reused across products and adapted for US and UK requirements.",
+  },
+];
+
+/* The phone. Rail, bezel and screen are all sized in container-query units,
+   so the device holds its proportions at every column width and the corner
+   radii keep meeting the radius already baked into the screenshots. The
+   hardware is decorative; the screen is the content, and it carries the alt
+   text. */
+function DeviceShell({
+  src,
+  alt,
+  finish,
+  screen,
+}: {
+  src: StaticImageData;
+  alt: string;
+  finish: { rail: string; button: string };
+  screen: { aspect: string; fill: string };
+}) {
+  const rail = { background: finish.button };
+  const railEdge =
+    "absolute w-[1cqw] rounded-[0.4cqw]";
+
+  return (
+    <div
+      className="relative rounded-[12.4cqw] p-[1.6cqw]"
+      style={{ backgroundImage: finish.rail }}
+    >
+      <span aria-hidden="true" className={cx(railEdge, "left-[-0.5cqw] top-[21.5%] h-[3.4%]")} style={rail} />
+      <span aria-hidden="true" className={cx(railEdge, "left-[-0.5cqw] top-[27.8%] h-[5.6%]")} style={rail} />
+      <span aria-hidden="true" className={cx(railEdge, "left-[-0.5cqw] top-[35.2%] h-[5.6%]")} style={rail} />
+      <span aria-hidden="true" className={cx(railEdge, "right-[-0.5cqw] top-[26.5%] h-[9%]")} style={rail} />
+
+      <div className="rounded-[10.8cqw] bg-[#08080A] p-[1.8cqw]">
+        <div
+          className="relative w-full overflow-hidden rounded-[8cqw]"
+          style={{ aspectRatio: screen.aspect, background: screen.fill }}
+        >
+          <Image src={src} alt={alt} className="absolute inset-0 h-full w-full object-cover object-center" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function PayPal1CaseStudy() {
   return (
     <main className="bg-black text-white">
       <CaseStudyTopBar />
-      {/* Top: nav, title, specs (above hero image) */}
-      <section className="w-full bg-black px-5 pb-5 lg:px-[24px] lg:pb-[24px]">
-        <div className="flex flex-col gap-10 lg:gap-[62px]">
-          {/* Title block */}
-          <CaseStudyHeader
-            project={project}
-            as="div"
-            className="lg:w-[1335px] max-w-full"
-            style={{ fontFamily: leagueSpartan }}
-            reveal="left"
-            revealOnce
-          />
 
-          {/* Project specs */}
-          <ProjectFacts
-            project={project}
-            style={{ fontFamily: leagueSpartan }}
-            factClassName={{
-              role: "lg:w-[861px]",
-              platforms: "w-full sm:w-[486px] lg:w-[260px]",
-            }}
-            leadReveal="left"
-            groupReveal="right"
-            revealOnce
+      {/* Opening: eyebrow, headline, and the one fact that frames the work.
+          Timeline and platforms stay on the record; the role states the
+          duration, so the header does not repeat it. */}
+      <div
+        className="px-5 lg:px-[24px] pt-10 lg:pt-[78px]"
+        style={{ fontFamily: leagueSpartan }}
+      >
+        <CaseStudyHeader project={project} />
+        <ProjectFacts
+          project={project}
+          facts={[]}
+          className="mt-6 lg:mt-[27px]"
+          factClassName={{ role: "lg:w-[861px]" }}
+        />
+      </div>
+
+      {/* Contextual hero. The photograph carries a dark left third, so the
+          scrim only has to deepen what is already there: bottom-up on mobile,
+          where the statement crosses the frame, and left-to-right on desktop,
+          where it sits in that dark column. */}
+      <section
+        aria-labelledby="paypal-hero-title"
+        className="px-5 lg:px-[24px] mt-6 lg:mt-[27px]"
+        style={{ fontFamily: leagueSpartan }}
+      >
+        <h2 id="paypal-hero-title" className="sr-only">
+          Why PayPal credit applications needed redesign
+        </h2>
+        <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-white/15 lg:aspect-[16/9] lg:rounded-[30px]">
+          <Image
+            src={quantumLeap}
+            alt="A customer reviewing PayPal Pay in 4 on a phone beside an ecommerce checkout on a laptop."
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, calc(100vw - 48px)"
+            /* The tall mobile crop pushes right to keep the man, the phone and
+               the laptop in frame; the 16:9 desktop crop needs no bias. */
+            className="object-cover object-[72%_center] lg:object-center"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent lg:bg-gradient-to-r lg:from-black/85 lg:via-black/30 lg:to-transparent" />
+          <p
+            className={cx(
+              CASE_STUDY_BODY_CLASS,
+              "absolute bottom-0 left-0 right-0 p-6 text-white lg:right-auto lg:max-w-[560px] lg:p-12",
+            )}
+          >
+            A credit card takes seconds. Applying for PayPal credit interrupted the purchase
+            every time. The project began with one question: how much of that friction was
+            actually necessary?
+          </p>
         </div>
       </section>
 
-      {/* Hero video */}
-      <section className="relative w-full">
-        <div className="relative aspect-[16/10] lg:aspect-auto lg:h-[1034px] w-full overflow-hidden">
-          <HeroVideo src="/videos/HeroPayPal_PayIn4.mp4" />
-        </div>
+      {/* The scope. The brief arrived as six redesigns; laying the products
+          side by side is what turned it into one problem, so the section
+          moves from the count, to the portfolio, to the pattern they share. */}
+      <section
+        aria-labelledby="paypal-scope-title"
+        className={cx("px-5 lg:px-[24px]", SECTION_GAP)}
+        style={{ fontFamily: leagueSpartan }}
+      >
+        <ScrollFade once>
+          <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>The scope</p>
+          <h2
+            id="paypal-scope-title"
+            className="mt-4 lg:mt-[18px] max-w-[1100px] text-balance font-serif text-[clamp(40px,7vw,72px)] font-normal leading-[1.05] tracking-[-0.015em]"
+          >
+            The assignment looked like six separate redesigns.
+          </h2>
+          <p className={cx(CASE_STUDY_BODY_CLASS, "mt-6 lg:mt-[32px] max-w-[860px] text-white/80")}>
+            Six products had evolved across two markets, each with its own funnel, success
+            metrics, and regulatory constraints. Mapping them side by side revealed that the
+            assignment was not six separate problems. It was one repeated interruption at
+            checkout.
+          </p>
+        </ScrollFade>
+
+        {/* Scope facts. The rule sits above each figure rather than under it,
+            so the strip reads as a spec sheet and not as an outcome panel. */}
+        <ScrollFade once>
+          <dl className="mt-[50px] grid grid-cols-2 gap-x-6 lg:grid-cols-4 lg:gap-x-[60px]">
+            {SCOPE_FACTS.map((fact) => (
+              <div
+                key={fact.label}
+                className="border-t border-white/15 pt-5 pb-8 lg:pt-[28px] lg:pb-0"
+              >
+                <dt className={cx(CASE_STUDY_SUPPORTING_CLASS, "text-white/60")}>
+                  {fact.label}
+                </dt>
+                <dd className="mt-3 lg:mt-[18px] font-serif text-[clamp(40px,6vw,64px)] font-normal leading-none tracking-[-0.01em]">
+                  {fact.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </ScrollFade>
+
+        {/* The portfolio. The screens are portrait, so six across reads fine
+            even in narrow columns; below that it folds to three, then two. */}
+        <ScrollFade once direction="right">
+          <ul className="mt-16 lg:mt-[96px] grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6 lg:gap-5">
+            {CREDIT_PORTFOLIO.map((item) => (
+              <li
+                key={`${item.name}-${item.market}`}
+                className="flex flex-col rounded-2xl border border-white/15 bg-white/[0.03] p-3"
+              >
+                <div className="relative aspect-[880/2212] w-full">
+                  <Image
+                    src={item.art}
+                    alt=""
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 768px) 45vw, (max-width: 1024px) 30vw, 15vw"
+                  />
+                </div>
+                <p className="mt-4 lg:mt-[20px] text-base lg:text-[20px] font-light leading-snug tracking-[-0.01em]">
+                  {item.name}
+                </p>
+                {/* Pushed to the foot of the card so the market line stays on
+                    one baseline when a longer product name wraps. */}
+                <p className={cx(CASE_STUDY_SUPPORTING_CLASS, "mt-auto pt-2 text-white/60")}>
+                  {item.market}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </ScrollFade>
+
+        {/* The turn. Three beats, so each sentence is an inline-block and can
+            never split across a line; the measure is in em so it tracks the
+            clamped size, holding two beats on the first line on wide screens
+            and folding to one beat per line on narrow ones. */}
+        <ScrollFade once>
+          <p className="mt-[50px] max-w-[16.5em] font-serif text-[clamp(28px,5vw,48px)] font-normal leading-[1.15] tracking-[-0.01em] text-white/90">
+            <span className="inline-block">Different products.</span>{" "}
+            <span className="inline-block">Different constraints.</span>{" "}
+            <span className="inline-block">The same interruption.</span>
+          </p>
+        </ScrollFade>
       </section>
 
-      {/* Body */}
-      <section className="relative w-full px-5 lg:px-[37px] pt-8 lg:pt-[36px]">
-        {/* Introduction */}
-        <ProblemAndStakes
-          as="div"
-          className="max-w-[1563px]"
-          style={{ fontFamily: leagueSpartan }}
-          reveal="left"
-          title="Problem"
-          problem={project.description}
+      {/* ── The Pay in 4 deep dive ──────────────────────────────────────
+          One product carrying the whole argument. The chapter runs as two
+          acts with the consolidation set between them, so the change reads
+          as a sequence collapsing rather than as a claim about a redesign.
+          Placeholders stand in for the screens until the real ones land. */}
+      <section
+        aria-labelledby="paypal-payin4-title"
+        className={cx("px-5 lg:px-[24px]", SECTION_GAP)}
+        style={{ fontFamily: leagueSpartan }}
+      >
+        <ScrollFade once>
+          <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>Deep dive</p>
+          <h2
+            id="paypal-payin4-title"
+            className="mt-4 lg:mt-[18px] max-w-[1100px] text-balance font-serif text-[clamp(40px,7vw,72px)] font-normal leading-[1.05] tracking-[-0.015em]"
+          >
+            Pay in 4 made the problem impossible to ignore.
+          </h2>
+        </ScrollFade>
+
+        {/* The comparison plays as one exchange rather than two exhibits.
+            Both rows are ordered lists, because the screens are a sequence
+            and not a gallery. The sentence about the three steps travels
+            with the screens it describes: it parks ten pixels under the top
+            bar and dissolves along with them, so the claim is still on the
+            page as the evidence for it is replaced. Snap filmstrips below
+            md, where five across would shrink past reading. */}
+        <BeforeAfterSwap
+          className="mt-6 lg:mt-[32px]"
+          pinTop="calc(var(--case-study-bar-h, 82px) + 10px)"
+          before={
+            <>
+              <p className={cx(CASE_STUDY_BODY_CLASS, "max-w-[860px] text-white/80")}>
+                Among the six products, Pay in 4 exposed the clearest version of the shared
+                problem: customers moved through three application steps before they could
+                complete their purchase. Each transition added distance between choosing Pay
+                in 4 and completing the purchase.
+              </p>
+              <ol className="mt-[50px] -mx-5 flex list-none snap-x snap-mandatory scroll-px-5 gap-5 overflow-x-auto px-5 pb-1 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-5 md:gap-4 md:overflow-visible md:px-0 md:pb-0 lg:gap-6 xl:gap-[32px] [&::-webkit-scrollbar]:hidden">
+                {LEGACY_STEPS.map(({ screen, src, alt, finish }) => (
+                  <li
+                    key={screen}
+                    className="@container w-[64%] max-w-[300px] shrink-0 snap-start md:w-auto md:max-w-none"
+                  >
+                    <DeviceShell src={src} alt={alt} finish={finish} screen={LEGACY_SCREEN} />
+                  </li>
+                ))}
+              </ol>
+            </>
+          }
+          after={
+            /* Three devices where there were five, held a size larger and
+               carried to the right edge of the page, so the row reads as
+               fewer and closer rather than as the same grid with two seats
+               empty. */
+            <ol className="-mx-5 flex list-none snap-x snap-mandatory scroll-px-5 gap-5 overflow-x-auto px-5 pb-1 [scrollbar-width:none] md:ml-auto md:mr-0 md:grid md:max-w-[960px] md:grid-cols-3 md:gap-4 md:overflow-visible md:px-0 md:pb-0 lg:gap-6 xl:gap-[32px] [&::-webkit-scrollbar]:hidden">
+              {REDESIGN_STEPS.map(({ screen, src, alt, finish }) => (
+                <li
+                  key={screen}
+                  className="@container w-[64%] max-w-[300px] shrink-0 snap-start md:w-auto md:max-w-none"
+                >
+                  <DeviceShell src={src} alt={alt} finish={finish} screen={REDESIGN_SCREEN} />
+                </li>
+              ))}
+            </ol>
+          }
         />
 
-        {/* Requirements & discovery */}
-        <div className="mt-24 lg:mt-[200px] flex flex-col items-center gap-10 lg:flex-row lg:items-center lg:gap-[60px]">
-          {/* PRD artifact */}
-          <ScrollFade
-            direction="left"
-            className="relative aspect-square w-full max-w-[360px] shrink-0 overflow-hidden rounded-full lg:w-[19vw] lg:max-w-[386px]"
-          >
-            <Image
-              src={prdImage}
-              alt="Product requirements document"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 360px, 386px"
-            />
-          </ScrollFade>
-
-          {/* Copy */}
-          <ScrollFade
-            direction="left"
-            className="flex w-full flex-col gap-[14px] lg:w-[29vw] lg:max-w-[538px]"
-            style={{ fontFamily: leagueSpartan }}
-          >
-            <p className="text-sm lg:text-[18px] font-light text-white/60">The Vision</p>
-            <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
-              Simplify loan applications for a frictionless checkout.
+        {/* The redesign needs no label once it has arrived: the copy comes
+            in from the right, under its own screens and sharing their right
+            edge. */}
+        <ScrollFade once direction="right">
+          <div className="mt-[50px] md:ml-auto md:max-w-[960px] md:text-right">
+            <h3 className="max-w-[18em] text-balance font-serif text-[clamp(26px,3.6vw,40px)] font-normal leading-[1.1] tracking-[-0.01em] md:ml-auto">
+              One page brought the decision back into focus.
+            </h3>
+            <p className={cx(CASE_STUDY_BODY_CLASS, "mt-5 max-w-[760px] text-white/70 md:ml-auto md:max-w-none lg:mt-[24px]")}>
+              The redesign consolidated the journey into a single review-and-apply page,
+              allowing customers to understand the information and act without navigating a
+              multi-step funnel.
             </p>
-          </ScrollFade>
-
-          {/* Product metrics */}
-          <ScrollFade
-            direction="right"
-            className="relative aspect-square w-full max-w-[360px] shrink-0 overflow-hidden rounded-full lg:w-[19vw] lg:max-w-[386px]"
-          >
-            <Image
-              src={productMetricsImage}
-              alt="Product success metrics and funnel"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 360px, 386px"
-            />
-          </ScrollFade>
-
-          {/* Folder structure */}
-          <ScrollFade
-            direction="right"
-            className="relative aspect-square w-full max-w-[360px] shrink-0 overflow-hidden rounded-full lg:w-[19vw] lg:max-w-[386px]"
-          >
-            <Image
-              src={folderStructureImage}
-              alt="Project folder structure"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 360px, 386px"
-            />
-          </ScrollFade>
-        </div>
-
-        {/* Workflow + commentary */}
-        <div className="mt-24 lg:mt-[200px] flex flex-col lg:flex-row items-start lg:items-end lg:justify-end gap-10 lg:gap-[71px]">
-          <div className="relative aspect-[1246/895] w-full lg:w-[1240px] lg:max-w-full">
-            <Image
-              src={workflow}
-              alt="Workflow diagram"
-              fill
-              className="object-contain object-left"
-            />
           </div>
-          <ScrollFade direction="right">
-            <div
-              className="flex w-full lg:w-[339px] flex-col gap-[14px]"
-              style={{ fontFamily: leagueSpartan }}
-            >
-              <p className="text-sm lg:text-[18px] font-light text-white/60">
-                Design System Gap &rarr; Build Plan
-              </p>
-              <p className="text-sm lg:text-[18px] font-light leading-[1.5] lg:leading-[1.4]">
-                Partnered with six product teams, leadership, and
-                cross-functional stakeholders to synthesize meeting notes in
-                ChatGPT, mapping each product&apos;s funnel, success metrics,
-                and US&ndash;UK regulatory constraints&mdash;accelerating 40+
-                design iterations through stakeholder review without
-                rebuilding each concept from scratch.
-              </p>
-            </div>
-          </ScrollFade>
-        </div>
+        </ScrollFade>
 
+        {/* The decisions beside the flow they produced: the redesigned run
+            replays in a black cherry iPhone on the left while the three
+            changes that made it possible read down the right. */}
+        <ScrollFade once direction="right">
+          <div className={SECTION_GAP}>
+            <h3 className="max-w-[16em] text-balance font-serif text-[clamp(26px,3.6vw,40px)] font-normal leading-[1.1] tracking-[-0.01em]">
+              The three changes that mattered
+            </h3>
+            {/* The animation's column carries the device and, to its left,
+                the rail its callouts hang in. The column starts at the
+                section's own padding, so the notes keep a clear 24px off the
+                page edge; the phone sits at the far side of the column and
+                the gutter sets the air between it and the copy. */}
+            <div
+              className="mt-12 lg:mt-[72px] grid grid-cols-1 items-center gap-y-12 lg:grid-cols-[calc(var(--pi4-phone)_+_var(--pi4-rail))_minmax(0,1fr)] lg:gap-x-[var(--pi4-gutter)]"
+              style={
+                {
+                  "--pi4-gutter": "clamp(64px, 9vw, 140px)",
+                  "--pi4-phone": "clamp(260px, 24vw, 340px)",
+                  /* 65.7% of the device: see the callout geometry in
+                     components/ui/pi4-walkthrough.tsx. */
+                  "--pi4-rail": "calc(var(--pi4-phone) * 0.657)",
+                } as CSSProperties
+              }
+            >
+              <Pi4Walkthrough className="mx-auto w-[72%] max-w-[300px] lg:ml-auto lg:mr-0 lg:w-[var(--pi4-phone)] lg:max-w-none" />
+              {/* The column runs the full width of its cell; the measure is
+                  held on the paragraphs instead, which are the only lines
+                  long enough to need it. */}
+              <div>
+                <ol className="grid list-none grid-cols-1 gap-y-10 lg:gap-y-[56px]">
+                  {DESIGN_DECISIONS.map(({ number, title, body }) => (
+                    <li key={number}>
+                      <h4 className="font-serif text-[clamp(24px,2.6vw,32px)] font-normal leading-[1.15] tracking-[-0.01em] text-white">
+                        <span className="whitespace-nowrap text-white/40">{number}&nbsp;&mdash;&nbsp;</span>
+                        {title}
+                      </h4>
+                      <p className={cx(CASE_STUDY_BODY_CLASS, "mt-3 max-w-[46ch] text-white/70 lg:mt-[18px]")}>
+                        {body}
+                      </p>
+                    </li>
+                  ))}
+                </ol>
+                {/* The prototype is the last of the three changes made
+                    touchable: it sits under Unify because that is the decision
+                    it demonstrates. */}
+                <a
+                  href="https://pay-in4-prototype-cdgo3u6dn-valderramadesign-4260s-projects.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`mt-10 inline-flex items-center rounded-full border border-[#919191] px-6 lg:mt-[56px] lg:px-[30px] ${CTA_PILL_SIZE.lg} font-normal leading-none whitespace-nowrap text-white transition-colors duration-150 hover:border-white`}
+                  style={{ fontFamily: "var(--font-league-spartan)" }}
+                >
+                  Prototype
+                </a>
+              </div>
+            </div>
+          </div>
+        </ScrollFade>
       </section>
 
       {/* Impact graphs */}
-      <section className="mt-24 lg:mt-[200px] max-w-[1600px] w-full pb-10 lg:pb-[61px] mx-auto px-5 lg:px-[37px]">
-          <p className="font-light text-sm lg:text-[18px] mb-6 lg:mb-8" style={{ fontFamily: leagueSpartan }}>Impact</p>
-          <div className="grid grid-cols-[100px_1fr] lg:grid-cols-[280px_1fr] gap-4 lg:gap-12 mb-4 lg:mb-6">
-            <div />
+      <section className={cx(SECTION_GAP, "max-w-[1600px] w-full mx-auto px-5 lg:px-[37px]")}>
+          {/* The section title sits on the scale's baseline, so one line
+              reads across the top of the chart instead of two stacked ones. */}
+          <div className="grid grid-cols-[110px_1fr] items-baseline gap-x-4 mb-[12px] lg:grid-cols-[280px_1fr] lg:gap-x-12">
+            <p className="font-light text-sm lg:text-[18px]" style={{ fontFamily: leagueSpartan }}>Impact</p>
             <div className="flex justify-between">
-              <p className="font-[family-name:var(--font-league-spartan)] font-bold text-base lg:text-[24px] text-white/60 tracking-[-0.24px]">2023</p>
-              <p className="font-[family-name:var(--font-league-spartan)] font-bold text-base lg:text-[24px] text-white/60 tracking-[-0.24px]">H1 2024</p>
+              <p className="font-[family-name:var(--font-league-spartan)] text-base lg:text-[24px] font-light leading-[1.5] lg:leading-[1.4] text-white/60">2023</p>
+              <p className="font-[family-name:var(--font-league-spartan)] text-base lg:text-[24px] font-light leading-[1.5] lg:leading-[1.4] text-white/60">H1 2024</p>
             </div>
           </div>
           <div className="space-y-10 lg:space-y-14">
@@ -319,95 +672,39 @@ export default function PayPal1CaseStudy() {
               futureLabel="79%"
               sublabel="Increase of 28 percentage points"
             />
-            <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-3 lg:gap-12 items-baseline lg:items-center pt-4">
-              <h3 className="font-[family-name:var(--font-league-spartan)] text-2xl lg:text-[40px] leading-[1.1] font-normal whitespace-pre-line">{"Annual incremental\nrevenue (iRev) increase"}</h3>
+            {/* The last row carries a figure rather than a bar, so it keeps a
+                bar's height and the labels stay on one rhythm; the figure is a
+                shade taller and overhangs the row evenly. Its label bleeds a
+                little into the gutter — at this size the second line needs
+                more than the 280px column, and the figure has to stay on the
+                bars' left edge. */}
+            <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-3 lg:gap-12 items-baseline lg:h-[89px] lg:content-center lg:items-center">
+              <h3 className="font-serif text-[clamp(18px,4.5vw,32px)] lg:text-[clamp(24px,2.6vw,32px)] font-normal leading-[1.15] tracking-[-0.01em] whitespace-pre-line lg:w-[304px]">{"Annual incremental\nrevenue (iRev) increase"}</h3>
               <p className="font-serif text-[clamp(48px,12vw,96px)] lg:text-[clamp(64px,8vw,96px)] leading-[1] tracking-[-0.96px]">{TOTAL_IREV_TEXT}</p>
             </div>
           </div>
-
-          {/* Execution & iteration */}
-          <ScrollFade direction="left">
-            <div
-              className="mt-24 lg:mt-[200px] flex w-full max-w-[1279px] flex-col gap-[14px]"
-              style={{ fontFamily: leagueSpartan }}
-            >
-              <p className="text-sm lg:text-[18px] font-light text-white/60">Execution &amp; Iteration</p>
-              <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
-                I reduced the Pay in 4 funnel from three steps to one across both markets, using ChatGPT to unify content across all six products and to critique flows for friction and accessibility before team and leadership reviews &mdash; so review time went to decisions, not cleanup.
-              </p>
-            </div>
-          </ScrollFade>
       </section>
 
-      <section className="relative w-full px-5 lg:px-[37px]">
-        {/* Closing grid */}
-        <div className="mt-0 grid grid-cols-1 lg:grid-cols-2 gap-x-5 lg:gap-x-[34px] gap-y-6 lg:gap-y-[36px] pb-16 lg:pb-[100px]">
-          {/* Top Left: SquareBottomLeft image with spotlight */}
-          <ImageSpotlight config={{ className: 'aspect-square w-full', spotlightSize: 160 }}>
-            <Image src={squareBottomLeft} alt="" fill className="object-cover" />
-          </ImageSpotlight>
-
-          {/* Top Right: app-showcase animation */}
-          <div className="relative aspect-square overflow-hidden bg-gradient-to-b from-[#00b0d8] to-[#4d757d]">
-            <iframe
-              src="/compositions/app-showcase.html"
-              width="866"
-              height="846"
-              scrolling="no"
-
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-0 w-[866px] h-[846px] origin-center scale-[0.4] sm:scale-[0.55] md:scale-[0.7] lg:scale-100"
-              style={{ display: "block", background: "transparent" }}
-            />
-          </div>
-
-          {/* Bottom Left: slideshow video — click opens prototype overlay */}
-          <VideoOverlay />
-
-          {/* Bottom Right: closing copy */}
-          <ScrollFade direction="right" className="flex flex-col gap-10 lg:gap-[56px] pl-0 lg:pl-[24px]" style={{ fontFamily: leagueSpartan }}>
-            <div className="flex flex-col gap-6 lg:gap-8">
-              {/* What did I do */}
-              <OutcomeMetrics
-                as="div"
-                title="Things I Did:"
-                titleClassName="text-sm lg:text-[18px] font-light"
-                metrics={thingsIDid}
-              >
-                <ul className="ml-[24px] flex list-disc flex-col gap-3 lg:gap-[18px] text-base lg:text-[24px] font-light leading-[1.5] lg:leading-[1.4]">
-                  <li>
-                    Ran an AI-assisted discovery-to-handoff workflow across six
-                    credit products, contributing to a ~{TOTAL_IREV_TEXT} increase in
-                    annual incremental revenue (iRev).
-                  </li>
-                  <li>
-                    Used ChatGPT to accelerate discovery, competitive synthesis,
-                    and content unification; used Figma First Draft to generate
-                    and iterate 40+ component drafts.
-                  </li>
-                  <li>
-                    Cut the Pay in 4 funnel from three steps to one (US + UK),
-                    lifting conversion to 208% of its baseline.
-                  </li>
-                </ul>
-              </OutcomeMetrics>
-            </div>
-
-            {/* CTAs — pinned to bottom of cell */}
-            <div className="flex flex-wrap items-center gap-3 lg:gap-[25px]">
-              <BackToHomeButton />
-              <a
-                href="https://pay-in4-prototype-cdgo3u6dn-valderramadesign-4260s-projects.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`inline-flex items-center rounded-full border border-[#919191] px-6 lg:px-[30px] ${CTA_PILL_SIZE.lg} font-normal leading-none whitespace-nowrap text-white transition-colors duration-150 hover:border-white`}
-                style={{ fontFamily: "var(--font-league-spartan)" }}
-              >
-                Prototype
-              </a>
-            </div>
-          </ScrollFade>
+      {/* Into the run of five. The pattern was proven on one product, so this
+          reads as a turn rather than as an eyebrow on the first section: the
+          same two-beat serif statement the scope section closes on, sized to
+          hold one sentence per line. */}
+      <ScrollFade once>
+        <div
+          className={cx(SECTION_GAP, "px-5 lg:px-[24px]")}
+          style={{ fontFamily: leagueSpartan }}
+        >
+          <p className="max-w-[16.5em] font-serif text-[clamp(28px,5vw,48px)] font-normal leading-[1.15] tracking-[-0.01em] text-white/90">
+            <span className="inline-block">One product proved the pattern.</span>{" "}
+            <span className="inline-block">Six products demonstrated its value.</span>
+          </p>
+          <p className={cx(CASE_STUDY_BODY_CLASS, "mt-6 lg:mt-[32px] max-w-[860px] text-white/80")}>
+            Show the other five products as a compact visual constellation&mdash;not five
+            additional mini case studies. Their purpose in the main narrative is to prove
+            scale.
+          </p>
         </div>
-      </section>
+      </ScrollFade>
 
       {/* Pay Monthly */}
       <section className="relative w-full overflow-hidden bg-black">
@@ -417,12 +714,9 @@ export default function PayPal1CaseStudy() {
             className="flex w-full lg:w-[688px] lg:shrink-0 flex-col items-start gap-10 lg:gap-[92px]"
             style={{ fontFamily: leagueSpartan }}
           >
-            <div className="flex flex-col gap-4 lg:gap-[64px]">
-              <p className="font-light text-[18px] leading-normal text-white" style={{ fontFamily: leagueSpartan }}>Overall Impact</p>
-              <h2 className="font-serif text-[clamp(40px,10vw,64px)] lg:text-[64px] leading-none text-white">
-                Pay Monthly
-              </h2>
-            </div>
+            <h2 className="font-serif text-[clamp(40px,10vw,64px)] lg:text-[64px] leading-none text-white">
+              Pay Monthly
+            </h2>
             <div className="flex w-full flex-col gap-8 lg:gap-[46px]">
               <div className="flex w-full lg:w-[200px] flex-col gap-[17px] text-white">
                 <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">2.3%</p>
@@ -662,9 +956,12 @@ export default function PayPal1CaseStudy() {
                   label={metric.label}
                 />
               ))}
-              {/* Four across, the total takes the last column, level with the
-                  cards; two across, it drops to the column under Pay in 3. */}
-              <div className="flex w-full flex-col items-start gap-3 text-white min-[1600px]:col-start-4 min-[1600px]:h-[144px] min-[1600px]:justify-between min-[1600px]:gap-0">
+              {/* Four across, the total takes the last column so it reads under
+                  PayPal Mastercard, level with the cards; two across, it drops
+                  to the column under Pay in 3. The height is a floor rather
+                  than a fixture, so the narrower columns below 1600px can wrap
+                  the label without pushing the figure out of the row. */}
+              <div className="flex w-full flex-col items-start gap-3 text-white xl:col-start-4 xl:min-h-[144px] xl:justify-between xl:gap-0">
                 <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px] tracking-[-0.32px]">
                   Total annual iRev increase
                 </p>
@@ -681,13 +978,71 @@ export default function PayPal1CaseStudy() {
         </div>
       </section>
 
+      {/* Behind the work. The process material that supports the story
+          without belonging in it, kept closed so the narrative stays the
+          narrative. Native <details>, so it is focusable, operable with Enter
+          and Space, and announced with its expanded state. */}
+      <div className="px-5 lg:px-[24px]">
+        <SupportingAppendix
+          id="behind-the-work"
+          title="Behind the work"
+          summary="How the work ran: AI-assisted discovery, cross-functional review, and six-product delivery"
+        >
+          <p className="text-white/70">
+            The workflow connected requirements, AI-assisted discovery and iteration, user
+            research, product and legal reviews, leadership alignment, development support, and
+            measurement across all six credit products.
+          </p>
+          {/* The diagram is dense enough that fitting it to a phone would make
+              it unreadable, so below lg it holds a legible width and scrolls
+              inside its own box. The scroll is on the wrapper and the width on
+              the inner area, so it never reaches the page. */}
+          <p className={cx(CASE_STUDY_SUPPORTING_CLASS, "text-white/50 lg:hidden")}>
+            Swipe to explore the workflow.
+          </p>
+          <figure className="min-w-0">
+            <div className="w-full overflow-x-auto">
+              <div className="min-w-[1060px] lg:min-w-0">
+                <Image
+                  src={workflow}
+                  alt="The project workflow from requirement kickoff through discovery, ChatGPT and Figma AI iteration, user experience research, development and measurement, with cross-functional, product, legal, design and leadership review loops supporting six US and UK PayPal credit products."
+                  sizes="(max-width: 1024px) 1060px, 1552px"
+                  className="block h-auto w-full"
+                />
+              </div>
+            </div>
+            <figcaption className={cx(CASE_STUDY_CAPTION_CLASS, "mt-3 lg:mt-4")}>
+              The process moved from requirements to measured results while keeping six product
+              teams, cross-functional partners, research, legal review, design review, and
+              leadership decisions in the same delivery loop.
+            </figcaption>
+          </figure>
+          <div className={CASE_STUDY_STACK_CLASS}>
+            <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>
+              Design System Gap &rarr; Build Plan
+            </p>
+            <p className="text-white/70">
+              Partnered with six product teams, leadership, and cross-functional
+              stakeholders to synthesize meeting notes in ChatGPT, mapping each
+              product&apos;s funnel, success metrics, and US&ndash;UK regulatory
+              constraints&mdash;accelerating 40+ design iterations through
+              stakeholder review without rebuilding each concept from scratch.
+            </p>
+          </div>
+        </SupportingAppendix>
+      </div>
+
       {/* Next Case Studies */}
       <section id="next-case-study-section" className="relative w-full overflow-hidden bg-black pb-24 lg:pb-[200px] pt-12 lg:pt-[78px]">
         <NextCaseStudyTicker color="#4d2d8d" />
 
-        <div className="relative flex flex-col lg:flex-row items-center lg:justify-center gap-12 lg:gap-[200px] px-5 lg:px-0">
+        {/* The pair is wider than most desktops once the 200px between
+            them is counted, and centring an overflowing row hides its left
+            edge. The gutter is held, and the space between the cards is
+            what gives way first. */}
+        <div className="relative flex flex-col lg:flex-row items-center lg:justify-center gap-12 px-5 lg:gap-[clamp(48px,calc(100vw-1156px),200px)] lg:px-[24px]">
           {/* Meta */}
-          <Link href={nextMeta.route} className="group flex w-full max-w-[671px] lg:w-[671px] lg:shrink-0 flex-col gap-4 lg:gap-[27px]">
+          <Link href={nextMeta.route} className="group flex w-full min-w-0 max-w-[671px] flex-col gap-4 lg:w-[671px] lg:gap-[27px]">
             <div className="relative aspect-[824/606] w-full overflow-hidden rounded-2xl lg:rounded-[30px]">
               <Image
                 src={nextMetaPreview.image}
@@ -703,8 +1058,8 @@ export default function PayPal1CaseStudy() {
           </Link>
 
           {/* Solo */}
-          <Link href={nextSolo.route} className="group flex w-full max-w-[437px] lg:w-[437px] lg:shrink-0 flex-col gap-4 lg:gap-[27px]">
-            <div className="relative aspect-[437/666] lg:aspect-auto lg:h-[666px] w-full overflow-hidden rounded-2xl lg:rounded-[30px]">
+          <Link href={nextSolo.route} className="group flex w-full min-w-0 max-w-[437px] flex-col gap-4 lg:w-[437px] lg:gap-[27px]">
+            <div className="relative aspect-[437/666] w-full overflow-hidden rounded-2xl lg:rounded-[30px]">
               <Image
                 src={nextSoloPreview.image}
                 alt={nextSoloPreview.alt}

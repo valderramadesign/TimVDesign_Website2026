@@ -270,10 +270,10 @@ export const PROJECTS: Project[] = [
   {
     id: "paypal",
     title: "PayPal Credit Applications Optimization",
-    caseStudyHeadline: "Optimizing Loan Application Flows in PayPal Checkout",
+    caseStudyHeadline: "Six Credit Products. One Clearer Path Through Checkout.",
     company: "PayPal",
     status: "Shipped",
-    role: "Led the redesign of all six US and UK PayPal credit products for the new checkout framework. I ran the project on an AI-assisted workflow — using ChatGPT and Figma's AI tools at each stage — to move from discovery to stakeholder-ready designs in 1.5 months across six products.",
+    role: "Led the 1.5-month redesign of six US and UK PayPal credit products for the new checkout framework. I unified application patterns and content across the portfolio, reduced Pay in 4 from three steps to one, and helped lift its conversion to 208% of baseline.",
     scope: {
       platforms: ["iOS/Android mobile and desktop"],
       // Six product instances across two markets; PayPal Credit ships in both,
@@ -302,6 +302,7 @@ export const PROJECTS: Project[] = [
     category: "Shipped and scaled",
     timeline: "1.5 months",
     homepageEyebrowLines: ["Reducing Friction"],
+    caseStudyEyebrowLines: ["Turning Application Friction Into Adoption"],
     cardLabel: "PayPal",
     cardTitle: "Optimizing Loan Application Flows",
     cardRole: "Lead Product Designer",
