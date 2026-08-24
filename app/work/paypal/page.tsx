@@ -8,8 +8,10 @@ import Pi4Walkthrough from "@/components/ui/pi4-walkthrough";
 import ScrollFade from "@/components/ui/scroll-fade";
 import CounterNumber from "@/components/ui/counter-number";
 import { AnimatedImpactRow } from "@/components/ui/animated-impact-row";
+import { ImageMarquee } from "@/components/ui/image-marquee";
 import quantumLeap from "@/components/images/PayPalQuantumLeap/PayPalQuantumLeap.png";
 import workflow from "@/components/images/WorkflowDiagram.png";
+import iterations from "@/components/images/PayPalQuantumLeap/Wireframes/Iterations.png";
 import circleLg from "@/components/images/paypal1-circle-lg.png";
 import wireframePayIn4 from "@/components/images/PayPalQuantumLeap/Wireframes/Pay in 4 - Wireframe.png";
 import wireframePayMonthly from "@/components/images/PayPalQuantumLeap/Wireframes/Pay Monthly - Wireframe.png";
@@ -999,24 +1001,40 @@ export default function PayPal1CaseStudy() {
           <p className={cx(CASE_STUDY_SUPPORTING_CLASS, "text-white/50 lg:hidden")}>
             Swipe to explore the workflow.
           </p>
-          <figure className="min-w-0">
-            <div className="w-full overflow-x-auto">
+          {/* From lg the caption moves alongside the diagram, which buys the
+              diagram breathing room instead of the full column width. Every
+              figure here is a share of the row, so the pairing holds at any
+              width: the diagram is 75% and its locked 1246/895 ratio makes it
+              0.538 of the row tall, and the UX Support circle opens at 0.611 of
+              that height — so the caption's top margin of 32.9% of the row sets
+              its first line on the circle's top edge.
+
+              The appendix already stacks its children 16px apart, 24px from lg,
+              so the margins here are the remainder: 50px above the diagram and
+              100px below it on desktop, both dropping to 64% of that on small
+              screens so the rhythm shrinks with the type rather than dwarfing
+              it. The diagram fills its own box edge to edge, so these gaps are
+              the gaps you see. */}
+          <figure className="mt-4 lg:mt-[26px] min-w-0 lg:flex lg:flex-row lg:items-start lg:gap-[4%]">
+            <div className="w-full overflow-x-auto lg:w-[75%]">
               <div className="min-w-[1060px] lg:min-w-0">
                 <Image
                   src={workflow}
                   alt="The project workflow from requirement kickoff through discovery, ChatGPT and Figma AI iteration, user experience research, development and measurement, with cross-functional, product, legal, design and leadership review loops supporting six US and UK PayPal credit products."
-                  sizes="(max-width: 1024px) 1060px, 1552px"
+                  sizes="(max-width: 1024px) 1060px, 75vw"
                   className="block h-auto w-full"
                 />
               </div>
             </div>
-            <figcaption className={cx(CASE_STUDY_CAPTION_CLASS, "mt-3 lg:mt-4")}>
+            <figcaption
+              className={cx(CASE_STUDY_CAPTION_CLASS, "mt-3 lg:mt-[32.9%] lg:w-[21%]")}
+            >
               The process moved from requirements to measured results while keeping six product
               teams, cross-functional partners, research, legal review, design review, and
               leadership decisions in the same delivery loop.
             </figcaption>
           </figure>
-          <div className={CASE_STUDY_STACK_CLASS}>
+          <div className={cx(CASE_STUDY_STACK_CLASS, "mt-12 lg:mt-[76px]")}>
             <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>
               Design System Gap &rarr; Build Plan
             </p>
@@ -1027,6 +1045,18 @@ export default function PayPal1CaseStudy() {
               constraints&mdash;accelerating 40+ design iterations through
               stakeholder review without rebuilding each concept from scratch.
             </p>
+            {/* The 40+ iterations the paragraph claims, shown rather than
+                counted. On top of the stack's own 14px gap these margins set
+                the strip 50px below the copy on desktop and 32px on small
+                screens. The artwork runs edge to edge with 444px between its
+                groups on a 3632px height, so the loop carries that same gap
+                past the join. */}
+            <ImageMarquee
+              src={iterations}
+              alt="A running strip of Pay in 4 application wireframes from iteration 3 through iteration 36, each pass tightening the plan, review, and confirmation screens."
+              gapAspect="444 / 3632"
+              className="mt-[18px] lg:mt-[36px]"
+            />
           </div>
         </SupportingAppendix>
       </div>

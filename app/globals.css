@@ -86,6 +86,11 @@ html, body {
   to   { transform: translateX(-50%); }
 }
 
+/* A marquee is decoration, so it holds still for anyone who asks motion to. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none !important; }
+}
+
 /* Touch devices: disable cursor-driven effects and tighten motion */
 @media (hover: none) {
   .cursor-none { cursor: auto !important; }
