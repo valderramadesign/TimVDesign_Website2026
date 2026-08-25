@@ -66,6 +66,7 @@ export default function RevealSlider({
   autoReveal = false,
   autoRevealDuration = 1400,
   dividerWidth = 2,
+  framed = true,
   className,
 }: {
   /** Paired rows, top to bottom. Each pair shares one cell and one clip. */
@@ -83,6 +84,13 @@ export default function RevealSlider({
   autoReveal?: boolean;
   autoRevealDuration?: number;
   dividerWidth?: number;
+  /**
+   * Draws the rounded container the rows sit in. Turn it off where the rows
+   * are meant to stand on the page itself; the divider and its handle are
+   * unaffected either way, since they hang off the wrapper rather than the
+   * frame.
+   */
+  framed?: boolean;
   className?: string;
 }) {
   const [position, setPosition] = useState(initialPosition);
@@ -258,8 +266,9 @@ export default function RevealSlider({
     >
       <div
         className={cx(
-          "relative grid gap-y-10 overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.03] py-10",
-          "lg:gap-y-[56px] lg:rounded-[40px] lg:py-14",
+          "relative grid gap-y-10 lg:gap-y-[56px]",
+          framed &&
+            "overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.03] py-10 lg:rounded-[40px] lg:py-14",
         )}
       >
         {live ? (

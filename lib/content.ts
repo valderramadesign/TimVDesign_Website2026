@@ -318,10 +318,10 @@ export const PROJECTS: Project[] = [
     id: "meta",
     title: "Meta Monthly Invoicing Onboarding",
     caseStudyHeadline:
-      "Boosting Visibility and Applications Through Onboarding Optimization",
+      "Moving high-spend advertisers beyond credit card limits",
     company: "Meta",
     status: "Client product",
-    role: "Partnered with engineering, finance, and cross-functional design teams to drive adoption of Monthly Invoicing — running an AI-first workflow with Metamate AI from discovery through handoff.",
+    role: "Partnering with engineering, finance, and design teams across the company, I moved Monthly Invoicing onto Meta’s highest-traffic business surfaces and rebuilt its application around information Meta had already verified — running an AI-first workflow with Metamate AI from discovery through handoff.",
     scope: {
       platforms: ["Desktop"],
       products: ["Monthly Invoicing"],
@@ -342,7 +342,7 @@ export const PROJECTS: Project[] = [
     category: "Client products",
     timeline: "1.5 months",
     homepageEyebrowLines: ["Designing Onboarding", "That Drives Adoption"],
-    caseStudyEyebrowLines: ["Driving the Shift to Monthly Invoicing"],
+    caseStudyEyebrowLines: ["Driving Onboarding That Drives Adoption"],
     cardLabel: "Meta",
     cardTitle: "Monthly Invoicing for Meta Ads",
     cardRole: "Staff Product Designer (consultant)",

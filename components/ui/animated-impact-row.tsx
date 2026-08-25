@@ -126,8 +126,16 @@ export function AnimatedImpactRow({
         {sublabel && (
           <p
             className={`${CASE_STUDY_BODY_CLASS} absolute left-0 top-full mt-2 text-right text-[#cef252] lg:mt-3`}
+            /* The gain is the sublabel's measure, so the sentence hangs off
+               the leading edge of the bar. On a narrow screen that measure
+               can fall under the length of the sentence, and since the
+               sublabel is out of flow the extra lines would land on the row
+               below: it may take back as much of the bar as the words need,
+               and no more. */
             style={{
-              width: `calc(var(--impact-inset) + (100% - var(--impact-inset)) * ${futurePct / 100})`,
+              minWidth: `calc(var(--impact-inset) + (100% - var(--impact-inset)) * ${futurePct / 100})`,
+              width: "max-content",
+              maxWidth: "100%",
             }}
           >
             {sublabel}
