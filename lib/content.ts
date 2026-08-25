@@ -321,7 +321,7 @@ export const PROJECTS: Project[] = [
       "Moving high-spend advertisers beyond credit card limits",
     company: "Meta",
     status: "Client product",
-    role: "Partnering with engineering, finance, and design teams across the company, I moved Monthly Invoicing onto Meta’s highest-traffic business surfaces and rebuilt its application around information Meta had already verified — running an AI-first workflow with Metamate AI from discovery through handoff.",
+    role: "Partnering with engineering, finance, and design teams across the company, I led a 1.5-month effort that moved Monthly Invoicing onto Meta’s highest-traffic business surfaces and rebuilt its application around information Meta had already verified — running an AI-first workflow with Metamate AI from discovery through handoff.",
     scope: {
       platforms: ["Desktop"],
       products: ["Monthly Invoicing"],
@@ -360,12 +360,12 @@ export const PROJECTS: Project[] = [
     caseStudyHeadline: "Streamlining and Automating Daily Reporting",
     company: "Ms. Sunshine",
     status: "Shipped",
-    role: "Solo end-to-end AI workflow: research with ChatGPT and Claude, PRD generation with ChatGPT, design with Google Stitch and Figma, build with Replit — concept to tested MVP in the first 3 weeks.",
+    role: "I led the product from discovery through a tested working MVP—turning a manual reporting process into one connected experience for teachers and parents in three weeks.",
     scope: {
       platforms: ["Mobile"],
     },
     description: [
-      "Schools document each child’s day through a labor-intensive end-of-day report that doesn’t scale. Parents wait until pickup to hear how the day went, when what they need is reassurance in the moment.",
+      "Staff manually compiled each child’s activities into an end-of-day report. The work could take the head teacher roughly two hours, while parents waited until pickup for reassurance about their child’s day.",
       "The app answers both: real-time updates for parents, automated tracking and reporting for staff.",
     ],
     primaryResult: SOLO_TIME_SAVED,

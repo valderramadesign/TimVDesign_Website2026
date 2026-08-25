@@ -41,6 +41,7 @@ import newFlowHowItWorks from "@/components/images/Monthly invoicing Images/Mi_N
 import newFlowConfirm from "@/components/images/Monthly invoicing Images/Mi_New_Flow_Screens/new-flow-2-confirm-information.png";
 import newFlowApproved from "@/components/images/Monthly invoicing Images/Mi_New_Flow_Screens/new-flow-3-approved.png";
 import miWorkflowDiagram from "@/components/images/Monthly invoicing Images/Diagram/mi-workflow-diagram.webp";
+import metaHero from "@/components/images/Monthly invoicing Images/Hero/meta-hero.webp";
 import { PROJECTS_BY_ID, imageSrc, previewOf } from "@/lib/content";
 import { caseStudyMetadata } from "@/lib/seo";
 
@@ -131,8 +132,15 @@ const HERO_FACTS: { label: string; value: string; note: string }[] = [
   { label: "Application", value: "9 → 3", note: "Screens, as delivered" },
   { label: "Conversion", value: "97%", note: "Target, from a 39% baseline" },
   { label: "Savings", value: "~7.5%", note: "Projected, annually" },
-  { label: "Timeline", value: project.timeline, note: "Discovery through handoff" },
 ];
+
+/* Above the laptop the photograph is only window light and shelving —
+   nothing the argument needs. A radial settled into that corner and a
+   shallow wash along the top edge take it to near-black so the figures can
+   sit on it, and both have faded out before they reach the screen. */
+const HERO_FEATHER =
+  "radial-gradient(115% 42% at 100% 0%, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 88%)," +
+  " linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.62) 16%, rgba(0,0,0,0.22) 27%, rgba(0,0,0,0) 36%)";
 
 type PanelRow = { Icon: ComponentType<{ className?: string }>; text: string };
 
@@ -278,19 +286,43 @@ export default function MetaPage() {
           factClassName={{ role: "lg:w-[861px]" }}
         />
 
-        <dl className="mt-6 grid grid-cols-2 gap-x-6 gap-y-8 lg:mt-[30px] lg:grid-cols-4 lg:gap-x-[60px]">
-          {HERO_FACTS.map((fact) => (
-            <div key={fact.label} className="border-t border-white/15 pt-5 lg:pt-[28px]">
-              <dt className={cx(CASE_STUDY_SUPPORTING_CLASS, "text-white/60")}>{fact.label}</dt>
-              <dd className="mt-3 font-serif text-[clamp(32px,5vw,56px)] font-normal leading-none tracking-[-0.01em] lg:mt-[18px]">
-                {fact.value}
-              </dd>
-              <dd className={cx(CASE_STUDY_SUPPORTING_CLASS, "mt-3 text-white/60 lg:mt-[14px]")}>
-                {fact.note}
-              </dd>
-            </div>
-          ))}
-        </dl>
+        {/* The moment the work is about, with the figures it produced read
+            against it. On a wide desktop they sit in the band of shelving
+            above the laptop, centred between the top of the frame and the top
+            of the lid. That band is a fixed 28% of the frame's height, and
+            under 1280 the notes wrap to a second line and stop fitting inside
+            it, so there the figures fall back to a row underneath. */}
+        <div className="relative mt-6 lg:mt-[27px]">
+          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-white/15 lg:aspect-[16/9] lg:rounded-[30px]">
+            <Image
+              src={metaHero}
+              alt="An advertiser slumped at a laptop, one hand to their forehead, as Meta Ads Manager reports that their credit card was declined during setup."
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, calc(100vw - 48px)"
+              className="object-cover"
+            />
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 hidden xl:block"
+              style={{ background: HERO_FEATHER }}
+            />
+          </div>
+
+          <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-3 lg:gap-x-[40px] xl:absolute xl:right-[48px] xl:top-[14%] xl:mt-0 xl:w-[54%] xl:max-w-[760px] xl:-translate-y-1/2">
+            {HERO_FACTS.map((fact) => (
+              <div key={fact.label}>
+                <dt className={cx(CASE_STUDY_SUPPORTING_CLASS, "text-white/60")}>{fact.label}</dt>
+                <dd className="mt-3 font-serif text-[clamp(32px,5vw,56px)] font-normal leading-none tracking-[-0.01em] lg:mt-[18px]">
+                  {fact.value}
+                </dd>
+                <dd className={cx(CASE_STUDY_SUPPORTING_CLASS, "mt-[17px] text-white/60")}>
+                  {fact.note}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
       </div>
 
       {/* The opportunity. Three columns of one sentence — where we started,

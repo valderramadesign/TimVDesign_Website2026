@@ -110,7 +110,6 @@ const SCOPE_FACTS = [
   { value: "6", label: "Credit products" },
   { value: "2", label: "Markets" },
   { value: "1", label: "Checkout framework" },
-  { value: "1.5", label: "Months" },
 ];
 
 /* Six implementations, not six products. PayPal Credit is authored twice
@@ -436,7 +435,7 @@ export default function PayPal1CaseStudy() {
         {/* Scope facts. The rule sits above each figure rather than under it,
             so the strip reads as a spec sheet and not as an outcome panel. */}
         <ScrollFade once>
-          <dl className="mt-[50px] grid grid-cols-2 gap-x-6 lg:grid-cols-4 lg:gap-x-[60px]">
+          <dl className="mt-[50px] grid grid-cols-2 gap-x-6 lg:grid-cols-3 lg:gap-x-[60px]">
             {SCOPE_FACTS.map((fact) => (
               <div
                 key={fact.label}
@@ -445,7 +444,7 @@ export default function PayPal1CaseStudy() {
                 <dt className={cx(CASE_STUDY_SUPPORTING_CLASS, "text-white/60")}>
                   {fact.label}
                 </dt>
-                <dd className="mt-3 lg:mt-[18px] font-serif text-[clamp(40px,6vw,64px)] font-normal leading-none tracking-[-0.01em]">
+                <dd className="mt-1.5 lg:mt-[9px] font-serif text-[clamp(40px,6vw,64px)] font-normal leading-none tracking-[-0.01em]">
                   {fact.value}
                 </dd>
               </div>
