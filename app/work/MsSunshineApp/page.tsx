@@ -1,37 +1,39 @@
-import Link from "next/link";
+import type { ComponentType, ReactNode } from "react";
 import Image from "next/image";
-import NextCaseStudyTicker from "@/components/ui/next-case-study-ticker";
+import Link from "next/link";
 import CaseStudyTopBar from "@/components/ui/case-study-top-bar";
-
-import daySchedule from "@/components/images/Teacher'sApp/DaySchedule.png";
-
-import competitiveAnalysisCover from "@/components/images/Teacher'sApp/CompetitiveAnalysisCover.png";
-import middleCopyVideoBg from "@/components/images/Teacher'sApp/AppFlow/MiddleCopyVideoBg.png";
-import home from "@/components/images/Teacher'sApp/NewHomeScreenV2.png";
-import backgroundHandYellow from "@/components/images/Teacher'sApp/AppFlow/BackgroundhandYellow.png";
-import activityFlow1 from "@/components/images/Teacher'sApp/AppFlow/ActivityFlow1.png";
-import activityFlow3 from "@/components/images/Teacher'sApp/AppFlow/ActivityFlow3.png";
-import activityFlow5 from "@/components/images/Teacher'sApp/AppFlow/ActivityFlow5.png";
-import activityFlow6 from "@/components/images/Teacher'sApp/AppFlow/ActivityFlow6.png";
-import { ActivityFlowCarousel } from "@/components/ui/activity-flow-carousel";
-import BackToHomeButton from "@/components/ui/back-to-home-button";
+import NextCaseStudyTicker from "@/components/ui/next-case-study-ticker";
+import ScrollFade from "@/components/ui/scroll-fade";
+import SunshinePhoneWalkthrough from "@/components/ui/sunshine-phone-walkthrough";
+import { SunshineParentFeed } from "@/components/ui/sunshine-parent-feed";
 import { CTA_PILL_SIZE } from "@/components/ui/cta-pill";
 import {
+  CaseStudyHeader,
+  ProjectFacts,
+  SupportingAppendix,
+  CASE_STUDY_BODY_CLASS,
+  CASE_STUDY_FOCUS_CLASS,
+  CASE_STUDY_LABEL_TIGHT_CLASS,
   CASE_STUDY_METRIC_LABEL_CLASS,
-  CASE_STUDY_METRIC_VALUE_CLASS,
+  CASE_STUDY_STACK_CLASS,
+  CASE_STUDY_SUPPORTING_CLASS,
+  cx,
 } from "@/components/case-study";
-import {
-  PROJECTS_BY_ID,
-  caseStudyResults,
-  caseStudyEyebrowText,
-  imageSrc,
-  previewOf,
-  resultDetail,
-} from "@/lib/content";
+import phoneAppWithTeacher from "@/components/images/Teacher'sApp/PhoneAppWithTeacher.png";
+import teacherWorkingLate from "@/components/images/Teacher'sApp/TeacherWorkingLate.png";
+import { PROJECTS_BY_ID, imageSrc, previewOf } from "@/lib/content";
 import { caseStudyMetadata } from "@/lib/seo";
+import {
+  IconDraftedSummary,
+  IconEndOfDay,
+  IconFewTaps,
+  IconLiveFeed,
+  IconOneToMany,
+  IconUnseen,
+  IconWrittenTwice,
+} from "./opportunity-icons";
 
 const project = PROJECTS_BY_ID.solo;
-const results = caseStudyResults(project);
 const nextPayPal = PROJECTS_BY_ID.paypal;
 const nextPayPalPreview = previewOf(nextPayPal);
 const nextMeta = PROJECTS_BY_ID.meta;
@@ -39,196 +41,386 @@ const nextMetaPreview = previewOf(nextMeta);
 
 export const metadata = caseStudyMetadata(
   project,
-  "A solo, AI-assisted build of the Ms. Sunshine App — automating a preschool's daily activity reporting and saving the head teacher an estimated 480 hours a year.",
+  "Turning a preschool's two-hour manual end-of-day report into one continuous flow — classroom activity to parent update to daily summary — as a tested MVP built in three weeks.",
 );
 
 const leagueSpartan = "var(--font-league-spartan)";
 
-const activityFlowItems = [
-  { id: 1, src: activityFlow1, alt: "App flow screen 1" },
-  { id: 3, src: activityFlow3, alt: "App flow screen 3" },
-  { id: 5, src: activityFlow5, alt: "App flow screen 5" },
-  { id: 6, src: activityFlow6, alt: "App flow screen 6" },
+/* The same rhythm the PayPal and Meta case studies keep, so the three read
+   as one publication. */
+const SECTION_GAP = "mt-24 md:mt-[140px] lg:mt-[200px]";
+const PAGE_PAD = "px-5 lg:px-[24px]";
+
+const SECTION_TITLE_CLASS =
+  "mt-4 max-w-[1100px] text-balance font-serif text-[clamp(32px,5.6vw,64px)] font-normal leading-[1.06] tracking-[-0.015em] lg:mt-[18px]";
+
+/* The hero figure stands on the photograph rather than across the page, so
+   it steps down from CASE_STUDY_METRIC_VALUE_CLASS's 72px: at 48px it
+   holds one line inside the corner it is feathered into. The text-box trim
+   class stays, which is what keeps the figure and its label 17px apart
+   whatever the size. */
+const HERO_METRIC_VALUE_CLASS =
+  "metric-figure font-serif text-[clamp(32px,4.4vw,48px)] font-normal leading-none tracking-[-0.01em]";
+
+/* Below and right of the phone the photograph is only fence, lawn and
+   fallen leaves — nothing the argument needs. A radial settled into that
+   corner and a shallow wash along the bottom edge take it to near-black so
+   the figure can sit on it, and both have faded out well before they reach
+   the teacher or the screen she is holding. */
+const HERO_FEATHER =
+  "radial-gradient(112% 46% at 100% 100%, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.42) 60%, rgba(0,0,0,0) 88%)," +
+  " linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.6) 14%, rgba(0,0,0,0.2) 26%, rgba(0,0,0,0) 36%)";
+
+/* The before photograph is lit by one pendant lamp in the top right, and
+   the wall it throws into shadow underneath is the darkest part of the
+   frame. The scrim only deepens what is already dark there, and clears the
+   teacher and her laptop entirely. */
+const BEFORE_FEATHER =
+  "radial-gradient(118% 74% at 100% 4%, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.78) 32%, rgba(0,0,0,0.44) 60%, rgba(0,0,0,0) 86%)," +
+  " linear-gradient(to left, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.32) 34%, rgba(0,0,0,0) 64%)";
+
+/* Panel rows sit in a third-width column, so they step down from the page's
+   body size the way Meta's do. */
+const PANEL_ROW_CLASS = "text-base lg:text-[20px] font-light leading-[1.35]";
+const PANEL_CLASS = "flex flex-col";
+const PANEL_TITLE_CLASS =
+  "mt-3 text-balance font-serif text-[clamp(24px,3.2vw,34px)] font-normal leading-[1.12] tracking-[-0.01em] lg:mt-[14px] lg:min-h-[2.24em]";
+
+/* The strategy column is the only lit thing in the row. The colour is the
+   app's own — the teal the product already ships in — written out rather
+   than layered over the shared label class, so it never depends on which
+   utility the sheet emits last. The scale is CASE_STUDY_LABEL_TIGHT_CLASS's,
+   unchanged. */
+const ACCENT = "#91dfdf";
+const STRATEGY_LABEL_CLASS = "text-sm lg:text-[18px] font-light leading-none text-[#91dfdf]";
+
+/* One offset for everything hanging below a panel title, so all three
+   columns start their body on the same line. */
+const PANEL_BODY_TOP = "mt-7 lg:mt-[36px]";
+/* On desktop each column of rows is one block standing against the one
+   beside it: it starts on the same line and, by taking the column's
+   remaining height and spacing itself across it, ends on the same line
+   too. The gap stays the floor, which is what a column too tall to
+   distribute falls back to. */
+const ROW_LIST_CLASS = cx(
+  PANEL_BODY_TOP,
+  "flex flex-col gap-6 lg:flex-1 lg:justify-between lg:gap-[30px]",
+);
+/* No cards and no rules: a drawing and a sentence, the way Meta's read. */
+const ROW_ITEM_CLASS = "flex items-center gap-4 lg:gap-6";
+const ROW_ICON_CLASS = "h-11 w-11 shrink-0 text-white lg:h-[52px] lg:w-[52px]";
+
+const COMPARE_HEADING_CLASS =
+  "mt-3 text-balance font-serif text-[clamp(22px,3vw,32px)] font-normal leading-[1.15] tracking-[-0.01em] lg:mt-[14px]";
+
+/* The figure the estimate produces, read off the corner of the
+   photograph. The year is the one that carries the argument; the daily
+   number it is built from is stated in full under Impact. */
+const HERO_METRIC = { value: "~480hrs./yr", label: "Estimated time savings returned" };
+
+type PanelRow = { Icon: ComponentType<{ className?: string }>; text: string };
+
+const STARTED_ROWS: PanelRow[] = [
+  { Icon: IconEndOfDay, text: "Updates were assembled at the end of the day" },
+  { Icon: IconWrittenTwice, text: "The same information had to be documented and summarized" },
+  { Icon: IconUnseen, text: "Parents had no visibility between drop-off and pickup" },
+];
+
+const BECOMES_ROWS: PanelRow[] = [
+  { Icon: IconFewTaps, text: "Teachers log an activity in a few taps" },
+  { Icon: IconOneToMany, text: "One update can be applied to multiple children" },
+  { Icon: IconLiveFeed, text: "Parents see their child's activity as it happens" },
+  { Icon: IconDraftedSummary, text: "Checkout generates an editable AI-assisted daily summary" },
+];
+
+/* The three changes the product actually makes, numbered so the captions
+   under the redesigned screens above can be read straight into them. */
+const CHANGES: { number: string; title: string; body: string }[] = [
+  {
+    number: "01",
+    title: "Log once",
+    body: "Select an activity, choose the children involved, and add a note only when needed.",
+  },
+  {
+    number: "02",
+    title: "Keep parents current",
+    body: "Publish the update to each child's private feed, where parents can view it and reply.",
+  },
+  {
+    number: "03",
+    title: "AI summary",
+    body: "At checkout, the AI generates a daily summary for the teacher to review and edit before sharing.",
+  },
+];
+
+/* Every screen the story still needs. Nothing is drawn in their place: each
+   box names the capture that belongs there. */
+/* Two estimates and one change in experience, each carrying the word that
+   says which it is. Nothing here was measured after launch. */
+const IMPACT: { label: string; value: string; note: string }[] = [
+  {
+    label: "Teacher Impact",
+    value: "~2 hours/day",
+    note: "Estimated administrative time removed from the head teacher's schedule.",
+  },
+  {
+    label: "Parent Impact",
+    value: "Real time",
+    note: "Parents gain real-time visibility and a direct conversation with teachers instead of waiting until pickup.",
+  },
+  {
+    label: "Business Impact",
+    value: "~480 hours/year",
+    note: "Estimated staff capacity returned to classroom care, parent service, and school operations.",
+  },
+];
+
+/* How the three weeks actually ran — one click off the argument, in the
+   same disclosure the other case studies use. */
+const BEHIND_THE_WORK: { title: string; body: ReactNode }[] = [
+  {
+    title: "Discovery",
+    body: "Mapped the school's reporting workflow and identified the delay between classroom activity, staff documentation, and parent communication.",
+  },
+  {
+    title: "Competitive Analysis",
+    body: (
+      <>
+        Reviewed children&rsquo;s activity and school applications to identify the expected
+        foundations: fast logging, bulk actions, flexible workflows, parent communication, and
+        clear daily summaries.{" "}
+        <a
+          href="/Competitive Analysis - Children Activity Apps.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={cx(
+            "text-white underline decoration-white/40 underline-offset-4",
+            "transition-colors duration-150 hover:decoration-white",
+            CASE_STUDY_FOCUS_CLASS,
+          )}
+        >
+          Read the full analysis (PDF)
+        </a>
+        .
+      </>
+    ),
+  },
+  {
+    title: "Product Definition",
+    body: "Converted the findings into requirements for teacher logging, private parent feeds, comments, notifications, checkout, and summary generation.",
+  },
+  {
+    title: "Rapid Design and Build",
+    body: "Used an AI-assisted workflow across research, product definition, prototyping, and development, moving from early exploration to a working MVP.",
+  },
+  {
+    title: "Validation and Iteration",
+    body: "Tested concepts with the client, then refined the working product using feedback from the client and test users.",
+  },
 ];
 
 export default function SoloPage() {
   return (
-    <main className="min-h-screen bg-black text-white overflow-x-hidden">
+    <main className="min-h-screen bg-black text-white">
       <CaseStudyTopBar />
-      {/* Top section */}
-      <section className="w-full bg-black px-5 pb-5 lg:px-[24px] lg:pb-[24px]">
-        <div className="flex flex-col gap-10 lg:gap-[62px]">
 
-          <div className="flex w-full lg:w-[1335px] max-w-full flex-col gap-[14px]" style={{ fontFamily: leagueSpartan }}>
-            <p className="text-[18px] font-light leading-none text-white/60">{caseStudyEyebrowText(project)}</p>
-            <h1 className="font-serif text-[clamp(40px,10vw,96px)] lg:text-[96px] leading-[1.04] lg:leading-[96px] tracking-[-0.015em]">
-              {project.caseStudyHeadline}
-            </h1>
-          </div>
+      {/* Opening: eyebrow, headline, the role in one sentence, then the
+          photograph across the full measure with the year the work is
+          estimated to return feathered into its lower corner. */}
+      <div className={cx(PAGE_PAD, "pt-10 lg:pt-[78px]")} style={{ fontFamily: leagueSpartan }}>
+        <CaseStudyHeader project={project} />
 
-          <div className="flex w-full flex-col lg:flex-row items-start gap-10 lg:gap-[184px] py-0 lg:py-[42px]" style={{ fontFamily: leagueSpartan }}>
-            <div className="flex w-full lg:w-[861px] max-w-full flex-col gap-[14px]">
-              <p className="text-[18px] font-light leading-none text-white/60">My Role</p>
-              <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">
-                {project.role}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* DaySchedule — full bleed */}
-      <section className="w-full">
-        <Image
-          src={daySchedule}
-          alt="A teacher's daily schedule"
-          priority
-          className="w-full h-auto object-cover"
+        <ProjectFacts
+          project={project}
+          facts={[]}
+          className="mt-6 lg:mt-[27px]"
+          factClassName={{ role: "lg:w-[861px]" }}
         />
-      </section>
 
-      {/* Introduction / Problem */}
-      <section className="w-full px-5 lg:px-[24px] pt-10 lg:pt-[24px]" style={{ fontFamily: leagueSpartan }}>
-        <div className="flex w-full max-w-[1539px] flex-col gap-[14px]">
-          <p className="text-[18px] font-light leading-none text-white/60">Problem</p>
-          <div className="text-[clamp(20px,4.5vw,48px)] lg:text-[48px] font-light leading-[1.2] lg:leading-[56px] space-y-8 lg:space-y-[56px]">
-            {project.description.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
+        {/* The photograph runs the page's full measure, the way the other
+            two case studies open. Portrait on a handset, cropped left of
+            centre so the teacher and the screen she is holding both stay in
+            frame; widescreen from lg, where the whole scene fits. */}
+        <div className="relative mt-6 aspect-[4/5] w-full overflow-hidden rounded-2xl border border-white/15 lg:mt-[27px] lg:aspect-[16/9] lg:rounded-[30px]">
+          <Image
+            src={phoneAppWithTeacher}
+            alt="A teacher holding a phone in the classroom, logging a child's activity in the Ms. Sunshine app."
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, calc(100vw - 48px)"
+            className="object-cover object-[28%_center] lg:object-center"
+          />
+          <div aria-hidden className="absolute inset-0" style={{ background: HERO_FEATHER }} />
+          <div className="absolute bottom-0 right-0 p-6 text-right lg:p-12">
+            <p className={HERO_METRIC_VALUE_CLASS}>{HERO_METRIC.value}</p>
+            <p className={cx(CASE_STUDY_METRIC_LABEL_CLASS, "text-white/60")}>
+              {HERO_METRIC.label}
+            </p>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Competitive Analysis */}
-      <section className="w-full flex flex-col lg:items-end gap-[45px] lg:gap-[110px] pt-16 lg:pt-[200px] pb-[67px] lg:pb-[140px]">
-        <div className="flex flex-col gap-[14px] w-full max-w-[1476px] px-5 lg:pl-0 lg:pr-[24px]" style={{ fontFamily: leagueSpartan }}>
-          <p className="text-[18px] font-light leading-none text-white/60">Competitive Analysis</p>
-          <div className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px] w-full max-w-[700px]">
-            <p>
-              Using ChatGPT and Claude, I ran a structured teardown of children&rsquo;s activity and school apps (full analysis linked below). Key patterns:
+      {/* The opportunity. Three columns of one idea — where we started, the
+          decision that connects them, what it becomes — all beginning on the
+          same line, with the strategy in the middle the only lit thing. */}
+      <section
+        aria-labelledby="solo-opportunity-title"
+        className={cx(PAGE_PAD, SECTION_GAP)}
+        style={{ fontFamily: leagueSpartan }}
+      >
+        <ScrollFade once>
+          <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>The Opportunity</p>
+          <h2 id="solo-opportunity-title" className={SECTION_TITLE_CLASS}>
+            A daily report consumed the time teachers needed elsewhere
+          </h2>
+          <p className={cx(CASE_STUDY_BODY_CLASS, "mt-6 max-w-[900px] text-white/80 lg:mt-[32px]")}>
+            {project.description[0]}
+          </p>
+        </ScrollFade>
+
+        <div className="mt-12 flex flex-col gap-14 lg:mt-[80px] lg:grid lg:grid-cols-[1fr_minmax(300px,0.95fr)_1fr] lg:items-stretch lg:gap-12 xl:gap-[64px]">
+          <div className={PANEL_CLASS}>
+            <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>Where We Started</p>
+            <h3 className={PANEL_TITLE_CLASS}>Reporting started when the day ended</h3>
+            <ul className={ROW_LIST_CLASS}>
+              {STARTED_ROWS.map(({ Icon, text }) => (
+                <li key={text} className={ROW_ITEM_CLASS}>
+                  <Icon className={ROW_ICON_CLASS} />
+                  <p className={cx(PANEL_ROW_CLASS, "text-white/85")}>{text}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className={PANEL_CLASS}>
+            <p className={STRATEGY_LABEL_CLASS}>The Strategy</p>
+            <h3 className={cx(PANEL_TITLE_CLASS, "text-[#91dfdf]")}>
+              Capture the day once.
+              <br />
+              Use it twice.
+            </h3>
+            <p className={cx(PANEL_BODY_TOP, PANEL_ROW_CLASS, "text-white/85")}>
+              Turn each classroom update into both a real-time parent notification and part of the
+              child&rsquo;s end-of-day summary.
             </p>
-            <ul className="list-disc pl-8 lg:pl-[48px]">
-              <li>Fast teacher logging</li>
-              <li>Strong parent communication</li>
-              <li>Bulk actions for efficiency</li>
-              <li>Simple but flexible workflows</li>
-              <li>Clear end-of-day summaries</li>
+          </div>
+
+          <div className={PANEL_CLASS}>
+            <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>What It Becomes</p>
+            <h3 className={PANEL_TITLE_CLASS}>One update, two jobs</h3>
+            <ul className={ROW_LIST_CLASS}>
+              {BECOMES_ROWS.map(({ Icon, text }) => (
+                <li key={text} className={ROW_ITEM_CLASS}>
+                  <Icon className={ROW_ICON_CLASS} />
+                  <p className={cx(PANEL_ROW_CLASS, "text-white/85")}>{text}</p>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
-
-        <div
-          className="relative w-full max-w-[1476px] aspect-[1476/916] overflow-hidden flex items-center justify-center"
-          style={{ backgroundColor: "#91dfdf" }}
-        >
-          <Image
-            src={middleCopyVideoBg}
-            alt=""
-            fill
-            className="object-cover"
-            aria-hidden
-          />
-          <div className="relative z-10 w-full h-full flex items-center justify-center px-6 lg:px-[114px] py-6 lg:py-[109px]">
-            <a
-              href="/Competitive Analysis - Children Activity Apps.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full h-full"
-            >
-              <Image
-                src={competitiveAnalysisCover}
-                alt="Competitive analysis cover — Children Activity & School Activity Apps"
-                className="rounded-[10px] w-full h-full object-cover opacity-95 cursor-pointer"
-                width={1248}
-                height={698}
-              />
-            </a>
-          </div>
-        </div>
       </section>
 
-      {/* Design & prototype — ActivityFlow carousel */}
-      <section className="w-full pb-24 lg:pb-[200px] pt-7 lg:pt-[28px]" style={{ fontFamily: leagueSpartan }}>
-        <div className="flex flex-col items-center gap-[14px] px-5 lg:px-[24px] mb-8 lg:mb-10 text-center">
-          <p className="text-[18px] font-light leading-none text-white/60">Design &amp; Prototype</p>
-          <p className="text-[clamp(18px,2.2vw,22px)] font-light leading-[1.32] max-w-[700px]">
-            From the PRD, I used Google Stitch and Figma First Draft to accelerate early exploration, then refined an MVP in Figma and Replit for usability testing.
-          </p>
-        </div>
-        <ActivityFlowCarousel items={activityFlowItems} />
-      </section>
+      {/* Before and after. One photograph of the work as it was, the
+          statement set into the shadow the lamp leaves on the wall behind
+          her; against it the delivered flow, replaying on a handset — one
+          snack logged for three children and their parents at once. */}
+      <section
+        aria-labelledby="solo-comparison-title"
+        className={cx(PAGE_PAD, SECTION_GAP)}
+        style={{ fontFamily: leagueSpartan }}
+      >
+        <ScrollFade once>
+          <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>Before and After</p>
+          <h2 id="solo-comparison-title" className={SECTION_TITLE_CLASS}>
+            From end-of-day reconstruction to a live record
+          </h2>
+        </ScrollFade>
 
-      {/* End — yellow-hand panel + closing copy */}
-      <section className="w-full flex flex-col lg:flex-row items-start gap-10 lg:gap-[24px] pb-20 lg:pb-[120px] px-5 lg:px-0 lg:pr-[24px]">
-        {/* Left: yellow background + phone + QR code */}
-        <div
-          className="relative w-full lg:w-[45%] aspect-[985/1230] lg:shrink-0 overflow-hidden"
-        >
-          <Image
-            src={backgroundHandYellow}
-            alt=""
-            fill
-            className="object-cover"
-            aria-hidden
-          />
-          <div className="relative z-10 w-full h-full flex items-start justify-center pt-[7%]">
-            <a
-              href="https://ms-sunshine-app.vercel.app/home"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative w-[46%] aspect-[450/944]"
-            >
+        {/* The statement only moves onto the photograph once the frame is wide
+            enough to hold it clear of her: below md the crop is a portrait and
+            the caption sits beneath it, from md up the frame opens to 3:2 and
+            the copy takes the shadow the lamp leaves on the wall. */}
+        <ScrollFade once>
+          <figure className="relative mt-[50px]">
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-white/15 md:aspect-[3/2] lg:rounded-[30px]">
               <Image
-                src={home}
-                alt="App home screen"
+                src={teacherWorkingLate}
+                alt="A teacher at a dining table after dark, writing up the day's reports on a laptop by lamplight."
                 fill
-                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, calc(100vw - 48px)"
+                className="object-cover object-[52%_center] md:object-center"
               />
-            </a>
-          </div>
-        </div>
-
-        {/* Right: closing copy */}
-        <div
-          className="flex flex-col items-start min-w-0 w-full"
-          style={{ fontFamily: leagueSpartan }}
-        >
-          <div className="flex flex-col gap-10 lg:gap-[56px] w-full">
-            <div className="flex flex-col gap-[14px] text-white">
-              <p className="text-[18px] font-light leading-none text-white/60">Things I Did:</p>
-              {results.map((result) => (
-                <div key={result.value}>
-                  <p className={`${CASE_STUDY_METRIC_VALUE_CLASS} text-white`}>{result.value}</p>
-                  <p className={`${CASE_STUDY_METRIC_LABEL_CLASS} text-white/70`}>{resultDetail(result)}</p>
-                </div>
-              ))}
-              <p className="text-[clamp(18px,2.2vw,22px)] font-light leading-[1.32]">
-                Once concepts were validated with the client, I used Replit to turn designs into a working build, then iterated on real feedback from the client and test users. The shipped app removes manual end-of-day reporting &mdash; an estimated 2 hours of the head teacher&rsquo;s day, or roughly 480 hours across a ~240-day working year. It does the following:
-              </p>
-              <ul className="text-[clamp(18px,2.2vw,22px)] font-light leading-[1.32] list-disc pl-6 lg:pl-[36px] space-y-4 sm:space-y-5 lg:space-y-[24px]">
-                <li>
-                  Automates activity reporting through a simple teacher workflow that allows staff to select an activity, choose the child or children involved, and add a note when needed. Once submitted, the update is automatically logged in each child&rsquo;s activity feed for parents to view.
-                </li>
-                <li>
-                  Triggered by the check-out action, the app automatically generates an AI-powered end-of-day summary of the child&rsquo;s activities. The head teacher can review and edit the summary as needed before it is shared with parents.
-                </li>
-                <li>
-                  In the parent portal, parents can only view their own child&rsquo;s feed and communicate with teachers in real time through comments on activity updates, with notifications sent for each reply.
-                </li>
-              </ul>
+              <div
+                aria-hidden
+                className="absolute inset-0 hidden md:block"
+                style={{ background: BEFORE_FEATHER }}
+              />
             </div>
-            <div className="flex flex-wrap items-center gap-3 lg:gap-[25px] lg:pl-[42px]">
-              <BackToHomeButton
-                className="justify-center"
-                size="xl"
-                fontFamily={leagueSpartan}
-              />
+            <figcaption className="mt-7 md:absolute md:right-0 md:top-[9%] md:mt-0 md:w-full md:max-w-[440px] md:px-6 md:text-right lg:max-w-[520px] lg:px-12">
+              <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>Before</p>
+              <h3 className={COMPARE_HEADING_CLASS}>The day was written up after it ended</h3>
+              <p className={cx(CASE_STUDY_SUPPORTING_CLASS, "mt-4 text-white/70 lg:mt-[18px]")}>
+                Teachers completed the reporting work after the day was already over, repeating
+                information across individual reports.
+              </p>
+            </figcaption>
+          </figure>
+        </ScrollFade>
+
+        {/* After: the flow itself, running. The handset carries the argument
+            so it leads the row, and everything the change amounts to — the
+            statement, the three moves, the prototype — stands in the column
+            beside it. */}
+        <div className="mt-16 lg:mt-[96px] lg:grid lg:grid-cols-[minmax(260px,340px)_minmax(0,1fr)] lg:items-center lg:gap-12 xl:gap-[64px]">
+          <ScrollFade once>
+            <SunshinePhoneWalkthrough className="mx-auto w-[min(280px,66vw)] lg:w-full" />
+          </ScrollFade>
+
+          <div className="mt-14 lg:mt-0">
+            <ScrollFade once>
+              <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>After</p>
+              <h3 className={COMPARE_HEADING_CLASS}>The day records itself as it happens</h3>
+              <p
+                className={cx(
+                  CASE_STUDY_SUPPORTING_CLASS,
+                  "mt-4 max-w-[520px] text-white/70 lg:mt-[18px]",
+                )}
+              >
+                Each activity becomes a reusable record the moment it happens&mdash;keeping parents
+                informed and building the daily report automatically.
+              </p>
+            </ScrollFade>
+
+            {/* The three changes stated in full, in the order the
+                walkthrough beside them performs. */}
+            <ol className="mt-10 grid list-none grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-8 lg:mt-[56px] lg:gap-[40px]">
+              {CHANGES.map((change) => (
+                <li key={change.number}>
+                  <p className={cx(CASE_STUDY_LABEL_TIGHT_CLASS, "text-white/40")}>
+                    {change.number}
+                  </p>
+                  <h4 className="mt-3 text-balance font-serif text-[clamp(20px,2vw,26px)] font-normal leading-[1.15] tracking-[-0.01em] sm:min-h-[2.3em] lg:mt-[14px]">
+                    {change.title}
+                  </h4>
+                  <p className={cx(PANEL_ROW_CLASS, "mt-4 max-w-[520px] text-white/70 lg:mt-[18px]")}>
+                    {change.body}
+                  </p>
+                </li>
+              ))}
+            </ol>
+
+            <div className="mt-12 flex lg:mt-[56px]">
               <a
-                href="https://ms-sunshine-app.vercel.app/home"
+                href="https://ms-sunshine-app-prototype.vercel.app/home"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center rounded-full border border-[#919191] px-6 lg:px-[30px] ${CTA_PILL_SIZE.xl} font-normal leading-none whitespace-nowrap text-white transition-colors duration-150 hover:border-white`}
-                style={{ fontFamily: leagueSpartan }}
+                className={cx(
+                  "inline-flex items-center justify-center rounded-full border border-[#919191]",
+                  `px-6 lg:px-[30px] ${CTA_PILL_SIZE.xl}`,
+                  "font-normal whitespace-nowrap text-white transition-colors duration-150 hover:border-white",
+                  CASE_STUDY_FOCUS_CLASS,
+                )}
+                style={{ fontFamily: leagueSpartan, lineHeight: 1 }}
               >
                 Prototype
               </a>
@@ -237,15 +429,97 @@ export default function SoloPage() {
         </div>
       </section>
 
-      {/* Next Case Study section */}
-      <section id="next-case-study-section" className="relative w-full bg-black overflow-hidden pt-16 lg:pt-[78px] pb-24 lg:pb-[200px]">
-        <NextCaseStudyTicker color="#066c84" />
+      {/* Impact. Two estimates and one change in experience, each labelled
+          with the status it actually has. */}
+      <section
+        aria-labelledby="solo-impact-title"
+        className={cx(PAGE_PAD, SECTION_GAP)}
+        style={{ fontFamily: leagueSpartan }}
+      >
+        {/* The last section closes to the right: label, title and every
+            figure under them are set flush to the same right edge the
+            handset stands on, so the whole argument leans toward the screen
+            that proves it. */}
+        <ScrollFade once className="lg:text-right">
+          <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>Impact</p>
+          <h2 id="solo-impact-title" className={cx(SECTION_TITLE_CLASS, "lg:ml-auto")}>
+            Less time reporting. More time for children and families.
+          </h2>
+        </ScrollFade>
 
-        {/* Cards row */}
+        {/* The mirror of the Before and After row: there the handset led and
+            the argument stood beside it, here the argument leads and the
+            handset closes the page on the right. The three figures and the
+            phone share a centre line, so the column reads against it. */}
+        <div className="mt-12 lg:mt-[80px] lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(260px,340px)] lg:items-center lg:gap-12 xl:gap-[64px]">
+          <div className="lg:text-right">
+            <dl className="flex flex-col gap-10 lg:gap-[48px]">
+              {IMPACT.map((item) => (
+                <div key={item.label}>
+                  <dt className={CASE_STUDY_LABEL_TIGHT_CLASS}>{item.label}</dt>
+                  <dd className={cx(HERO_METRIC_VALUE_CLASS, "mt-3 lg:mt-[18px]")}>{item.value}</dd>
+                  <dd
+                    className={cx(
+                      CASE_STUDY_METRIC_LABEL_CLASS,
+                      "max-w-[520px] text-white/70 lg:ml-auto",
+                    )}
+                  >
+                    {item.note}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          {/* Live, not a screenshot: Mei's feed as her guardians actually
+              receive it, which is the parent half of the claim above.
+
+              On the wide layout the caption is lifted out of the flow so the
+              column measures the handset alone; otherwise the caption's own
+              height pushes the phone half a line above the row's centre. */}
+          <ScrollFade once className="lg:relative">
+            <SunshineParentFeed className="mx-auto mt-14 w-[min(280px,66vw)] lg:mt-0 lg:w-full" />
+            <p
+              className={cx(
+                CASE_STUDY_SUPPORTING_CLASS,
+                "mt-6 text-center text-white/50 lg:absolute lg:inset-x-0 lg:top-full lg:mt-[28px]",
+              )}
+            >
+              The parent view, running live.
+            </p>
+          </ScrollFade>
+        </div>
+      </section>
+
+      {/* Behind the work. Method and tools, kept one click off the spine of
+          the page so the argument reads straight through. */}
+      <div className={cx(PAGE_PAD, SECTION_GAP)} style={{ fontFamily: leagueSpartan }}>
+        <SupportingAppendix
+          id="behind-the-work"
+          title="Behind the Work"
+          summary="How I moved from a manual workflow to a tested MVP in three weeks"
+        >
+          {BEHIND_THE_WORK.map((step) => (
+            <div key={step.title} className={CASE_STUDY_STACK_CLASS}>
+              <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>{step.title}</p>
+              <p className="text-white/70">{step.body}</p>
+            </div>
+          ))}
+        </SupportingAppendix>
+      </div>
+
+      {/* Next Case Studies */}
+      <section
+        id="next-case-study-section"
+        className="relative w-full overflow-hidden bg-black pb-24 lg:pb-[200px] pt-16 lg:pt-[78px] mt-20 md:mt-[110px] lg:mt-[150px]"
+      >
+        <NextCaseStudyTicker color={ACCENT} />
+
         <div className="relative flex flex-col lg:flex-row items-center lg:justify-center gap-12 lg:gap-[200px] px-5 lg:px-0">
           {/* PayPal card */}
           <Link href={nextPayPal.route} className="group flex w-full max-w-[437px] lg:w-[437px] flex-col gap-4 lg:gap-[27px] items-start">
             <div className="relative aspect-[437/666] w-full lg:w-[437px] lg:h-[666px] rounded-[30px] overflow-hidden lg:shrink-0">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={imageSrc(nextPayPalPreview.image)}
                 alt={nextPayPalPreview.alt}
