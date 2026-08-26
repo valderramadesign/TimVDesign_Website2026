@@ -325,11 +325,7 @@ export default function PatientPortalPage() {
           title="Behind the Work"
           summary="The AI-assisted workflow behind the strategy, the iteration, and the prototype"
         >
-          {/* The diagram runs the full content width, so the caption has to
-              size off the container rather than the viewport — 1.23cqw is 18px
-              at the 1464px container a 1512 screen gives, capped there so it
-              stops growing on very wide displays. */}
-          <div className="@container relative w-full">
+          <div className="relative w-full">
             <div className="relative w-full aspect-[1468/795]">
               <Image
                 src={workflowDiagram}
@@ -342,7 +338,7 @@ export default function PatientPortalPage() {
                 third circle above, which keeps it clear of Content Design.
                 Mobile: the diagram is far too small to hold text, so the
                 caption drops underneath it. */}
-            <p className="mt-6 text-sm font-light leading-snug text-white/60 lg:absolute lg:left-[74.05%] lg:top-[73.14%] lg:mt-0 lg:w-[25.95%] lg:text-[clamp(12px,1.23cqw,18px)] lg:leading-[1.45] lg:text-white">
+            <p className="mt-6 text-sm font-light leading-snug text-white/60 lg:absolute lg:left-[74.05%] lg:top-[73.14%] lg:mt-0 lg:w-[25.95%] lg:text-[18px] lg:leading-[1.45] lg:text-white">
               Used an AI-assisted workflow to synthesize the current-state review, compare three
               navigation models, and build the task-first booking prototype.
             </p>
