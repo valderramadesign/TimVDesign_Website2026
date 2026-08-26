@@ -4,7 +4,13 @@ import { useRef, type CSSProperties } from "react";
 import { type StaticImageData } from "next/image";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 
-export type DashboardVariant = "action" | "brief" | "console";
+export type DashboardVariant =
+  | "action"
+  | "brief"
+  | "console"
+  | "next-best-action"
+  | "care-journey"
+  | "guided-concierge";
 
 type Props = {
   image: StaticImageData;
@@ -20,13 +26,13 @@ type Props = {
  * Instead of fading zones, each dashboard is assembled one component at a
  * time — exactly the mechanic Stitch uses: fully-formed pieces (a nav item, a
  * KPI card, a panel section) pop onto a shimmering canvas in build order while
- * a purple cursor hops beside each new component. Component rects come from
- * the Figma source frames (1280-wide), so every piece of the exported PNG is
- * revealed via its own clip-path window over the same image — no extra assets.
+ * a purple cursor hops beside each new component. Every piece is revealed via
+ * its own clip-path window over the same image — no extra assets.
  *
- * Rects are [x, y, w, h] in Figma frame pixels. The exported PNGs share the
- * frame's pixel grid (verified against the source), with y mapped against the
- * PNG's own height. A full-image crossfade at the end fills hairline gaps
+ * Rects are [x, y, w, h] in each PNG's own pixel grid, mapped to percentages
+ * against image.width / image.height, so 1x and 2x exports both work. They
+ * were authored against the Figma frame and verified against the source.
+ * A full-image crossfade at the end fills hairline gaps
  * (container borders, dividers) not covered by component rects.
  */
 const STEPS: Record<DashboardVariant, [number, number, number, number][]> = {
@@ -118,9 +124,86 @@ const STEPS: Record<DashboardVariant, [number, number, number, number][]> = {
     [973, 737, 257, 123], // detail recommendation
     [973, 884, 257, 140], // detail actions
   ],
+  // Patient Portal — Next Best Action (PNG 2560x3036, 2x export)
+  "next-best-action": [
+    [65, 37, 327, 53], // product name
+    [995, 37, 294, 53], // nav 1–2
+    [1314, 51, 234, 27], // nav 3–4
+    [1559, 52, 204, 28], // nav 5–6
+    [2380, 52, 116, 29], // sign out
+    [65, 206, 1485, 95], // greeting
+    [65, 337, 858, 35], // sub copy
+    [65, 487, 609, 47], // "what needs your attention"
+    [64, 588, 1606, 546], // action card 1
+    [64, 1168, 1606, 498], // action card 2
+    [64, 1700, 1606, 502], // action card 3
+    [65, 2281, 463, 48], // "your upcoming care"
+    [64, 2382, 1606, 420], // upcoming card
+    [1719, 487, 223, 47], // "shortcuts"
+    [1717, 588, 382, 371], // shortcut tile 1
+    [2114, 588, 386, 360], // shortcut tile 2
+    [1717, 985, 382, 366], // shortcut tile 3
+    [2114, 985, 386, 361], // shortcut tile 4
+    [1719, 1444, 781, 48], // "everything else"
+    [1717, 1510, 783, 146], // list row 1
+    [1717, 1656, 783, 114], // list row 2
+    [1717, 1770, 783, 114], // list row 3
+    [1717, 1884, 783, 114], // list row 4
+    [1717, 1998, 783, 114], // list row 5
+  ],
+  // Patient Portal — My Care Journey (PNG 2560x3562, 2x export)
+  "care-journey": [
+    [65, 31, 327, 66], // product name
+    [608, 31, 896, 66], // search
+    [1734, 46, 405, 45], // nav 1–3
+    [2188, 53, 60, 27], // nav 4
+    [2380, 53, 116, 27], // sign out
+    [66, 213, 1067, 165], // page title
+    [1854, 213, 642, 165], // viewing care for
+    [98, 482, 268, 28], // tab 1
+    [432, 484, 182, 27], // tab 2
+    [681, 484, 135, 27], // tab 3
+    [884, 484, 145, 27], // tab 4
+    [1096, 483, 141, 28], // tab 5
+    [77, 652, 179, 592], // timeline rail 1
+    [256, 632, 1424, 612], // timeline card 1
+    [82, 1328, 174, 420], // timeline rail 2
+    [256, 1308, 1424, 438], // timeline card 2
+    [92, 1832, 164, 764], // timeline rail 3
+    [256, 1812, 1424, 782], // timeline card 3
+    [77, 2672, 179, 60], // timeline rail 4
+    [256, 2660, 1424, 698], // timeline card 4
+    [1717, 632, 783, 534], // who is doing what panel
+  ],
+  // Patient Portal — Guided AI Concierge (PNG 2560x2094, 2x export)
+  "guided-concierge": [
+    [65, 26, 327, 76], // product name
+    [869, 51, 214, 32], // nav 1–3
+    [1091, 43, 611, 51], // nav 4–5
+    [1768, 52, 66, 31], // nav 6
+    [2311, 26, 185, 76], // sign out
+    [65, 209, 1032, 63], // page title
+    [65, 318, 1035, 31], // sub copy
+    [64, 402, 1616, 100], // ask input
+    [64, 566, 308, 164], // suggestion 1
+    [604, 566, 421, 164], // suggestion 2
+    [1145, 566, 491, 164], // suggestion 3
+    [64, 746, 379, 116], // suggestion 4
+    [604, 746, 402, 116], // suggestion 5
+    [1145, 746, 316, 116], // suggestion 6
+    [114, 976, 795, 99], // transcript: question
+    [114, 1178, 1551, 99], // transcript: answer lead
+    [228, 1296, 174, 29], // transcript: options label
+    [226, 1362, 1439, 164], // transcript: options
+    [227, 1585, 515, 40], // transcript: next-step label
+    [226, 1670, 1439, 108], // transcript: next step
+    [1717, 194, 783, 562], // side panel: open tasks
+    [1717, 820, 783, 216], // side panel: emergency notice
+    [1717, 1100, 783, 444], // side panel: talk to someone
+  ],
 };
 
-const FRAME_W = 1280;
+const RECT_SCALE_BASE = 1280; // rect authoring width; bleed scales up for 2x exports
 const PAD = 5; // px bleed around each rect so anti-aliased edges aren't clipped
 const BASE_DELAY = 0.15;
 const STEP = 0.095;
@@ -158,19 +241,22 @@ export default function DashboardAssembleReveal({ image, alt, variant, className
     );
   }
 
+  const frameW = image.width;
   const frameH = image.height;
+  const scale = frameW / RECT_SCALE_BASE;
+  const pad = PAD * scale; // same visual bleed on 1x and 2x exports
   const steps = STEPS[variant].map(([x, y, w, h], i) => {
-    const top = clamp(((y - PAD) / frameH) * 100, 0, 100);
-    const left = clamp(((x - PAD) / FRAME_W) * 100, 0, 100);
-    const bottom = clamp(100 - ((y + h + PAD) / frameH) * 100, 0, 100);
-    const right = clamp(100 - ((x + w + PAD) / FRAME_W) * 100, 0, 100);
+    const top = clamp(((y - pad) / frameH) * 100, 0, 100);
+    const left = clamp(((x - pad) / frameW) * 100, 0, 100);
+    const bottom = clamp(100 - ((y + h + pad) / frameH) * 100, 0, 100);
+    const right = clamp(100 - ((x + w + pad) / frameW) * 100, 0, 100);
     return {
       clip: `inset(${top}% ${right}% ${bottom}% ${left}%)`,
       // pop scales from the component's own center
-      origin: `${clamp(((x + w / 2) / FRAME_W) * 100, 0, 100)}% ${clamp(((y + h / 2) / frameH) * 100, 0, 100)}%`,
+      origin: `${clamp(((x + w / 2) / frameW) * 100, 0, 100)}% ${clamp(((y + h / 2) / frameH) * 100, 0, 100)}%`,
       // cursor lands just off the component's bottom-right corner
-      cx: clamp(((x + w + 10) / FRAME_W) * 100, 2, 96),
-      cy: clamp(((y + h + 6) / frameH) * 100, 3, 96),
+      cx: clamp(((x + w + 10 * scale) / frameW) * 100, 2, 96),
+      cy: clamp(((y + h + 6 * scale) / frameH) * 100, 3, 96),
       delay: BASE_DELAY + i * STEP,
     };
   });

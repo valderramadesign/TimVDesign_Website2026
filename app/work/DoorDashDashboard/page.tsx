@@ -12,14 +12,19 @@ import missionControlDashboard from "@/components/images/DoorDash Dashboard/prom
 import personaMarketplaceOps from "@/components/images/DoorDash Dashboard/persona-marketplace-ops.png";
 import personaMerchantSuccess from "@/components/images/DoorDash Dashboard/persona-merchant-success.png";
 import personaGrowthFinance from "@/components/images/DoorDash Dashboard/persona-growth-finance.png";
-import BackToHomeButton from "@/components/ui/back-to-home-button";
 import { CTA_PILL_SIZE } from "@/components/ui/cta-pill";
 import {
-  PROJECTS_BY_ID,
-  caseStudyEyebrowText,
-  imageSrc,
-  previewOf,
-} from "@/lib/content";
+  CaseStudyHeader,
+  ProjectFacts,
+  SupportingAppendix,
+  CASE_STUDY_BODY_CLASS,
+  CASE_STUDY_LABEL_TIGHT_CLASS,
+  CASE_STUDY_LEAD_CLASS,
+  CASE_STUDY_LEAD_GAP_CLASS,
+  CASE_STUDY_STACK_CLASS,
+  cx,
+} from "@/components/case-study";
+import { PROJECTS_BY_ID, imageSrc, previewOf } from "@/lib/content";
 import { caseStudyMetadata } from "@/lib/seo";
 
 const project = PROJECTS_BY_ID.doordash;
@@ -35,21 +40,25 @@ export const metadata = caseStudyMetadata(
 
 const leagueSpartan = "var(--font-league-spartan)";
 
-function PersonaRow({ dotColor, label, copy }: { dotColor: string; label: string; copy: string }) {
+/* The page gutter and the major vertical break, shared with the other case
+   studies so the six of them scroll at the same rhythm. */
+const PAGE_PAD = "px-5 lg:px-[24px]";
+const SECTION_GAP = "mt-24 md:mt-[140px] lg:mt-[200px]";
+const ACCENT = "#f5006e";
+/* The brand pink is a fill, not a text colour: on black it measures 5.11:1,
+   which clears AAA only at large sizes. This is the identical hue and
+   saturation lifted to 7.25:1, so the concept titles clear AAA for normal text
+   while still reading as the one DoorDash colour the ticker paints. */
+const ACCENT_TEXT = "#ff5aa4";
+
+/* Label over copy, the same pair every other case study uses for a stacked
+   fact. The copy takes its size from the appendix, which already carries
+   CASE_STUDY_BODY_CLASS. */
+function PersonaRow({ label, copy }: { label: string; copy: string }) {
   return (
-    <div className="flex items-start gap-[14px]">
-      <span
-        className="mt-[7px] size-[6px] shrink-0 rounded-[3px]"
-        style={{ backgroundColor: dotColor }}
-      />
-      <div className="flex flex-col gap-1">
-        <p className="text-[14px] font-bold uppercase leading-none tracking-[0.077em] text-white/35">
-          {label}
-        </p>
-        <p className="text-lg lg:text-[24px] font-normal leading-snug lg:leading-[30px] text-white/80">
-          {copy}
-        </p>
-      </div>
+    <div className={CASE_STUDY_STACK_CLASS}>
+      <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>{label}</p>
+      <p className="text-white/70">{copy}</p>
     </div>
   );
 }
@@ -107,44 +116,22 @@ export default function DoorDashDashboardCaseStudy() {
     <main className="bg-black text-white">
       <CaseStudyTopBar />
 
-      {/* Top: nav, title, specs (above hero image) */}
-      <section className="w-full bg-black px-5 pb-5 lg:px-[24px] lg:pb-[24px]">
-        <div className="flex flex-col gap-10 lg:gap-[62px]">
-          {/* Title block */}
-          <ScrollFade direction="left" once={true}>
-            <div
-              className="flex w-full lg:w-[1335px] max-w-full flex-col gap-[14px]"
-              style={{ fontFamily: leagueSpartan }}
-            >
-              <p className="text-sm lg:text-[18px] font-light leading-none text-white/60">
-                {caseStudyEyebrowText(project)}
-              </p>
-              <h1 className="font-serif leading-[1.02] lg:leading-[96px] tracking-[-0.015em] text-[clamp(36px,9vw,96px)] lg:text-[96px]">
-                {project.caseStudyHeadline}
-              </h1>
-            </div>
-          </ScrollFade>
+      {/* Opening: eyebrow, headline, the role in one sentence, then the movie
+          across the full measure — inside the same rounded frame the other
+          case studies open their hero image in. */}
+      <div className={cx(PAGE_PAD, "pt-10 lg:pt-[78px]")} style={{ fontFamily: leagueSpartan }}>
+        <CaseStudyHeader project={project} />
 
-          {/* My role */}
-          <div
-            className="flex flex-col lg:flex-row w-full items-start gap-10 lg:gap-[64px] py-6 lg:py-[42px]"
-            style={{ fontFamily: leagueSpartan }}
-          >
-            <ScrollFade direction="left" once={true}>
-              <div className="flex w-full lg:w-[861px] max-w-full flex-col gap-[14px]">
-                <p className="text-sm lg:text-[18px] font-light leading-none text-white/60">My Role</p>
-                <p className="text-lg lg:text-[32px] font-light leading-snug lg:leading-[42px]">
-                  {project.role}
-                </p>
-              </div>
-            </ScrollFade>
-          </div>
-        </div>
-      </section>
+        <ProjectFacts
+          project={project}
+          facts={[]}
+          className="mt-6 lg:mt-[27px]"
+          factClassName={{ role: "lg:w-[861px]" }}
+        />
 
-      {/* Hero image */}
-      <section className="relative w-full">
-        <div className="relative aspect-[1837/953] w-full overflow-hidden">
+        {/* Portrait on a handset, widescreen from lg. The frame owns the
+            aspect ratio, so the movie reserves its space before it loads. */}
+        <div className="relative mt-6 aspect-[4/5] w-full overflow-hidden rounded-2xl border border-white/15 lg:mt-[27px] lg:aspect-[16/9] lg:rounded-[30px]">
           <video
             src="/videos/DoorDashDashboard/DoorDashDashboardHeroMovie_v2.mp4"
             className="absolute inset-0 h-full w-full object-cover"
@@ -154,90 +141,39 @@ export default function DoorDashDashboardCaseStudy() {
             playsInline
           />
         </div>
-      </section>
+      </div>
 
-      {/* Body */}
-      <section className="relative w-full px-5 lg:px-[37px] pt-8 lg:pt-[36px]">
-        {/* Introduction */}
+      {/* Problem */}
+      <section
+        aria-labelledby="doordash-problem-title"
+        className={cx(PAGE_PAD, SECTION_GAP)}
+        style={{ fontFamily: leagueSpartan }}
+      >
         <ScrollFade direction="left">
-          <div
-            className="flex w-full max-w-[1563px] flex-col gap-[14px]"
-            style={{ fontFamily: leagueSpartan }}
-          >
-            <p className="text-sm lg:text-[18px] font-light text-white/60">Problem</p>
-            <p className="text-[clamp(20px,4.5vw,48px)] lg:text-[48px] font-light leading-[1.3]">
-              {project.description[0]}
-              <br />
-              <br />
-              {project.description[1]}
-            </p>
+          <div className={cx(CASE_STUDY_STACK_CLASS, "max-w-[1563px]")}>
+            <h2 id="doordash-problem-title" className={CASE_STUDY_LABEL_TIGHT_CLASS}>
+              Problem
+            </h2>
+            <div className={cx("flex flex-col", CASE_STUDY_LEAD_CLASS, CASE_STUDY_LEAD_GAP_CLASS)}>
+              <p>{project.description[0]}</p>
+              <p>{project.description[1]}</p>
+            </div>
           </div>
         </ScrollFade>
+      </section>
 
-        {/* Personas */}
-        <div className="mt-24 lg:mt-[200px] flex flex-col gap-10 lg:gap-[54px]">
+      {/* Discovery — three concepts, alternating sides, each wireframe
+          assembling itself the way Stitch drew it. */}
+      <section
+        aria-labelledby="doordash-discovery-title"
+        className={cx(PAGE_PAD, SECTION_GAP)}
+        style={{ fontFamily: leagueSpartan }}
+      >
+        <div className="flex flex-col gap-[150px]">
           <ScrollFade direction="left">
-            <p className="text-sm lg:text-[18px] font-light text-white/60" style={{ fontFamily: leagueSpartan }}>
-              Personas and Jobs-to-Be-Done
-            </p>
-          </ScrollFade>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-[68px] lg:gap-[81px]">
-            {PERSONAS.map((persona, i) => (
-              <ScrollFade
-                key={persona.role}
-                direction={i % 2 === 0 ? "left" : "right"}
-                className="flex flex-col gap-6 lg:gap-[28px] w-[80.5%] mx-auto"
-                style={{ fontFamily: leagueSpartan }}
-              >
-                <Image
-                  src={persona.avatar}
-                  alt={`${persona.role} persona portrait`}
-                  className="h-[200px] w-[200px] lg:h-[260px] lg:w-[260px] self-center rounded-full object-cover"
-                  sizes="260px"
-                />
-                <div className="flex flex-col gap-4 lg:gap-[15px]">
-                  <h3 className="text-[22px] lg:text-[28px] font-bold leading-tight tracking-[-0.15px]">
-                    {persona.role}
-                  </h3>
-                  <div className="h-px w-full bg-white/[0.08]" />
-                </div>
-                <div className="flex flex-col gap-7 lg:gap-[34px]">
-                  <PersonaRow dotColor="#60a5fa" label="Main Job" copy={persona.mainJob} />
-                  <PersonaRow dotColor="#34d399" label="Primary Dashboard Need" copy={persona.dashboardNeed} />
-                  <PersonaRow dotColor="#f87171" label="Friction Point" copy={persona.friction} />
-                </div>
-              </ScrollFade>
-            ))}
-          </div>
-        </div>
-
-        {/* Workflow + commentary */}
-        <div className="mt-24 lg:mt-[200px] flex w-full flex-col gap-10 lg:gap-[62px]" style={{ fontFamily: leagueSpartan }}>
-          <p className="text-sm lg:text-[18px] font-light leading-none text-white/60 lg:self-end lg:ml-auto lg:w-[calc(100%-276px)]">
-            AI-Assisted Workflow
-          </p>
-          <div className="relative w-full aspect-[1482/795] lg:ml-auto lg:w-[calc(100%-276px)]">
-            <Image
-              src={workflow}
-              alt="Workflow diagram"
-              fill
-              className="object-contain object-right"
-            />
-            <p className="absolute top-[73.14%] left-[74.04%] w-[25.96%] text-[12px] sm:text-base lg:text-[13px] font-light leading-[1.4] lg:leading-[1.4] text-white min-[1536px]:text-[18px] min-[1536px]:leading-[1.5]">
-              I used an end-to-end AI-assisted workflow &mdash; from ChatGPT-structured
-              discovery through Figma iteration and Claude Code prototyping &mdash; to
-              shape the design strategy, accelerate iteration, and turn scattered
-              signals into a clear, actionable dashboard experience.
-            </p>
-          </div>
-        </div>
-
-        {/* Discovery */}
-        <div className="mt-24 lg:mt-[200px] flex flex-col gap-[150px]">
-          <ScrollFade direction="left">
-            <p className="text-sm lg:text-[18px] font-light text-white/60" style={{ fontFamily: leagueSpartan }}>
+            <h2 id="doordash-discovery-title" className={CASE_STUDY_LABEL_TIGHT_CLASS}>
               Discovery
-            </p>
+            </h2>
           </ScrollFade>
 
           {DISCOVERY_CONCEPTS.map((concept, i) => (
@@ -258,12 +194,12 @@ export default function DoorDashDashboardCaseStudy() {
                 style={{ fontFamily: leagueSpartan }}
               >
                 <h3
-                  className="text-[clamp(34px,6.3vw,67px)] lg:text-[67px] leading-[1.04] tracking-[-0.01em] text-[#f5006e]"
-                  style={{ fontFamily: "var(--font-pt-serif)" }}
+                  className="text-[clamp(34px,6.3vw,67px)] lg:text-[67px] leading-[1.04] tracking-[-0.01em]"
+                  style={{ fontFamily: "var(--font-pt-serif)", color: ACCENT_TEXT }}
                 >
                   {concept.title}
                 </h3>
-                <p className="text-[17px] lg:text-[28px] font-normal leading-snug lg:leading-[34px] text-white/95">
+                <p className={cx(CASE_STUDY_BODY_CLASS, "text-white/70")}>
                   {concept.description}
                 </p>
               </ScrollFade>
@@ -316,7 +252,6 @@ export default function DoorDashDashboardCaseStudy() {
             </div>
 
             <div className="pointer-events-auto flex flex-wrap items-center gap-3 lg:gap-[25px]">
-              <BackToHomeButton fontFamily={leagueSpartan} />
               <a
                 href="https://door-dash-dashboard-amber.vercel.app/"
                 target="_blank"
@@ -331,14 +266,86 @@ export default function DoorDashDashboardCaseStudy() {
         </div>
       </section>
 
-      {/* Next Case Studies */}
-      <section id="next-case-study-section" className="relative w-full overflow-hidden bg-black pb-24 lg:pb-[200px] pt-12 lg:pt-[78px] mt-16 lg:mt-[100px]">
-        <NextCaseStudyTicker color="#f5006e" />
+      {/* Behind the work. Who the dashboard was built for, and how it was
+          built — kept one click off the spine of the page, the way the other
+          case studies carry theirs. */}
+      <div className={cx(PAGE_PAD, SECTION_GAP)} style={{ fontFamily: leagueSpartan }}>
+        <SupportingAppendix
+          id="behind-the-work"
+          title="Behind the Work"
+          summary="Who the dashboard was built for, and the AI-assisted workflow that built it"
+        >
+          {/* Personas and jobs-to-be-done */}
+          <div className="flex w-full flex-col gap-10 lg:gap-[54px]">
+            <h3 className={CASE_STUDY_LABEL_TIGHT_CLASS}>Personas and Jobs-to-Be-Done</h3>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-[68px] lg:gap-[81px]">
+              {PERSONAS.map((persona) => (
+                <div key={persona.role} className="flex flex-col gap-6 lg:gap-[28px] w-[80.5%] mx-auto">
+                  <Image
+                    src={persona.avatar}
+                    alt={`${persona.role} persona portrait`}
+                    className="h-[200px] w-[200px] lg:h-[260px] lg:w-[260px] self-center rounded-full object-cover"
+                    sizes="260px"
+                  />
+                  <div className="flex flex-col gap-4 lg:gap-[15px]">
+                    <h4 className="text-balance font-serif text-[clamp(20px,2vw,26px)] font-normal leading-[1.15] tracking-[-0.01em] sm:min-h-[2.3em]">
+                      {persona.role}
+                    </h4>
+                    <div className="h-px w-full bg-white/[0.08]" />
+                  </div>
+                  <div className="flex flex-col gap-7 lg:gap-[34px]">
+                    <PersonaRow label="Main Job" copy={persona.mainJob} />
+                    <PersonaRow label="Primary Dashboard Need" copy={persona.dashboardNeed} />
+                    <PersonaRow label="Friction Point" copy={persona.friction} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
 
-        <div className="relative flex flex-col lg:flex-row items-center lg:justify-center gap-12 lg:gap-[200px] px-5 lg:px-0">
+          {/* Workflow + commentary */}
+          {/* The diagram runs the full content width, so the caption has to
+              size off the container rather than the viewport — 1.23cqw is 18px
+              at the 1464px container a 1512 screen gives, capped there so it
+              stops growing on very wide displays. */}
+          <div className="@container relative mt-14 w-full lg:mt-[100px]">
+            <div className="relative w-full aspect-[1482/795]">
+              <Image
+                src={workflow}
+                alt="End-to-end AI-assisted design workflow diagram"
+                fill
+                className="object-contain"
+              />
+            </div>
+            {/* Desktop: parked inside the diagram with its left edge on the
+                third circle above, which keeps it clear of Content Design.
+                Mobile: the diagram is far too small to hold text, so the
+                caption drops underneath it. */}
+            <p className="mt-6 text-sm font-light leading-snug text-white/60 lg:absolute lg:left-[73.62%] lg:top-[73.14%] lg:mt-0 lg:w-[26.38%] lg:text-[clamp(12px,1.23cqw,18px)] lg:leading-[1.45] lg:text-white">
+              I used an end-to-end AI-assisted workflow &mdash; from ChatGPT-structured
+              discovery through Figma iteration and Claude Code prototyping &mdash; to
+              shape the design strategy, accelerate iteration, and turn scattered
+              signals into a clear, actionable dashboard experience.
+            </p>
+          </div>
+        </SupportingAppendix>
+      </div>
+
+      {/* Next Case Studies */}
+      <section
+        id="next-case-study-section"
+        className="relative w-full overflow-hidden bg-black pb-24 lg:pb-[200px] pt-16 lg:pt-[78px] mt-20 md:mt-[110px] lg:mt-[150px]"
+      >
+        <NextCaseStudyTicker color={ACCENT} />
+
+        {/* Both cards keep their aspect ratio and shrink together rather than
+            running under the 24px gutter: at their full 437 + 437 the 200px gap
+            only fits from ~1122px up, so the gap steps down first and the pair
+            scales after that. */}
+        <div className="relative flex flex-col lg:flex-row items-center lg:justify-center gap-12 lg:gap-[100px] xl:gap-[200px] px-5 lg:px-[24px]">
           {/* PayPal */}
-          <Link href={nextPayPal.route} className="group flex w-full max-w-[437px] lg:w-[437px] flex-col gap-4 lg:gap-[27px] items-start">
-            <div className="aspect-[437/666] w-full lg:h-[666px] lg:w-[437px] relative lg:shrink-0 rounded-2xl lg:rounded-[30px] overflow-hidden">
+          <Link href={nextPayPal.route} className="group flex w-full min-w-0 max-w-[437px] lg:w-[437px] flex-col gap-4 lg:gap-[27px] items-start">
+            <div className="aspect-[437/666] w-full relative rounded-2xl lg:rounded-[30px] overflow-hidden">
               <img
                 alt={nextPayPalPreview.alt}
                 src={imageSrc(nextPayPalPreview.image)}
@@ -352,8 +359,8 @@ export default function DoorDashDashboardCaseStudy() {
           </Link>
 
           {/* Solo */}
-          <Link href={nextSolo.route} className="group flex w-full max-w-[437px] lg:w-[437px] lg:shrink-0 flex-col gap-4 lg:gap-[27px]">
-            <div className="relative aspect-[437/666] lg:aspect-auto lg:h-[666px] w-full overflow-hidden rounded-2xl lg:rounded-[30px]">
+          <Link href={nextSolo.route} className="group flex w-full min-w-0 max-w-[437px] lg:w-[437px] flex-col gap-4 lg:gap-[27px]">
+            <div className="relative aspect-[437/666] w-full overflow-hidden rounded-2xl lg:rounded-[30px]">
               <Image
                 src={nextSoloPreview.image}
                 alt={nextSoloPreview.alt}

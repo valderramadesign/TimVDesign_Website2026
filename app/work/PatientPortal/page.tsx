@@ -1,13 +1,28 @@
 import Link from "next/link";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import NextCaseStudyTicker from "@/components/ui/next-case-study-ticker";
 import CaseStudyTopBar from "@/components/ui/case-study-top-bar";
-import BackToHomeButton from "@/components/ui/back-to-home-button";
+import ScrollFade from "@/components/ui/scroll-fade";
+import DashboardAssembleReveal, {
+  type DashboardVariant,
+} from "@/components/ui/dashboard-assemble-reveal";
 import { CTA_PILL_SIZE } from "@/components/ui/cta-pill";
+import {
+  CaseStudyHeader,
+  ProjectFacts,
+  SupportingAppendix,
+  CASE_STUDY_BODY_CLASS,
+  CASE_STUDY_FACT_VALUE_CLASS,
+  CASE_STUDY_LABEL_TIGHT_CLASS,
+  CASE_STUDY_LEAD_CLASS,
+  CASE_STUDY_LEAD_GAP_CLASS,
+  CASE_STUDY_STACK_CLASS,
+  cx,
+} from "@/components/case-study";
 
-import conceptGuidedConcierge from "@/components/images/Patient Portal/Concept_GuidedConcierge.png";
-import conceptNextBestAction from "@/components/images/Patient Portal/Concept_NextBestAction.png";
-import conceptMyCareJourney from "@/components/images/Patient Portal/Concept_MyCareJourney.png";
+import wireframeNextBestAction from "@/components/images/Patient Portal/Wireframe Negatives/next-best-action-negative.png";
+import wireframeGuidedConcierge from "@/components/images/Patient Portal/Wireframe Negatives/guided-concierge-negative.png";
+import wireframeCareJourney from "@/components/images/Patient Portal/Wireframe Negatives/patient-care-journey-negative.png";
 import workflowDiagram from "@/components/images/Patient Portal/WorkflowDiagram.svg";
 import macbookSutter from "@/components/images/Patient Portal/MacbookSutter.png";
 
@@ -22,12 +37,7 @@ import carousel08 from "@/components/images/Patient Portal/Carousel_08_teal.png"
 import carousel09 from "@/components/images/Patient Portal/Carousel_09.png";
 import carousel10 from "@/components/images/Patient Portal/Carousel_10.png";
 
-import {
-  PROJECTS_BY_ID,
-  caseStudyEyebrowText,
-  imageSrc,
-  previewOf,
-} from "@/lib/content";
+import { PROJECTS_BY_ID, imageSrc, previewOf } from "@/lib/content";
 import { caseStudyMetadata } from "@/lib/seo";
 
 const project = PROJECTS_BY_ID.sutter;
@@ -42,6 +52,53 @@ export const metadata = caseStudyMetadata(
 );
 
 const leagueSpartan = "var(--font-league-spartan)";
+
+/* The page gutter and the major vertical break, shared with the other case
+   studies so the four of them scroll at the same rhythm. */
+const PAGE_PAD = "px-5 lg:px-[24px]";
+const SECTION_GAP = "mt-24 md:mt-[140px] lg:mt-[200px]";
+const ACCENT = "#167975";
+/* The brand teal is a fill, not a text colour: on black it measures 4.03:1,
+   under even the AAA large-text floor. This is the same hue and saturation
+   lifted to 7.35:1, so the concept titles clear AAA for normal text while
+   still reading as the one Sutter colour the ticker paints. */
+const ACCENT_TEXT = "#20aaa4";
+
+/* The three directions the portal was explored in, in the order they were
+   drawn. Each one is a Stitch wireframe that assembles itself on scroll —
+   the same treatment, and the same component, as the DoorDash concepts. */
+const DISCOVERY_CONCEPTS: readonly {
+  title: string;
+  description: string;
+  image: StaticImageData;
+  alt: string;
+  variant: DashboardVariant;
+}[] = [
+  {
+    title: "Next Best Action",
+    description:
+      "Prioritizes the patient's most important need and turns it into one clear next step.",
+    image: wireframeNextBestAction,
+    alt: "Wireframe of the Next Best Action dashboard: a prioritised list of what needs attention, each item carrying its own next step, beside shortcuts and a collapsed menu for everything else.",
+    variant: "next-best-action",
+  },
+  {
+    title: "Patient Care Journey",
+    description:
+      "Uses the patient's care journey to guide them toward the care they need.",
+    image: wireframeCareJourney,
+    alt: "Wireframe of the Patient Care Journey: a dated timeline of visits, results and next steps, with a panel naming who is responsible for each one.",
+    variant: "care-journey",
+  },
+  {
+    title: "Guided AI Concierge",
+    description:
+      "Creates a guided AI concierge that helps patients find the right care.",
+    image: wireframeGuidedConcierge,
+    alt: "Wireframe of the Guided AI Concierge: a plain-language question box with suggested prompts above a transcript that explains a result and offers what to do next.",
+    variant: "guided-concierge",
+  },
+];
 
 const carouselItems = [
   { id: 1, src: carousel01, orientation: "landscape" },
@@ -58,98 +115,114 @@ const carouselItems = [
 
 export default function PatientPortalPage() {
   return (
-    <main className="min-h-screen bg-black text-white overflow-x-hidden">
+    <main className="min-h-screen bg-black text-white">
       <CaseStudyTopBar />
 
-      {/* Top section */}
-      <section className="w-full bg-black px-5 pb-5 lg:px-[24px] lg:pb-[24px]">
-        <div className="flex flex-col gap-10 lg:gap-[62px]">
-          <div className="flex w-full lg:w-[1335px] max-w-full flex-col gap-[14px]" style={{ fontFamily: leagueSpartan }}>
-            <p className="text-[18px] font-light leading-none text-white/60">{caseStudyEyebrowText(project)}</p>
-            <h1 className="font-serif text-[clamp(40px,10vw,96px)] lg:text-[96px] leading-[1.04] lg:leading-[96px] tracking-[-0.015em]">
-              {project.caseStudyHeadline}
-            </h1>
-          </div>
+      {/* Opening: eyebrow, headline, the role in one sentence, then the movie
+          across the full measure — inside the same rounded frame the other
+          case studies open their hero image in. */}
+      <div className={cx(PAGE_PAD, "pt-10 lg:pt-[78px]")} style={{ fontFamily: leagueSpartan }}>
+        <CaseStudyHeader project={project} />
 
-          <div className="flex w-full flex-col lg:flex-row items-start gap-10 lg:gap-[184px] py-0 lg:py-[42px]" style={{ fontFamily: leagueSpartan }}>
-            <div className="flex w-full lg:w-[861px] max-w-full flex-col gap-[14px]">
-              <p className="text-[18px] font-light leading-none text-white/60">My Role</p>
-              <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px]">
-                {project.role}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Hero — full bleed */}
-      <section className="w-full">
-        <video
-          src="/videos/PatientPortal/PatientPortalTransformation.mp4"
-          className="w-full h-auto object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
+        <ProjectFacts
+          project={project}
+          facts={[]}
+          className="mt-6 lg:mt-[27px]"
+          factClassName={{ role: "lg:w-[861px]" }}
         />
-      </section>
+
+        {/* Portrait on a handset, widescreen from lg. The frame owns the
+            aspect ratio, so the movie reserves its space before it loads. */}
+        <div className="relative mt-6 aspect-[4/5] w-full overflow-hidden rounded-2xl border border-white/15 lg:mt-[27px] lg:aspect-[16/9] lg:rounded-[30px]">
+          <video
+            src="/videos/PatientPortal/PatientPortalTransformation.mp4"
+            className="absolute inset-0 h-full w-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+        </div>
+      </div>
 
       {/* Problem */}
-      <section className="w-full px-5 lg:px-[24px] pt-10 lg:pt-[125px] pb-16 lg:pb-[125px]" style={{ fontFamily: leagueSpartan }}>
-        <div className="flex w-full max-w-[1539px] flex-col gap-[14px]">
-          <p className="text-[18px] font-light leading-none text-white/60">Problem</p>
-          <div className="text-[clamp(20px,4.5vw,48px)] lg:text-[48px] font-light leading-[1.2] lg:leading-[56px] space-y-8 lg:space-y-[56px]">
-            {project.description.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Discovery — three concepts */}
-      <section className="w-full px-5 lg:px-[24px] pb-16 lg:pb-[200px]" style={{ fontFamily: leagueSpartan }}>
-        <div className="flex w-full max-w-[1805px] flex-col gap-10 lg:gap-[62px]">
-          <div className="flex w-full max-w-[1476px] flex-col gap-[14px]">
-            <p className="text-[18px] font-light leading-none text-white/60">Discovery</p>
-            <p className="text-[clamp(20px,4.5vw,32px)] lg:text-[32px] font-light leading-[1.32] lg:leading-[42px] max-w-[1100px]">
-              I explored three distinctly different approaches to improving the portal &mdash; a prioritized task dashboard, a guided conversational experience, and a chronological care journey &mdash; each aimed at reducing cognitive load and helping patients understand what needs attention, what their health information means, and what to do next.
-            </p>
-          </div>
-
-          <div className="flex flex-col lg:flex-row items-stretch gap-6 lg:gap-[26px]">
-            {/* Large concept */}
-            <div className="relative w-full lg:w-[1186px] lg:shrink-0 aspect-[1186/818] rounded-[24px] overflow-hidden">
-              <Image src={conceptGuidedConcierge} alt="Guided Concierge concept" fill className="object-cover" />
-            </div>
-
-            {/* Stacked concepts — combined height matches the large concept */}
-            <div className="flex flex-col gap-6 lg:gap-[26px] w-full lg:flex-1 lg:min-w-0">
-              <div className="relative w-full aspect-[590/390] lg:aspect-auto lg:flex-1 rounded-[24px] overflow-hidden">
-                <Image src={conceptNextBestAction} alt="Next Best Action concept" fill className="object-cover object-left-top" />
-              </div>
-              <div className="relative w-full aspect-[590/401] lg:aspect-auto lg:flex-1 rounded-[24px] overflow-hidden">
-                <Image src={conceptMyCareJourney} alt="My Care Journey concept" fill className="object-cover object-left-top" />
-              </div>
+      <section
+        aria-labelledby="patient-portal-problem-title"
+        className={cx(PAGE_PAD, SECTION_GAP)}
+        style={{ fontFamily: leagueSpartan }}
+      >
+        <ScrollFade direction="left">
+          <div className={cx(CASE_STUDY_STACK_CLASS, "max-w-[1539px]")}>
+            <h2 id="patient-portal-problem-title" className={CASE_STUDY_LABEL_TIGHT_CLASS}>
+              Problem
+            </h2>
+            <div className={cx("flex flex-col", CASE_STUDY_LEAD_CLASS, CASE_STUDY_LEAD_GAP_CLASS)}>
+              {project.description.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
           </div>
-        </div>
+        </ScrollFade>
       </section>
 
-      {/* AI-assisted workflow */}
-      <section className="w-full px-5 lg:px-[24px] pb-16 lg:pb-[200px]" style={{ fontFamily: leagueSpartan }}>
-        <div className="flex w-full flex-col gap-10 lg:gap-[62px]">
-          <p className="text-[18px] font-light leading-none text-white/60 lg:self-end lg:ml-auto lg:w-[calc(100%-276px)]">AI-Assisted Workflow</p>
-          <div className="relative w-full aspect-[1468/795] lg:ml-auto lg:w-[calc(100%-276px)]">
-            <Image src={workflowDiagram} alt="End-to-end AI-assisted design workflow diagram" fill className="object-contain object-right" />
-            <p className="absolute right-0 bottom-[4%] lg:bottom-[9%] w-[55%] max-w-[420px] text-[12px] sm:text-base lg:text-[18px] font-light leading-[1.4] lg:leading-[1.5] text-white">
-              I used an end-to-end AI-assisted workflow to shape the design strategy, accelerate iteration, and prototype a frictionless doctor appointment experience for patients.
+      {/* Discovery — three concepts, alternating sides, each wireframe
+          assembling itself the way Stitch drew it. */}
+      <section
+        aria-labelledby="patient-portal-discovery-title"
+        className={cx(PAGE_PAD, SECTION_GAP)}
+        style={{ fontFamily: leagueSpartan }}
+      >
+        <ScrollFade direction="left">
+          <div className={cx(CASE_STUDY_STACK_CLASS, "max-w-[1476px]")}>
+            <h2 id="patient-portal-discovery-title" className={CASE_STUDY_LABEL_TIGHT_CLASS}>
+              Discovery
+            </h2>
+            <p className={cx(CASE_STUDY_FACT_VALUE_CLASS, "max-w-[1100px]")}>
+              I explored three distinctly different approaches to improving the portal &mdash; a
+              prioritized task dashboard, a chronological care journey, and a guided conversational
+              experience &mdash; each aimed at reducing cognitive load and helping patients
+              understand what needs attention, what their health information means, and what to do
+              next.
             </p>
           </div>
+        </ScrollFade>
+
+        <div className="mt-[100px] flex flex-col gap-[150px] lg:mt-[150px]">
+          {DISCOVERY_CONCEPTS.map((concept, i) => (
+            <div
+              key={concept.title}
+              className={`flex flex-col ${
+                i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+              } items-center gap-[30px]`}
+            >
+              <DashboardAssembleReveal
+                image={concept.image}
+                alt={concept.alt}
+                variant={concept.variant}
+                className="relative w-full lg:w-[54%] shrink-0 overflow-hidden rounded-2xl lg:rounded-[24px] bg-white/5"
+                style={{ aspectRatio: `${concept.image.width} / ${concept.image.height}` }}
+              />
+              <ScrollFade
+                direction={i % 2 === 0 ? "right" : "left"}
+                className="flex w-full lg:w-[40%] flex-col gap-[14px]"
+              >
+                <h3
+                  className="text-[clamp(34px,6.3vw,67px)] lg:text-[67px] leading-[1.04] tracking-[-0.01em]"
+                  style={{ fontFamily: "var(--font-pt-serif)", color: ACCENT_TEXT }}
+                >
+                  {concept.title}
+                </h3>
+                <p className={cx(CASE_STUDY_BODY_CLASS, "text-white/70")}>
+                  {concept.description}
+                </p>
+              </ScrollFade>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* Prototype carousel — auto-scrolling marquee */}
-      <section className="w-full pb-16 lg:pb-[200px]" style={{ fontFamily: leagueSpartan }}>
+      <section className={cx(SECTION_GAP, "w-full pb-16 lg:pb-[200px]")} style={{ fontFamily: leagueSpartan }}>
         <div className="group relative w-full overflow-hidden">
           <div
             className="flex w-max items-center gap-[150px] group-hover:[animation-play-state:paused]"
@@ -193,11 +266,6 @@ export default function PatientPortalPage() {
               </ul>
             </div>
             <div className="flex flex-wrap items-center gap-4 lg:gap-[24px]">
-              <BackToHomeButton
-                className="justify-center"
-                size="xl"
-                fontFamily={leagueSpartan}
-              />
               <a
                 href="https://v-health-patient-portal-kysfsc4lp.vercel.app/"
                 target="_blank"
@@ -223,14 +291,54 @@ export default function PatientPortalPage() {
         </div>
       </section>
 
-      {/* Next Case Study section */}
-      <section id="next-case-study-section" className="relative w-full bg-black overflow-hidden pt-16 lg:pt-[78px] pb-24 lg:pb-[200px]">
-        <NextCaseStudyTicker color="#167975" />
+      {/* Behind the work. The method is kept one click off the spine of the
+          page, the way the other case studies carry theirs. */}
+      <div className={PAGE_PAD} style={{ fontFamily: leagueSpartan }}>
+        <SupportingAppendix
+          id="behind-the-work"
+          title="Behind the Work"
+          summary="The AI-assisted workflow behind the strategy, the iteration, and the prototype"
+        >
+          {/* The diagram runs the full content width, so the caption has to
+              size off the container rather than the viewport — 1.23cqw is 18px
+              at the 1464px container a 1512 screen gives, capped there so it
+              stops growing on very wide displays. */}
+          <div className="@container relative w-full">
+            <div className="relative w-full aspect-[1468/795]">
+              <Image
+                src={workflowDiagram}
+                alt="End-to-end AI-assisted design workflow diagram"
+                fill
+                className="object-contain"
+              />
+            </div>
+            {/* Desktop: parked inside the diagram with its left edge on the
+                third circle above, which keeps it clear of Content Design.
+                Mobile: the diagram is far too small to hold text, so the
+                caption drops underneath it. */}
+            <p className="mt-6 text-sm font-light leading-snug text-white/60 lg:absolute lg:left-[74.05%] lg:top-[73.14%] lg:mt-0 lg:w-[25.95%] lg:text-[clamp(12px,1.23cqw,18px)] lg:leading-[1.45] lg:text-white">
+              I used an end-to-end AI-assisted workflow to shape the design strategy, accelerate
+              iteration, and prototype a frictionless doctor appointment experience for patients.
+            </p>
+          </div>
+        </SupportingAppendix>
+      </div>
 
-        <div className="relative flex flex-col lg:flex-row items-center lg:justify-center gap-12 lg:gap-[200px] px-5 lg:px-0">
+      {/* Next Case Study section */}
+      <section
+        id="next-case-study-section"
+        className="relative w-full bg-black overflow-hidden pt-16 lg:pt-[78px] pb-24 lg:pb-[200px] mt-20 md:mt-[110px] lg:mt-[150px]"
+      >
+        <NextCaseStudyTicker color={ACCENT} />
+
+        {/* Both cards keep their aspect ratio and shrink together rather than
+            running under the 24px gutter: at their full 437 + 671 the 200px gap
+            only fits from ~1356px up, so the gap steps down first and the pair
+            scales after that. */}
+        <div className="relative flex flex-col lg:flex-row items-center lg:justify-center gap-12 lg:gap-[100px] xl:gap-[200px] px-5 lg:px-[24px]">
           {/* PayPal card */}
-          <Link href={nextPayPal.route} className="group flex w-full max-w-[437px] lg:w-[437px] flex-col gap-4 lg:gap-[27px] items-start">
-            <div className="relative aspect-[437/666] w-full lg:w-[437px] lg:h-[666px] rounded-[30px] overflow-hidden lg:shrink-0">
+          <Link href={nextPayPal.route} className="group flex w-full min-w-0 max-w-[437px] lg:w-[437px] flex-col gap-4 lg:gap-[27px] items-start">
+            <div className="relative aspect-[437/666] w-full rounded-[30px] overflow-hidden">
               <img
                 src={imageSrc(nextPayPalPreview.image)}
                 alt={nextPayPalPreview.alt}
@@ -243,7 +351,7 @@ export default function PatientPortalPage() {
           </Link>
 
           {/* Meta card */}
-          <Link href={nextMeta.route} className="group flex w-full max-w-[671px] lg:w-[671px] flex-col gap-4 lg:gap-[27px] items-start">
+          <Link href={nextMeta.route} className="group flex w-full min-w-0 max-w-[671px] lg:w-[671px] flex-col gap-4 lg:gap-[27px] items-start">
             <div
               className="relative rounded-[30px] overflow-hidden w-full"
               style={{ aspectRatio: "824 / 606" }}
