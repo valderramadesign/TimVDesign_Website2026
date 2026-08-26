@@ -246,7 +246,7 @@ export const PROJECTS: Project[] = [
     caseStudyHeadline: "Building Trust Through Responsible Credit",
     company: "PayPal",
     status: "Shipped",
-    role: "Led 0→1 design for PayPal’s German credit products, aligning cross-functional teams to simplify complex lending into trustworthy experiences—cutting the application from four pages to one and helping increase monthly TPV by 63.7%.",
+    role: "Led 0→1 design for two German PayPal credit products, aligning cross-functional teams to reduce Ratenzahlung from four application pages to one. Monthly TPV increased 48.78% for Pay in 30 and 14.92% for Ratenzahlung.",
     scope: {
       platforms: ["Mobile & desktop"],
       products: ["Pay in 30 Days", "PayPal Ratenzahlung"],
@@ -333,13 +333,13 @@ export const PROJECTS: Project[] = [
       "Moving high-spend advertisers beyond credit card limits",
     company: "Meta",
     status: "Client product",
-    role: "Partnering with engineering, finance, and design teams across the company, I led a 1.5-month effort that moved Monthly Invoicing onto Meta’s highest-traffic business surfaces and rebuilt its application around information Meta had already verified — running an AI-first workflow with Metamate AI from discovery through handoff.",
+    role: "Led a six-week redesign of Meta Monthly Invoicing with Engineering, Finance, and Design. Moved discovery to high-traffic business surfaces and reduced the application from nine screens to three by reusing verified data. Used Metamate AI from discovery through handoff.",
     scope: {
       platforms: ["Desktop"],
       products: ["Monthly Invoicing"],
     },
     description: [
-      "High-spend advertisers risk costly campaign pauses from card failures and funding gaps. Monthly Invoicing prevents them while cutting Meta’s card processing costs — $2.46B a year now, projected to reach $4.2B. Wider adoption should save at least 7.5% annually.",
+      "Card failures and funding gaps can pause campaigns for high-spend advertisers. Monthly Invoicing reduces that risk and Meta’s card-processing costs—currently $2.46B annually and projected to reach $4.2B. Wider adoption was projected to save at least 7.5% annually.",
     ],
     homepageProblem:
       "Card failures pause high-value campaigns, while card processing costs Meta billions. I designed Monthly Invoicing onboarding to drive adoption, protect advertiser spend, and unlock significant annual savings.",
@@ -356,7 +356,7 @@ export const PROJECTS: Project[] = [
     category: "Client products",
     timeline: "1.5 months",
     homepageEyebrowLines: ["Designing Onboarding", "That Drives Adoption"],
-    caseStudyEyebrowLines: ["Driving Onboarding That Drives Adoption"],
+    caseStudyEyebrowLines: ["Scaling Monthly Invoicing Adoption"],
     cardLabel: "Meta",
     cardTitle: "Monthly Invoicing for Meta Ads",
     cardRole: "Staff Product Designer (consultant)",
@@ -371,10 +371,10 @@ export const PROJECTS: Project[] = [
   {
     id: "solo",
     title: "Ms. Sunshine App",
-    caseStudyHeadline: "Streamlining and Automating Daily Reporting",
+    caseStudyHeadline: "Turning Classroom Updates Into Live Parent Communication",
     company: "Ms. Sunshine",
     status: "Shipped",
-    role: "I led the product from discovery through a tested working MVP—turning a manual reporting process into one connected experience for teachers and parents in three weeks.",
+    role: "Led discovery, design, and delivery of a tested MVP in three weeks, turning manual daily reports into one connected workflow for teachers and parents.",
     scope: {
       platforms: ["Mobile"],
     },
@@ -395,6 +395,7 @@ export const PROJECTS: Project[] = [
     category: "Client products",
     timeline: "2 months",
     homepageEyebrowLines: ["Rapid App Innovation"],
+    caseStudyEyebrowLines: ["Ms. Sunshine App · Three-Week MVP"],
     cardLabel: "Ms. Sunshine App",
     cardTitle: "Daily Reporting App for Teachers",
     cardRole: "Solo designer and developer",
@@ -412,7 +413,7 @@ export const PROJECTS: Project[] = [
     caseStudyHeadline: "A Simpler Patient Portal for Faster Access to Care",
     company: "Sutter Health",
     status: "Design exercise",
-    role: "Self-initiated redesign exercise. I reviewed the existing appointment experience, explored three navigation models, and prototyped a task-first portal focused on booking care.",
+    role: "Self-initiated redesign of Sutter Health’s appointment experience. Evaluated three navigation models and prototyped a task-first portal centered on booking care.",
     scope: {
       platforms: ["Mobile & desktop"],
       products: ["MyHealthOnline"],
@@ -444,16 +445,16 @@ export const PROJECTS: Project[] = [
   {
     id: "doordash",
     title: "DoorDash Dashboard",
-    caseStudyHeadline: "Turning Marketplace Signals Into Confident Action",
+    caseStudyHeadline: "A Role-Aware Command Center for Marketplace Operations",
     company: "DoorDash",
     status: "Self-initiated concept",
-    role: "Self-initiated product concept. I defined the experience, explored three dashboard models, and prototyped an action-first command center for marketplace operations.",
+    role: "Self-initiated DoorDash concept. Defined the experience, explored three dashboard models, and prototyped an action-first command center for marketplace operations.",
     scope: {
       platforms: ["Mobile & desktop"],
     },
     description: [
       "Marketplace teams work from the same data but need different signals. In one-size-fits-all reporting, urgent issues compete with reference metrics, slowing diagnosis and action.",
-      "I explored how a role-aware dashboard could prioritize what needs attention, explain why it matters, and recommend a next step.",
+      "How might a role-aware dashboard prioritize issues, explain their impact, and recommend the next step?",
     ],
     homepageProblem:
       "Marketplace teams share data but need different signals. I designed role-specific dashboards to surface urgent issues and turn reporting into faster, focused action.",
@@ -469,6 +470,7 @@ export const PROJECTS: Project[] = [
     category: "Experiments",
     timeline: "2 days",
     homepageEyebrowLines: ["See the Signal.", "Seize the Opportunity."],
+    caseStudyEyebrowLines: ["DoorDash Marketplace Experiment"],
     cardLabel: "DoorDash Dashboard",
     cardTitle: "Turning Marketplace Signals Into Action",
     cardResult: null,

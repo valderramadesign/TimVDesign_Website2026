@@ -32,16 +32,16 @@ const leagueSpartan = "var(--font-league-spartan)";
 const PROTOTYPE_URL: string = "https://german-credit-products.vercel.app/";
 
 const ITERATIONS_PI30 = [
-  "Iteration 2 — bank selection and add-bank moved inside checkout.",
-  "Iteration 3 — streamlined checkout; legal disclosures moved to the review step.",
-  "Iteration 4 — post-purchase rescheduling of an upcoming payment.",
-  "Iteration 7 — new checkout framework: more options up front, more accurate estimates.",
+  "Moved bank selection and add-bank into checkout.",
+  "Streamlined checkout and moved legal disclosures to the review step.",
+  "Added post-purchase rescheduling for upcoming payments.",
+  "Adopted the new checkout framework, with more options upfront and more accurate estimates.",
 ];
 
 const ITERATIONS_RZ = [
-  "Iteration 2 — four installment terms added; checkout experiments.",
-  "Iteration 3 — research-led rebuild on the new PayPal UI; the application went from four pages to one.",
-  "Iteration 4 — latest checkout framework.",
+  "Added four installment terms and tested their checkout presentation.",
+  "Rebuilt the application on the new PayPal UI, reducing it from four pages to one.",
+  "Migrated to the latest checkout framework.",
 ];
 
 export default function PayPalDePage() {
@@ -72,10 +72,9 @@ export default function PayPalDePage() {
           summary="How the work ran: AI-assisted workflow, iteration history, and testing"
         >
           <p className="text-white/70">
-            An end-to-end AI-assisted workflow shaped the strategy and accelerated iteration:
-            discovery structured with ChatGPT from meeting notes and research, early options
-            generated in Figma Make against the PayPal UI library, and working prototypes built
-            in Claude Code.
+            Used AI to structure discovery, generate early concepts against PayPal&rsquo;s UI
+            library, and build working prototypes&mdash;accelerating{" "}
+            <span className="whitespace-nowrap">cross-functional iteration.</span>
           </p>
           <Image
             src={workflowDiagram}

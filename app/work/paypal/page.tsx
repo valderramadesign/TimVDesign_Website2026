@@ -426,9 +426,8 @@ export default function PayPal1CaseStudy() {
           </h2>
           <p className={cx(CASE_STUDY_BODY_CLASS, "mt-6 lg:mt-[32px] max-w-[860px] text-white/80")}>
             Six products had evolved across two markets, each with its own funnel, success
-            metrics, and regulatory constraints. Mapping them side by side revealed that the
-            assignment was not six separate problems. It was one repeated interruption at
-            checkout.
+            metrics, and regulatory constraints. Side-by-side mapping exposed one shared
+            problem: repeated checkout interruption.
           </p>
         </ScrollFade>
 
@@ -532,10 +531,8 @@ export default function PayPal1CaseStudy() {
                       Pay in 4 made the problem impossible to ignore.
                     </h2>
                     <p className={cx(CASE_STUDY_BODY_CLASS, "mt-4 max-w-[860px] text-white/80 lg:mt-[18px]")}>
-                      Among the six products, Pay in 4 exposed the clearest version of the shared
-                      problem: customers moved through three application steps before they could
-                      complete their purchase. Each transition added distance between choosing Pay
-                      in 4 and completing the purchase.
+                      Pay in 4 made the shared problem clearest: three application steps
+                      separated product choice from purchase completion.
                     </p>
                   </div>
                 ),
@@ -727,7 +724,7 @@ export default function PayPal1CaseStudy() {
               <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
                 <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">{irevPoints(IREV_SHARE.payMonthly).toFixed(2)}%</p>
                 <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
-                  Annual iRev increase
+                  Annual incremental revenue increase
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
@@ -778,7 +775,7 @@ export default function PayPal1CaseStudy() {
               <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
                 <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">{irevPoints(IREV_SHARE.payPalCreditUS).toFixed(2)}%</p>
                 <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
-                  Annual iRev increase
+                  Annual incremental revenue increase
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
@@ -809,7 +806,7 @@ export default function PayPal1CaseStudy() {
               <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
                 <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">{irevPoints(IREV_SHARE.payPalMastercard).toFixed(2)}%</p>
                 <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
-                  Annual iRev increase
+                  Annual incremental revenue increase
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
@@ -860,7 +857,7 @@ export default function PayPal1CaseStudy() {
               <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
                 <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">{irevPoints(IREV_SHARE.payPalCreditUK).toFixed(2)}%</p>
                 <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
-                  Annual iRev increase
+                  Annual incremental revenue increase
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
@@ -891,7 +888,7 @@ export default function PayPal1CaseStudy() {
               <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
                 <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">37%</p>
                 <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
-                  Increase in ave. monthly TPV
+                  Increase in average monthly TPV
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
@@ -1038,11 +1035,9 @@ export default function PayPal1CaseStudy() {
               Design System Gap &rarr; Build Plan
             </p>
             <p className="text-white/70">
-              Partnered with six product teams, leadership, and cross-functional
-              stakeholders to synthesize meeting notes in ChatGPT, mapping each
-              product&apos;s funnel, success metrics, and US&ndash;UK regulatory
-              constraints&mdash;accelerating 40+ design iterations through
-              stakeholder review without rebuilding each concept from scratch.
+              Synthesized inputs from six product teams in ChatGPT to map funnels,
+              success metrics, and US&ndash;UK regulatory constraints. The shared model
+              accelerated 40+ iterations through stakeholder review.
             </p>
             {/* The 40+ iterations the paragraph claims, shown rather than
                 counted. On top of the stack's own 14px gap these margins set

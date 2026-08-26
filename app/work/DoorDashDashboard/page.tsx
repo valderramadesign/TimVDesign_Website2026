@@ -51,39 +51,24 @@ const SECTION_GAP = "mt-24 md:mt-[140px] lg:mt-[200px]";
 const ACCENT = "#ff3008";
 const ACCENT_TEXT = ACCENT;
 
-/* Label over copy, the same pair every other case study uses for a stacked
-   fact. The copy takes its size from the appendix, which already carries
-   CASE_STUDY_BODY_CLASS. */
-function PersonaRow({ label, copy }: { label: string; copy: string }) {
-  return (
-    <div className={CASE_STUDY_STACK_CLASS}>
-      <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>{label}</p>
-      <p className="text-white/70">{copy}</p>
-    </div>
-  );
-}
-
 const PERSONAS = [
   {
     role: "Marketplace Operations Manager",
     avatar: personaMarketplaceOps,
-    mainJob: "Keep the marketplace balanced in real time",
-    dashboardNeed: "See where demand, Dasher supply, and delivery reliability are breaking",
-    friction: "Too much data, slow loading, unclear root cause",
+    summary:
+      "Balances demand, Dasher supply, and delivery reliability; needs prioritized breakdowns and clear root causes.",
   },
   {
     role: "Merchant Success Manager",
     avatar: personaMerchantSuccess,
-    mainJob: "Improve merchant/store performance",
-    dashboardNeed: "Identify merchants causing delays, refunds, cancellations, or missing items",
-    friction: "Merchant issues buried in broad dashboards, weak storytelling",
+    summary:
+      "Improves store performance; needs to identify merchants driving delays, refunds, cancellations, and missing items.",
   },
   {
     role: "Growth, Promotions & Finance Analyst",
     avatar: personaGrowthFinance,
-    mainJob: "Evaluate growth efficiency and profitability",
-    dashboardNeed: "Understand whether promos and incentives create profitable lift",
-    friction: "Hard to connect growth metrics, margin, incrementality, and cost",
+    summary:
+      "Evaluates profitable growth; needs promotions and incentives connected to lift, margin, incrementality, and cost.",
   },
 ];
 
@@ -272,8 +257,8 @@ export default function DoorDashDashboardCaseStudy() {
                 </li>
               </ul>
               <p className="text-sm lg:text-[18px] font-light leading-snug text-white/70">
-                Design outcome: A working concept that demonstrates a clear path from
-                detecting an issue to taking action.
+                Outcome: a working prototype that connects issue detection to
+                resolution.
               </p>
             </div>
 
@@ -320,9 +305,7 @@ export default function DoorDashDashboardCaseStudy() {
                     <div className="h-px w-full bg-white/[0.08]" />
                   </div>
                   <div className="flex flex-col gap-7 lg:gap-[34px]">
-                    <PersonaRow label="Main Job" copy={persona.mainJob} />
-                    <PersonaRow label="Primary Dashboard Need" copy={persona.dashboardNeed} />
-                    <PersonaRow label="Friction Point" copy={persona.friction} />
+                    <p className="text-white/70">{persona.summary}</p>
                   </div>
                 </div>
               ))}
@@ -348,10 +331,8 @@ export default function DoorDashDashboardCaseStudy() {
                 Mobile: the diagram is far too small to hold text, so the
                 caption drops underneath it. */}
             <p className="mt-6 text-sm font-light leading-snug text-white/60 lg:absolute lg:left-[73.62%] lg:top-[73.14%] lg:mt-0 lg:w-[26.38%] lg:text-[clamp(12px,1.23cqw,18px)] lg:leading-[1.45] lg:text-white">
-              I used an end-to-end AI-assisted workflow &mdash; from ChatGPT-structured
-              discovery through Figma iteration and Claude Code prototyping &mdash; to
-              shape the design strategy, accelerate iteration, and turn scattered
-              signals into a clear, actionable dashboard experience.
+              Used ChatGPT to structure discovery, Figma to iterate, and Claude Code to
+              prototype&mdash;turning scattered signals into an actionable dashboard.
             </p>
           </div>
         </SupportingAppendix>

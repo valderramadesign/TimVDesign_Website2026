@@ -268,14 +268,14 @@ type DemoNote = {
 };
 
 const PAY_IN_4_NOTES: DemoNote[] = [
-  { layer: 0, text: "Upstream\npresentment", top: 0.7758, bottom: 0.8178, at: 0.25 },
+  { layer: 0, text: "Show credit options\nin checkout", top: 0.7758, bottom: 0.8178, at: 0.25 },
   /* The checkout gets the recording's two passes over it: first what the
      page says, then what it lets you do. */
   { layer: 2, text: "Value propositions\nclear on checkout", top: 0.142, bottom: 0.2004, at: 0.25, until: 1.75 },
   { layer: 2, text: "Above the fold", top: 0.2245, bottom: 0.2823, at: 0.38, until: 1.75 },
   { layer: 2, text: "Terms 1-click away", top: 0.2242, bottom: 0.2826, at: 1.95 },
-  { layer: 2, text: "Clear transparency\nfor the customer", top: 0.3157, bottom: 0.5643, at: 2.08 },
-  { layer: 2, text: "Opportunity to edit\npost-application", top: 0.5915, bottom: 0.7485, at: 2.21 },
+  { layer: 2, text: "Clear terms\nbefore applying", top: 0.3157, bottom: 0.5643, at: 2.08 },
+  { layer: 2, text: "Edit details\nafter applying", top: 0.5915, bottom: 0.7485, at: 2.21 },
   { layer: 3, text: "Preferred payment\nmethod selected", top: 0.3592, bottom: 0.441, at: 0.25 },
   { layer: 4, text: "Use of birthday instead\nof phone number", top: 0.466, bottom: 0.5478, at: 0.25 },
 ];
@@ -423,7 +423,7 @@ export default function Pi4Walkthrough({ className }: { className?: string }) {
     <div
       ref={stage}
       role="img"
-      aria-label="Animated walkthrough of the redesigned Pay in 4 flow: from a product page, a cursor opens the Pay in 4 sheet, confirms details on the single review-and-apply page, and pays with the approved plan. Callouts mark the upstream presentment, the value propositions and terms carried above the fold on checkout, the payment schedule shown in full, the shipping details still open to edit, the preferred payment method already selected, and the date of birth asked for in place of a phone number."
+      aria-label="Animated walkthrough of the redesigned Pay in 4 flow: from a product page, a cursor opens the Pay in 4 sheet, confirms details on the single review-and-apply page, and pays with the approved plan. Callouts mark the credit options shown in checkout, the value propositions and terms carried above the fold on checkout, the terms shown in full before applying, the shipping details still open to edit after applying, the preferred payment method already selected, and the date of birth asked for in place of a phone number."
       className={cx("relative", className)}
       style={{ containerType: "inline-size" }}
     >

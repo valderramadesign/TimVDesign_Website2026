@@ -153,7 +153,7 @@ const PROBLEM_ROWS: PanelRow[] = [
 const OPPORTUNITY_ROWS: PanelRow[] = [
   { Icon: IconOfferUpstream, text: "Present the offer where advertisers already work" },
   { Icon: IconAlreadyVerified, text: "Pre-approve with existing verification records" },
-  { Icon: IconThreePages, text: "Let customers verify or quickly edit in three pages" },
+  { Icon: IconThreePages, text: "Let customers confirm or correct verified information in three screens" },
 ];
 
 /* Two workstreams, one strategy — the shape of each decision in a
@@ -166,7 +166,7 @@ const WORKSTREAMS: { title: string; body: string }[] = [
   },
   {
     title: "Increase Completion",
-    body: "Audited existing customer data, compliance checks, and finance requirements, partnered with Product, Data Science, Legal, Finance, and Engineering, and reframed the flow around pre-approval, prefill, and quick correction.",
+    body: "Audited verified customer data and requirements with Product, Data Science, Legal, Finance, and Engineering, then reframed the flow around preapproval, prefill, and quick correction.",
   },
 ];
 
@@ -532,7 +532,7 @@ export default function MetaPage() {
         <ScrollFade once>
           <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>Customer Impact</p>
           <h2 id="meta-impact-title" className={SECTION_TITLE_CLASS}>
-            More qualified advertisers could discover and complete the product
+            More qualified advertisers could discover and complete enrollment
           </h2>
         </ScrollFade>
 
@@ -557,14 +557,14 @@ export default function MetaPage() {
         {/* Wider than the PayPal chart's rhythm: every row here carries a
             sublabel under its bar, which needs room of its own before the
             next label starts. */}
-        <div className="space-y-16 lg:space-y-20">
+        <div className="space-y-20">
           <AnimatedImpactRow
             label="Expand eligibility"
             todayPct={27}
             futurePct={67}
             todayLabel="27%"
             futureLabel="67%"
-            sublabel="$11M projected impact"
+            sublabel="27% baseline → 67% H1 2026 target; $11M projected impact"
           />
           <AnimatedImpactRow
             label={"Improve\nawareness"}
@@ -572,7 +572,7 @@ export default function MetaPage() {
             futurePct={41}
             todayLabel="8%"
             futureLabel="41%"
-            sublabel="Target: +33 percentage points"
+            sublabel="8% baseline → 41% H1 2026 target; +33 percentage points"
           />
           <AnimatedImpactRow
             label={"Grow\nconversion"}
@@ -580,14 +580,15 @@ export default function MetaPage() {
             futurePct={97}
             todayLabel="39%"
             futureLabel="97%"
-            sublabel="Target: +58 percentage points"
+            sublabel="39% baseline → 97% H1 2026 target; +58 percentage points"
           />
           <div className="grid grid-cols-[110px_1fr] items-center gap-4 lg:grid-cols-[280px_1fr] lg:gap-12">
             <h3 className="font-serif text-[clamp(18px,4.5vw,32px)] font-normal leading-[1.15] tracking-[-0.01em] lg:text-[clamp(24px,2.6vw,32px)]">
-              Projected savings
+              Projected{" "}
+              <span className="lg:whitespace-nowrap">annual savings</span>
             </h3>
             <p className="font-serif text-[clamp(40px,10vw,96px)] leading-[1] tracking-[-0.96px] lg:text-[clamp(64px,8vw,96px)]">
-              ~ 7.5%/yr.
+              ~7.5%
             </p>
           </div>
         </div>

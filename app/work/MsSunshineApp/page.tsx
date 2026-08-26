@@ -116,21 +116,21 @@ const COMPARE_HEADING_CLASS =
 /* The figure the estimate produces, read off the corner of the
    photograph. The year is the one that carries the argument; the daily
    number it is built from is stated in full under Impact. */
-const HERO_METRIC = { value: "~480hrs./yr", label: "Estimated time savings returned" };
+const HERO_METRIC = { value: "~480 hours/year", label: "Estimated time savings returned" };
 
 type PanelRow = { Icon: ComponentType<{ className?: string }>; text: string };
 
 const STARTED_ROWS: PanelRow[] = [
-  { Icon: IconEndOfDay, text: "Updates were assembled at the end of the day" },
-  { Icon: IconWrittenTwice, text: "The same information had to be documented and summarized" },
-  { Icon: IconUnseen, text: "Parents had no visibility between drop-off and pickup" },
+  { Icon: IconEndOfDay, text: "Teachers reconstructed each child’s day at pickup." },
+  { Icon: IconWrittenTwice, text: "The same information was documented, then summarized again." },
+  { Icon: IconUnseen, text: "Parents had no visibility between drop-off and pickup." },
 ];
 
 const BECOMES_ROWS: PanelRow[] = [
   { Icon: IconFewTaps, text: "Teachers log an activity in a few taps" },
   { Icon: IconOneToMany, text: "One update can be applied to multiple children" },
   { Icon: IconLiveFeed, text: "Parents see their child's activity as it happens" },
-  { Icon: IconDraftedSummary, text: "Checkout generates an editable AI-assisted daily summary" },
+  { Icon: IconDraftedSummary, text: "At child checkout, AI drafts an editable daily summary" },
 ];
 
 /* The three changes the product actually makes, numbered so the captions
@@ -165,7 +165,7 @@ const IMPACT: { label: string; value: string; note: string }[] = [
   },
   {
     label: "Parent Impact",
-    value: "Real time",
+    value: "Real-time visibility",
     note: "Parents gain real-time visibility and a direct conversation with teachers instead of waiting until pickup.",
   },
   {
@@ -186,9 +186,8 @@ const BEHIND_THE_WORK: { title: string; body: ReactNode }[] = [
     title: "Competitive Analysis",
     body: (
       <>
-        Reviewed children&rsquo;s activity and school applications to identify the expected
-        foundations: fast logging, bulk actions, flexible workflows, parent communication, and
-        clear daily summaries.{" "}
+        Reviewed childcare and school applications to identify five foundations: fast logging,
+        bulk actions, flexible workflows, parent communication, and clear daily summaries.{" "}
         <a
           href="/Competitive Analysis - Children Activity Apps.pdf"
           target="_blank"

@@ -251,8 +251,8 @@ export default function PatientPortalPage() {
       <section className={PAGE_PAD} style={{ fontFamily: leagueSpartan }}>
         <ScrollFade direction="left">
           <p className={cx(CASE_STUDY_FACT_VALUE_CLASS, "max-w-[1100px]")}>
-            For the MVP, I combined visible priorities with care-journey context and optional
-            guidance, then focused the prototype on appointment booking.
+            For the prototype, I combined visible priorities, care-journey context, and
+            optional guidance, then focused the experience on appointment booking.
           </p>
         </ScrollFade>
       </section>
@@ -297,8 +297,8 @@ export default function PatientPortalPage() {
                 </li>
               </ul>
               <p className="mt-[6px] lg:mt-[10px] text-sm lg:text-[18px] font-light leading-snug text-white/70">
-                Design outcome: A functional prototype showing how patients can identify what needs
-                attention and begin booking care from one clear home screen.
+                Outcome: a functional prototype that surfaces priority tasks and starts booking
+                from one home screen.
               </p>
             </div>
 
@@ -343,8 +343,8 @@ export default function PatientPortalPage() {
                 Mobile: the diagram is far too small to hold text, so the
                 caption drops underneath it. */}
             <p className="mt-6 text-sm font-light leading-snug text-white/60 lg:absolute lg:left-[74.05%] lg:top-[73.14%] lg:mt-0 lg:w-[25.95%] lg:text-[clamp(12px,1.23cqw,18px)] lg:leading-[1.45] lg:text-white">
-              I used an end-to-end AI-assisted workflow to shape the design strategy, accelerate
-              iteration, and prototype a frictionless doctor appointment experience for patients.
+              Used an AI-assisted workflow to synthesize the current-state review, compare three
+              navigation models, and build the task-first booking prototype.
             </p>
           </div>
         </SupportingAppendix>

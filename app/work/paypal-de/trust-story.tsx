@@ -469,7 +469,7 @@ const CHAPTERS: Chapter[] = [
     term: "transparency",
     question: "“What exactly am I agreeing to?”",
     response:
-      "The checkout was rebuilt so every payment option is visible up front, with cost estimates accurate enough to commit to — and the complete legal terms moved into the review step, where the decision actually happens.",
+      "We showed every payment option and estimated cost in checkout, then moved full legal terms to the review step—where commitment happens.",
     /* The transparent margin the PNG carries, so the copy ends on the phone's
        own edge and not on the file's. Below `lg` the figure is measured by the
        card rather than pinned, so the same inset is stated as its share: 26 of
@@ -481,7 +481,7 @@ const CHAPTERS: Chapter[] = [
     question: "“What if life happens? Can I get more time to pay?”",
     questionLines: ["“What if life happens?", "Can I get more time to pay?”"],
     response:
-      "We added a snooze feature to Pay in 30 servicing, allowing users to extend their loan for a small fee. This gives users greater control while creating a new revenue stream for PayPal.",
+      "For a small fee, customers could extend a Pay in 30 loan—adding control and creating a new revenue stream.",
   },
 ];
 
@@ -1634,8 +1634,7 @@ function ImpactSection() {
           }
           side="right"
           points={[
-            "Expanded installment options, giving German customers greater control and flexibility.",
-            "Partnering closely with the checkout team to integrate four PayPal Ratenzahlung options directly into the checkout page—and with Legal to present terms through embedded links—reduced friction, increased user engagement, and streamlined the loan application from four pages to one.",
+            "Added four installment options and partnered with Checkout and Legal to surface them with contextual terms—reducing the application from four pages to one.",
           ]}
           metrics={[
             { value: "+14.92%", label: "Monthly total purchase volume" },
