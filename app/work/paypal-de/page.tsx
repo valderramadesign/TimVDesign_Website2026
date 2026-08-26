@@ -140,7 +140,6 @@ export default function PayPalDePage() {
             className="group flex w-full min-w-0 max-w-[437px] lg:w-[437px] flex-col gap-4 lg:gap-[27px] items-start"
           >
             <div className="aspect-[437/666] w-full relative rounded-[30px] overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 alt={nextPayPalPreview.alt}
                 src={imageSrc(nextPayPalPreview.image)}

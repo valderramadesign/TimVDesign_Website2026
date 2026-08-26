@@ -523,7 +523,6 @@ export default function SoloPage() {
           {/* PayPal card */}
           <Link href={nextPayPal.route} className="group flex w-full max-w-[437px] lg:w-[437px] flex-col gap-4 lg:gap-[27px] items-start">
             <div className="relative aspect-[437/666] w-full lg:w-[437px] lg:h-[666px] rounded-[30px] overflow-hidden lg:shrink-0">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={imageSrc(nextPayPalPreview.image)}
                 alt={nextPayPalPreview.alt}
