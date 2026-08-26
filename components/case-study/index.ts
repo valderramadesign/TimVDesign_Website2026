@@ -21,58 +21,8 @@ export type { CaseStudySectionProps } from "./case-study-section";
 export { CaseStudyHeader } from "./case-study-header";
 export type { CaseStudyHeaderProps } from "./case-study-header";
 
-export { ExecutiveSummary } from "./executive-summary";
-export type { ExecutiveSummaryProps } from "./executive-summary";
-
 export { ProjectFacts } from "./project-facts";
 export type { ProjectFactKey, ProjectFactsProps } from "./project-facts";
-
-export { ProblemAndStakes } from "./problem-and-stakes";
-export type { ProblemAndStakesProps } from "./problem-and-stakes";
-
-export { Ownership } from "./ownership";
-export type { OwnershipPartner, OwnershipProps } from "./ownership";
-
-export { PivotalDecisions } from "./pivotal-decisions";
-export type { PivotalDecision, PivotalDecisionsProps } from "./pivotal-decisions";
-
-export { SystemFramework } from "./system-framework";
-export type {
-  SystemFrameworkPrinciple,
-  SystemFrameworkProps,
-} from "./system-framework";
-
-export { LeadershipContribution } from "./leadership-contribution";
-export type {
-  LeadershipContributionField,
-  LeadershipContributionProps,
-} from "./leadership-contribution";
-
-export { ImplementationRollout } from "./implementation-rollout";
-export type {
-  ImplementationRolloutProps,
-  RolloutStage,
-} from "./implementation-rollout";
-
-export { OutcomeMetrics, outcomeMetricsFromResults } from "./outcome-metrics";
-export type {
-  OutcomeMetric,
-  OutcomeMetricStatus,
-  OutcomeMetricsProps,
-} from "./outcome-metrics";
-
-export { JourneyComparison } from "./journey-comparison";
-export type {
-  JourneyComparisonProps,
-  JourneyStep,
-  JourneyTrack,
-} from "./journey-comparison";
-
-export { ResultsVisualization } from "./results-visualization";
-export type { ResultsVisualizationProps } from "./results-visualization";
-
-export { Reflection } from "./reflection";
-export type { ReflectionProps } from "./reflection";
 
 export { SupportingAppendix } from "./supporting-appendix";
 export type { SupportingAppendixProps } from "./supporting-appendix";
