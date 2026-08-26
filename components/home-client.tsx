@@ -359,13 +359,17 @@ export default function HomeClient() {
     return () => mq.removeEventListener("change", sync);
   }, []);
 
-  const showreelPaused = Boolean(hoveredProject) || reducedMotion;
+  // The résumé pauses the loop as firmly as a hover does. On desktop the panel
+  // only compresses the homepage rather than covering it, so a showreel left
+  // running would keep cycling images beside a document someone is reading.
+  const showreelPaused =
+    Boolean(hoveredProject) || reducedMotion || resumeOpen;
 
   // One step of the loop: an empty beat, a fade in, three seconds at full
-  // opacity, a fade out. Re-runs per project, and whenever the pointer takes
-  // over — so a hover both stops the loop and drops whatever it was holding,
-  // and letting go replays that step from its opening beat rather than cutting
-  // into the middle of a fade.
+  // opacity, a fade out. Re-runs per project, and whenever the pointer or the
+  // résumé takes over — so either one both stops the loop and drops whatever it
+  // was holding, and releasing it replays that step from its opening beat
+  // rather than cutting into the middle of a fade.
   useEffect(() => {
     if (showreelPaused || HOMEPAGE_PROJECTS.length === 0) {
       setShowreelUp(false);
