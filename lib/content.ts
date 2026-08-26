@@ -396,17 +396,17 @@ export const PROJECTS: Project[] = [
     caseStudyHeadline: "A Simpler Patient Portal for Faster Access to Care",
     company: "Sutter Health",
     status: "Design exercise",
-    role: "Using AI-assisted research and rapid design workflows to create a clear, functional prototype for a simplified patient portal—making it easier for patients to schedule appointments with their doctors.",
+    role: "Self-initiated redesign exercise. I reviewed the existing appointment experience, explored three navigation models, and prototyped a task-first portal focused on booking care.",
     scope: {
       platforms: ["Mobile & desktop"],
       products: ["MyHealthOnline"],
     },
     description: [
-      "Patients already feeling unwell struggle to book appointments through the MyHealthOnline portal. Research found the experience overly complicated, and analytics confirm the drop-off: only 67% of bookings are completed.",
-      "How might we simplify booking so patients can get the care they need quickly and confidently?",
+      "Patients often use portals while sick, stressed, or short on time. In the existing experience, appointment tasks compete with the portal’s many other features, increasing the effort needed to find and book care.",
+      "How might booking become the clearest next action?",
     ],
-    // The 67% completion rate is the problem baseline, not an outcome of this
-    // design exercise, so there is no verified result to report.
+    // A self-initiated exercise that ends at a prototype, so there is no
+    // verified result to report.
     primaryResult: null,
     supportingResults: [],
     thumbnail: {
@@ -429,13 +429,13 @@ export const PROJECTS: Project[] = [
     caseStudyHeadline: "Turning Marketplace Signals Into Confident Action",
     company: "DoorDash",
     status: "Self-initiated concept",
-    role: "By combining AI-driven insights with rapid design iteration, I transformed a cluttered dashboard into a clear, scannable experience — surfacing critical information so users can quickly identify and resolve operational friction.",
+    role: "Self-initiated product concept. I defined the experience, explored three dashboard models, and prototyped an action-first command center for marketplace operations.",
     scope: {
       platforms: ["Mobile & desktop"],
     },
     description: [
-      "Operations, merchant success, and finance teams share the same marketplace data, but each team’s critical signals sit buried in cluttered, one-size-fits-all reporting. By the time an issue surfaces, it has already cost time, revenue, or merchant trust.",
-      "This self-initiated concept explores how one dashboard could put the right signal in front of the right person at the right moment — and turn it directly into action.",
+      "Marketplace teams work from the same data but need different signals. In one-size-fits-all reporting, urgent issues compete with reference metrics, slowing diagnosis and action.",
+      "I explored how a role-aware dashboard could prioritize what needs attention, explain why it matters, and recommend a next step.",
     ],
     // Self-initiated concept with no shipped outcome.
     primaryResult: null,

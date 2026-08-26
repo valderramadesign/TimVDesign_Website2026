@@ -18,8 +18,8 @@ import {
   ProjectFacts,
   SupportingAppendix,
   CASE_STUDY_BODY_CLASS,
+  CASE_STUDY_FACT_VALUE_CLASS,
   CASE_STUDY_LABEL_TIGHT_CLASS,
-  CASE_STUDY_LEAD_CLASS,
   CASE_STUDY_LEAD_GAP_CLASS,
   CASE_STUDY_STACK_CLASS,
   cx,
@@ -44,12 +44,12 @@ const leagueSpartan = "var(--font-league-spartan)";
    studies so the six of them scroll at the same rhythm. */
 const PAGE_PAD = "px-5 lg:px-[24px]";
 const SECTION_GAP = "mt-24 md:mt-[140px] lg:mt-[200px]";
-const ACCENT = "#f5006e";
-/* The brand pink is a fill, not a text colour: on black it measures 5.11:1,
-   which clears AAA only at large sizes. This is the identical hue and
-   saturation lifted to 7.25:1, so the concept titles clear AAA for normal text
-   while still reading as the one DoorDash colour the ticker paints. */
-const ACCENT_TEXT = "#ff5aa4";
+/* The DoorDash logo red, used straight for both the ticker fill and the
+   concept titles. On black it measures 5.65:1, which clears AAA for large
+   text — and the titles never render below 34px, so the floor that applies to
+   them is the large-text one. */
+const ACCENT = "#ff3008";
+const ACCENT_TEXT = ACCENT;
 
 /* Label over copy, the same pair every other case study uses for a stacked
    fact. The copy takes its size from the appendix, which already carries
@@ -90,21 +90,21 @@ const PERSONAS = [
 const DISCOVERY_CONCEPTS = [
   {
     title: "Priority + Action Operating System",
-    description: "Connects planning, variance, action, and outcome.",
+    description: "Organizes work around urgent issues and next steps.",
     image: actionFirstDashboard,
     alt: "Minimal action-first dashboard concept",
     variant: "action" as const,
   },
   {
     title: "Decision Brief Dashboard",
-    description: "Turns data into a clear business story and decision path.",
+    description: "Connects each signal to its impact, cause, and decision.",
     image: decisionBriefDashboard,
     alt: "Decision brief dashboard concept",
     variant: "brief" as const,
   },
   {
     title: "Role-Based Mission Control",
-    description: "Gives each user a dashboard designed around their job.",
+    description: "Adapts priorities to each team’s responsibilities.",
     image: missionControlDashboard,
     alt: "Role-based mission control dashboard concept",
     variant: "console" as const,
@@ -146,7 +146,7 @@ export default function DoorDashDashboardCaseStudy() {
       {/* Problem */}
       <section
         aria-labelledby="doordash-problem-title"
-        className={cx(PAGE_PAD, SECTION_GAP)}
+        className={cx(PAGE_PAD, "mt-[50px]")}
         style={{ fontFamily: leagueSpartan }}
       >
         <ScrollFade direction="left">
@@ -154,7 +154,13 @@ export default function DoorDashDashboardCaseStudy() {
             <h2 id="doordash-problem-title" className={CASE_STUDY_LABEL_TIGHT_CLASS}>
               Problem
             </h2>
-            <div className={cx("flex flex-col", CASE_STUDY_LEAD_CLASS, CASE_STUDY_LEAD_GAP_CLASS)}>
+            <div
+              className={cx(
+                "flex flex-col max-w-[1100px]",
+                CASE_STUDY_FACT_VALUE_CLASS,
+                CASE_STUDY_LEAD_GAP_CLASS,
+              )}
+            >
               <p>{project.description[0]}</p>
               <p>{project.description[1]}</p>
             </div>
@@ -169,11 +175,17 @@ export default function DoorDashDashboardCaseStudy() {
         className={cx(PAGE_PAD, SECTION_GAP)}
         style={{ fontFamily: leagueSpartan }}
       >
-        <div className="flex flex-col gap-[150px]">
+        <div className="flex flex-col gap-[50px]">
           <ScrollFade direction="left">
-            <h2 id="doordash-discovery-title" className={CASE_STUDY_LABEL_TIGHT_CLASS}>
-              Discovery
-            </h2>
+            <div className={cx(CASE_STUDY_STACK_CLASS, "max-w-[1476px]")}>
+              <h2 id="doordash-discovery-title" className={CASE_STUDY_LABEL_TIGHT_CLASS}>
+                Discovery
+              </h2>
+              <p className={cx(CASE_STUDY_FACT_VALUE_CLASS, "max-w-[1100px]")}>
+                I mapped the jobs of operations, merchant success, and finance users. One need cut
+                across all three: move from monitoring metrics to resolving prioritized issues.
+              </p>
+            </div>
           </ScrollFade>
 
           {DISCOVERY_CONCEPTS.map((concept, i) => (
@@ -205,11 +217,21 @@ export default function DoorDashDashboardCaseStudy() {
               </ScrollFade>
             </div>
           ))}
+
+          {/* The column's 50px gap plus 150px here sets this closing statement
+              200px clear of the last concept, so it reads as a conclusion
+              rather than a fourth screen's caption. */}
+          <ScrollFade direction="left" className="mt-[150px]">
+            <p className={cx(CASE_STUDY_FACT_VALUE_CLASS, "max-w-[1100px]")}>
+              The final direction combines prioritized issues with decision context, while keeping
+              role-specific information secondary.
+            </p>
+          </ScrollFade>
         </div>
       </section>
 
       {/* Closing */}
-      <section className="relative w-full mt-24 lg:mt-[200px]">
+      <section className="relative w-full mt-[50px]">
         <div className="relative">
           <a
             href="https://door-dash-dashboard-amber.vercel.app/"
@@ -234,21 +256,25 @@ export default function DoorDashDashboardCaseStudy() {
             style={{ fontFamily: leagueSpartan }}
           >
             <div className="pointer-events-auto flex flex-col gap-6 lg:gap-8">
-              <p className="text-sm lg:text-[18px] font-light">Things I Did:</p>
+              <p className="text-sm lg:text-[18px] font-light">What Changed.</p>
               <ul className="ml-[24px] flex list-disc flex-col gap-3 lg:gap-[18px] text-base lg:text-[22px] font-light leading-[1.5] lg:leading-[1.4]">
                 <li>
-                  By combining the personas&apos; pain points and jobs-to-be-done with
-                  the strongest ideas from the discovery phase, I created a cleaner,
-                  more scannable dashboard homepage that highlights the day&apos;s most
-                  important issues requiring the user&apos;s attention.
+                  Prioritized issues by urgency and impact instead of giving every
+                  metric equal weight.
                 </li>
                 <li>
-                  Once users select an issue, the AI quickly summarizes its cause,
-                  then guides them through a step-by-step resolution process &mdash;
-                  acting as a collaborator to help solve the problem efficiently and
-                  effectively.
+                  Paired each issue with its impact, likely cause, owner, and
+                  recommended action.
+                </li>
+                <li>
+                  Added a guided resolution flow that keeps users in context from
+                  signal to action.
                 </li>
               </ul>
+              <p className="text-sm lg:text-[18px] font-light leading-snug text-white/70">
+                Design outcome: A working concept that demonstrates a clear path from
+                detecting an issue to taking action.
+              </p>
             </div>
 
             <div className="pointer-events-auto flex flex-wrap items-center gap-3 lg:gap-[25px]">
@@ -269,7 +295,7 @@ export default function DoorDashDashboardCaseStudy() {
       {/* Behind the work. Who the dashboard was built for, and how it was
           built — kept one click off the spine of the page, the way the other
           case studies carry theirs. */}
-      <div className={cx(PAGE_PAD, SECTION_GAP)} style={{ fontFamily: leagueSpartan }}>
+      <div className={cx(PAGE_PAD, "mt-[100px]")} style={{ fontFamily: leagueSpartan }}>
         <SupportingAppendix
           id="behind-the-work"
           title="Behind the Work"

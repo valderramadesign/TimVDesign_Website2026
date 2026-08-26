@@ -14,7 +14,6 @@ import {
   CASE_STUDY_BODY_CLASS,
   CASE_STUDY_FACT_VALUE_CLASS,
   CASE_STUDY_LABEL_TIGHT_CLASS,
-  CASE_STUDY_LEAD_CLASS,
   CASE_STUDY_LEAD_GAP_CLASS,
   CASE_STUDY_STACK_CLASS,
   cx,
@@ -24,7 +23,7 @@ import wireframeNextBestAction from "@/components/images/Patient Portal/Wirefram
 import wireframeGuidedConcierge from "@/components/images/Patient Portal/Wireframe Negatives/guided-concierge-negative.png";
 import wireframeCareJourney from "@/components/images/Patient Portal/Wireframe Negatives/patient-care-journey-negative.png";
 import workflowDiagram from "@/components/images/Patient Portal/WorkflowDiagram.svg";
-import macbookSutter from "@/components/images/Patient Portal/MacbookSutter.png";
+import closingImage from "@/components/images/Patient Portal/patient-portal-hospital-laptop.png";
 
 import carousel01 from "@/components/images/Patient Portal/Carousel_01.png";
 import carousel02 from "@/components/images/Patient Portal/Carousel_02.png";
@@ -76,24 +75,21 @@ const DISCOVERY_CONCEPTS: readonly {
 }[] = [
   {
     title: "Next Best Action",
-    description:
-      "Prioritizes the patient's most important need and turns it into one clear next step.",
+    description: "Makes the patient’s most important task immediately visible.",
     image: wireframeNextBestAction,
     alt: "Wireframe of the Next Best Action dashboard: a prioritised list of what needs attention, each item carrying its own next step, beside shortcuts and a collapsed menu for everything else.",
     variant: "next-best-action",
   },
   {
     title: "Patient Care Journey",
-    description:
-      "Uses the patient's care journey to guide them toward the care they need.",
+    description: "Keeps visits, results, and next steps in context.",
     image: wireframeCareJourney,
     alt: "Wireframe of the Patient Care Journey: a dated timeline of visits, results and next steps, with a panel naming who is responsible for each one.",
     variant: "care-journey",
   },
   {
     title: "Guided AI Concierge",
-    description:
-      "Creates a guided AI concierge that helps patients find the right care.",
+    description: "Provides optional help when patients are unsure what to do.",
     image: wireframeGuidedConcierge,
     alt: "Wireframe of the Guided AI Concierge: a plain-language question box with suggested prompts above a transcript that explains a result and offers what to do next.",
     variant: "guided-concierge",
@@ -148,7 +144,7 @@ export default function PatientPortalPage() {
       {/* Problem */}
       <section
         aria-labelledby="patient-portal-problem-title"
-        className={cx(PAGE_PAD, SECTION_GAP)}
+        className={cx(PAGE_PAD, "mt-[50px]")}
         style={{ fontFamily: leagueSpartan }}
       >
         <ScrollFade direction="left">
@@ -156,7 +152,13 @@ export default function PatientPortalPage() {
             <h2 id="patient-portal-problem-title" className={CASE_STUDY_LABEL_TIGHT_CLASS}>
               Problem
             </h2>
-            <div className={cx("flex flex-col", CASE_STUDY_LEAD_CLASS, CASE_STUDY_LEAD_GAP_CLASS)}>
+            <div
+              className={cx(
+                "flex flex-col max-w-[1100px]",
+                CASE_STUDY_FACT_VALUE_CLASS,
+                CASE_STUDY_LEAD_GAP_CLASS,
+              )}
+            >
               {project.description.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
@@ -178,16 +180,13 @@ export default function PatientPortalPage() {
               Discovery
             </h2>
             <p className={cx(CASE_STUDY_FACT_VALUE_CLASS, "max-w-[1100px]")}>
-              I explored three distinctly different approaches to improving the portal &mdash; a
-              prioritized task dashboard, a chronological care journey, and a guided conversational
-              experience &mdash; each aimed at reducing cognitive load and helping patients
-              understand what needs attention, what their health information means, and what to do
-              next.
+              My review identified three needs: make priorities visible, keep care context
+              together, and offer guidance without hiding essential tasks behind chat.
             </p>
           </div>
         </ScrollFade>
 
-        <div className="mt-[100px] flex flex-col gap-[150px] lg:mt-[150px]">
+        <div className="mt-[50px] flex flex-col gap-[50px]">
           {DISCOVERY_CONCEPTS.map((concept, i) => (
             <div
               key={concept.title}
@@ -247,25 +246,63 @@ export default function PatientPortalPage() {
         </div>
       </section>
 
-      {/* Closing — Things I did + Macbook */}
-      <section className="w-full flex flex-col lg:flex-row items-start lg:items-center gap-10 lg:gap-[80px] px-5 lg:px-[24px] pb-20 lg:pb-[200px]">
-        <div className="flex flex-col items-start min-w-0 w-full lg:flex-1" style={{ fontFamily: leagueSpartan }}>
-          <div className="flex flex-col gap-10 lg:gap-[56px] w-full">
-            <div className="flex flex-col gap-[14px] text-white">
-              <p className="text-[18px] font-light leading-none text-white/60">Things I Did:</p>
+      {/* The decision the prototype was cut to, read after the screens it
+          produced rather than before them. */}
+      <section className={PAGE_PAD} style={{ fontFamily: leagueSpartan }}>
+        <ScrollFade direction="left">
+          <p className={cx(CASE_STUDY_FACT_VALUE_CLASS, "max-w-[1100px]")}>
+            For the MVP, I combined visible priorities with care-journey context and optional
+            guidance, then focused the prototype on appointment booking.
+          </p>
+        </ScrollFade>
+      </section>
+
+      {/* Closing — What Changed, set into the closing image the way the
+          DoorDash case study carries its own. */}
+      <section className="relative w-full mt-[50px] pb-[100px]">
+        <div className="relative">
+          <a
+            href="https://v-health-patient-portal-kysfsc4lp.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open the patient portal prototype"
+            className="relative block w-full aspect-[1672/941]"
+          >
+            <Image
+              src={closingImage}
+              alt="The redesigned patient portal on a laptop in a hospital room"
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 hidden bg-gradient-to-r from-black/85 via-black/40 to-transparent lg:block" />
+          </a>
+
+          <ScrollFade
+            direction="left"
+            className="pointer-events-none static z-10 ml-5 flex w-[calc(100%-40px)] flex-col gap-10 py-10 sm:w-2/3 sm:gap-12 lg:absolute lg:inset-x-0 lg:top-0 lg:mx-0 lg:w-[calc(42vw-42px)] lg:gap-[56px] lg:py-0 lg:pl-[37px] lg:pt-[12%]"
+            style={{ fontFamily: leagueSpartan }}
+          >
+            <div className="pointer-events-auto flex flex-col gap-[14px] text-white">
+              <p className="text-sm lg:text-[18px] font-light leading-none text-white/60">What Changed.</p>
               <ul className="text-[clamp(18px,2.2vw,22px)] font-light leading-[1.4] list-disc pl-6 lg:pl-[36px] space-y-4 sm:space-y-5 lg:space-y-[24px]">
                 <li>
-                  After thoroughly researching the industry, key personas, and their pain points, I used an AI-assisted, context-engineered workflow to accelerate the design process from discovery to a working <span className="whitespace-nowrap">appointment-booking prototype.</span>
+                  Reorganized the dashboard around patient tasks rather than health-system categories.
                 </li>
                 <li>
-                  Drawing on my research and an AI-assisted design-strategy brief, I combined the Next Best Action, Care Journey, and Guided Concierge concepts into a cleaner, more efficient dashboard that removes unnecessary content and prioritizes patients&rsquo; needs based on their key friction points and jobs to be done.
+                  Elevated appointments, check-in, results, messages, and refills into prioritized updates.
                 </li>
                 <li>
-                  For the MVP, I focused on a simple, intuitive appointment-booking flow designed to feel effortless &mdash; even when patients aren&rsquo;t feeling their best.
+                  Made booking a prominent, guided flow with assistance available when needed.
                 </li>
               </ul>
+              <p className="mt-[6px] lg:mt-[10px] text-sm lg:text-[18px] font-light leading-snug text-white/70">
+                Design outcome: A functional prototype showing how patients can identify what needs
+                attention and begin booking care from one clear home screen.
+              </p>
             </div>
-            <div className="flex flex-wrap items-center gap-4 lg:gap-[24px]">
+
+            <div className="pointer-events-auto flex flex-wrap items-center gap-4 lg:gap-[24px]">
               <a
                 href="https://v-health-patient-portal-kysfsc4lp.vercel.app/"
                 target="_blank"
@@ -276,18 +313,7 @@ export default function PatientPortalPage() {
                 Prototype
               </a>
             </div>
-          </div>
-        </div>
-
-        <div className="w-full lg:w-[52%] lg:shrink-0">
-          <a
-            href="https://v-health-patient-portal-kysfsc4lp.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative block w-full aspect-[1138/696] rounded-[24px] overflow-hidden"
-          >
-            <Image src={macbookSutter} alt="The redesigned patient portal on desktop" fill className="object-cover" />
-          </a>
+          </ScrollFade>
         </div>
       </section>
 
