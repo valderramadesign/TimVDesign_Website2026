@@ -392,24 +392,29 @@ export default function SoloPage() {
             </ScrollFade>
 
             {/* The three changes stated in full, in the order the
-                walkthrough beside them performs. */}
-            <ol className="mt-10 grid list-none grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-8 lg:mt-[56px] lg:gap-[40px]">
+                walkthrough beside them performs — PayPal's "three changes
+                that mattered" list exactly: number set into the heading, the
+                body 18px under it, 39px between items, read down the column
+                beside the phone. It sits closer to the paragraph above than
+                PayPal's does because a statement introduces it here rather
+                than a section title. */}
+            <ol className="mt-5 grid list-none grid-cols-1 gap-y-7 lg:mt-[28px] lg:gap-y-[39px]">
               {CHANGES.map((change) => (
                 <li key={change.number}>
-                  <p className={cx(CASE_STUDY_LABEL_TIGHT_CLASS, "text-white/40")}>
-                    {change.number}
-                  </p>
-                  <h4 className="mt-3 text-balance font-serif text-[clamp(20px,2vw,26px)] font-normal leading-[1.15] tracking-[-0.01em] sm:min-h-[2.3em] lg:mt-[14px]">
+                  <h4 className="text-balance font-serif text-[clamp(24px,2.6vw,32px)] font-normal leading-[1.15] tracking-[-0.01em] text-white">
+                    <span className="whitespace-nowrap text-white/40">
+                      {change.number}&nbsp;&mdash;&nbsp;
+                    </span>
                     {change.title}
                   </h4>
-                  <p className={cx(PANEL_ROW_CLASS, "mt-4 max-w-[520px] text-white/70 lg:mt-[18px]")}>
+                  <p className={cx(CASE_STUDY_BODY_CLASS, "mt-3 max-w-[46ch] text-white/70 lg:mt-[18px]")}>
                     {change.body}
                   </p>
                 </li>
               ))}
             </ol>
 
-            <div className="mt-12 flex lg:mt-[56px]">
+            <div className="mt-10 flex lg:mt-[56px]">
               <a
                 href="https://ms-sunshine-app-prototype.vercel.app/home"
                 target="_blank"

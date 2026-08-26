@@ -618,7 +618,7 @@ export default function PayPal1CaseStudy() {
                   held on the paragraphs instead, which are the only lines
                   long enough to need it. */}
               <div>
-                <ol className="grid list-none grid-cols-1 gap-y-10 lg:gap-y-[56px]">
+                <ol className="grid list-none grid-cols-1 gap-y-7 lg:gap-y-[39px]">
                   {DESIGN_DECISIONS.map(({ number, title, body }) => (
                     <li key={number}>
                       <h4 className="font-serif text-[clamp(24px,2.6vw,32px)] font-normal leading-[1.15] tracking-[-0.01em] text-white">
