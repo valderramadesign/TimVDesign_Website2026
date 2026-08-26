@@ -1559,15 +1559,29 @@ function ProductImpact({
         {figure}
       </div>
       {/* Held to a readable measure rather than stretching to whatever the
-          phone leaves behind. */}
-      <div className="w-full min-w-0 flex-1 lg:w-[688px] lg:flex-initial">
+          phone leaves behind. Once the row exists, the copy hangs off the edge
+          the shot is on, so both products keep the same gutter to their phone.
+          The right-hand product mirrors the whole block — indents, metric row
+          and bullets included; the bullet text is isolated back to LTR so the
+          sentence keeps its own punctuation. */}
+      <div
+        className={cx(
+          "w-full min-w-0 flex-1 lg:w-[688px] lg:flex-initial",
+          side === "right" && "lg:text-right",
+        )}
+      >
         <h3 className="font-serif text-[clamp(28px,6vw,48px)] leading-[1.1] tracking-[-0.01em] text-white">
           {name}
         </h3>
         <p className={cx(CASE_STUDY_SUPPORTING_CLASS, "mt-2 lg:mt-[10px] text-white/55")}>
           {note}
         </p>
-        <div className="ml-[24px] mt-8 lg:mt-[46px] flex flex-row flex-wrap gap-8 gap-y-10 lg:gap-12">
+        <div
+          className={cx(
+            "ml-[24px] mt-8 lg:mt-[46px] flex flex-row flex-wrap gap-8 gap-y-10 lg:gap-12",
+            side === "right" && "lg:ml-0 lg:mr-[24px] lg:justify-end",
+          )}
+        >
           {metrics.map((metric) => (
             <div key={metric.label}>
               <p className={cx(CASE_STUDY_METRIC_VALUE_CLASS, "text-white")}>{metric.value}</p>
@@ -1579,10 +1593,19 @@ function ProductImpact({
           className={cx(
             CASE_STUDY_BODY_CLASS,
             "ml-[24px] mt-8 lg:mt-[46px] flex list-disc flex-col gap-3 lg:gap-[18px] text-white/80",
+            side === "right" && "lg:ml-0 lg:mr-[24px]",
           )}
         >
           {points.map((line) => (
-            <li key={line}>{line}</li>
+            <li key={line} className={cx(side === "right" && "lg:[direction:rtl]")}>
+              <span
+                className={cx(
+                  side === "right" && "lg:[direction:ltr] lg:[unicode-bidi:isolate]",
+                )}
+              >
+                {line}
+              </span>
+            </li>
           ))}
         </ul>
       </div>
