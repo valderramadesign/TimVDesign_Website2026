@@ -135,6 +135,14 @@ export type Project = {
   scope: ProjectScope;
   /** "Problem" text from the case study, one entry per rendered paragraph. */
   description: string[];
+  /**
+   * The homepage's own statement of the problem, shown on the cards and in the
+   * desktop rollover. Authored separately from `description` because the two
+   * surfaces answer different questions: the case study opens by setting the
+   * scene, while the homepage has one paragraph to name the problem and the
+   * work in the same breath.
+   */
+  homepageProblem: string;
   /** The one verified headline outcome, or null when there isn't one. */
   primaryResult: ProjectResult | null;
   /** Additional existing results. Never combined into a calculated total. */
@@ -247,6 +255,8 @@ export const PROJECTS: Project[] = [
     description: [
       "German customers hesitated to use credit: the options available felt risky, rigid, and at odds with responsible spending. They wanted to inspect a purchase before money left their account — and still spread larger costs into manageable payments.",
     ],
+    homepageProblem:
+      "German shoppers hesitated to use credit that felt risky and rigid. I designed flexible PayPal products that preserved control—letting customers inspect purchases before paying or split larger costs into installments.",
     // Two products report separately and neither is identified as the primary
     // outcome, so both are supporting results and no total is derived.
     primaryResult: null,
@@ -291,6 +301,8 @@ export const PROJECTS: Project[] = [
       "A credit card takes seconds at checkout. A PayPal installment product takes a rigorous, multi-step application — every time. That friction breaks the purchase flow and costs conversion, repeat usage, and adoption of one of PayPal’s key revenue-driving products.",
       "This CEO-prioritized initiative optimized six credit products across the United States and United Kingdom; the case study follows Pay in 4, which changed the most.",
     ],
+    homepageProblem:
+      "PayPal’s installment products required a full application at every purchase. I streamlined the experience to strengthen conversion, repeat use, and adoption of a key revenue driver.",
     primaryResult: PAYPAL_PAY_IN_4_CONVERSION,
     supportingResults: [PAYPAL_TPV_INCREASE],
     thumbnail: {
@@ -329,6 +341,8 @@ export const PROJECTS: Project[] = [
     description: [
       "High-spend advertisers risk costly campaign pauses from card failures and funding gaps. Monthly Invoicing prevents them while cutting Meta’s card processing costs — $2.46B a year now, projected to reach $4.2B. Wider adoption should save at least 7.5% annually.",
     ],
+    homepageProblem:
+      "Card failures pause high-value campaigns, while card processing costs Meta billions. I designed Monthly Invoicing onboarding to drive adoption, protect advertiser spend, and unlock significant annual savings.",
     // Every Meta figure is an H1 2025 target or a projection, so none of them
     // qualifies as a verified result.
     primaryResult: null,
@@ -368,6 +382,8 @@ export const PROJECTS: Project[] = [
       "Staff manually compiled each child’s activities into an end-of-day report. The work could take the head teacher roughly two hours, while parents waited until pickup for reassurance about their child’s day.",
       "The app answers both: real-time updates for parents, automated tracking and reporting for staff.",
     ],
+    homepageProblem:
+      "A head teacher spent two hours daily assembling reports while parents waited for updates. I built an app that made reporting faster and parent updates timely.",
     primaryResult: SOLO_TIME_SAVED,
     supportingResults: [],
     thumbnail: {
@@ -405,6 +421,8 @@ export const PROJECTS: Project[] = [
       "Patients often use portals while sick, stressed, or short on time. In the existing experience, appointment tasks compete with the portal’s many other features, increasing the effort needed to find and book care.",
       "How might booking become the clearest next action?",
     ],
+    homepageProblem:
+      "Patient portals should reduce stress, not add to it. I redesigned appointment discovery and booking to help sick, time-pressed patients reach care faster.",
     // A self-initiated exercise that ends at a prototype, so there is no
     // verified result to report.
     primaryResult: null,
@@ -437,6 +455,8 @@ export const PROJECTS: Project[] = [
       "Marketplace teams work from the same data but need different signals. In one-size-fits-all reporting, urgent issues compete with reference metrics, slowing diagnosis and action.",
       "I explored how a role-aware dashboard could prioritize what needs attention, explain why it matters, and recommend a next step.",
     ],
+    homepageProblem:
+      "Marketplace teams share data but need different signals. I designed role-specific dashboards to surface urgent issues and turn reporting into faster, focused action.",
     // Self-initiated concept with no shipped outcome.
     primaryResult: null,
     supportingResults: [],
@@ -516,15 +536,28 @@ for (const project of HOMEPAGE_FLAGSHIPS) {
 }
 
 /**
+ * Ties a paragraph's last two words together so neither surface can leave a
+ * single word alone on the final line.
+ *
+ * The rollover paragraph is right-aligned in a fixed 350px column at a size that
+ * scales with viewport height, so the same sentence breaks differently at every
+ * height — a widow that is invisible at the 1280x800 reference appears two
+ * hundred pixels down. Binding the final pair guarantees the last line carries
+ * at least two words at every breakpoint, on the cards as well as the panels.
+ */
+function bindLastWord(text: string): string {
+  return text.replace(/ (\S+)\s*$/, "\u00A0$1");
+}
+
+/**
  * The problem as the homepage states it, on cards and in the desktop rollover.
  *
- * Derived rather than authored so the homepage says exactly what the case study
- * opens with. Projects whose problem runs to a second paragraph use that one for
- * scope or for the question the work went on to ask, which the case study needs
- * and a hover preview does not — so the homepage takes the lead paragraph.
+ * Read through this accessor rather than off the record so both homepage
+ * surfaces stay identical, and so the case study's own `description` is never
+ * pulled onto a card by accident.
  */
 export function cardProblem(project: Project): string {
-  return project.description[0];
+  return bindLastWord(project.homepageProblem);
 }
 
 /** Homepage hero eyebrow, one entry per rendered line. */

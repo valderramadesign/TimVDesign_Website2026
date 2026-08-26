@@ -212,6 +212,26 @@ function cardFacts(project: Project): CardFact[] {
 }
 
 /**
+ * Panel copy on the body scale, capped against the same band the art is.
+ *
+ * 24px/1.4 is the site's body size, and at the 1280x800 reference it clears the
+ * hero headline. It stops clearing it below roughly 780px tall: the headline
+ * rises as the viewport shortens, and the results block above this paragraph is
+ * a fixed 58px figure over an 18px label, so the paragraph is the only part of
+ * the column that can give. Scaling it off `--rollover-band` — the derived
+ * height PORTRAIT/LANDSCAPE_PANEL_HEIGHT already cap the images with — keeps the
+ * whole column inside the same gap, at the same rate.
+ *
+ * 0.055 is the coefficient that resolves to exactly 24px at the reference, and
+ * to 17px at 1280x640 — the shortest viewport the homepage is designed against,
+ * where the longest paragraph runs five lines and lands about 9px clear of the
+ * headline. The 17px floor is there for viewports shorter than that, where the
+ * headline has already crowded everything else out too.
+ */
+const PANEL_COPY_SIZE_CLASS =
+  "text-[clamp(17px,calc(var(--rollover-band)*0.055),24px)] leading-[1.4]";
+
+/**
  * A project's problem statement, sized for the desktop rollover panel.
  *
  * The panel is a hover preview, not a card: it carries the result and the
@@ -221,7 +241,7 @@ function cardFacts(project: Project): CardFact[] {
  */
 function PanelCopy({ project }: { project: Project }) {
   return (
-    <p className="text-white/80 text-[19px] font-light leading-[24px] text-right">
+    <p className={`${PANEL_COPY_SIZE_CLASS} text-white/80 font-light text-right`}>
       {cardProblem(project)}
     </p>
   );

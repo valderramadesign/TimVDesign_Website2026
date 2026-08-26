@@ -178,7 +178,7 @@ Homepage type sits outside those tokens because it is viewport-driven:
 | Hero headline | `clamp(46px, min(6.02vw, 9.6vh), 77px)`, `leading-[0.96]`, `tracking-[-0.015em]`, serif |
 | Mobile H1 | `clamp(40px, 11vw, 72px)` |
 | Positioning line | 24px / 28px, `tracking-[-0.015em]`, light |
-| Panel copy | 19px / 24px, light, right-aligned, `text-white/80` |
+| Panel copy | `clamp(17px, calc(var(--rollover-band) * 0.055), 24px)` / `1.4`, light, right-aligned, `text-white/80` — the body size at the 1280x800 reference, scaled down off the same band that caps the panel art so the column keeps clearing the hero headline |
 | Panel metric | 58px serif over an 18px label |
 | Micro-label | 11px, uppercase, `tracking-[0.18em]`, `text-white/45` |
 | "Next Case Study" ticker | `clamp(96px, 24vw, 250px)`, `leading-1`, League Spartan |
@@ -454,8 +454,17 @@ Currently 3 panels each way. Re-check after any copy or height change — the
 split is a consequence, not a setting.
 
 Panel copy stack, top to bottom: metric figure (58px serif) → metric label (18px
-`white/70`) → description (19px/24px `white/80`). Behind each panel sits either a
-muted background video (30–50% opacity) or a generative canvas.
+`white/70`) → description (24px/1.4 `white/80` at the reference height, band-scaled
+down to a 17px floor). The figure and label are fixed, so the description is the
+only part of the stack that gives when the viewport shortens. Behind each panel
+sits either a muted background video (30–50% opacity) or a generative canvas.
+
+No paragraph on this site ends with a single word alone on its last line. The
+rollover copy resizes with the viewport, so a sentence that rags cleanly at the
+reference height widows two hundred pixels down; `cardProblem()` binds each
+paragraph's final two words with a non-breaking space so the last line always
+carries at least two, on the cards as well as the panels. Apply the same rule to
+any new body copy.
 
 ### 6.4 Card (mobile / tablet)
 
