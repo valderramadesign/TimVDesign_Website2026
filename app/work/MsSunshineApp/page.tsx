@@ -19,7 +19,6 @@ import {
   CASE_STUDY_SUPPORTING_CLASS,
   cx,
 } from "@/components/case-study";
-import phoneAppWithTeacher from "@/components/images/Teacher'sApp/PhoneAppWithTeacher.png";
 import teacherWorkingLate from "@/components/images/Teacher'sApp/TeacherWorkingLate.png";
 import { PROJECTS_BY_ID, imageSrc, previewOf } from "@/lib/content";
 import { caseStudyMetadata } from "@/lib/seo";
@@ -54,7 +53,7 @@ const PAGE_PAD = "px-5 lg:px-[24px]";
 const SECTION_TITLE_CLASS =
   "mt-4 max-w-[1100px] text-balance font-serif text-[clamp(32px,5.6vw,64px)] font-normal leading-[1.06] tracking-[-0.015em] lg:mt-[18px]";
 
-/* The hero figure stands on the photograph rather than across the page, so
+/* The hero figure stands on the movie rather than across the page, so
    it steps down from CASE_STUDY_METRIC_VALUE_CLASS's 72px: at 48px it
    holds one line inside the corner it is feathered into. The text-box trim
    class stays, which is what keeps the figure and its label 17px apart
@@ -62,11 +61,13 @@ const SECTION_TITLE_CLASS =
 const HERO_METRIC_VALUE_CLASS =
   "metric-figure font-serif text-[clamp(32px,4.4vw,48px)] font-normal leading-none tracking-[-0.01em]";
 
-/* Below and right of the phone the photograph is only fence, lawn and
-   fallen leaves — nothing the argument needs. A radial settled into that
-   corner and a shallow wash along the bottom edge take it to near-black so
-   the figure can sit on it, and both have faded out well before they reach
-   the teacher or the screen she is holding. */
+/* Below and right of the teacher the frame is only fence, lawn and the
+   climbing frame — nothing the argument needs, and the one part of the shot
+   that stays quiet as it plays. A radial settled into that corner and a
+   shallow wash along the bottom edge take it to near-black so the figure can
+   sit on it for the whole ten seconds; both have faded out well before they
+   reach the teacher, the phone she is holding, or the app screen that rises
+   on the right at the end. */
 const HERO_FEATHER =
   "radial-gradient(112% 46% at 100% 100%, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.42) 60%, rgba(0,0,0,0) 88%)," +
   " linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.6) 14%, rgba(0,0,0,0.2) 26%, rgba(0,0,0,0) 36%)";
@@ -114,7 +115,7 @@ const COMPARE_HEADING_CLASS =
   "mt-3 text-balance font-serif text-[clamp(22px,3vw,32px)] font-normal leading-[1.15] tracking-[-0.01em] lg:mt-[14px]";
 
 /* The figure the estimate produces, read off the corner of the
-   photograph. The year is the one that carries the argument; the daily
+   movie. The year is the one that carries the argument; the daily
    number it is built from is stated in full under Impact. */
 const HERO_METRIC = { value: "~480 hours/year", label: "Estimated time savings returned" };
 
@@ -224,8 +225,8 @@ export default function SoloPage() {
       <CaseStudyTopBar />
 
       {/* Opening: eyebrow, headline, the role in one sentence, then the
-          photograph across the full measure with the year the work is
-          estimated to return feathered into its lower corner. */}
+          movie across the full measure with the year the work is estimated
+          to return feathered into its lower corner. */}
       <div className={cx(PAGE_PAD, "pt-10 lg:pt-[78px]")} style={{ fontFamily: leagueSpartan }}>
         <CaseStudyHeader project={project} />
 
@@ -236,18 +237,19 @@ export default function SoloPage() {
           factClassName={{ role: "lg:w-[861px]" }}
         />
 
-        {/* The photograph runs the page's full measure, the way the other
-            two case studies open. Portrait on a handset, cropped left of
-            centre so the teacher and the screen she is holding both stay in
-            frame; widescreen from lg, where the whole scene fits. */}
+        {/* The movie runs the page's full measure, the way the other two
+            case studies open, and is masked by the same rounded frame.
+            Portrait on a handset, widescreen from lg; the frame owns the
+            aspect ratio, so it reserves its space before the movie loads. */}
         <div className="relative mt-6 aspect-[4/5] w-full overflow-hidden rounded-2xl border border-white/15 lg:mt-[27px] lg:aspect-[16/9] lg:rounded-[30px]">
-          <Image
-            src={phoneAppWithTeacher}
-            alt="A teacher holding a phone in the classroom, logging a child's activity in the Ms. Sunshine app."
-            fill
-            priority
-            sizes="(max-width: 1024px) 100vw, calc(100vw - 48px)"
-            className="object-cover object-[28%_center] lg:object-center"
+          <video
+            src="/videos/TeacherRecordingActivity/TeacherRecordingActivity2.mp4"
+            aria-label="A teacher logging a child’s activity in the Ms. Sunshine app on her phone."
+            className="absolute inset-0 h-full w-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
           />
           <div aria-hidden className="absolute inset-0" style={{ background: HERO_FEATHER }} />
           <div className="absolute bottom-0 right-0 p-6 text-right lg:p-12">

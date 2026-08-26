@@ -131,7 +131,7 @@ export default function PatientPortalPage() {
             aspect ratio, so the movie reserves its space before it loads. */}
         <div className="relative mt-6 aspect-[4/5] w-full overflow-hidden rounded-2xl border border-white/15 lg:mt-[27px] lg:aspect-[16/9] lg:rounded-[30px]">
           <video
-            src="/videos/PatientPortal/PatientPortalTransformation.mp4"
+            src="/videos/PatientPortal/SickMan_Rollover.mp4"
             className="absolute inset-0 h-full w-full object-cover"
             autoPlay
             muted
