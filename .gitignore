@@ -9,3 +9,4 @@ out
 components/videos/.claude/
 .claude
 .vercel
+*.tsbuildinfo

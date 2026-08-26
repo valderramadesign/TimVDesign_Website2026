@@ -84,7 +84,7 @@ export type ProjectCategory =
  * The two selected-work sections on the homepage. Flagships lead; experiments
  * are self-initiated or exploratory work shown underneath them.
  */
-export type HomepageSection = "flagship" | "experiments";
+type HomepageSection = "flagship" | "experiments";
 
 /**
  * A figure exactly as it is displayed. Qualifiers ("estimated", "projected",
@@ -483,7 +483,7 @@ export const PROJECTS_BY_ID: Record<string, Project> = Object.fromEntries(
 );
 
 /** How many projects the homepage's primary selected-work section may show. */
-export const MAX_HOMEPAGE_FLAGSHIPS = 4;
+const MAX_HOMEPAGE_FLAGSHIPS = 4;
 
 /**
  * The homepage's selected-work layout: the single declaration of which projects
@@ -577,7 +577,7 @@ export function homepageEyebrowText(project: Project): string {
  * homepage lines so a project only carries a second value when its case study
  * eyebrow actually differs.
  */
-export function caseStudyEyebrow(project: Project): string[] {
+function caseStudyEyebrow(project: Project): string[] {
   return project.caseStudyEyebrowLines ?? project.homepageEyebrowLines;
 }
 
@@ -589,17 +589,6 @@ export function caseStudyEyebrowText(project: Project): string {
 /** Result wording for surfaces with room for the longer label. */
 export function resultDetail(result: ProjectResult): string {
   return result.detailLabel ?? result.label;
-}
-
-/**
- * Results a case study lists in its own right, most important first. Empty when
- * the project has no verified result, so callers render nothing rather than an
- * empty figure.
- */
-export function caseStudyResults(project: Project): ProjectResult[] {
-  return project.primaryResult
-    ? [project.primaryResult, ...project.supportingResults]
-    : project.supportingResults;
 }
 
 /** Resolves a static import or a /public path to a plain <img> src. */

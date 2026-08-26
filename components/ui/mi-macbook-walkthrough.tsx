@@ -8,6 +8,7 @@ import screenConfirm from "@/components/images/Monthly invoicing Images/MI_Flow_
 import screenApproved from "@/components/images/Monthly invoicing Images/MI_Flow_Clean/flow-4-approved.png";
 import screenCreditLines from "@/components/images/Monthly invoicing Images/MI_Flow_Clean/flow-5-credit-lines.png";
 import handSprite from "@/components/videos/Pi4_Slideshow/Clean/hand.png";
+import { cx } from "@/lib/cx";
 
 /* ── The Monthly Invoicing walkthrough ───────────────────────────────────
 
@@ -23,10 +24,6 @@ import handSprite from "@/components/videos/Pi4_Slideshow/Clean/hand.png";
    removed, so the pointer here is live type-and-CSS rather than pixels: it
    moves with the device, and its stops are the positions measured off the
    original composite. */
-
-function cx(...parts: Array<string | false | undefined>): string {
-  return parts.filter(Boolean).join(" ");
-}
 
 type DemoPoint = { x: number; y: number };
 

@@ -511,17 +511,15 @@ type FrictionImageRegistrar = (
 ) => void;
 
 /**
- * The illustration that clarifies a chapter, sized for the reel. A stop that
- * arrives left of centre reads to its right edge, so the figure mirrors with
- * it — the branch rail changes sides rather than stranding its labels.
+ * The illustration that clarifies a chapter, sized for the reel. Which edge it
+ * hugs is settled by the stop that wraps it, so the figure only has to size
+ * itself to the artefact it is showing.
  */
 function ChapterFigure({
   term,
-  side,
   registerFrictionImage,
 }: {
   term: TermKey;
-  side: StopSide;
   registerFrictionImage?: FrictionImageRegistrar;
 }) {
   if (term === "transparency") {
@@ -649,7 +647,6 @@ const STOPS: Array<{
         <div className={cx("mt-6 flex lg:mt-[34px]", side < 0 && "justify-end")}>
           <ChapterFigure
             term={chapter.term}
-            side={side}
             registerFrictionImage={registerFrictionImage}
           />
         </div>

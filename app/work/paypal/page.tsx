@@ -12,7 +12,6 @@ import { ImageMarquee } from "@/components/ui/image-marquee";
 import quantumLeap from "@/components/images/PayPalQuantumLeap/PayPalQuantumLeap.png";
 import workflow from "@/components/images/WorkflowDiagram.png";
 import iterations from "@/components/images/PayPalQuantumLeap/Wireframes/Iterations.png";
-import circleLg from "@/components/images/paypal1-circle-lg.png";
 import wireframePayIn4 from "@/components/images/PayPalQuantumLeap/Wireframes/Pay in 4 - Wireframe.png";
 import wireframePayMonthly from "@/components/images/PayPalQuantumLeap/Wireframes/Pay Monthly - Wireframe.png";
 import wireframeCreditUS from "@/components/images/PayPalQuantumLeap/Wireframes/PayPal Credit US - Wireframe.png";
@@ -27,9 +26,6 @@ import legacyStep5 from "@/components/images/PayPalQuantumLeap/Pay in 4 - Old 3 
 import redesignStep1 from "@/components/images/PayPalQuantumLeap/Pay in 4 - New 1 pager/Pi4_1-1.png";
 import redesignStep2 from "@/components/images/PayPalQuantumLeap/Pay in 4 - New 1 pager/Pi4_1-2.png";
 import redesignStep3 from "@/components/images/PayPalQuantumLeap/Pay in 4 - New 1 pager/Pi4_1-3.png";
-import flow1 from "@/components/images/1StepFlow_1.png";
-import flow2 from "@/components/images/1StepFlow_2.png";
-import flow3 from "@/components/images/1StepFlow_3.png";
 import payMonthlyScreens from "@/components/images/PayMonthlyScreens.png";
 import payPalCreditScreens from "@/components/images/PayPalCreditScreens.png";
 import payPalMastercardScreens from "@/components/images/PayPalMastercardScreens.png";

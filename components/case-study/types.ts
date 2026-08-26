@@ -4,10 +4,8 @@ import type { CSSProperties, ReactNode } from "react";
    Types and class constants every case study block shares. They live with the
    components rather than in lib/content.ts, which stays the project record. */
 
-/** Joins class names, dropping anything falsy. */
-export function cx(...parts: Array<string | false | null | undefined>): string {
-  return parts.filter(Boolean).join(" ");
-}
+/** Re-exported so case study blocks pull their whole vocabulary from one place. */
+export { cx } from "@/lib/cx";
 
 /** Exactly one, two, or three items. Used where a block caps its own length. */
 export type OneToThree<T> = readonly [T] | readonly [T, T] | readonly [T, T, T];

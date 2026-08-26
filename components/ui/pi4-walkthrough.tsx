@@ -11,6 +11,7 @@ import screenConsent from "@/components/videos/Pi4_Slideshow/Clean/Pi4 5.png";
 import screenApproved from "@/components/videos/Pi4_Slideshow/Clean/Pi4 6.png";
 import screenReceipt from "@/components/videos/Pi4_Slideshow/Clean/Pi4 7.png";
 import handSprite from "@/components/videos/Pi4_Slideshow/Clean/hand.png";
+import { cx } from "@/lib/cx";
 
 /* ── The Pay in 4 walkthrough ────────────────────────────────────────────
 
@@ -22,10 +23,6 @@ import handSprite from "@/components/videos/Pi4_Slideshow/Clean/hand.png";
    pauses it off screen. Server render, no-JS, and reduced motion hold the
    first still with the hand at rest, so the animation is an enhancement,
    never a dependency. */
-
-function cx(...parts: Array<string | false | undefined>): string {
-  return parts.filter(Boolean).join(" ");
-}
 
 type DemoPoint = { x: number; y: number };
 

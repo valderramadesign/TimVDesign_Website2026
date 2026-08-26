@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { CASE_STUDY_BODY_CLASS } from "@/components/case-study/types";
+import { cx } from "@/lib/cx";
 
 /** Row label: the serif used for the numbered decisions, so the two lists
     read as the same voice. Sized down on small screens, where the label
@@ -76,7 +77,7 @@ export function AnimatedImpactRow({
       ref={ref}
       className="grid grid-cols-[110px_1fr] items-center gap-x-4 [--impact-inset:6px] lg:grid-cols-[280px_1fr] lg:gap-x-12 lg:[--impact-inset:10px]"
     >
-      <h3 className={`${IMPACT_LABEL_CLASS} whitespace-pre-line`}>{label}</h3>
+      <h3 className={cx(IMPACT_LABEL_CLASS, "whitespace-pre-line")}>{label}</h3>
       <div className="relative h-[56px] w-full rounded-[14px] bg-[rgba(217,217,217,0.2)] lg:h-[89px] lg:rounded-[20px]">
         {/* inner area with inset on left, top, bottom */}
         <div className="absolute left-[var(--impact-inset)] top-[var(--impact-inset)] bottom-[var(--impact-inset)] right-0">
@@ -97,7 +98,7 @@ export function AnimatedImpactRow({
                 re-measured as the bar resizes. */}
             <span
               ref={value}
-              className={`${IMPACT_VALUE_CLASS} text-black ${valueOutside ? "invisible" : ""}`}
+              className={cx(IMPACT_VALUE_CLASS, "text-black", valueOutside && "invisible")}
             >
               {futureLabel}
             </span>
@@ -109,11 +110,11 @@ export function AnimatedImpactRow({
             className="absolute left-0 top-0 h-full bg-[#230808] rounded-l-[10px] lg:rounded-l-[20px] flex items-center px-3 lg:px-6 overflow-hidden"
             style={{ width: `${todayPct}%` }}
           >
-            <span className={`${IMPACT_VALUE_CLASS} text-white`}>{todayLabel}</span>
+            <span className={cx(IMPACT_VALUE_CLASS, "text-white")}>{todayLabel}</span>
           </div>
           {valueOutside && (
             <motion.span
-              className={`${IMPACT_VALUE_CLASS} absolute top-0 flex h-full items-center pl-3 text-[#cef252] lg:pl-4`}
+              className={cx(IMPACT_VALUE_CLASS, "absolute top-0 flex h-full items-center pl-3 text-[#cef252] lg:pl-4")}
               style={{ left: `${futurePct}%` }}
               initial={{ opacity: 0 }}
               animate={{ opacity: inView ? 1 : 0 }}

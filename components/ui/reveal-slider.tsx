@@ -11,6 +11,7 @@ import {
   type PointerEvent as ReactPointerEvent,
   type ReactNode,
 } from "react";
+import { cx } from "@/lib/cx";
 
 /* ── Before → after, in the reader's own hand ────────────────────────────
 
@@ -29,10 +30,6 @@ import {
    Below lg the rows flatten out: every before in order, then every after, so
    the two states read as two passages rather than interleaving. The drag is
    an enhancement, never a dependency. */
-
-function cx(...parts: Array<string | false | undefined>): string {
-  return parts.filter(Boolean).join(" ");
-}
 
 const clampPct = (n: number) => (n < 0 ? 0 : n > 100 ? 100 : n);
 

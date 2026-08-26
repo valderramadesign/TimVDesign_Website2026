@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   transpilePackages: ["@paper-design/shaders-react", "@paper-design/shaders"],
   images: {
     unoptimized: true,
+    // Declared so the one quality the pages ask for stays valid under Next 16,
+    // which stops accepting undeclared values.
+    qualities: [100],
   },
 };
 

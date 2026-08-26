@@ -21,4 +21,3 @@ export const CTA_PILL_SIZE = {
   xl: "text-xl pt-[11.6px] pb-[12.4px] lg:text-[32px] lg:pt-[16.37px] lg:pb-[15.63px]",
 } as const;
 
-export type CtaPillSize = keyof typeof CTA_PILL_SIZE;

@@ -19,6 +19,7 @@ import {
   PHONE_SCREEN_W,
   phoneScreenH,
 } from "@/components/ui/galaxy-phone-shell";
+import { cx } from "@/lib/cx";
 
 /* ── The Ms. Sunshine walkthrough ────────────────────────────────────────
 
@@ -35,10 +36,6 @@ import {
    removed, so the pointer here is live type-and-CSS rather than pixels: it
    moves with the device, and its stops are the positions measured off the
    original captures. */
-
-function cx(...parts: Array<string | false | undefined>): string {
-  return parts.filter(Boolean).join(" ");
-}
 
 type DemoPoint = { x: number; y: number };
 
