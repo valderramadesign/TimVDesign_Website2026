@@ -22,7 +22,7 @@ export const SITE = {
   /** Homepage-only wordmark. Kept separate from `name` so metadata, structured data, and the résumé keep the legal name. */
   homeName: "Tim Valderrama",
   /** Primary positioning line. Used on the homepage, in metadata, and in structured data. */
-  title: "Lead Product Designer for regulated FinTech and AI-enabled systems.",
+  title: "3X Spot Award-Winning Lead Product Designer for FinTech and AI‑enabled systems.",
   /** Supporting positioning line. */
   supporting: "Former PayPal design lead and Meta FinTech consultant.",
   /** Closing positioning sentence. Rendered directly after `supporting`. */
