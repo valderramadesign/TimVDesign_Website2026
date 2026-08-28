@@ -313,10 +313,15 @@ export default function MetaPage() {
             {HERO_FACTS.map((fact) => (
               <div key={fact.label}>
                 <dt className={cx(CASE_STUDY_SUPPORTING_CLASS, "text-white/60")}>{fact.label}</dt>
-                <dd className="mt-3 font-serif text-[clamp(32px,5vw,56px)] font-normal leading-none tracking-[-0.01em] lg:mt-[18px]">
+                {/* Trimmed like every other figure on the site: the serif
+                    reserves descender space under a row of digits and the
+                    note reserves room above its caps, so without the trim
+                    the same 17px reads about 15px wider here than it does
+                    in the case studies. */}
+                <dd className="metric-figure mt-3 font-serif text-[clamp(32px,5vw,56px)] font-normal leading-none tracking-[-0.01em] lg:mt-[18px]">
                   {fact.value}
                 </dd>
-                <dd className={cx(CASE_STUDY_SUPPORTING_CLASS, "mt-[17px] text-white/60")}>
+                <dd className={cx(CASE_STUDY_SUPPORTING_CLASS, "metric-label mt-[17px] text-white/60")}>
                   {fact.note}
                 </dd>
               </div>
@@ -634,7 +639,9 @@ export default function MetaPage() {
       <section id="next-case-study-section" className="relative w-full bg-black overflow-hidden flex flex-col items-center justify-center pb-24 lg:pb-[200px] pt-16 lg:pt-[78px] mt-20 md:mt-[110px] lg:mt-[150px]">
         <NextCaseStudyTicker color="#CEF252" />
 
-        <div className="flex flex-col lg:flex-row items-center lg:justify-center gap-12 lg:gap-[200px] relative px-5 lg:px-0">
+        {/* Same 24px gutter the other case studies keep. At 437 + 437 the full
+            200px gap only fits from ~1122px up, so it steps down first. */}
+        <div className="relative flex flex-col items-center gap-12 px-5 lg:flex-row lg:justify-center lg:gap-[100px] lg:px-[24px] xl:gap-[200px]">
           {/* PayPal */}
           <Link href={nextPayPal.route} className="group flex w-full max-w-[437px] lg:w-[437px] flex-col gap-4 lg:gap-[27px] items-start">
             <div className="aspect-[437/666] w-full lg:h-[666px] lg:w-[437px] relative lg:shrink-0 rounded-[30px] overflow-hidden">

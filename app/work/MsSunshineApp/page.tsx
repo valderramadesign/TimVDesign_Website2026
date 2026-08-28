@@ -117,7 +117,10 @@ const COMPARE_HEADING_CLASS =
 /* The figure the estimate produces, read off the corner of the
    movie. The year is the one that carries the argument; the daily
    number it is built from is stated in full under Impact. */
-const HERO_METRIC = { value: "~480 hours/year", label: "Estimated time savings returned" };
+const HERO_METRIC = {
+  value: "~480 hours/year",
+  label: "Estimated annual time saved · 2 hrs/day × 240 school days",
+};
 
 type PanelRow = { Icon: ComponentType<{ className?: string }>; text: string };
 
@@ -172,7 +175,7 @@ const IMPACT: { label: string; value: string; note: string }[] = [
   {
     label: "Business Impact",
     value: "~480 hours/year",
-    note: "Estimated staff capacity returned to classroom care, parent service, and school operations.",
+    note: "Estimated staff capacity returned to classroom care, parent service, and school operations — 2 hrs/day × 240 school days.",
   },
 ];
 
@@ -521,7 +524,10 @@ export default function SoloPage() {
       >
         <NextCaseStudyTicker color={ACCENT} />
 
-        <div className="relative flex flex-col lg:flex-row items-center lg:justify-center gap-12 lg:gap-[200px] px-5 lg:px-0">
+        {/* The pair keeps a 24px gutter to the edge at every width: 437 + 671
+            plus both gutters is 1156px, so the gap takes whatever is left over
+            up to its full 200px and the cards only scale once it bottoms out. */}
+        <div className="relative flex flex-col items-center gap-12 px-5 lg:flex-row lg:justify-center lg:gap-[clamp(48px,calc(100vw-1156px),200px)] lg:px-[24px]">
           {/* PayPal card */}
           <Link href={nextPayPal.route} className="group flex w-full max-w-[437px] lg:w-[437px] flex-col gap-4 lg:gap-[27px] items-start">
             <div className="relative aspect-[437/666] w-full lg:w-[437px] lg:h-[666px] rounded-[30px] overflow-hidden lg:shrink-0">

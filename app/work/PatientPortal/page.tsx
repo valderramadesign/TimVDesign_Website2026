@@ -10,6 +10,7 @@ import { CTA_PILL_SIZE } from "@/components/ui/cta-pill";
 import {
   CaseStudyHeader,
   ProjectFacts,
+  ProjectDisclaimer,
   SupportingAppendix,
   CASE_STUDY_BODY_CLASS,
   CASE_STUDY_FACT_VALUE_CLASS,
@@ -126,6 +127,8 @@ export default function PatientPortalPage() {
           className="mt-6 lg:mt-[27px]"
           factClassName={{ role: "lg:w-[861px]" }}
         />
+
+        <ProjectDisclaimer project={project} />
 
         {/* Portrait on a handset, widescreen from lg. The frame owns the
             aspect ratio, so the movie reserves its space before it loads. */}
@@ -262,7 +265,7 @@ export default function PatientPortalPage() {
       <section className="relative w-full mt-[50px] pb-[100px]">
         <div className="relative">
           <a
-            href="https://v-health-patient-portal-kysfsc4lp.vercel.app/"
+            href="https://v-health-patient-portal.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Open the patient portal prototype"
@@ -304,7 +307,7 @@ export default function PatientPortalPage() {
 
             <div className="pointer-events-auto flex flex-wrap items-center gap-4 lg:gap-[24px]">
               <a
-                href="https://v-health-patient-portal-kysfsc4lp.vercel.app/"
+                href="https://v-health-patient-portal.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`inline-flex items-center rounded-full border border-white/30 px-6 lg:px-[30px] ${CTA_PILL_SIZE.xl} font-normal leading-none whitespace-nowrap text-white transition-colors duration-150 hover:border-white`}

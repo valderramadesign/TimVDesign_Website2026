@@ -1561,9 +1561,9 @@ function ProductImpact({
       {/* Held to a readable measure rather than stretching to whatever the
           phone leaves behind. Once the row exists, the copy hangs off the edge
           the shot is on, so both products keep the same gutter to their phone.
-          The right-hand product mirrors the whole block — indents, metric row
-          and bullets included; the bullet text is isolated back to LTR so the
-          sentence keeps its own punctuation. */}
+          The right-hand product mirrors the block's alignment and its metric
+          row, but not its list markers: a marker belongs at the start of the
+          line it marks, and that is the left in both products. */}
       <div
         className={cx(
           "w-full min-w-0 flex-1 lg:w-[688px] lg:flex-initial",
@@ -1589,25 +1589,27 @@ function ProductImpact({
             </div>
           ))}
         </div>
-        <ul
-          className={cx(
-            CASE_STUDY_BODY_CLASS,
-            "ml-[24px] mt-8 lg:mt-[46px] flex list-disc flex-col gap-3 lg:gap-[18px] text-white/80",
-            side === "right" && "lg:ml-0 lg:mr-[24px]",
-          )}
-        >
-          {points.map((line) => (
-            <li key={line} className={cx(side === "right" && "lg:[direction:rtl]")}>
-              <span
-                className={cx(
-                  side === "right" && "lg:[direction:ltr] lg:[unicode-bidi:isolate]",
-                )}
-              >
-                {line}
-              </span>
-            </li>
-          ))}
-        </ul>
+        {/* A single point is a sentence, not a list: there is nothing for a
+            marker to separate it from, and against right-aligned copy the dot
+            strands itself out at the indent. Two or more keep the list, with
+            the indent on the left for both products — that is the gutter the
+            markers hang in. */}
+        {points.length === 1 ? (
+          <p className={cx(CASE_STUDY_BODY_CLASS, "mt-4 lg:mt-[23px] text-white/80")}>
+            {points[0]}
+          </p>
+        ) : (
+          <ul
+            className={cx(
+              CASE_STUDY_BODY_CLASS,
+              "ml-[24px] mt-4 lg:mt-[23px] flex list-disc flex-col gap-3 lg:gap-[18px] text-white/80",
+            )}
+          >
+            {points.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+        )}
       </div>
     </Reveal>
   );

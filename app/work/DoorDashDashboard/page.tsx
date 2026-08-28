@@ -16,6 +16,7 @@ import { CTA_PILL_SIZE } from "@/components/ui/cta-pill";
 import {
   CaseStudyHeader,
   ProjectFacts,
+  ProjectDisclaimer,
   SupportingAppendix,
   CASE_STUDY_BODY_CLASS,
   CASE_STUDY_FACT_VALUE_CLASS,
@@ -113,6 +114,8 @@ export default function DoorDashDashboardCaseStudy() {
           className="mt-6 lg:mt-[27px]"
           factClassName={{ role: "lg:w-[861px]" }}
         />
+
+        <ProjectDisclaimer project={project} />
 
         {/* Portrait on a handset, widescreen from lg. The frame owns the
             aspect ratio, so the movie reserves its space before it loads. */}

@@ -121,7 +121,13 @@ const PANEL_MOTION = {
   },
 };
 
-/** Figures stacked in a rollover panel. Renders nothing when there are none. */
+/**
+ * Figures stacked in a rollover panel. Renders nothing when there are none.
+ *
+ * Every figure still says what kind of claim it is — targeted, estimated,
+ * projected — but it says so inside its own label. A separate eyebrow above
+ * each number stacked a third line into a panel that already carries two.
+ */
 function PanelResults({ results }: { results: ProjectResult[] }) {
   return (
     <>

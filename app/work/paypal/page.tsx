@@ -626,9 +626,11 @@ export default function PayPal1CaseStudy() {
                 </ol>
                 {/* The prototype is the last of the three changes made
                     touchable: it sits under Unify because that is the decision
-                    it demonstrates. */}
+                    it demonstrates. Linked at the project's own domain, not a
+                    per-deployment URL: those sit behind Vercel's login and go
+                    stale the moment the prototype is pushed again. */}
                 <a
-                  href="https://pay-in4-prototype-cdgo3u6dn-valderramadesign-4260s-projects.vercel.app"
+                  href="https://pay-in4-prototype.vercel.app"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`mt-10 inline-flex items-center rounded-full border border-[#919191] px-6 lg:mt-[56px] lg:px-[30px] ${CTA_PILL_SIZE.lg} font-normal leading-none whitespace-nowrap text-white transition-colors duration-150 hover:border-white`}
@@ -655,19 +657,19 @@ export default function PayPal1CaseStudy() {
           </div>
           <div className="space-y-10 lg:space-y-14">
             <AnimatedImpactRow
-              label={"Credit product\nutilization"}
+              label={"Credit portfolio\nutilization"}
               todayPct={38}
               futurePct={47}
               todayLabel="38%"
               futureLabel="47%"
             />
             <AnimatedImpactRow
-              label={"Credit product\nconversion"}
+              label={"Credit portfolio\nconversion"}
               todayPct={51}
               futurePct={79}
               todayLabel="51%"
               futureLabel="79%"
-              sublabel="Increase of 28 percentage points"
+              sublabel="51% to 79%, an increase of 28 percentage points"
             />
             {/* The last row carries a figure rather than a bar, so it keeps a
                 bar's height and the labels stay on one rhythm; the figure is a
@@ -679,6 +681,15 @@ export default function PayPal1CaseStudy() {
               <h3 className="font-serif text-[clamp(18px,4.5vw,32px)] lg:text-[clamp(24px,2.6vw,32px)] font-normal leading-[1.15] tracking-[-0.01em] whitespace-pre-line lg:w-[304px]">{"Annual incremental\nrevenue (iRev) increase"}</h3>
               <p className="font-serif text-[clamp(48px,12vw,96px)] lg:text-[clamp(64px,8vw,96px)] leading-[1] tracking-[-0.96px]">{TOTAL_IREV_TEXT}</p>
             </div>
+          </div>
+          {/* One statement of scope for the whole chart. Every figure above is
+              the portfolio's, not Pay in 4's; Pay in 4's own completion figure
+              is stated where that product is, so the two cannot be read as the
+              same measurement. */}
+          <div className="grid grid-cols-1 mt-8 lg:mt-12 lg:grid-cols-[280px_1fr] lg:gap-x-12">
+            <p className="font-light text-[13px] leading-[1.5] text-white/50 lg:col-start-2 lg:text-[15px]" style={{ fontFamily: leagueSpartan }}>
+              Measured across all six redesigned credit products in the US and UK, 2023 to H1 2024.
+            </p>
           </div>
       </section>
 

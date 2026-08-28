@@ -36,12 +36,15 @@ export const SITE = {
    * homepage and metadata; the résumé needs the bare title and its own summary.
    */
   resumeTitle: "Lead Product Designer",
+  /**
+   * Two sentences: what the work is, then how it runs. Certifications are
+   * evidence and stay in Education — leading with them put the credential
+   * ahead of the practice it supports.
+   */
   resumeSummaryLead:
-    "Lead Product Designer with 9+ years of experience simplifying complex digital products and turning friction into business growth.",
-  resumeSummaryCredential:
-    "My certifications in AI-assisted design workflows and product strategy for designing AI experiences",
+    "Lead Product Designer with 9+ years of experience turning complex, regulated workflows into scalable products that improve adoption, revenue, and customer trust.",
   resumeSummaryDetail:
-    "help me turn stakeholder requirements into user-centered concepts that accelerate alignment, sharpen product decisions, and drive measurable business outcomes.",
+    "I lead strategy through delivery, align cross-functional teams, and use AI-assisted workflows to accelerate research, iteration, and prototyping.",
   url: "https://tim-ai-design.com",
   email: "valderramadesign@gmail.com",
   /** Downloadable résumé, served from `public/`. */
@@ -66,13 +69,17 @@ export const CAPABILITIES = [
 /**
  * Project status vocabulary. Every project uses exactly one of these labels,
  * and the same label is shown on the card, the case study, and any list view.
+ *
+ * The set is deliberately small and unambiguous: a visitor should be able to
+ * tell shipped client work from an independent exercise at a glance, without
+ * reading the case study. "Delivered" means the work was handed over and its
+ * launch is not something I can attest to; `statusNote` says so out loud.
  */
 export type ProjectStatus =
   | "Shipped"
-  | "Shipped pilot"
-  | "Client product"
-  | "Self-initiated concept"
-  | "Design exercise";
+  | "Shipped MVP"
+  | "Delivered"
+  | "Independent concept";
 
 /** How the work is grouped. A shipped product can still be a client product. */
 export type ProjectCategory =
@@ -87,8 +94,19 @@ export type ProjectCategory =
 type HomepageSection = "flagship" | "experiments";
 
 /**
+ * What kind of claim a figure is. Required on every result and rendered beside
+ * it on every surface, so a target or a projection can never be read as money
+ * already banked. "Measured" is reserved for figures observed after launch.
+ */
+export type ProjectEvidence = "Measured" | "Target" | "Projected" | "Estimated";
+
+/**
  * A figure exactly as it is displayed. Qualifiers ("estimated", "projected",
  * "target", "baseline", "~") are part of the copy and are never stripped.
+ *
+ * A figure also names the population it measures. Two results that sound alike
+ * but count different products or markets carry that difference in their own
+ * label rather than relying on the surrounding copy to draw it.
  */
 export type ProjectResult = {
   /** The figure, formatted as shown. */
@@ -97,6 +115,8 @@ export type ProjectResult = {
   label: string;
   /** Longer wording used where there is room, e.g. case study and rollover. */
   detailLabel?: string;
+  /** Measured, Target, Projected, or Estimated. Never omitted. */
+  evidence: ProjectEvidence;
 };
 
 /** Only the facts the case study itself states. Nothing is inferred. */
@@ -130,6 +150,13 @@ export type Project = {
   caseStudyHeadline: string;
   company: string;
   status: ProjectStatus;
+  /** One line qualifying the status, where the bare label would overstate it. */
+  statusNote?: string;
+  /**
+   * Affiliation notice for independent work, shown on the case study. Present
+   * on exactly the projects that name a company I was never engaged by.
+   */
+  disclaimer?: string;
   /** Complete "My Role" text from the case study header. */
   role: string;
   scope: ProjectScope;
@@ -191,52 +218,88 @@ export type Project = {
    figure and its wording can never diverge between surfaces. */
 
 /**
- * The German products report separately, and each per-product figure is the one
- * stated on the résumé. The combined figures below span both products and are
- * shown only on the homepage card and rollover, where a single view is needed.
+ * Germany's two products report separately and are never added together. A
+ * percentage lift on Pay in 30 Days and one on Ratenzahlung are measured against
+ * different baselines and different volumes, so their sum is not a figure that
+ * exists — every surface shows the pair.
  */
-const PAYPAL_DE_COMBINED_TPV_INCREASE: ProjectResult = {
-  value: "63.7%",
-  label: "Combined monthly TPV increase",
+const PAYPAL_DE_PAY_IN_30_TPV_LIFT: ProjectResult = {
+  value: "+48.78%",
+  label: "Pay in 30 Days monthly TPV",
+  evidence: "Measured",
 };
-const PAYPAL_DE_IREV_INCREASE: ProjectResult = {
-  value: "42.77%",
-  label: "Combined annual iRev increase",
+const PAYPAL_DE_RATENZAHLUNG_TPV_LIFT: ProjectResult = {
+  value: "+14.92%",
+  label: "Ratenzahlung monthly TPV",
+  detailLabel: "PayPal Ratenzahlung monthly TPV",
+  evidence: "Measured",
+};
+const PAYPAL_DE_PAY_IN_30_IREV_LIFT: ProjectResult = {
+  value: "+17.33%",
+  label: "Pay in 30 Days annual iRev",
+  evidence: "Measured",
+};
+const PAYPAL_DE_RATENZAHLUNG_IREV_LIFT: ProjectResult = {
+  value: "+25.44%",
+  label: "Ratenzahlung annual iRev",
+  detailLabel: "PayPal Ratenzahlung annual iRev",
+  evidence: "Measured",
 };
 const PAYPAL_DE_PAY_IN_30_TPV: ProjectResult = {
   value: "$529M",
   label: "Monthly TPV",
   detailLabel: "Pay in 30 Days monthly TPV",
+  evidence: "Measured",
 };
 const PAYPAL_DE_RATENZAHLUNG_TPV: ProjectResult = {
   value: "$181M",
   label: "Monthly TPV",
   detailLabel: "PayPal Ratenzahlung monthly TPV",
+  evidence: "Measured",
 };
 
-/** 208% is Pay in 4 only, so every surface names the product. */
+/**
+ * Two conversion figures, two different populations, so each names its own.
+ * 208% is Pay in 4 application completion against its own pre-redesign
+ * baseline; the 28-point gain is application conversion across all six
+ * redesigned credit products in the US and UK. Neither restates the other.
+ */
 const PAYPAL_PAY_IN_4_CONVERSION: ProjectResult = {
   value: "208%",
-  label: "Of baseline Pay in 4 conversion",
+  label: "Baseline of Pay in 4 completion",
+  detailLabel: "Baseline of Pay in 4 application completion",
+  evidence: "Measured",
+};
+const PAYPAL_PORTFOLIO_CONVERSION: ProjectResult = {
+  value: "+28 pts",
+  label: "Credit portfolio conversion",
+  detailLabel: "Application conversion across 6 products, 51% → 79%",
+  evidence: "Measured",
 };
 const PAYPAL_TPV_INCREASE: ProjectResult = {
   value: "67%",
-  label: "Increase in ave. monthly TPV",
+  label: "Increase in Pay in 4 monthly TPV",
+  detailLabel: "Increase in average monthly Pay in 4 TPV",
+  evidence: "Measured",
 };
 
-/** Both Meta figures are H1 2025 targets/projections, never achieved results. */
+/** Both Meta figures are H1 2026 targets, never achieved results. */
 const META_TARGET_CONVERSION: ProjectResult = {
   value: "97%",
-  label: "Target conversion, up from 39%",
+  label: "Targeted conversion from 39% baseline",
+  evidence: "Target",
 };
 const META_PROJECTED_SAVINGS: ProjectResult = {
   value: "7.5%",
   label: "Projected annual savings",
+  evidence: "Projected",
 };
 
+/** An estimate with its arithmetic attached, so a reader can check it. */
 const SOLO_TIME_SAVED: ProjectResult = {
   value: "480 hrs",
   label: "Estimated annual time saved",
+  evidence: "Estimated",
 };
 
 export const PROJECTS: Project[] = [
@@ -258,9 +321,16 @@ export const PROJECTS: Project[] = [
     homepageProblem:
       "German shoppers hesitated to use credit that felt risky and rigid. I designed flexible PayPal products that preserved control—letting customers inspect purchases before paying or split larger costs into installments.",
     // Two products report separately and neither is identified as the primary
-    // outcome, so both are supporting results and no total is derived.
+    // outcome, so every figure is a supporting result and no total is derived.
     primaryResult: null,
-    supportingResults: [PAYPAL_DE_PAY_IN_30_TPV, PAYPAL_DE_RATENZAHLUNG_TPV],
+    supportingResults: [
+      PAYPAL_DE_PAY_IN_30_TPV_LIFT,
+      PAYPAL_DE_RATENZAHLUNG_TPV_LIFT,
+      PAYPAL_DE_PAY_IN_30_IREV_LIFT,
+      PAYPAL_DE_RATENZAHLUNG_IREV_LIFT,
+      PAYPAL_DE_PAY_IN_30_TPV,
+      PAYPAL_DE_RATENZAHLUNG_TPV,
+    ],
     thumbnail: {
       image: paypalDeRollover,
       alt: "PayPal Germany checkout screen on a phone",
@@ -274,8 +344,10 @@ export const PROJECTS: Project[] = [
     cardTitle: "PayPal Credit Products for Germany",
     cardRole: "Lead Product Designer",
     cardScope: "Pay in 30 Days & Ratenzahlung · Germany · Mobile & desktop",
-    cardResult: PAYPAL_DE_COMBINED_TPV_INCREASE,
-    panelResults: [PAYPAL_DE_COMBINED_TPV_INCREASE, PAYPAL_DE_IREV_INCREASE],
+    // The card leads on the larger of the two lifts and names its product; the
+    // rollover has room for both, which is the only honest way to show them.
+    cardResult: PAYPAL_DE_PAY_IN_30_TPV_LIFT,
+    panelResults: [PAYPAL_DE_PAY_IN_30_TPV_LIFT, PAYPAL_DE_RATENZAHLUNG_TPV_LIFT],
   },
   {
     id: "paypal",
@@ -283,7 +355,7 @@ export const PROJECTS: Project[] = [
     caseStudyHeadline: "Six Credit Products. One Clearer Path Through Checkout.",
     company: "PayPal",
     status: "Shipped",
-    role: "Led the 1.5-month redesign of six US and UK PayPal credit products for the new checkout framework. I unified application patterns and content across the portfolio, reduced Pay in 4 from three steps to one, and helped lift its conversion to 208% of baseline.",
+    role: "Led the 1.5-month redesign of six US and UK PayPal credit products for the new checkout framework. I unified application patterns and content across the portfolio, reduced Pay in 4 from three steps to one, and helped lift its application completion to 208% of its pre-redesign baseline. Across all six products, application conversion rose from 51% to 79%.",
     scope: {
       platforms: ["iOS/Android mobile and desktop"],
       // Six product instances across two markets; PayPal Credit ships in both,
@@ -304,7 +376,7 @@ export const PROJECTS: Project[] = [
     homepageProblem:
       "PayPal’s installment products required a full application at every purchase. I streamlined the experience to strengthen conversion, repeat use, and adoption of a key revenue driver.",
     primaryResult: PAYPAL_PAY_IN_4_CONVERSION,
-    supportingResults: [PAYPAL_TPV_INCREASE],
+    supportingResults: [PAYPAL_PORTFOLIO_CONVERSION, PAYPAL_TPV_INCREASE],
     thumbnail: {
       image: paypalRollover,
       alt: "PayPal Pay in 4 application screen",
@@ -332,7 +404,9 @@ export const PROJECTS: Project[] = [
     caseStudyHeadline:
       "Moving high-spend advertisers beyond credit card limits",
     company: "Meta",
-    status: "Client product",
+    status: "Delivered",
+    statusNote:
+      "Designs delivered and handed off; the launch fell after my engagement ended, so every figure below is a target or a projection rather than a measured result.",
     role: "Led a six-week redesign of Meta Monthly Invoicing with Engineering, Finance, and Design. Moved discovery to high-traffic business surfaces and reduced the application from nine screens to three by reusing verified data. Used Metamate AI from discovery through handoff.",
     scope: {
       platforms: ["Desktop"],
@@ -359,7 +433,7 @@ export const PROJECTS: Project[] = [
     caseStudyEyebrowLines: ["Scaling Monthly Invoicing Adoption"],
     cardLabel: "Meta",
     cardTitle: "Monthly Invoicing for Meta Ads",
-    cardRole: "Staff Product Designer (consultant)",
+    cardRole: "Product Designer V, Staff-level — Consultant",
     cardScope: "Monthly Invoicing onboarding · Desktop",
     cardResult: META_TARGET_CONVERSION,
     panelResults: [META_TARGET_CONVERSION, META_PROJECTED_SAVINGS],
@@ -373,7 +447,7 @@ export const PROJECTS: Project[] = [
     title: "Ms. Sunshine App",
     caseStudyHeadline: "Turning Classroom Updates Into Live Parent Communication",
     company: "Ms. Sunshine",
-    status: "Shipped",
+    status: "Shipped MVP",
     role: "Led discovery, design, and delivery of a tested MVP in three weeks, turning manual daily reports into one connected workflow for teachers and parents.",
     scope: {
       platforms: ["Mobile"],
@@ -393,12 +467,12 @@ export const PROJECTS: Project[] = [
     },
     route: "/work/MsSunshineApp",
     category: "Client products",
-    timeline: "2 months",
+    timeline: "3 weeks",
     homepageEyebrowLines: ["Rapid App Innovation"],
     caseStudyEyebrowLines: ["Ms. Sunshine App · Three-Week MVP"],
     cardLabel: "Ms. Sunshine App",
     cardTitle: "Daily Reporting App for Teachers",
-    cardRole: "Solo designer and developer",
+    cardRole: "Principal Product Designer — solo design and build",
     cardScope: "Daily reporting app · Mobile",
     cardResult: SOLO_TIME_SAVED,
     panelResults: [SOLO_TIME_SAVED],
@@ -412,7 +486,9 @@ export const PROJECTS: Project[] = [
     title: "Sutter Health Patient Portal",
     caseStudyHeadline: "A Simpler Patient Portal for Faster Access to Care",
     company: "Sutter Health",
-    status: "Design exercise",
+    status: "Independent concept",
+    disclaimer:
+      "Independent concept based on a review of Sutter Health’s appointment experience. Not commissioned by or affiliated with Sutter Health.",
     role: "Self-initiated redesign of Sutter Health’s appointment experience. Evaluated three navigation models and prototyped a task-first portal centered on booking care.",
     scope: {
       platforms: ["Mobile & desktop"],
@@ -447,7 +523,9 @@ export const PROJECTS: Project[] = [
     title: "DoorDash Dashboard",
     caseStudyHeadline: "A Role-Aware Command Center for Marketplace Operations",
     company: "DoorDash",
-    status: "Self-initiated concept",
+    status: "Independent concept",
+    disclaimer:
+      "Independent concept—unaffiliated with DoorDash. Data and scenarios are illustrative.",
     role: "Self-initiated DoorDash concept. Defined the experience, explored three dashboard models, and prototyped an action-first command center for marketplace operations.",
     scope: {
       platforms: ["Mobile & desktop"],
@@ -534,6 +612,13 @@ for (const project of HOMEPAGE_FLAGSHIPS) {
   }
   if (!project.cardRole || !project.cardScope) {
     throw new Error(`Flagship "${project.id}" needs cardRole and cardScope.`);
+  }
+}
+for (const project of PROJECTS) {
+  if (project.status === "Independent concept" && !project.disclaimer) {
+    throw new Error(
+      `"${project.id}" is an independent concept and needs a disclaimer naming the company it is unaffiliated with.`,
+    );
   }
 }
 

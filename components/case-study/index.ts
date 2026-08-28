@@ -24,6 +24,9 @@ export type { CaseStudyHeaderProps } from "./case-study-header";
 export { ProjectFacts } from "./project-facts";
 export type { ProjectFactKey, ProjectFactsProps } from "./project-facts";
 
+export { ProjectDisclaimer } from "./project-disclaimer";
+export type { ProjectDisclaimerProps } from "./project-disclaimer";
+
 export { SupportingAppendix } from "./supporting-appendix";
 export type { SupportingAppendixProps } from "./supporting-appendix";
 

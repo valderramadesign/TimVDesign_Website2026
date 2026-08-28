@@ -155,6 +155,13 @@ export function ProjectFacts({
               <div key={fact.key} className={cx(FACT_CLASS, factClassName?.[fact.key])}>
                 <dt className={labelClass}>{label(fact.key)}</dt>
                 <dd className={valueClass}>{fact.value}</dd>
+                {/* Only the status takes a qualifying line, and only where the
+                    bare label would claim more than the work can support. */}
+                {fact.key === "status" && project.statusNote && (
+                  <dd className="text-white/55 text-[15px] font-light leading-[1.45] max-w-[34ch]">
+                    {project.statusNote}
+                  </dd>
+                )}
               </div>
             ))}
           </dl>

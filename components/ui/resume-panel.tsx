@@ -102,9 +102,7 @@ export default function ResumePanel() {
               <span className="text-[#7c8896]">what I do</span>
               <span className="text-black">=</span>
               <span className="text-[#fd0]">{`{`}</span>
-              <span className="text-black">&quot;</span>
-              <span className="text-black" style={blueHL}>{SITE.resumeSummaryCredential}</span>
-              <span className="text-black">{` `}{SITE.resumeSummaryDetail}&quot;</span>
+              <span className="text-black">&quot;{SITE.resumeSummaryDetail}&quot;</span>
               <span className="text-[#fd0]">{`}`}</span>
             </p>
 
@@ -135,7 +133,7 @@ export default function ResumePanel() {
               <div className="text-[14px] leading-[21px] text-black">
                 <p className="mb-0">
                   <span className="text-[#fd0]">{`{`}</span>
-                  &quot;Returned to full professional capacity in February 2026 after surgery and rehabilitation for a sports injury, using the transition period to deepen expertise in{` `}
+                  &quot;2025–2026 — planned career break and professional development, deepening expertise in{` `}
                   <span style={blueHL}>AI-assisted product design workflows</span>
                   {` `}across strategy, interface design, prototyping, and app development.&quot;
                   <span className="text-[#fd0]">{`}`}</span>
@@ -145,7 +143,7 @@ export default function ResumePanel() {
                   &quot;Designed and developed an{` `}
                   <span style={blueHL}>AI-powered preschool activity reporting app</span>{` `}
                   for Sunshine Little House of Learning, automating real-time parent updates and end-of-day summaries while{` `}
-                  <span style={yellowHL}>saving the head teacher an estimated 480 hours annually</span>.&quot;
+                  <span style={yellowHL}>returning an estimated 480 hours of staff capacity annually</span> (2 hrs/day × 240 school days).&quot;
                   <span className="text-[#fd0]">{`}`}</span>
                 </p>
               </div>
@@ -156,13 +154,11 @@ export default function ResumePanel() {
               <p className="text-[14px] leading-[21px]">
                 <span className="text-[#7c8896]">12/2024–8/2025 : Meta FinTech</span>
                 <span className="text-black">=</span>
-                <span className="text-[#e5652a]">Product Designer V</span>
+                <span className="text-[#e5652a]">Product Designer V, Staff-level</span>
                 <span>{` `}</span>
-                <span className="text-[#fd0]">{`{`}</span>
-                <span className="text-black">Staff Product Designer</span>
-                <span className="text-[#fd0]">{`}`}</span>
+                <span className="text-[#7c8896]">:</span>
                 <span>{` `}</span>
-                <span className="text-[#00b0d8]">Design Consultant</span>
+                <span className="text-[#00b0d8]">Consultant</span>
               </p>
               <div className="text-[14px] leading-[21px] text-black">
                 <p className="mb-0">
@@ -198,13 +194,13 @@ export default function ResumePanel() {
                   <span className="text-[#fd0]">{`{`}</span>
                   &quot;Modernized PayPal&apos;s installment products, a top-priority leadership initiative, by migrating to UI 4.0 and the Checkout Product System; used{` `}
                   <span style={blueHL}>Figma, ChatGPT, and Claude for research synthesis, UX writing variants, flow critique, and product narrative development</span>,{` `}
-                  <span style={yellowHL}>lifting conversion to 208% of its baseline and driving a 67% increase in average monthly TPV</span> for Pay in 4.&quot;
+                  <span style={yellowHL}>lifting Pay in 4 application completion to 208% of its pre-redesign baseline and driving a 67% increase in Pay in 4 average monthly TPV</span>; application conversion across all six US and UK credit products rose from 51% to 79%.&quot;
                   <span className="text-[#fd0]">{`}`}</span>
                 </p>
                 <p className="mb-0">
                   <span className="text-[#fd0]">{`{`}</span>
                   &quot;Led design strategy and end-to-end implementation across all German installment products, translating complex regulatory, customer, and business requirements into scalable product experiences that{` `}
-                  <span style={yellowHL}>drove a 14.92% increase in monthly TPV for PayPal Monthly Installments and 48.78% for Pay in 30 Days</span>.&quot;
+                  <span style={yellowHL}>drove a 48.78% increase in monthly TPV and 17.33% in annual iRev for Pay in 30 Days, and 14.92% in monthly TPV and 25.44% in annual iRev for PayPal Ratenzahlung</span>.&quot;
                   <span className="text-[#fd0]">{`}`}</span>
                 </p>
                 <p className="mb-0">

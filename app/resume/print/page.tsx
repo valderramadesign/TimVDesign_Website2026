@@ -94,7 +94,7 @@ export default function ResumePrintPage() {
         {/* Summary */}
         <div style={{ marginBottom: 20 }}>
           <p style={{ fontSize: 10, lineHeight: "15px", margin: 0 }}>
-            {SITE.resumeSummaryLead} {SITE.resumeSummaryCredential} {SITE.resumeSummaryDetail}
+            {SITE.resumeSummaryLead} {SITE.resumeSummaryDetail}
           </p>
         </div>
 
@@ -129,15 +129,15 @@ export default function ResumePrintPage() {
             type="Freelance"
             dates="Feb 2026 – Present"
             bullets={[
-              "Returned to full professional capacity after surgery and rehabilitation for a sports injury, using the transition period to deepen expertise in AI-assisted product design workflows across strategy, interface design, prototyping, and app development.",
-              "Designed and developed an AI-powered preschool activity reporting app for Sunshine Little House of Learning, automating real-time parent updates and end-of-day summaries while saving the head teacher an estimated 480 hours annually.",
+              "2025–2026 — Planned career break and professional development: deepened expertise in AI-assisted product design workflows across strategy, interface design, prototyping, and app development.",
+              "Designed and developed an AI-powered preschool activity reporting app for Sunshine Little House of Learning, automating real-time parent updates and end-of-day summaries while returning an estimated 480 hours of staff capacity annually (2 hrs/day × 240 school days).",
             ]}
           />
 
           <Job
             company="Meta FinTech"
-            title="Product Designer V (Staff Product Designer)"
-            type="Design Consultant"
+            title="Product Designer V, Staff-level"
+            type="Consultant"
             dates="Dec 2024 – Aug 2025"
             bullets={[
               "Led design strategy to reduce checkout payment friction through credential sharing and autopay, increasing iRev by 6.3% and credential coverage by 36%.",
@@ -151,8 +151,8 @@ export default function ResumePrintPage() {
             type="FTE"
             dates="Oct 2016 – Apr 2024"
             bullets={[
-              "Modernized PayPal's installment products (top leadership priority) by migrating to UI 4.0 and the Checkout Product System, lifting conversion to 208% of its baseline and driving a 67% increase in average monthly TPV for Pay in 4.",
-              "Led design strategy and end-to-end implementation across all German products, driving a 14.92% increase in monthly TPV for PayPal Monthly Installments and 48.78% for Pay in 30 Days; directly contributed to promotion to Lead Designer for Global Installments.",
+              "Modernized PayPal's installment products (top leadership priority) by migrating to UI 4.0 and the Checkout Product System, lifting Pay in 4 application completion to 208% of its pre-redesign baseline and driving a 67% increase in Pay in 4 average monthly TPV; application conversion across all six US and UK credit products rose from 51% to 79%.",
+              "Led design strategy and end-to-end implementation across all German products, driving a 48.78% increase in monthly TPV and 17.33% in annual iRev for Pay in 30 Days, and 14.92% in monthly TPV and 25.44% in annual iRev for PayPal Ratenzahlung; directly contributed to promotion to Lead Designer for Global Installments.",
               "Provided mentorship and strategic guidance to senior designers, introducing scalable, data-informed solutions and process improvements to elevate team-wide design quality and maturity.",
             ]}
           />

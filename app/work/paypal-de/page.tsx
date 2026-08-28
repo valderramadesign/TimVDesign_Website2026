@@ -33,7 +33,7 @@ const nextMetaPreview = previewOf(nextMeta);
 
 export const metadata = caseStudyMetadata(
   project,
-  "Designing PayPal Pay in 30 Days and Ratenzahlung for Germany — two responsible credit products driving a 63.7% increase in combined monthly total purchase volume.",
+  "Designing PayPal Pay in 30 Days and Ratenzahlung for Germany — two responsible credit products that lifted monthly TPV 48.78% and 14.92% respectively.",
 );
 
 const leagueSpartan = "var(--font-league-spartan)";
@@ -130,7 +130,11 @@ export default function PayPalDePage() {
               <span className="whitespace-nowrap">PayPal products.</span>
             </p>
           </div>
-          <div className="flex flex-col gap-4 lg:gap-6 lg:flex-row lg:gap-x-[46px]">
+          {/* The diagram ends on its lowest circle, so the iteration columns
+              stand off it by a full 100px rather than the appendix's default
+              24px gutter — enough that the drawing reads as finished before
+              the two lists begin. */}
+          <div className="flex flex-col gap-4 lg:mt-[76px] lg:gap-6 lg:flex-row lg:gap-x-[46px]">
             <div className="lg:w-1/2">
               <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>Pay in 30 Days</p>
               <ul className={ITERATION_LIST_CLASS}>
