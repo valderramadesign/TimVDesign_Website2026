@@ -370,25 +370,26 @@ function OpeningStatement() {
           <span className="whitespace-nowrap">and commitment.</span>
         </p>
       </Reveal>
-      {/* The bet and its cost, set at the supporting scale in the two columns
-          this page already uses for paired copy — subordinate to the image
-          above them, and to the equation they hand off to. */}
+      {/* The bet and its cost, set at the body scale in the two columns this
+          page already uses for paired copy — the eyebrow above each one carries
+          the hierarchy, so the copy itself reads at full body weight. */}
       <Reveal className="mt-8 flex flex-col gap-8 lg:mt-[46px] lg:flex-row lg:gap-[46px]">
         <div className="lg:w-1/2">
-          <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>The strategic bet</p>
+          <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>The Strategic Bet</p>
           {/* TODO(verify): the bet is stated from the strategy documents of the
               time; confirm the wording against the approved product brief. */}
-          <p className={cx(CASE_STUDY_SUPPORTING_CLASS, "mt-3 max-w-[620px] text-white/70 lg:mt-4")}>
-            We believed qualified adoption would grow if customers could see costs earlier,
-            complete fewer unnecessary steps, and retain control{" "}
+          <p className={cx(CASE_STUDY_BODY_CLASS, "mt-3 max-w-[688px] text-white/80 lg:mt-4")}>
+            Adoption would grow if customers could understand the cost earlier, complete fewer
+            unnecessary steps, and retain control{" "}
             <span className="whitespace-nowrap">after purchase.</span>
           </p>
         </div>
         <div className="lg:w-1/2">
-          <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>The tradeoff</p>
-          <p className={cx(CASE_STUDY_SUPPORTING_CLASS, "mt-3 max-w-[620px] text-white/70 lg:mt-4")}>
-            We would simplify the journey without hiding material information or weakening{" "}
-            <span className="whitespace-nowrap">informed consent.</span>
+          <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>The Tradeoff</p>
+          <p className={cx(CASE_STUDY_BODY_CLASS, "mt-3 max-w-[688px] text-white/80 lg:mt-4")}>
+            A faster application could not come at the expense of an informed decision. We removed
+            unnecessary steps while keeping costs, terms, and{" "}
+            <span className="whitespace-nowrap">commitment clear.</span>
           </p>
         </div>
       </Reveal>
@@ -473,22 +474,22 @@ type Chapter = {
 const CHAPTERS: Chapter[] = [
   {
     term: "flexibility",
-    question: "Serve two distinct customer needs",
+    question: "Two needs. Two products.",
     response:
-      "Pay in 30 gives customers time to inspect a purchase before paying. Ratenzahlung makes larger purchases predictable through installment options. We did not force two different financial jobs into one\u00a0experience.",
+      "I designed two paths: time before payment with Pay in 30, and predictable installments with\u00a0Ratenzahlung.",
   },
   {
     term: "friction",
-    question: "“Why does flexibility require a four-page application?”",
-    questionLines: ["“Why does flexibility require a", "four-page application?”"],
+    question: "Why did flexibility require four pages?",
+    questionLines: ["Why did flexibility", "require four pages?"],
     response:
-      "The legacy Ratenzahlung application spread one decision across four pages. I consolidated the necessary information into a single review-and-apply page—removing navigation while preserving the terms customers needed to\u00a0understand.",
+      "I consolidated four application pages into one—removing navigation, not essential\u00a0terms.",
   },
   {
     term: "transparency",
-    question: "“What exactly am I agreeing to?”",
+    question: "What am I agreeing to?",
     response:
-      "Checkout showed every eligible payment option and its estimated cost before application. Full legal terms appeared at review, where commitment happened. Information moved closer to the decision; it was not\u00a0removed.",
+      "Customers saw every option and estimated cost in checkout, with full terms before\u00a0commitment.",
     /* The transparent margin the PNG carries, so the copy ends on the phone's
        own edge and not on the file's. Below `lg` the figure is measured by the
        card rather than pinned, so the same inset is stated as its share: 26 of
@@ -497,10 +498,9 @@ const CHAPTERS: Chapter[] = [
   },
   {
     term: "control",
-    question: "“What if life happens? Can I get more time to pay?”",
-    questionLines: ["“What if life happens?", "Can I get more time to pay?”"],
+    question: "What if I need more time?",
     response:
-      "Pay in 30 customers could move an upcoming payment for a small fee. The flow exposed the new date and fee before confirmation—adding flexibility while creating a new revenue\u00a0stream.",
+      "Customers could reschedule after reviewing the new date and fee—adding control and a new revenue\u00a0stream.",
   },
 ];
 
@@ -663,8 +663,8 @@ const STOPS: Array<{
               at every width; it hugs whichever edge the stop is aligned to. */}
           <p
             className={cx(
-              CASE_STUDY_SUPPORTING_CLASS,
-              "mt-4 lg:mt-[22px] max-w-[480px] text-white/70",
+              CASE_STUDY_BODY_CLASS,
+              "mt-4 lg:mt-[22px] max-w-[620px] text-white/80",
               side < 0 && "ml-auto",
             )}
           >
@@ -1653,6 +1653,7 @@ function ImpactSection() {
             "Made payment options and estimated costs visible before application.",
             "Moved preferred-bank selection into checkout.",
             "Added transparent post-purchase payment rescheduling.",
+            "Introduced a fee-based payment extension, giving customers more time to pay while generating incremental revenue for\u00a0PayPal.",
           ]}
           /* TODO(verify): Add the exact pre-launch baseline, measurement window,
              and attribution method behind both figures. */
