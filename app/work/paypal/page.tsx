@@ -950,10 +950,13 @@ export default function PayPal1CaseStudy() {
           </div>
         </div>
 
-        {/* The rule halves the 200px: 100px of air above it, 100px below to
-            the top of the first bar. Its own pixel is taken out of the lower
-            half, so what follows carries 99px. */}
-        <div className="mt-[100px] h-px w-full bg-white/25" />
+        {/* The rule halves the 200px by eye rather than by box. The 25.6%
+            stops about 9px (4px at lg) above the bottom of its line box and
+            the 2023 digits start about 5px (7px at lg) below the top of
+            theirs, so a rule centred on the boxes reads ~21px high. It is
+            lifted by that much: 79px of margin here, and the same amount
+            handed back below, so the 200px to the first bar is unchanged. */}
+        <div className="mt-[79px] lg:mt-[78px] h-px w-full bg-white/25" />
 
         {/* The portfolio behind the cards. The cards report what each product
             returned; these two bars report what the whole credit portfolio
@@ -961,8 +964,9 @@ export default function PayPal1CaseStudy() {
             the six products add up to. Outside the card stack's flex, so the
             margin is the whole distance from the rule to the top of the first
             bar, with the scale line and the 12px under it living inside that
-            distance rather than adding to it. */}
-        <div className="mt-[calc(99px_-_var(--impact-scale))] [--impact-scale:36px] lg:[--impact-scale:45.6px]">
+            distance rather than adding to it. The 120px (121px at lg) is what
+            the 200px has left after the rule's own margin and its pixel. */}
+        <div className="mt-[calc(120px_-_var(--impact-scale))] lg:mt-[calc(121px_-_var(--impact-scale))] [--impact-scale:36px] lg:[--impact-scale:45.6px]">
           {/* The scale sits over the bars, not over the label column, so the
               first cell is left empty and the dates land on the ends of the
               track they measure. Its height is what --impact-scale accounts
