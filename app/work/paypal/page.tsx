@@ -946,14 +946,6 @@ export default function PayPal1CaseStudy() {
             </div>
           </div>
         </div>
-        {/* What the card figures measure, once, under both rows: two products
-            report volume and four report their share of the revenue lift, and
-            the label beside each figure is too short to say so itself. */}
-        <p className="mt-10 font-light text-[13px] leading-[1.5] text-white/50 lg:mt-[64px] lg:text-[15px]">
-          TPV is the increase in average monthly total payment volume for Pay in 4 and
-          Pay in 3. Each iRev figure is that product&rsquo;s share of the annual
-          incremental revenue increase. Both measured 2023 to H1 2024.
-        </p>
       </section>
 
       {/* Behind the work. The process material that supports the story
