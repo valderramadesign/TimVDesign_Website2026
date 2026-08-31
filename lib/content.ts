@@ -260,14 +260,16 @@ const PAYPAL_DE_RATENZAHLUNG_TPV: ProjectResult = {
 
 /**
  * Two conversion figures, two different populations, so each names its own.
- * 208% is Pay in 4 application completion against its own pre-redesign
- * baseline; the 28-point gain is application conversion across all six
- * redesigned credit products in the US and UK. Neither restates the other.
+ * 2.08x is Pay in 4 application completion measured against its own
+ * pre-redesign baseline, written as a multiple because the absolute before
+ * and after rates are not published; the 28-point gain is application
+ * conversion across all six redesigned credit products in the US and UK.
+ * Neither restates the other.
  */
 const PAYPAL_PAY_IN_4_CONVERSION: ProjectResult = {
-  value: "208%",
-  label: "Baseline of Pay in 4 completion",
-  detailLabel: "Baseline of Pay in 4 application completion",
+  value: "2.08\u00d7",
+  label: "Pay in 4 completion vs. baseline",
+  detailLabel: "Pay in 4 application completion vs. pre-redesign baseline",
   evidence: "Measured",
 };
 const PAYPAL_PORTFOLIO_CONVERSION: ProjectResult = {
@@ -355,7 +357,7 @@ export const PROJECTS: Project[] = [
     caseStudyHeadline: "Six Credit Products. One Clearer Path Through Checkout.",
     company: "PayPal",
     status: "Shipped",
-    role: "Led the 1.5-month redesign of six US and UK PayPal credit products for the new checkout framework. I unified application patterns and content across the portfolio, reduced Pay in 4 from three steps to one, and helped lift its application completion to 208% of its pre-redesign baseline. Across all six products, application conversion rose from 51% to 79%.",
+    role: "Led a six-week redesign of six U.S. and U.K. PayPal credit applications, creating a flexible shared framework that cut Pay in 4 from three steps to one—doubling completion (2.08\u00d7) and lifting portfolio-wide conversion from 51% to 79%.",
     scope: {
       platforms: ["iOS/Android mobile and desktop"],
       // Six product instances across two markets; PayPal Credit ships in both,

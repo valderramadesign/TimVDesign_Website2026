@@ -7,7 +7,6 @@ import RevealSlider from "@/components/ui/reveal-slider";
 import Pi4Walkthrough from "@/components/ui/pi4-walkthrough";
 import ScrollFade from "@/components/ui/scroll-fade";
 import CounterNumber from "@/components/ui/counter-number";
-import { AnimatedImpactRow } from "@/components/ui/animated-impact-row";
 import { ImageMarquee } from "@/components/ui/image-marquee";
 import quantumLeap from "@/components/images/PayPalQuantumLeap/PayPalQuantumLeap.png";
 import workflow from "@/components/images/WorkflowDiagram.png";
@@ -284,23 +283,24 @@ const REDESIGN_STEPS = [
   },
 ];
 
-/* What changed, in the order it had to change: collapse the journey, then
-   clarify what sits inside it, then make the result travel to the others. */
+/* The pattern the other five products inherited, in the order it has to be
+   read: the flow, then what goes on the page, then what each product is
+   allowed to change inside it. */
 const DESIGN_DECISIONS = [
   {
     number: "01",
-    title: "Consolidate",
-    body: "Bring the three application steps into one review-and-apply moment.",
+    title: "Core flow",
+    body: "Checkout offer, one review-and-apply page, approval returned to checkout.",
   },
   {
     number: "02",
-    title: "Clarify",
-    body: "Present customer details, autopay information, and agreements together before commitment.",
+    title: "Content rules",
+    body: "Value, payment schedule, editable customer details, payment method, and agreements sit above one Agree and Apply action.",
   },
   {
     number: "03",
-    title: "Unify",
-    body: "Create content and interaction patterns that could be reused across products and adapted for US and UK requirements.",
+    title: "Controlled variants",
+    body: "The flow holds while product fields, underwriting requirements, and US or UK disclosures change inside it.",
   },
 ];
 
@@ -544,9 +544,9 @@ export default function PayPal1CaseStudy() {
                         One page brought the decision back into focus.
                       </h3>
                       <p className={cx(CASE_STUDY_BODY_CLASS, "mt-5 text-white/70 lg:mt-[24px]")}>
-                        The redesign consolidated the journey into a single review-and-apply page,
-                        allowing customers to understand the information and act without navigating a
-                        multi-step funnel.
+                        The redesign consolidated the journey into a single review-and-apply page:
+                        offer context, customer details, payment method, agreements, and the decision,
+                        then back to checkout.
                       </p>
                     </div>
                   </div>
@@ -581,21 +581,27 @@ export default function PayPal1CaseStudy() {
           />
         </ScrollFade>
 
-        {/* The decisions beside the flow they produced: the redesigned run
-            replays in a black cherry iPhone on the left while the three
-            changes that made it possible read down the right. */}
+        {/* The decisions beside the flow they produced: the three changes
+            that made it possible read down the left, under the heading,
+            while the redesigned run replays in a black cherry iPhone on
+            the right. */}
         <ScrollFade once direction="right">
           <div className={SECTION_GAP}>
-            <h3 className="max-w-[16em] text-balance font-serif text-[clamp(26px,3.6vw,40px)] font-normal leading-[1.1] tracking-[-0.01em]">
-              The three changes that mattered
+            {/* Set at the turn's size, so the section heading and the
+                sentence that sets up the section carry the same weight. */}
+            <h3 className="max-w-[16em] text-balance font-serif text-[clamp(28px,5vw,48px)] font-normal leading-[1.1] tracking-[-0.01em]">
+              The three parts of the shared pattern
             </h3>
-            {/* The animation's column carries the device and, to its left,
-                the rail its callouts hang in. The column starts at the
-                section's own padding, so the notes keep a clear 24px off the
-                page edge; the phone sits at the far side of the column and
-                the gutter sets the air between it and the copy. */}
+            {/* The copy runs down the left, under the heading it belongs
+                to, and the animation's column closes the row. That column
+                is sized for the device plus, to its right, the rail its
+                callouts hang in; the device sits at the near side of it,
+                so the gutter sets the air between the copy and the case
+                and the notes run out into the rail, ending on the page's
+                own padding. Below lg the animation leads, as it did
+                before. */}
             <div
-              className="mt-12 lg:mt-[72px] grid grid-cols-1 items-center gap-y-12 lg:grid-cols-[calc(var(--pi4-phone)_+_var(--pi4-rail))_minmax(0,1fr)] lg:gap-x-[var(--pi4-gutter)]"
+              className="mt-12 lg:mt-[72px] grid grid-cols-1 items-center gap-y-12 lg:grid-cols-[minmax(0,1fr)_calc(var(--pi4-phone)_+_var(--pi4-rail))] lg:gap-x-[var(--pi4-gutter)]"
               style={
                 {
                   "--pi4-gutter": "clamp(64px, 9vw, 140px)",
@@ -606,11 +612,20 @@ export default function PayPal1CaseStudy() {
                 } as CSSProperties
               }
             >
-              <Pi4Walkthrough className="mx-auto w-[72%] max-w-[300px] lg:ml-auto lg:mr-0 lg:w-[var(--pi4-phone)] lg:max-w-none" />
+              <Pi4Walkthrough className="mx-auto w-[72%] max-w-[300px] lg:order-last lg:ml-0 lg:mr-auto lg:self-center lg:w-[var(--pi4-phone)] lg:max-w-none" />
               {/* The column runs the full width of its cell; the measure is
                   held on the paragraphs instead, which are the only lines
                   long enough to need it. */}
               <div>
+                {/* The figure the three changes produced, read before the
+                    changes themselves. It carries the column, so the list
+                    opens under a result rather than arriving at one. */}
+                <div className="mb-8 flex flex-col gap-[17px] text-white lg:mb-[46px]">
+                  <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">2.08&times;</p>
+                  <p className={cx(CASE_STUDY_SUPPORTING_CLASS, "metric-label text-white/60")}>
+                    Application completion
+                  </p>
+                </div>
                 <ol className="grid list-none grid-cols-1 gap-y-7 lg:gap-y-[39px]">
                   {DESIGN_DECISIONS.map(({ number, title, body }) => (
                     <li key={number}>
@@ -642,55 +657,6 @@ export default function PayPal1CaseStudy() {
             </div>
           </div>
         </ScrollFade>
-      </section>
-
-      {/* Impact graphs */}
-      <section className={cx(SECTION_GAP, "max-w-[1600px] w-full mx-auto px-5 lg:px-[37px]")}>
-          {/* The section title sits on the scale's baseline, so one line
-              reads across the top of the chart instead of two stacked ones. */}
-          <div className="grid grid-cols-[110px_1fr] items-baseline gap-x-4 mb-[12px] lg:grid-cols-[280px_1fr] lg:gap-x-12">
-            <p className="font-light text-sm lg:text-[18px]" style={{ fontFamily: leagueSpartan }}>Impact</p>
-            <div className="flex justify-between">
-              <p className="font-[family-name:var(--font-league-spartan)] text-base lg:text-[24px] font-light leading-[1.5] lg:leading-[1.4] text-white/60">2023</p>
-              <p className="font-[family-name:var(--font-league-spartan)] text-base lg:text-[24px] font-light leading-[1.5] lg:leading-[1.4] text-white/60">H1 2024</p>
-            </div>
-          </div>
-          <div className="space-y-10 lg:space-y-14">
-            <AnimatedImpactRow
-              label={"Credit portfolio\nutilization"}
-              todayPct={38}
-              futurePct={47}
-              todayLabel="38%"
-              futureLabel="47%"
-            />
-            <AnimatedImpactRow
-              label={"Credit portfolio\nconversion"}
-              todayPct={51}
-              futurePct={79}
-              todayLabel="51%"
-              futureLabel="79%"
-              sublabel="51% to 79%, an increase of 28 percentage points"
-            />
-            {/* The last row carries a figure rather than a bar, so it keeps a
-                bar's height and the labels stay on one rhythm; the figure is a
-                shade taller and overhangs the row evenly. Its label bleeds a
-                little into the gutter — at this size the second line needs
-                more than the 280px column, and the figure has to stay on the
-                bars' left edge. */}
-            <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-3 lg:gap-12 items-baseline lg:h-[89px] lg:content-center lg:items-center">
-              <h3 className="font-serif text-[clamp(18px,4.5vw,32px)] lg:text-[clamp(24px,2.6vw,32px)] font-normal leading-[1.15] tracking-[-0.01em] whitespace-pre-line lg:w-[304px]">{"Annual incremental\nrevenue (iRev) increase"}</h3>
-              <p className="font-serif text-[clamp(48px,12vw,96px)] lg:text-[clamp(64px,8vw,96px)] leading-[1] tracking-[-0.96px]">{TOTAL_IREV_TEXT}</p>
-            </div>
-          </div>
-          {/* One statement of scope for the whole chart. Every figure above is
-              the portfolio's, not Pay in 4's; Pay in 4's own completion figure
-              is stated where that product is, so the two cannot be read as the
-              same measurement. */}
-          <div className="grid grid-cols-1 mt-8 lg:mt-12 lg:grid-cols-[280px_1fr] lg:gap-x-12">
-            <p className="font-light text-[13px] leading-[1.5] text-white/50 lg:col-start-2 lg:text-[15px]" style={{ fontFamily: leagueSpartan }}>
-              Measured across all six redesigned credit products in the US and UK, 2023 to H1 2024.
-            </p>
-          </div>
       </section>
 
       {/* Into the run of five. The pattern was proven on one product, so this
@@ -731,7 +697,7 @@ export default function PayPal1CaseStudy() {
               <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
                 <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">{irevPoints(IREV_SHARE.payMonthly).toFixed(2)}%</p>
                 <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
-                  Annual incremental revenue increase
+                  Contribution to annual iRev increase
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
@@ -782,7 +748,7 @@ export default function PayPal1CaseStudy() {
               <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
                 <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">{irevPoints(IREV_SHARE.payPalCreditUS).toFixed(2)}%</p>
                 <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
-                  Annual incremental revenue increase
+                  Contribution to annual iRev increase
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
@@ -813,7 +779,7 @@ export default function PayPal1CaseStudy() {
               <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
                 <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">{irevPoints(IREV_SHARE.payPalMastercard).toFixed(2)}%</p>
                 <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
-                  Annual incremental revenue increase
+                  Contribution to annual iRev increase
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
@@ -864,7 +830,7 @@ export default function PayPal1CaseStudy() {
               <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
                 <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">{irevPoints(IREV_SHARE.payPalCreditUK).toFixed(2)}%</p>
                 <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
-                  Annual incremental revenue increase
+                  Contribution to annual iRev increase
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
@@ -980,6 +946,14 @@ export default function PayPal1CaseStudy() {
             </div>
           </div>
         </div>
+        {/* What the card figures measure, once, under both rows: two products
+            report volume and four report their share of the revenue lift, and
+            the label beside each figure is too short to say so itself. */}
+        <p className="mt-10 font-light text-[13px] leading-[1.5] text-white/50 lg:mt-[64px] lg:text-[15px]">
+          TPV is the increase in average monthly total payment volume for Pay in 4 and
+          Pay in 3. Each iRev figure is that product&rsquo;s share of the annual
+          incremental revenue increase. Both measured 2023 to H1 2024.
+        </p>
       </section>
 
       {/* Behind the work. The process material that supports the story
@@ -990,12 +964,13 @@ export default function PayPal1CaseStudy() {
         <SupportingAppendix
           id="behind-the-work"
           title="Behind the Work"
-          summary="How the work ran: AI-assisted discovery, cross-functional review, and six-product delivery"
+          summary="How the work ran: one shared pattern, recurring cross-functional review, six-product delivery"
         >
           <p className="text-white/70">
-            The workflow connected requirements, AI-assisted discovery and iteration, user
-            research, product and legal reviews, leadership alignment, development support, and
-            measurement across all six credit products.
+            One shared application pattern governed the work. It fixed the core flow, named
+            the variants each product was allowed, and carried the US and UK legal
+            exceptions. Recurring product, legal, design, and leadership reviews held all six
+            teams to it, from requirements through development and measurement.
           </p>
           {/* The diagram is dense enough that fitting it to a phone would make
               it unreadable, so below lg it holds a legible width and scrolls
@@ -1032,9 +1007,8 @@ export default function PayPal1CaseStudy() {
             <figcaption
               className={cx(CASE_STUDY_CAPTION_CLASS, "mt-3 lg:mt-[32.9%] lg:w-[21%]")}
             >
-              The process moved from requirements to measured results while keeping six product
-              teams, cross-functional partners, research, legal review, design review, and
-              leadership decisions in the same delivery loop.
+              Where each review entered the build: research before iteration, legal and design
+              through it, leadership at the decision points.
             </figcaption>
           </figure>
           <div className={cx(CASE_STUDY_STACK_CLASS, "mt-12 lg:mt-[76px]")}>
@@ -1042,9 +1016,9 @@ export default function PayPal1CaseStudy() {
               Design System Gap &rarr; Build Plan
             </p>
             <p className="text-white/70">
-              Synthesized inputs from six product teams in ChatGPT to map funnels,
-              success metrics, and US&ndash;UK regulatory constraints. The shared model
-              accelerated 40+ iterations through stakeholder review.
+              Synthesized six product teams&rsquo; funnels, success metrics, and US&ndash;UK
+              regulatory constraints into one model in ChatGPT. It carried 40+ iterations
+              through stakeholder review.
             </p>
             {/* The 40+ iterations the paragraph claims, shown rather than
                 counted. On top of the stack's own 14px gap these margins set

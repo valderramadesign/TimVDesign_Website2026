@@ -235,7 +235,7 @@ const SCREEN_H = SCREEN_W * DEMO_ASPECT;
    The recording carried white annotations naming what each screen was
    doing. They are re-set here as type rather than baked into the stills, so
    they scale with the device and can be timed: a rule bracketing the part
-   of the screen being pointed at, and the note right-aligned beside it,
+   of the screen being pointed at, and the note left-aligned beside it,
    both in the shell's own units. Geometry is taken off the original
    frames — rule a little under 2% of the device wide, held clear of the
    case, the note a comfortable gap further out again. */
@@ -248,7 +248,7 @@ const NOTE_FONT = 4.6;
 /** Seconds a note takes to draw in, and to give way again. */
 const NOTE_DRAW = 0.42;
 
-/* Room the notes need to the left of the case comes to
+/* Room the notes need to the right of the case comes to
    NOTE_RAIL_W + NOTE_SHELL_GAP = 65.7% of the device's width. The page
    reserves it as --pi4-rail beside the animation's column. */
 
@@ -512,7 +512,7 @@ export default function Pi4Walkthrough({ className }: { className?: string }) {
             </div>
           </div>
         </div>
-        {/* The callouts hang off the left of the case. Absolute, so they
+        {/* The callouts hang off the right of the case. Absolute, so they
             cost the shell no width and every container unit inside it keeps
             its meaning; the page reserves the room beside the column. Below
             lg the phone is centred with no margin to hang them in, so they
@@ -520,7 +520,7 @@ export default function Pi4Walkthrough({ className }: { className?: string }) {
         <div
           aria-hidden
           className="pointer-events-none absolute inset-y-0 hidden lg:block"
-          style={{ right: `calc(100% + ${NOTE_SHELL_GAP}cqw)`, width: `${NOTE_RAIL_W}cqw` }}
+          style={{ left: `calc(100% + ${NOTE_SHELL_GAP}cqw)`, width: `${NOTE_RAIL_W}cqw` }}
         >
           {PAY_IN_4_NOTES.map((note, index) => (
             <div
@@ -528,7 +528,7 @@ export default function Pi4Walkthrough({ className }: { className?: string }) {
               ref={(node) => {
                 notes.current[index] = node;
               }}
-              className="absolute inset-x-0 flex items-center justify-end"
+              className="absolute inset-x-0 flex items-center justify-start"
               style={{
                 top: `${(SCREEN_INSET + note.top * SCREEN_H).toFixed(3)}cqw`,
                 height: `${((note.bottom - note.top) * SCREEN_H).toFixed(3)}cqw`,
@@ -536,14 +536,10 @@ export default function Pi4Walkthrough({ className }: { className?: string }) {
                 opacity: note.layer === 0 ? 1 : 0,
               }}
             >
-              <p
-                className="whitespace-pre-line text-right leading-[1.35] text-white"
-                style={{ fontFamily: "var(--font-league-spartan)", fontSize: `${NOTE_FONT}cqw` }}
-              >
-                {note.text}
-              </p>
               {/* Drawn top-down as it arrives, so the eye is taken to the
-                  top of the region it brackets first. */}
+                  top of the region it brackets first. The rule leads the
+                  row so it stays nearest the case and the note reads
+                  outward from it. */}
               <span
                 ref={(node) => {
                   rules.current[index] = node;
@@ -555,6 +551,12 @@ export default function Pi4Walkthrough({ className }: { className?: string }) {
                   transform: note.layer === 0 ? undefined : "scaleY(0)",
                 }}
               />
+              <p
+                className="whitespace-pre-line text-left leading-[1.35] text-white"
+                style={{ fontFamily: "var(--font-league-spartan)", fontSize: `${NOTE_FONT}cqw` }}
+              >
+                {note.text}
+              </p>
             </div>
           ))}
         </div>
