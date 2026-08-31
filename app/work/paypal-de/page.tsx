@@ -44,31 +44,35 @@ const PROTOTYPE_URL: string = "https://german-credit-products.vercel.app/";
 type Iteration = { Icon: ComponentType<{ className?: string }>; text: string };
 
 const ITERATIONS_PI30: Iteration[] = [
-  { Icon: IconBankInCheckout, text: "Moved bank selection and add-bank into checkout." },
   {
-    Icon: IconDisclosuresAtReview,
-    text: "Streamlined checkout and moved legal disclosures to the review step.",
+    Icon: IconBankInCheckout,
+    text: "Moved preferred-bank selection and add-bank into checkout.",
   },
+  { Icon: IconOptionsUpfront, text: "Made payment options, estimates, and terms visible earlier." },
   {
     Icon: IconRescheduledPayment,
-    text: "Added post-purchase rescheduling for upcoming payments.",
+    text: "Added post-purchase rescheduling with explicit cost and date confirmation.",
   },
   {
-    Icon: IconOptionsUpfront,
-    text: "Adopted the new checkout framework, with more options upfront and more accurate estimates.",
+    Icon: IconCheckoutUpgrade,
+    text: "Adopted the new checkout framework to support clearer comparisons.",
   },
 ];
 
 const ITERATIONS_RZ: Iteration[] = [
   {
     Icon: IconFourInstallments,
-    text: "Added four installment terms and tested their checkout presentation.",
+    text: "Added four installment terms and tested how customers compared them.",
   },
   {
     Icon: IconOnePageApplication,
-    text: "Rebuilt the application on the new PayPal UI, reducing it from four pages to one.",
+    text: "Rebuilt the application on PayPal\u2019s current UI, reducing four pages to one.",
   },
-  { Icon: IconCheckoutUpgrade, text: "Migrated to the latest checkout framework." },
+  {
+    Icon: IconDisclosuresAtReview,
+    text: "Used contextual disclosures in checkout and complete terms at commitment.",
+  },
+  { Icon: IconCheckoutUpgrade, text: "Migrated the experience to the latest checkout framework." },
 ];
 
 /* The rows carry their own mark now, so nothing rules them off from each
@@ -104,7 +108,7 @@ export default function PayPalDePage() {
           id="behind-the-work"
           className="mt-[50px]"
           title="Behind the Work"
-          summary="How the work ran: AI-assisted workflow, iteration history, and testing"
+          summary="How the strategy became repeatable across two products"
         >
           <div className="relative w-full">
             <Image
@@ -123,18 +127,32 @@ export default function PayPalDePage() {
                 readable line on large displays. Mobile: the diagram is far too
                 small to hold text, so the caption drops underneath it. */}
             <p className="mt-6 text-sm font-light leading-snug text-white/60 lg:absolute lg:bottom-[9%] lg:right-[1%] lg:mt-0 lg:w-[47%] lg:max-w-[620px] lg:text-[18px] lg:leading-[1.45] lg:text-white">
-              Used AI to structure discovery, generate early concepts against PayPal&rsquo;s UI
-              library, and build working prototypes — accelerating iteration that ran
-              cross-functionally across checkout, product, engineering, legal, risk, compliance,
-              and research, turning customer insight into two award-winning{" "}
-              <span className="whitespace-nowrap">PayPal products.</span>
+              AI accelerated discovery synthesis, early concepts, and working prototypes. The
+              repeatable system was the shared trust rules, PayPal&rsquo;s UI and checkout
+              frameworks, cross-functional review loop, customer testing, and{" "}
+              <span className="whitespace-nowrap">post-launch measurement.</span>
             </p>
           </div>
           {/* The diagram ends on its lowest circle, so the iteration columns
               stand off it by a full 100px rather than the appendix's default
               24px gutter — enough that the drawing reads as finished before
               the two lists begin. */}
-          <div className="flex flex-col gap-4 lg:mt-[76px] lg:gap-6 lg:flex-row lg:gap-x-[46px]">
+          {/* Who applied the rules, set as the lead-in to the two lists rather
+              than inside the diagram: the drawing's empty quadrant only holds
+              the caption above, and a second paragraph up there would run back
+              into the spine at the narrower desktop widths. */}
+          <p
+            className={cx(
+              CASE_STUDY_SUPPORTING_CLASS,
+              "mt-10 max-w-[820px] text-white/70 lg:mt-[76px]",
+            )}
+          >
+            Checkout, Product, Engineering, Legal, Risk, Compliance, Research, and Design used the
+            same principles to evaluate decisions across checkout, application, and
+            servicing&mdash;turning customer trust into a shared quality standard rather than a{" "}
+            <span className="whitespace-nowrap">one-off design idea.</span>
+          </p>
+          <div className="mt-10 flex flex-col gap-4 lg:mt-[46px] lg:gap-6 lg:flex-row lg:gap-x-[46px]">
             <div className="lg:w-1/2">
               <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>Pay in 30 Days</p>
               <ul className={ITERATION_LIST_CLASS}>
@@ -165,7 +183,7 @@ export default function PayPalDePage() {
         id="next-case-study-section"
         className="relative w-full overflow-hidden bg-black pb-24 lg:pb-[200px] pt-12 lg:pt-[78px] mt-24 lg:mt-[200px]"
       >
-        <NextCaseStudyTicker color="#eb2f2f" />
+        <NextCaseStudyTicker color="#00B0D8" />
         {/* Both cards keep their aspect ratio and shrink together rather than
             running under the 24px gutter: at their full 437 + 671 the 200px gap
             only fits from ~1356px up, so the gap steps down first and the pair

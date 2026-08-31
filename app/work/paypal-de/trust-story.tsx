@@ -364,10 +364,33 @@ function OpeningStatement() {
             "absolute bottom-0 left-0 right-0 p-6 text-white lg:right-auto lg:max-w-[560px] lg:p-12",
           )}
         >
-          German customers wanted flexibility without debt: time to inspect before paying and
-          control to spread larger costs. We weren’t designing more credit. We were designing
-          trust—clarity before commitment, control after it.
+          German customers wanted flexibility without feeling pushed into debt: time to inspect a
+          purchase before paying, and predictable installments for larger costs. Friction and
+          uncertainty weakened trust at the moments of choice{" "}
+          <span className="whitespace-nowrap">and commitment.</span>
         </p>
+      </Reveal>
+      {/* The bet and its cost, set at the supporting scale in the two columns
+          this page already uses for paired copy — subordinate to the image
+          above them, and to the equation they hand off to. */}
+      <Reveal className="mt-8 flex flex-col gap-8 lg:mt-[46px] lg:flex-row lg:gap-[46px]">
+        <div className="lg:w-1/2">
+          <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>The strategic bet</p>
+          {/* TODO(verify): the bet is stated from the strategy documents of the
+              time; confirm the wording against the approved product brief. */}
+          <p className={cx(CASE_STUDY_SUPPORTING_CLASS, "mt-3 max-w-[620px] text-white/70 lg:mt-4")}>
+            We believed qualified adoption would grow if customers could see costs earlier,
+            complete fewer unnecessary steps, and retain control{" "}
+            <span className="whitespace-nowrap">after purchase.</span>
+          </p>
+        </div>
+        <div className="lg:w-1/2">
+          <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>The tradeoff</p>
+          <p className={cx(CASE_STUDY_SUPPORTING_CLASS, "mt-3 max-w-[620px] text-white/70 lg:mt-4")}>
+            We would simplify the journey without hiding material information or weakening{" "}
+            <span className="whitespace-nowrap">informed consent.</span>
+          </p>
+        </div>
       </Reveal>
     </section>
   );
@@ -452,24 +475,20 @@ const CHAPTERS: Chapter[] = [
     term: "flexibility",
     question: "Serve two distinct customer needs",
     response:
-      "Pay in 30 Days provides short-term flexibility; Ratenzahlung makes larger purchases manageable.",
-    responseLines: [
-      "Pay in 30 Days provides short-term flexibility;",
-      "Ratenzahlung makes larger purchases manageable.",
-    ],
+      "Pay in 30 gives customers time to inspect a purchase before paying. Ratenzahlung makes larger purchases predictable through installment options. We did not force two different financial jobs into one\u00a0experience.",
   },
   {
     term: "friction",
     question: "“Why does flexibility require a four-page application?”",
     questionLines: ["“Why does flexibility require a", "four-page application?”"],
     response:
-      "The Ratenzahlung application was rebuilt from four pages into one. Nothing about the product’s flexibility changed — only the cost of reaching it.",
+      "The legacy Ratenzahlung application spread one decision across four pages. I consolidated the necessary information into a single review-and-apply page—removing navigation while preserving the terms customers needed to\u00a0understand.",
   },
   {
     term: "transparency",
     question: "“What exactly am I agreeing to?”",
     response:
-      "We showed every payment option and estimated cost in checkout, then moved full legal terms to the review step—where commitment happens.",
+      "Checkout showed every eligible payment option and its estimated cost before application. Full legal terms appeared at review, where commitment happened. Information moved closer to the decision; it was not\u00a0removed.",
     /* The transparent margin the PNG carries, so the copy ends on the phone's
        own edge and not on the file's. Below `lg` the figure is measured by the
        card rather than pinned, so the same inset is stated as its share: 26 of
@@ -481,7 +500,7 @@ const CHAPTERS: Chapter[] = [
     question: "“What if life happens? Can I get more time to pay?”",
     questionLines: ["“What if life happens?", "Can I get more time to pay?”"],
     response:
-      "For a small fee, customers could extend a Pay in 30 loan—adding control and creating a new revenue stream.",
+      "Pay in 30 customers could move an upcoming payment for a small fee. The flow exposed the new date and fee before confirmation—adding flexibility while creating a new revenue\u00a0stream.",
   },
 ];
 
@@ -490,7 +509,15 @@ function lines(text: string, split: readonly [string, string] | undefined) {
   if (!split) return text;
   return split.map((line, index) => (
     <Fragment key={line}>
-      {index > 0 && <br aria-hidden />}
+      {index > 0 && (
+        <>
+          {/* The space belongs to the sentence, not to the layout: the browser
+              drops it at the end of the line, and a copy of the heading keeps
+              the two words apart. */}
+          {" "}
+          <br aria-hidden />
+        </>
+      )}
       {line}
     </Fragment>
   ));
@@ -1559,29 +1586,18 @@ function ProductImpact({
         {figure}
       </div>
       {/* Held to a readable measure rather than stretching to whatever the
-          phone leaves behind. Once the row exists, the copy hangs off the edge
-          the shot is on, so both products keep the same gutter to their phone.
-          The right-hand product mirrors the block's alignment and its metric
-          row, but not its list markers: a marker belongs at the start of the
-          line it marks, and that is the left in both products. */}
-      <div
-        className={cx(
-          "w-full min-w-0 flex-1 lg:w-[688px] lg:flex-initial",
-          side === "right" && "lg:text-right",
-        )}
-      >
+          phone leaves behind. The row mirrors the shot from one product to the
+          next, but never the copy: both products rag left, so the two blocks
+          read down the same edge and the list markers stay at the start of the
+          lines they mark. */}
+      <div className="w-full min-w-0 flex-1 lg:w-[688px] lg:flex-initial">
         <h3 className="font-serif text-[clamp(28px,6vw,48px)] leading-[1.1] tracking-[-0.01em] text-white">
           {name}
         </h3>
         <p className={cx(CASE_STUDY_SUPPORTING_CLASS, "mt-2 lg:mt-[10px] text-white/55")}>
           {note}
         </p>
-        <div
-          className={cx(
-            "ml-[24px] mt-8 lg:mt-[46px] flex flex-row flex-wrap gap-8 gap-y-10 lg:gap-12",
-            side === "right" && "lg:ml-0 lg:mr-[24px] lg:justify-end",
-          )}
-        >
+        <div className="ml-[24px] mt-8 lg:mt-[46px] flex flex-row flex-wrap gap-8 gap-y-10 lg:gap-12">
           {metrics.map((metric) => (
             <div key={metric.label}>
               <p className={cx(CASE_STUDY_METRIC_VALUE_CLASS, "text-white")}>{metric.value}</p>
@@ -1590,9 +1606,8 @@ function ProductImpact({
           ))}
         </div>
         {/* A single point is a sentence, not a list: there is nothing for a
-            marker to separate it from, and against right-aligned copy the dot
-            strands itself out at the indent. Two or more keep the list, with
-            the indent on the left for both products — that is the gutter the
+            marker to separate it from. Two or more keep the list, with the
+            indent on the left for both products — that is the gutter the
             markers hang in. */}
         {points.length === 1 ? (
           <p className={cx(CASE_STUDY_BODY_CLASS, "mt-4 lg:mt-[23px] text-white/80")}>
@@ -1635,9 +1650,12 @@ function ImpactSection() {
           }
           side="left"
           points={[
-            "Partnered with Checkout to give customers upfront visibility into terms and control over their preferred bank account before starting the application.",
-            "Enabled customers to reschedule upcoming payments for a small fee, increasing flexibility while creating a new revenue stream for PayPal.",
+            "Made payment options and estimated costs visible before application.",
+            "Moved preferred-bank selection into checkout.",
+            "Added transparent post-purchase payment rescheduling.",
           ]}
+          /* TODO(verify): Add the exact pre-launch baseline, measurement window,
+             and attribution method behind both figures. */
           metrics={[
             { value: "+48.78%", label: "Monthly total purchase volume" },
             { value: "+17.33%", label: "Annual incremental revenue" },
@@ -1656,8 +1674,12 @@ function ImpactSection() {
           }
           side="right"
           points={[
-            "Added four installment options and partnered with Checkout and Legal to surface them with contextual terms—reducing the application from four pages to one.",
+            "Added four installment options for different purchase needs.",
+            "Placed contextual terms in checkout and complete legal terms at review.",
+            "Rebuilt the application on PayPal’s current UI, reducing it from four pages to one.",
           ]}
+          /* TODO(verify): Add the exact pre-launch baseline, measurement window,
+             and attribution method behind both figures. */
           metrics={[
             { value: "+14.92%", label: "Monthly total purchase volume" },
             { value: "+25.44%", label: "Annual incremental revenue" },
@@ -1700,9 +1722,9 @@ function ClosingStatement({ prototypeUrl }: { prototypeUrl?: string }) {
 
       <Reveal className="z-10 mt-10 flex flex-col pr-5 lg:absolute lg:right-0 lg:top-0 lg:mt-0 lg:w-[41vw] lg:max-w-[653px] lg:px-0 lg:pr-[24px] lg:pt-[5%]">
         <p className={cx(CASE_STUDY_BODY_CLASS, "text-white")}>
-          German customers did not adopt these products because we made credit more persuasive.
-          They adopted them because we made it more transparent, controllable and compatible with
-          responsible spending.
+          Customers did not adopt these products because we made credit more persuasive. They
+          adopted them because PayPal made costs clearer, commitment easier to understand, and
+          payment <span className="whitespace-nowrap">more controllable.</span>
         </p>
         {prototypeUrl && (
           <a
