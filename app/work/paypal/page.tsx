@@ -8,6 +8,7 @@ import Pi4Walkthrough from "@/components/ui/pi4-walkthrough";
 import ScrollFade from "@/components/ui/scroll-fade";
 import CounterNumber from "@/components/ui/counter-number";
 import { ImageMarquee } from "@/components/ui/image-marquee";
+import { AnimatedImpactRow } from "@/components/ui/animated-impact-row";
 import quantumLeap from "@/components/images/PayPalQuantumLeap/PayPalQuantumLeap.png";
 import workflow from "@/components/images/WorkflowDiagram.png";
 import iterations from "@/components/images/PayPalQuantumLeap/Wireframes/Iterations.png";
@@ -880,9 +881,11 @@ export default function PayPal1CaseStudy() {
         </div>
       </section>
 
-      {/* Overall Impact */}
+      {/* Overall Impact. The bottom padding is the 200px from the last bar
+          to Behind the Work, so the chart closes on the same distance that
+          opens it. */}
       <section
-        className="bg-black max-w-[1600px] w-full mx-auto px-5 lg:px-[37px] pt-20 lg:pt-[120px] pb-24 lg:pb-[150px]"
+        className="bg-black max-w-[1600px] w-full mx-auto px-5 lg:px-[37px] pt-20 lg:pt-[120px] pb-[200px]"
         style={{ fontFamily: leagueSpartan }}
       >
         <div className="flex flex-col gap-12 lg:gap-[73px]">
@@ -944,6 +947,48 @@ export default function PayPal1CaseStudy() {
                 />
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* The rule halves the 200px: 100px of air above it, 100px below to
+            the top of the first bar. Its own pixel is taken out of the lower
+            half, so what follows carries 99px. */}
+        <div className="mt-[100px] h-px w-full bg-white/25" />
+
+        {/* The portfolio behind the cards. The cards report what each product
+            returned; these two bars report what the whole credit portfolio
+            did over the same window, so the section closes on the movement
+            the six products add up to. Outside the card stack's flex, so the
+            margin is the whole distance from the rule to the top of the first
+            bar, with the scale line and the 12px under it living inside that
+            distance rather than adding to it. */}
+        <div className="mt-[calc(99px_-_var(--impact-scale))] [--impact-scale:36px] lg:[--impact-scale:45.6px]">
+          {/* The scale sits over the bars, not over the label column, so the
+              first cell is left empty and the dates land on the ends of the
+              track they measure. Its height is what --impact-scale accounts
+              for: the dates' line box plus the margin below it. */}
+          <div className="mb-[12px] grid grid-cols-[110px_1fr] items-baseline gap-x-4 lg:grid-cols-[280px_1fr] lg:gap-x-12">
+            <div className="col-start-2 flex justify-between text-white/60">
+              <p className="text-base lg:text-[24px] font-light leading-[1.5] lg:leading-[1.4]">2023</p>
+              <p className="text-base lg:text-[24px] font-light leading-[1.5] lg:leading-[1.4]">H1 2024</p>
+            </div>
+          </div>
+          <div className="space-y-10 lg:space-y-14">
+            <AnimatedImpactRow
+              label={"Credit portfolio\nutilization"}
+              todayPct={38}
+              futurePct={47}
+              todayLabel="38%"
+              futureLabel="47%"
+            />
+            <AnimatedImpactRow
+              label={"Credit portfolio\nconversion"}
+              todayPct={51}
+              futurePct={79}
+              todayLabel="51%"
+              futureLabel="79%"
+              sublabel="51% to 79%, an increase of 28 percentage points"
+            />
           </div>
         </div>
       </section>

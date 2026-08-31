@@ -5,11 +5,12 @@ import { motion, useInView } from "framer-motion";
 import { CASE_STUDY_BODY_CLASS } from "@/components/case-study/types";
 import { cx } from "@/lib/cx";
 
-/** Row label: the serif used for the numbered decisions, so the two lists
-    read as the same voice. Sized down on small screens, where the label
-    column is only 110px wide. */
+/** Row label: the same League Spartan light the scale over the chart is
+    set in, so the label and the dates read as one apparatus around the
+    bars, carried at the label's own larger size. Sized down on small
+    screens, where the label column is only 110px wide. */
 const IMPACT_LABEL_CLASS =
-  "font-serif text-[clamp(18px,4.5vw,32px)] lg:text-[clamp(24px,2.6vw,32px)] font-normal leading-[1.15] tracking-[-0.01em]";
+  "font-[family-name:var(--font-league-spartan)] text-[clamp(18px,4.5vw,32px)] lg:text-[clamp(24px,2.6vw,32px)] font-light leading-[1.15]";
 
 /** The figure carried by each bar, in both of its positions. */
 const IMPACT_VALUE_CLASS =
