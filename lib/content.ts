@@ -302,7 +302,7 @@ const META_ANNUAL_SAVINGS: ProjectResult = {
 
 /** An estimate with its arithmetic attached, so a reader can check it. */
 const SOLO_TIME_SAVED: ProjectResult = {
-  value: "480 hrs",
+  value: "524 hrs",
   label: "Estimated annual time saved",
   evidence: "Estimated",
 };
@@ -451,12 +451,12 @@ export const PROJECTS: Project[] = [
     caseStudyHeadline: "Turning Classroom Updates Into Live Parent Communication",
     company: "Ms. Sunshine",
     status: "Shipped MVP",
-    role: "Led discovery, design, and delivery of a tested MVP in three weeks, turning manual daily reports into one connected workflow for teachers and parents.",
+    role: "Led discovery, design, and delivery of a working MVP in three weeks, turning manual daily reports into one connected workflow for teachers and parents.",
     scope: {
       platforms: ["Mobile"],
     },
     description: [
-      "Staff manually compiled each child’s activities into an end-of-day report. The work could take the head teacher roughly two hours, while parents waited until pickup for reassurance about their child’s day.",
+      "Assistant teachers logged each child’s activities by hand and passed their reports to the head teacher at the end of the day; she then rewrote them into one report per child — about two hours of hers. Parents waited until pickup for any word about their child’s day.",
       "The app answers both: real-time updates for parents, automated tracking and reporting for staff.",
     ],
     homepageProblem:

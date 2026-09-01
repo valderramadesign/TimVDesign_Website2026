@@ -40,7 +40,7 @@ const nextMetaPreview = previewOf(nextMeta);
 
 export const metadata = caseStudyMetadata(
   project,
-  "Turning a preschool's two-hour manual end-of-day report into one continuous flow — classroom activity to parent update to daily summary — as a tested MVP built in three weeks.",
+  "Turning a preschool's two-hour manual end-of-day report into one continuous flow — classroom activity to parent update to daily summary — as a working MVP built in three weeks and now in daily use.",
 );
 
 const leagueSpartan = "var(--font-league-spartan)";
@@ -118,15 +118,15 @@ const COMPARE_HEADING_CLASS =
    movie. The year is the one that carries the argument; the daily
    number it is built from is stated in full under Impact. */
 const HERO_METRIC = {
-  value: "~480 hours/year",
-  label: "Estimated annual time saved · 2 hrs/day × 240 school days",
+  value: "~524 hours/year",
+  label: "Estimated annual time saved · 2 hrs/day × 262 work days",
 };
 
 type PanelRow = { Icon: ComponentType<{ className?: string }>; text: string };
 
 const STARTED_ROWS: PanelRow[] = [
-  { Icon: IconEndOfDay, text: "Teachers reconstructed each child’s day at pickup." },
-  { Icon: IconWrittenTwice, text: "The same information was documented, then summarized again." },
+  { Icon: IconEndOfDay, text: "Staff logged the day by hand and handed it over at pickup." },
+  { Icon: IconWrittenTwice, text: "The head teacher rewrote every report from their notes." },
   { Icon: IconUnseen, text: "Parents had no visibility between drop-off and pickup." },
 ];
 
@@ -134,7 +134,7 @@ const BECOMES_ROWS: PanelRow[] = [
   { Icon: IconFewTaps, text: "Teachers log an activity in a few taps" },
   { Icon: IconOneToMany, text: "One update can be applied to multiple children" },
   { Icon: IconLiveFeed, text: "Parents see their child's activity as it happens" },
-  { Icon: IconDraftedSummary, text: "At child checkout, AI drafts an editable daily summary" },
+  { Icon: IconDraftedSummary, text: "At checkout, the feed becomes a draft summary" },
 ];
 
 /* The three changes the product actually makes, numbered so the captions
@@ -143,39 +143,40 @@ const CHANGES: { number: string; title: string; body: string }[] = [
   {
     number: "01",
     title: "Log once",
-    body: "Select an activity, choose the children involved, and add a note only when needed.",
+    body: "Start from a child or from an activity, add details, a photo, or a note, and log it for everyone who took part.",
   },
   {
     number: "02",
     title: "Keep parents current",
-    body: "Publish the update to each child's private feed, where parents can view it and reply.",
+    body: "The tile lands in each child's private feed. Only that child's guardians see it. They're notified, and can like or comment — which reaches the head teacher.",
   },
   {
     number: "03",
-    title: "AI summary",
-    body: "At checkout, the AI generates a daily summary for the teacher to review and edit before sharing.",
+    title: "Checkout summary",
+    body: "At checkout, the app assembles the child's feed into a summary in the head teacher's voice, for her to edit or approve before it goes out.",
   },
 ];
 
 /* Every screen the story still needs. Nothing is drawn in their place: each
    box names the capture that belongs there. */
 /* Two estimates and one change in experience, each carrying the word that
-   says which it is. Nothing here was measured after launch. */
+   says which it is, and each naming where its number came from. No time was
+   measured after launch. */
 const IMPACT: { label: string; value: string; note: string }[] = [
   {
     label: "Teacher Impact",
     value: "~2 hours/day",
-    note: "Estimated administrative time removed from the head teacher's schedule.",
+    note: "Report writing is off the head teacher's schedule: the app produces each report at checkout for her approval. The two hours are her own account of the old task; time under the MVP has not been measured.",
   },
   {
     label: "Parent Impact",
     value: "Real-time visibility",
-    note: "Parents gain real-time visibility and a direct conversation with teachers instead of waiting until pickup.",
+    note: "Guardians see each activity as it is logged and can like or comment on it, instead of waiting until pickup.",
   },
   {
     label: "Business Impact",
-    value: "~480 hours/year",
-    note: "Estimated staff capacity returned to classroom care, parent service, and school operations — 2 hrs/day × 240 school days.",
+    value: "~524 hours/year",
+    note: "Estimated staff capacity returned to classroom care and school operations — 2 hrs/day × 262 work days. An estimate built from the head teacher's account of the old task, not a measurement taken since the MVP.",
   },
 ];
 
@@ -184,7 +185,7 @@ const IMPACT: { label: string; value: string; note: string }[] = [
 const BEHIND_THE_WORK: { title: string; body: ReactNode }[] = [
   {
     title: "Discovery",
-    body: "Mapped the school's reporting workflow and identified the delay between classroom activity, staff documentation, and parent communication.",
+    body: "Mapped the school's reporting workflow with the head teacher: assistant teachers logging by hand, her rewrite after the last pickup, and parents waiting until then. The two-hour figure is her account of that task.",
   },
   {
     title: "Competitive Analysis",
@@ -217,8 +218,24 @@ const BEHIND_THE_WORK: { title: string; body: ReactNode }[] = [
     body: "Used an AI-assisted workflow across research, product definition, prototyping, and development, moving from early exploration to a working MVP.",
   },
   {
+    title: "Roles and Permissions",
+    body: "The head teacher holds every permission and is the only person who can add children, guardians, or staff; she can grant those rights to her teachers. Assistant teachers log activities, and edit, like, or comment when she grants it. Guardians see only their own children's feeds, and a child can have more than one guardian.",
+  },
+  {
+    title: "Summaries and Review",
+    body: "The checkout summary is assembled from that child's own feed and nothing outside the app, written in the head teacher's voice. She edits it or approves it, and corrections to a published tile stay with her. Nothing reaches a parent unreviewed.",
+  },
+  {
+    title: "Privacy and Safeguarding",
+    body: "Privacy rules came from the school and are enforced by the feed's boundaries: one child, their guardians, nothing else. Record retention and deletion were not defined in the MVP and remain open with the school.",
+  },
+  {
+    title: "Where the Work Went",
+    body: "The flow moves parent conversation into the head teacher's day: every like and comment notifies her. Against what it replaced — handwritten reports from each assistant teacher and her nightly rewrite of all of them — the school's position is that it removed far more work than it added. Neither side has been measured under the MVP.",
+  },
+  {
     title: "Validation and Iteration",
-    body: "Tested concepts with the client, then refined the working product using feedback from the client and test users.",
+    body: "Reviewed concepts with the head teacher through the build, then refined the working product on her feedback. The MVP is in daily use at the school; it has not been through structured usability testing with a wider group of staff or parents.",
   },
 ];
 
@@ -364,8 +381,8 @@ export default function SoloPage() {
               <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>Before</p>
               <h3 className={COMPARE_HEADING_CLASS}>The day was written up after it ended</h3>
               <p className={cx(CASE_STUDY_SUPPORTING_CLASS, "mt-4 text-white/70 lg:mt-[18px]")}>
-                Teachers completed the reporting work after the day was already over, repeating
-                information across individual reports.
+                Assistant teachers wrote up the day by hand; the head teacher turned their notes
+                into one report per child after the last pickup.
               </p>
             </figcaption>
           </figure>
@@ -506,7 +523,7 @@ export default function SoloPage() {
         <SupportingAppendix
           id="behind-the-work"
           title="Behind the Work"
-          summary="How I moved from a manual workflow to a tested MVP in three weeks"
+          summary="How I moved from a manual workflow to a working MVP in three weeks"
         >
           {BEHIND_THE_WORK.map((step) => (
             <div key={step.title} className={CASE_STUDY_STACK_CLASS}>
