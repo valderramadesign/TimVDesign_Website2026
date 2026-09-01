@@ -23,8 +23,14 @@ import {
   IconAlreadyVerified,
   IconBuriedOffer,
   IconCardPaused,
+  IconConsentInline,
+  IconFailedCheck,
+  IconInspectAndCorrect,
+  IconMismatchedField,
   IconNineScreens,
   IconOfferUpstream,
+  IconPendingReview,
+  IconStaleRecord,
   IconThreePages,
 } from "./opportunity-icons";
 import verificationEngine from "@/components/images/Monthly invoicing Images/Opportunity/verification-engine.png";
@@ -53,7 +59,7 @@ const nextSoloPreview = previewOf(nextSolo);
 
 export const metadata = caseStudyMetadata(
   project,
-  "Moving the Monthly Invoicing offer upstream and rebuilding its application from 9 screens to 3, against a target of lifting conversion from a 39% baseline to 97% and ~7.5%/yr in projected savings.",
+  "Moving the Monthly Invoicing offer upstream and rebuilding its application from 9 screens to 3 as delivered, against an H1 2026 target of lifting conversion from a 39% baseline to 97%, and ~7.5%/yr in projected savings.",
 );
 
 const leagueSpartan = "var(--font-league-spartan)";
@@ -61,6 +67,10 @@ const leagueSpartan = "var(--font-league-spartan)";
 /* One value for the air between the page's major beats, matched to the
    PayPal case study so the two read as the same publication. */
 const SECTION_GAP = "mt-24 md:mt-[140px] lg:mt-[200px]";
+/* What a section needs when the one beside it is the banded aside: the band's
+   own edge already marks the break, so the open air either side of it is half
+   what two unbanded sections take. */
+const BAND_GAP = "mt-[100px]";
 const PAGE_PAD = "px-5 lg:px-[24px]";
 
 /* Section headings run longer here than PayPal's, so the ceiling steps down
@@ -115,6 +125,10 @@ const SLIDER_ROW_GRID =
    always black between the bar and the nearest screen. Scoped to lg and up,
    the only width where a divider exists at all. */
 const SLIDER_ROW_PAD = "lg:px-5";
+/* Each state is one column now — its label, then its screens — so the step
+   from the heading to the first screen is a margin here rather than the gap
+   the slider puts between rows. Same figure either side of the divider. */
+const SLIDER_SCREENS_TOP = "mt-10 lg:mt-[56px]";
 /* Below md the screens are landscape captures too wide to tile, so they
    become a swipeable strip that bleeds into the page gutter. */
 const SLIDER_FILMSTRIP =
@@ -126,10 +140,11 @@ const SCREEN_FRAME =
    the divider can be read off the captions alone. */
 const SCREEN_CAPTION = cx(CASE_STUDY_SUPPORTING_CLASS, "mt-3 text-white/60 lg:mt-[16px]");
 
-/* The figures the record already carries, each kept with the status it
-   actually has: delivered, targeted, or projected. */
+/* The figures the record already carries. Every note opens with the word
+   that classifies the number above it — measured, target, projected — so no
+   plan can be read off this row as a banked result. */
 const HERO_FACTS: { label: string; value: string; note: string }[] = [
-  { label: "Application", value: "9 → 3", note: "Screens, as delivered" },
+  { label: "Application", value: "9 → 3", note: "Measured, screens delivered" },
   { label: "Conversion", value: "97%", note: "Target, from a 39% baseline" },
   { label: "Savings", value: "~7.5%", note: "Projected, annually" },
 ];
@@ -187,10 +202,65 @@ const DIAGRAM_IMAGE = "h-auto w-[1040px] max-w-none lg:w-full";
 const DIAGRAM_ALT =
   "Workflow diagram in two rows. The top row of checks runs from MI eligible, to Business verified, to Match LE with BV information, to Run Moody's API check on LE. Its result connects down to the row below, which runs from Pre-approved entry point, to How it works, to Display LE information plus terms and conditions, to Success, to Redirect to Accounts page.";
 
+/* Reuse is only honest if the record is allowed to be wrong. The three
+   delivered screens carry the approved path; these six are what the design
+   calls for around it, each stated as the one thing the screen has to do. The
+   paragraph above them carries the hedge — proposed handling, never observed
+   policy — so the lines themselves can stay short. */
+const RECOVERY_PATHS: {
+  Icon: ComponentType<{ className?: string }>;
+  title: string;
+  body: string;
+}[] = [
+  {
+    Icon: IconStaleRecord,
+    title: "Stale records",
+    body: "Reconfirm verification data that has passed its freshness window.",
+  },
+  {
+    Icon: IconMismatchedField,
+    title: "Mismatched information",
+    body: "Identify conflicting information and let the advertiser correct it in place.",
+  },
+  {
+    Icon: IconPendingReview,
+    title: "Manual review",
+    body: "Show what’s under review, the expected timing, and a clear pending status.",
+  },
+  {
+    Icon: IconFailedCheck,
+    title: "Failed verification",
+    body: "Keep the current payment method active and explain how to become eligible.",
+  },
+  {
+    Icon: IconInspectAndCorrect,
+    title: "Inspection and correction",
+    body: "Display reused information in full and make it easy to edit before submitting.",
+  },
+  {
+    Icon: IconConsentInline,
+    title: "Freshness, consent, and trust",
+    body: "Explain the credit line, terms, consent, and data freshness at the point of action.",
+  },
+];
+
+/* The PayPal page's numbered decisions, with the drawing standing where the
+   numeral stands: one serif line led by a mark, and the sentence starting back
+   at the left edge rather than indented under the title. Stepped down from
+   that page's scale so the six sit under the section heading above them, and
+   the icon is sized to the heading's line box — the negative top margin
+   centres it on the first line however the title wraps. */
+const RECOVERY_TITLE_CLASS = cx(
+  "flex items-start gap-3.5 font-serif text-[clamp(20px,2.2vw,28px)] lg:gap-[18px]",
+  "font-normal leading-[1.15] tracking-[-0.01em] text-white",
+);
+const RECOVERY_ICON_CLASS =
+  "-mt-[6px] h-9 w-9 shrink-0 text-white lg:h-[44px] lg:w-[44px]";
+
 /* Two workstreams reading as two columns, split by a hairline. Above md there
    is no gutter to hang a rule in, so the divider lies down and becomes the
    rule between two stacked blocks. */
-const WORKSTREAM_GRID = "mt-[50px] grid md:grid-cols-2";
+const WORKSTREAM_GRID = "grid md:grid-cols-2";
 const WORKSTREAM_COLUMN = "md:pr-8 lg:pr-10";
 const WORKSTREAM_COLUMN_DIVIDED =
   "mt-8 border-t border-white/15 pt-8 md:mt-0 md:border-l md:border-t-0 md:pl-8 md:pt-0 lg:pl-10";
@@ -418,12 +488,77 @@ export default function MetaPage() {
         </div>
       </section>
 
+      {/* The system the whole argument rests on. The diagram used to sit in
+          the appendix, where the case for reuse arrived without the machinery
+          that makes it possible; it reads here instead, with the four checks
+          named in order and the paths around the approved one written out
+          underneath. */}
+      <section
+        aria-labelledby="meta-system-title"
+        /* The one section that explains the machinery rather than showing the
+           work, set on its own plane so it reads as an aside to the argument.
+           A cool near-black, one step up from the page and in the same family
+           as the device bezels, so it separates without becoming a card.
+           Its own edges now do the separating, so it sits closer to the
+           sections either side than the open ones do to each other. */
+        className={cx(PAGE_PAD, BAND_GAP, "bg-[#0E0E12] py-[50px]")}
+        style={{ fontFamily: leagueSpartan }}
+      >
+        <ScrollFade once>
+          <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>Eligibility and Verification</p>
+          <h2 id="meta-system-title" className={SECTION_TITLE_CLASS}>
+            The offer appears only after eligibility is confirmed
+          </h2>
+          <p className={cx(CASE_STUDY_BODY_CLASS, "mt-6 max-w-[900px] text-white/80 lg:mt-[32px]")}>
+            Advertisers must pass four checks before entering: Monthly Invoicing eligibility,
+            business verification, legal-entity matching, and Moody&rsquo;s screening. Those who
+            qualify unlock a pre-approved experience built around guidance and information Meta
+            already has&#8288;&mdash;not another form.
+          </p>
+        </ScrollFade>
+
+        <figure className="mt-[50px]">
+          <div className={DIAGRAM_FRAME} tabIndex={0}>
+            <Image
+              src={miWorkflowDiagram}
+              alt={DIAGRAM_ALT}
+              sizes="(min-width: 1024px) 100vw, 1040px"
+              className={DIAGRAM_IMAGE}
+            />
+          </div>
+        </figure>
+
+        <div className="mt-14 lg:mt-[90px]">
+          <h3 className="font-serif text-[clamp(24px,3.2vw,34px)] font-normal leading-[1.14] tracking-[-0.01em]">
+            What happens when the record is wrong
+          </h3>
+          <p className={cx(PANEL_ROW_CLASS, "mt-3 max-w-[900px] text-white/70 lg:mt-[14px]")}>
+            The three delivered screens carry the approved path. These are the paths designed
+            around it &mdash; proposed handling, not observed operational policy.
+          </p>
+          <dl className="mt-8 grid gap-x-12 gap-y-9 md:grid-cols-2 lg:mt-[44px] lg:gap-x-[64px] lg:gap-y-[46px]">
+            {RECOVERY_PATHS.map(({ Icon, title, body }) => (
+              <div key={title}>
+                <dt className={RECOVERY_TITLE_CLASS}>
+                  <Icon className={RECOVERY_ICON_CLASS} />
+                  <span>{title}</span>
+                </dt>
+                <dd className={cx(CASE_STUDY_BODY_CLASS, "mt-3 text-white/70 lg:mt-[16px]")}>
+                  {body}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
       {/* Before and after. The heading stays outside the frame so it
           survives the reveal; inside, nine screens are replaced in place by
           three, which is the whole argument of the redesign. */}
       <section
         aria-labelledby="meta-comparison-title"
-        className={cx(PAGE_PAD, SECTION_GAP)}
+        /* Follows the band, so it takes the band's tighter gap. */
+        className={cx(PAGE_PAD, BAND_GAP)}
         style={{ fontFamily: leagueSpartan }}
       >
         <ScrollFade once>
@@ -440,67 +575,70 @@ export default function MetaPage() {
             label="Compare the Monthly Invoicing application before and after the redesign"
             rows={[
               {
-                align: "end",
+                /* Heading and screens travel together on each side. The three
+                   after screens stand in a bed built for nine, and the title
+                   that names them comes down into the middle with them rather
+                   than staying up at the top of the empty space. */
                 before: (
-                  <div className={SLIDER_ROW_PAD}>
-                    <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>Before</p>
-                    <h3 className="mt-3 text-balance font-serif text-[clamp(22px,3vw,32px)] font-normal leading-[1.15] tracking-[-0.01em] lg:mt-[14px]">
-                      9 screens to collect what Meta already held
-                    </h3>
+                  <div>
+                    <div className={SLIDER_ROW_PAD}>
+                      <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>Before</p>
+                      <h3 className="mt-3 text-balance font-serif text-[clamp(22px,3vw,32px)] font-normal leading-[1.15] tracking-[-0.01em] lg:mt-[14px]">
+                        9 screens to collect what Meta already held
+                      </h3>
+                    </div>
+                    {/* The nine arrive stacked on one another and fan out into
+                        the table, which is the reader's first sight of how many
+                        screens the old application really was. */}
+                    <LegacyScreenGrid
+                      label="The previous nine-screen Monthly Invoicing application"
+                      screens={LEGACY_SCREENS}
+                      className={cx(
+                        SLIDER_FILMSTRIP,
+                        SLIDER_ROW_GRID,
+                        SLIDER_ROW_PAD,
+                        SLIDER_SCREENS_TOP,
+                      )}
+                      cellClassName={SLIDER_CELL}
+                      frameClassName={SCREEN_FRAME}
+                      captionClassName={SCREEN_CAPTION}
+                    />
                   </div>
                 ),
                 after: (
-                  <div className={cx(SLIDER_ROW_PAD, "md:text-right")}>
-                    <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>After</p>
-                    <h3 className="mt-3 text-balance font-serif text-[clamp(22px,3vw,32px)] font-normal leading-[1.15] tracking-[-0.01em] lg:mt-[14px]">
-                      Three pages to confirm, correct, and approve
-                    </h3>
+                  <div className="md:flex md:h-full md:flex-col md:justify-center">
+                    <div className={cx(SLIDER_ROW_PAD, "md:text-right")}>
+                      <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>After</p>
+                      <h3 className="mt-3 text-balance font-serif text-[clamp(22px,3vw,32px)] font-normal leading-[1.15] tracking-[-0.01em] lg:mt-[14px]">
+                        Three pages to confirm, correct, and approve
+                      </h3>
+                    </div>
+                    <ol
+                      aria-label="The redesigned three-page confirmation flow"
+                      className={cx(
+                        SLIDER_FILMSTRIP,
+                        SLIDER_ROW_GRID,
+                        SLIDER_ROW_PAD,
+                        SLIDER_SCREENS_TOP,
+                      )}
+                    >
+                      {REDESIGN_SCREENS.map((screen, index) => (
+                        <li key={screen.title} className={SLIDER_CELL}>
+                          <div className={SCREEN_FRAME}>
+                            <Image
+                              src={screen.src}
+                              alt={screen.alt}
+                              sizes="(max-width: 768px) 80vw, 30vw"
+                              className="h-auto w-full"
+                            />
+                          </div>
+                          <p className={SCREEN_CAPTION}>
+                            <span className="text-white/40">0{index + 1}</span> {screen.title}
+                          </p>
+                        </li>
+                      ))}
+                    </ol>
                   </div>
-                ),
-              },
-              {
-                /* The nine arrive stacked on one another and fan out into
-                   the table, which is the reader's first sight of how many
-                   screens the old application really was. */
-                before: (
-                  <LegacyScreenGrid
-                    label="The previous nine-screen Monthly Invoicing application"
-                    screens={LEGACY_SCREENS}
-                    className={cx(SLIDER_FILMSTRIP, SLIDER_ROW_GRID, SLIDER_ROW_PAD)}
-                    cellClassName={SLIDER_CELL}
-                    frameClassName={SCREEN_FRAME}
-                    captionClassName={SCREEN_CAPTION}
-                  />
-                ),
-                /* Three cells standing in a bed built for nine: the emptied
-                   rows above and below are the point, so the row centres in
-                   the space the old grid used to fill. */
-                after: (
-                  <ol
-                    aria-label="The redesigned three-page confirmation flow"
-                    className={cx(
-                      SLIDER_FILMSTRIP,
-                      SLIDER_ROW_GRID,
-                      SLIDER_ROW_PAD,
-                      "md:h-full md:content-center",
-                    )}
-                  >
-                    {REDESIGN_SCREENS.map((screen, index) => (
-                      <li key={screen.title} className={SLIDER_CELL}>
-                        <div className={SCREEN_FRAME}>
-                          <Image
-                            src={screen.src}
-                            alt={screen.alt}
-                            sizes="(max-width: 768px) 80vw, 30vw"
-                            className="h-auto w-full"
-                          />
-                        </div>
-                        <p className={SCREEN_CAPTION}>
-                          <span className="text-white/40">0{index + 1}</span> {screen.title}
-                        </p>
-                      </li>
-                    ))}
-                  </ol>
                 ),
               },
             ]}
@@ -526,18 +664,22 @@ export default function MetaPage() {
         </div>
       </div>
 
-      {/* Customer impact. The bars are kept as they were: a baseline
+      {/* The target model. The bars are kept as they were: a baseline
           bar with the target growing out from under it, and every figure
           still carrying the word that says which one it is. */}
       <section
         aria-labelledby="meta-impact-title"
-        className={cx(PAGE_PAD, "mt-20 md:mt-[110px] lg:mt-[150px] mx-auto w-full max-w-[1600px]")}
+        className={cx(PAGE_PAD, SECTION_GAP, "mx-auto w-full max-w-[1600px]")}
         style={{ fontFamily: leagueSpartan }}
       >
         <ScrollFade once>
-          <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>Customer Impact</p>
+          <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>Impact</p>
           <h2 id="meta-impact-title" className={SECTION_TITLE_CLASS}>
-            More qualified advertisers could discover and complete enrollment
+            {/* Each term of the equation holds together, so the balancer can
+                only break between them and never inside a clause. */}
+            <span className="whitespace-nowrap">Increased enrollment =</span>{" "}
+            <span className="whitespace-nowrap">Less Credit Card fees =</span>{" "}
+            <span className="whitespace-nowrap">Greater savings</span>
           </h2>
         </ScrollFade>
 
@@ -577,7 +719,7 @@ export default function MetaPage() {
             futurePct={41}
             todayLabel="8%"
             futureLabel="41%"
-            sublabel="8% baseline → 41% H1 2026 target; +33 percentage points"
+            sublabel="8% baseline → 41% H1 2026 target; a 33-point targeted gain"
           />
           <AnimatedImpactRow
             label={"Grow\nconversion"}
@@ -585,7 +727,7 @@ export default function MetaPage() {
             futurePct={97}
             todayLabel="39%"
             futureLabel="97%"
-            sublabel="39% baseline → 97% H1 2026 target; +58 percentage points"
+            sublabel="39% baseline → 97% H1 2026 target; a 58-point targeted gain"
           />
           <div className="grid grid-cols-[110px_1fr] items-center gap-4 lg:grid-cols-[280px_1fr] lg:gap-12">
             <h3 className="font-serif text-[clamp(18px,4.5vw,32px)] font-normal leading-[1.15] tracking-[-0.01em] lg:text-[clamp(24px,2.6vw,32px)]">
@@ -608,29 +750,18 @@ export default function MetaPage() {
           title="Behind the Work"
           summary="How I led the change: one coordinated strategy across discovery and conversion"
         >
-          <div>
-            <figure className={DIAGRAM_FRAME} tabIndex={0}>
-              <Image
-                src={miWorkflowDiagram}
-                alt={DIAGRAM_ALT}
-                sizes="(min-width: 1024px) 100vw, 1040px"
-                className={DIAGRAM_IMAGE}
-              />
-            </figure>
-
-            <div className={WORKSTREAM_GRID}>
-              {WORKSTREAMS.map((stream, index) => (
-                <div
-                  key={stream.title}
-                  className={index === 0 ? WORKSTREAM_COLUMN : WORKSTREAM_COLUMN_DIVIDED}
-                >
-                  <h3 className="font-serif text-[clamp(24px,3.2vw,34px)] font-normal leading-[1.14] tracking-[-0.01em]">
-                    {stream.title}
-                  </h3>
-                  <p className="mt-3 text-white/70 lg:mt-[14px]">{stream.body}</p>
-                </div>
-              ))}
-            </div>
+          <div className={WORKSTREAM_GRID}>
+            {WORKSTREAMS.map((stream, index) => (
+              <div
+                key={stream.title}
+                className={index === 0 ? WORKSTREAM_COLUMN : WORKSTREAM_COLUMN_DIVIDED}
+              >
+                <h3 className="font-serif text-[clamp(24px,3.2vw,34px)] font-normal leading-[1.14] tracking-[-0.01em]">
+                  {stream.title}
+                </h3>
+                <p className="mt-3 text-white/70 lg:mt-[14px]">{stream.body}</p>
+              </div>
+            ))}
           </div>
         </SupportingAppendix>
       </div>

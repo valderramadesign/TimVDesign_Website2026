@@ -415,7 +415,7 @@ export const PROJECTS: Project[] = [
       products: ["Monthly Invoicing"],
     },
     description: [
-      "Card failures and funding gaps can pause campaigns for high-spend advertisers. Monthly Invoicing reduces that risk and Meta’s card-processing costs—currently $2.46B annually and projected to reach $4.2B. Wider adoption was projected to save at least 7.5% annually.",
+      "Card failures and funding gaps can pause campaigns for high-spend advertisers. Monthly Invoicing reduces that risk and Meta’s card-processing costs—a $2.46B annual baseline, projected to reach $4.2B. Wider adoption was projected to save at least 7.5% of that annually.",
     ],
     homepageProblem:
       "Card failures pause high-value campaigns, while card processing costs Meta billions. I designed Monthly Invoicing onboarding to drive adoption, protect advertiser spend, and unlock significant annual savings.",
