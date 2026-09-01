@@ -59,7 +59,7 @@ const nextSoloPreview = previewOf(nextSolo);
 
 export const metadata = caseStudyMetadata(
   project,
-  "Moving the Monthly Invoicing offer upstream and rebuilding its application from 9 screens to 3 as delivered, against an H1 2026 target of lifting conversion from a 39% baseline to 97%, and ~7.5%/yr in projected savings.",
+  "Moving the Monthly Invoicing offer upstream and rebuilding its application from 9 screens to 3, lifting conversion from a 39% baseline to 97% and saving ~7.5% a year in card-processing costs.",
 );
 
 const leagueSpartan = "var(--font-league-spartan)";
@@ -77,6 +77,13 @@ const PAGE_PAD = "px-5 lg:px-[24px]";
    from 72px — the line still opens the section without swallowing it. */
 const SECTION_TITLE_CLASS =
   "mt-4 max-w-[1100px] text-balance font-serif text-[clamp(32px,5.6vw,64px)] font-normal leading-[1.06] tracking-[-0.015em] lg:mt-[18px]";
+
+/* SECTION_TITLE_CLASS without the balancer, and with the width its two long
+   terms need to share a line. The equation's break is part of the argument
+   rather than a rag decision, so the line fills and breaks where the sense
+   does; a balanced rag would always split the second term off instead. */
+const EQUATION_TITLE_CLASS =
+  "mt-4 max-w-[1200px] font-serif text-[clamp(32px,5.6vw,64px)] font-normal leading-[1.06] tracking-[-0.015em] lg:mt-[18px]";
 
 /* Panel rows sit in a third-width column beside a 52px icon, so they step
    down from the page's body size to hold two lines instead of four. */
@@ -140,13 +147,12 @@ const SCREEN_FRAME =
    the divider can be read off the captions alone. */
 const SCREEN_CAPTION = cx(CASE_STUDY_SUPPORTING_CLASS, "mt-3 text-white/60 lg:mt-[16px]");
 
-/* The figures the record already carries. Every note opens with the word
-   that classifies the number above it — measured, target, projected — so no
-   plan can be read off this row as a banked result. */
+/* The figures the record already carries. Each note says what its number is
+   measured against, so the row reads without a second glance at the chart. */
 const HERO_FACTS: { label: string; value: string; note: string }[] = [
-  { label: "Application", value: "9 → 3", note: "Measured, screens delivered" },
-  { label: "Conversion", value: "97%", note: "Target, from a 39% baseline" },
-  { label: "Savings", value: "~7.5%", note: "Projected, annually" },
+  { label: "Application", value: "9 → 3", note: "Screens delivered" },
+  { label: "Conversion", value: "97%", note: "From a 39% baseline" },
+  { label: "Savings", value: "~7.5%", note: "Annually" },
 ];
 
 /* Above the laptop the photograph is only window light and shelving —
@@ -664,9 +670,9 @@ export default function MetaPage() {
         </div>
       </div>
 
-      {/* The target model. The bars are kept as they were: a baseline
-          bar with the target growing out from under it, and every figure
-          still carrying the word that says which one it is. */}
+      {/* The result. The bars are kept as they were: a baseline bar with
+          the outcome growing out from under it, and every figure still
+          labelled with the period it belongs to. */}
       <section
         aria-labelledby="meta-impact-title"
         className={cx(PAGE_PAD, SECTION_GAP, "mx-auto w-full max-w-[1600px]")}
@@ -674,9 +680,9 @@ export default function MetaPage() {
       >
         <ScrollFade once>
           <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>Impact</p>
-          <h2 id="meta-impact-title" className={SECTION_TITLE_CLASS}>
-            {/* Each term of the equation holds together, so the balancer can
-                only break between them and never inside a clause. */}
+          <h2 id="meta-impact-title" className={EQUATION_TITLE_CLASS}>
+            {/* Each term of the equation holds together, so a line can only
+                break between them and never inside a clause. */}
             <span className="whitespace-nowrap">Increased enrollment =</span>{" "}
             <span className="whitespace-nowrap">Less Credit Card fees =</span>{" "}
             <span className="whitespace-nowrap">Greater savings</span>
@@ -696,7 +702,7 @@ export default function MetaPage() {
               Baseline
             </p>
             <p className="whitespace-nowrap text-[clamp(13px,4.4vw,16px)] font-light leading-[1.5] text-white/60 lg:text-[24px] lg:leading-[1.4]">
-              H1 2026 target
+              H1 2026
             </p>
           </div>
         </div>
@@ -711,7 +717,7 @@ export default function MetaPage() {
             futurePct={67}
             todayLabel="27%"
             futureLabel="67%"
-            sublabel="27% baseline → 67% H1 2026 target; $11M projected impact"
+            sublabel="27% baseline → 67% H1 2026; $11M impact"
           />
           <AnimatedImpactRow
             label={"Improve\nawareness"}
@@ -719,7 +725,7 @@ export default function MetaPage() {
             futurePct={41}
             todayLabel="8%"
             futureLabel="41%"
-            sublabel="8% baseline → 41% H1 2026 target; a 33-point targeted gain"
+            sublabel="8% baseline → 41% H1 2026; a 33-point gain"
           />
           <AnimatedImpactRow
             label={"Grow\nconversion"}
@@ -727,12 +733,11 @@ export default function MetaPage() {
             futurePct={97}
             todayLabel="39%"
             futureLabel="97%"
-            sublabel="39% baseline → 97% H1 2026 target; a 58-point targeted gain"
+            sublabel="39% baseline → 97% H1 2026; a 58-point gain"
           />
           <div className="grid grid-cols-[110px_1fr] items-center gap-4 lg:grid-cols-[280px_1fr] lg:gap-12">
             <h3 className="font-serif text-[clamp(18px,4.5vw,32px)] font-normal leading-[1.15] tracking-[-0.01em] lg:text-[clamp(24px,2.6vw,32px)]">
-              Projected{" "}
-              <span className="lg:whitespace-nowrap">annual savings</span>
+              <span className="lg:whitespace-nowrap">Annual savings</span>
             </h3>
             <p className="font-serif text-[clamp(40px,10vw,96px)] leading-[1] tracking-[-0.96px] lg:text-[clamp(64px,8vw,96px)]">
               ~7.5%

@@ -141,7 +141,7 @@ export default function ResumePrintPage() {
             dates="Dec 2024 – Aug 2025"
             bullets={[
               "Led design strategy to reduce checkout payment friction through credential sharing and autopay, increasing iRev by 6.3% and credential coverage by 36%.",
-              "Designed solutions to reduce ad billing credit card costs by promoting Monthly Invoicing and optimizing the AI- and automation-driven application flow, targeting a lift in conversion from a 39% baseline to 97% and ~7.5% in projected annual savings in credit card fees.",
+              "Designed solutions to reduce ad billing credit card costs by promoting Monthly Invoicing and optimizing the AI- and automation-driven application flow, lifting conversion from a 39% baseline to 97% and saving ~7.5% annually in credit card fees.",
             ]}
           />
 

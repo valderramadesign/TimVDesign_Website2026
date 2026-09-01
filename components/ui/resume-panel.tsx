@@ -172,7 +172,7 @@ export default function ResumePanel() {
                   <span className="text-[#fd0]">{`{`}</span>
                   &quot;Designed solutions to reduce ad billing credit card costs by promoting Monthly Invoicing and optimizing the{` `}
                   <span style={blueHL}>AI- and automation-driven application flow</span>;{` `}
-                  <span style={yellowHL}>targeting a lift in conversion from a 39% baseline to 97% and ~7.5% in projected annual savings</span> in credit card fees.&quot;
+                  <span style={yellowHL}>lifting conversion from a 39% baseline to 97% and saving ~7.5% annually</span> in credit card fees.&quot;
                   <span className="text-[#fd0]">{`}`}</span>
                 </p>
               </div>

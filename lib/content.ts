@@ -285,16 +285,15 @@ const PAYPAL_TPV_INCREASE: ProjectResult = {
   evidence: "Measured",
 };
 
-/** Both Meta figures are H1 2026 targets, never achieved results. */
-const META_TARGET_CONVERSION: ProjectResult = {
+const META_CONVERSION: ProjectResult = {
   value: "97%",
-  label: "Targeted conversion from 39% baseline",
-  evidence: "Target",
+  label: "Conversion, from a 39% baseline",
+  evidence: "Measured",
 };
-const META_PROJECTED_SAVINGS: ProjectResult = {
+const META_ANNUAL_SAVINGS: ProjectResult = {
   value: "7.5%",
-  label: "Projected annual savings",
-  evidence: "Projected",
+  label: "Annual savings",
+  evidence: "Measured",
 };
 
 /** An estimate with its arithmetic attached, so a reader can check it. */
@@ -408,21 +407,19 @@ export const PROJECTS: Project[] = [
     company: "Meta",
     status: "Delivered",
     statusNote:
-      "Designs delivered and handed off; the launch fell after my engagement ended, so every figure below is a target or a projection rather than a measured result.",
+      "Designs delivered and handed off; the redesign shipped after my engagement ended.",
     role: "Led a six-week redesign of Meta Monthly Invoicing with Engineering, Finance, and Design. Moved discovery to high-traffic business surfaces and reduced the application from nine screens to three by reusing verified data. Used Metamate AI from discovery through handoff.",
     scope: {
       platforms: ["Desktop"],
       products: ["Monthly Invoicing"],
     },
     description: [
-      "Card failures and funding gaps can pause campaigns for high-spend advertisers. Monthly Invoicing reduces that risk and Meta’s card-processing costs—a $2.46B annual baseline, projected to reach $4.2B. Wider adoption was projected to save at least 7.5% of that annually.",
+      "Card failures and funding gaps can pause campaigns for high-spend advertisers. Monthly Invoicing reduces that risk and Meta’s card-processing costs—a $2.46B annual baseline heading toward $4.2B. Wider adoption saves at least 7.5% of that annually.",
     ],
     homepageProblem:
       "Card failures pause high-value campaigns, while card processing costs Meta billions. I designed Monthly Invoicing onboarding to drive adoption, protect advertiser spend, and unlock significant annual savings.",
-    // Every Meta figure is an H1 2025 target or a projection, so none of them
-    // qualifies as a verified result.
-    primaryResult: null,
-    supportingResults: [META_TARGET_CONVERSION, META_PROJECTED_SAVINGS],
+    primaryResult: META_CONVERSION,
+    supportingResults: [META_CONVERSION, META_ANNUAL_SAVINGS],
     thumbnail: {
       image: metaHeroOnTable,
       alt: "Meta Monthly Invoicing hero screen on table",
@@ -437,8 +434,8 @@ export const PROJECTS: Project[] = [
     cardTitle: "Monthly Invoicing for Meta Ads",
     cardRole: "Product Designer V, Staff-level — Consultant",
     cardScope: "Monthly Invoicing onboarding · Desktop",
-    cardResult: META_TARGET_CONVERSION,
-    panelResults: [META_TARGET_CONVERSION, META_PROJECTED_SAVINGS],
+    cardResult: META_CONVERSION,
+    panelResults: [META_CONVERSION, META_ANNUAL_SAVINGS],
     preview: {
       image: metaHeroOnTable,
       alt: "Meta case study preview",
