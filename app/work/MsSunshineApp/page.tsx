@@ -159,26 +159,29 @@ const CHANGES: { number: string; title: string; body: string }[] = [
 
 /* Every screen the story still needs. Nothing is drawn in their place: each
    box names the capture that belongs there. */
-/* Two estimates and one change in experience, each carrying the word that
-   says which it is, and each naming where its number came from. No time was
-   measured after launch. */
+/* Two estimates and one change in experience. The asterisks carry the
+   provenance to a single footnote under the column, so the figures read
+   as figures and the caveat is stated once. */
 const IMPACT: { label: string; value: string; note: string }[] = [
   {
     label: "Teacher Impact",
-    value: "~2 hours/day",
-    note: "Report writing is off the head teacher's schedule: the app produces each report at checkout for her approval. The two hours are her own account of the old task; time under the MVP has not been measured.",
+    value: "~2 hours/day reclaimed",
+    note: "The app generates reports at checkout for quick approval, replacing a manual task the head teacher estimated took two hours each day.*",
   },
   {
     label: "Parent Impact",
     value: "Real-time visibility",
-    note: "Guardians see each activity as it is logged and can like or comment on it, instead of waiting until pickup.",
+    note: "Guardians can follow activities as they happen—and like or comment—rather than wait until pickup.",
   },
   {
     label: "Business Impact",
-    value: "~524 hours/year",
-    note: "Estimated staff capacity returned to classroom care and school operations — 2 hrs/day × 262 work days. An estimate built from the head teacher's account of the old task, not a measurement taken since the MVP.",
+    value: "~524 staff hours/year returned",
+    note: "At two hours per workday across 262 days, the MVP could redirect approximately 524 hours annually to classroom care and school operations.*",
   },
 ];
+
+const IMPACT_FOOTNOTE =
+  "*Estimates are based on the head teacher's account of the previous workflow; post-MVP time has not yet been measured.";
 
 /* How the three weeks actually ran — one click off the argument, in the
    same disclosure the other case studies use. */
@@ -248,7 +251,23 @@ export default function SoloPage() {
           movie across the full measure with the year the work is estimated
           to return feathered into its lower corner. */}
       <div className={cx(PAGE_PAD, "pt-10 lg:pt-[78px]")} style={{ fontFamily: leagueSpartan }}>
-        <CaseStudyHeader project={project} />
+        {/* The title breaks where the sense does — after "Into" — once the
+            column can hold that first line: 1254px is exactly where "Turning
+            Classroom Updates Into" starts to fit (it needs 1206px of the
+            1254 - 48 gutter). Below that it breaks after "Live" instead, so
+            no line is ever left holding a single word. */}
+        <CaseStudyHeader
+          project={project}
+          headline={
+            <>
+              Turning Classroom Updates Into
+              <br className="hidden min-[1254px]:inline" />{" "}
+              Live
+              <br className="min-[1254px]:hidden" />{" "}
+              Parent Communication
+            </>
+          }
+        />
 
         <ProjectFacts
           project={project}
@@ -486,8 +505,8 @@ export default function SoloPage() {
                   <dd className={cx(HERO_METRIC_VALUE_CLASS, "mt-3 lg:mt-[18px]")}>{item.value}</dd>
                   <dd
                     className={cx(
-                      CASE_STUDY_METRIC_LABEL_CLASS,
-                      "max-w-[520px] text-white/70 lg:ml-auto",
+                      CASE_STUDY_BODY_CLASS,
+                      "metric-label mt-[17px] max-w-[520px] text-white/70 lg:ml-auto",
                     )}
                   >
                     {item.note}
@@ -495,6 +514,14 @@ export default function SoloPage() {
                 </div>
               ))}
             </dl>
+            <p
+              className={cx(
+                CASE_STUDY_SUPPORTING_CLASS,
+                "mt-10 max-w-[520px] text-white/50 lg:ml-auto lg:mt-[48px]",
+              )}
+            >
+              {IMPACT_FOOTNOTE}
+            </p>
           </div>
 
           {/* Live, not a screenshot: Mei's feed as her guardians actually

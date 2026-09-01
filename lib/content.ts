@@ -472,7 +472,6 @@ export const PROJECTS: Project[] = [
     category: "Client products",
     timeline: "3 weeks",
     homepageEyebrowLines: ["Rapid App Innovation"],
-    caseStudyEyebrowLines: ["Ms. Sunshine App · Three-Week MVP"],
     cardLabel: "Ms. Sunshine App",
     cardTitle: "Daily Reporting App for Teachers",
     cardRole: "Principal Product Designer — solo design and build",
