@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useCallback, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence, type Transition } from "framer-motion";
@@ -333,6 +333,10 @@ export default function HomeClient() {
   const [reducedMotion, setReducedMotion] = useState(false);
   const [showreelStep, setShowreelStep] = useState(0);
   const [showreelUp, setShowreelUp] = useState(false);
+  const [montageDone, setMontageDone] = useState(false);
+
+  // Fires once, when the intro montage has played out — see the showreel gate below.
+  const handleMontageFinished = useCallback(() => setMontageDone(true), []);
 
   // Backgrounds, the hero headline and the positioning block answer to the
   // pointer alone. The showreel drives the panels and leaves the rest still —
@@ -368,8 +372,14 @@ export default function HomeClient() {
   // The résumé pauses the loop as firmly as a hover does. On desktop the panel
   // only compresses the homepage rather than covering it, so a showreel left
   // running would keep cycling images beside a document someone is reading.
+  //
+  // The montage holds it shut to begin with: the two are the same kind of
+  // event, and running them together sets panels fading in over footage that
+  // is still playing. The loop takes over once the background has finished and
+  // gone to black. Hover is deliberately not gated on any of this — the nav
+  // answers a pointer from the first frame.
   const showreelPaused =
-    Boolean(hoveredProject) || reducedMotion || resumeOpen;
+    Boolean(hoveredProject) || reducedMotion || resumeOpen || !montageDone;
 
   // One step of the loop: an empty beat, a fade in, three seconds at full
   // opacity, a fade out. Re-runs per project, and whenever the pointer or the
@@ -447,7 +457,7 @@ export default function HomeClient() {
         {/* Main homepage content — compresses as resume opens */}
         <div className="flex-1 min-w-0 relative min-h-screen">
           {/* Background */}
-          <IntroMontageBackground active={!hovered} />
+          <IntroMontageBackground active={!hovered} onFinished={handleMontageFinished} />
           {/* All video/image backgrounds always in the DOM so they preload immediately */}
           <div className={`absolute inset-0 z-[-10] bg-black ${showPayPalDE ? "opacity-100" : "opacity-0"}`}>
             <video

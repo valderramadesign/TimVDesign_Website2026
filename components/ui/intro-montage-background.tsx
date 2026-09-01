@@ -1,19 +1,57 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const SRC = "/videos/Intro/intro-montage.mp4";
 const POSTER = "/videos/Intro/intro-montage-poster.jpg";
 
 /**
- * Idle homepage background: a looping 16:9 montage cut from the case-study
- * footage and stills. Stays mounted while a project is hovered — only its
- * opacity changes — so the loop keeps its place instead of restarting.
+ * Idle homepage background: a 16:9 montage cut from the case-study footage and
+ * stills. It plays through once and then fades to the black it sits on, so the
+ * page settles instead of cycling behind the work. Stays mounted while a
+ * project is hovered — only its opacity changes — so it keeps its place rather
+ * than restarting. A refresh or a return to the homepage remounts this
+ * component, which is what plays it again.
+ *
+ * `onFinished` fires once, and is the homepage's cue to start its idle
+ * showreel. It means "the montage is over" in the broad sense: it also fires
+ * when there was never a montage to wait for — reduced motion, a rejected
+ * autoplay, a video that failed to load — because a gate that only opened on a
+ * clean playthrough would leave those visitors on a page that never moves.
  */
-export default function IntroMontageBackground({ active }: { active: boolean }) {
+export default function IntroMontageBackground({
+  active,
+  onFinished,
+}: {
+  active: boolean;
+  onFinished?: () => void;
+}) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [ready, setReady] = useState(false);
+  const [ended, setEnded] = useState(false);
+
+  // Held in a ref so a caller passing an inline arrow doesn't re-run the
+  // playback effect — which would call play() again on every render.
+  const onFinishedRef = useRef(onFinished);
+  useEffect(() => {
+    onFinishedRef.current = onFinished;
+  }, [onFinished]);
+
+  const finishedRef = useRef(false);
+  const openGate = useCallback(() => {
+    if (finishedRef.current) return;
+    finishedRef.current = true;
+    onFinishedRef.current?.();
+  }, []);
+
+  // Only a real playthrough fades the footage out. The other ways the gate
+  // opens leave the frame as it is: under reduced motion the poster is the
+  // background, and fading it to black would be motion asked not to happen.
+  const finishPlayback = useCallback(() => {
+    setEnded(true);
+    openGate();
+  }, [openGate]);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -25,17 +63,22 @@ export default function IntroMontageBackground({ active }: { active: boolean }) 
 
   useEffect(() => {
     const video = videoRef.current;
-    if (reducedMotion || !video) return;
+    if (reducedMotion || !video) {
+      // Nothing will ever play here, so nothing should be waiting on it.
+      if (reducedMotion) openGate();
+      return;
+    }
     // canplay can fire either side of hydration, so seed from readyState and keep
     // an imperative listener — relying on the JSX handler alone can strand the
     // video at opacity 0 with the poster showing forever.
     const markReady = () => setReady(true);
     if (video.readyState >= 3) markReady();
     video.addEventListener("canplay", markReady);
-    // Autoplay can be rejected before the user interacts; the poster covers that case.
-    video.play().catch(() => {});
+    // Autoplay can be rejected before the user interacts; the poster covers that
+    // case visually, and the gate has to open anyway or nothing downstream runs.
+    video.play().catch(openGate);
     return () => video.removeEventListener("canplay", markReady);
-  }, [reducedMotion]);
+  }, [reducedMotion, openGate]);
 
   return (
     <div
@@ -44,8 +87,14 @@ export default function IntroMontageBackground({ active }: { active: boolean }) 
         active ? "opacity-100" : "opacity-0"
       }`}
     >
-      {/* One shared opacity on the stack — layering two translucent copies would double-expose. */}
-      <div className="absolute inset-0 opacity-40">
+      {/* One shared opacity on the stack — layering two translucent copies would
+          double-expose. It carries the closing fade too: taking the poster down
+          with the footage is what leaves black rather than a frozen still. */}
+      <div
+        className={`absolute inset-0 transition-opacity duration-[1400ms] ease-out ${
+          ended ? "opacity-0" : "opacity-40"
+        }`}
+      >
         {/* Poster sits underneath so the frame is never empty while the video buffers. */}
         <img src={POSTER} alt="" className="absolute inset-0 w-full h-full object-cover" />
         {!reducedMotion && (
@@ -54,12 +103,13 @@ export default function IntroMontageBackground({ active }: { active: boolean }) 
             src={SRC}
             poster={POSTER}
             autoPlay
-            loop
             muted
             playsInline
             preload="auto"
             suppressHydrationWarning
             onCanPlay={() => setReady(true)}
+            onEnded={finishPlayback}
+            onError={openGate}
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
               ready ? "opacity-100" : "opacity-0"
             }`}
