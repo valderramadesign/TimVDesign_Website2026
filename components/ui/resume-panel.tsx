@@ -49,7 +49,7 @@ export default function ResumePanel() {
           </div>
         </div>
         <a
-          href="/resume/print?print=1"
+          href={SITE.resumeFile}
           target="_blank"
           rel="noopener noreferrer"
           className="text-[12px] text-[#7c8896] hover:text-black transition-colors duration-150"

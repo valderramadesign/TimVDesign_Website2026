@@ -58,11 +58,13 @@ function Job({
 }
 
 export default function ResumePrintPage() {
-  // Only auto-open the print dialog when linked with ?print=1 (the "PRINT" action
-  // in the résumé panel). The mobile footer links here to read the résumé.
+  // The typeset PDF is the résumé that leaves the site, so ?print=1 — the old
+  // "PRINT" target, still live in bookmarks and shared links — hands the visitor
+  // that file instead of printing this page. Without the flag this stays the
+  // readable web version the mobile footer links to.
   useEffect(() => {
     if (new URLSearchParams(window.location.search).get("print") === "1") {
-      window.print();
+      window.location.replace(SITE.resumeFile);
     }
   }, []);
 
@@ -99,10 +101,12 @@ export default function ResumePrintPage() {
         </div>
 
         <div className="no-print" style={{ marginBottom: 20 }}>
-          <button
-            type="button"
-            onClick={() => window.print()}
+          <a
+            href={SITE.resumeFile}
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
+              display: "inline-block",
               fontFamily: jb,
               fontSize: 10,
               letterSpacing: "0.12em",
@@ -112,11 +116,12 @@ export default function ResumePrintPage() {
               border: "1px solid #000",
               background: "transparent",
               color: "#000",
+              textDecoration: "none",
               cursor: "pointer",
             }}
           >
             Print / Save as PDF
-          </button>
+          </a>
         </div>
 
         {/* Experience */}

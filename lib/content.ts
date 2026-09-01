@@ -31,7 +31,7 @@ export const SITE = {
   shortBio:
     "Lead Product Designer for regulated FinTech and AI-enabled systems. Former PayPal design lead and Meta FinTech consultant.",
   /**
-   * Résumé-only copy, mirroring `TimV_Resume_2026.pdf`. Kept separate from the
+   * Résumé-only copy, mirroring `resumeFile`. Kept separate from the
    * positioning fields above, which are written as full sentences for the
    * homepage and metadata; the résumé needs the bare title and its own summary.
    */
@@ -47,8 +47,12 @@ export const SITE = {
     "I lead strategy through delivery, align cross-functional teams, and use AI-assisted workflows to accelerate research, iteration, and prototyping.",
   url: "https://tim-ai-design.com",
   email: "valderramadesign@gmail.com",
-  /** Downloadable résumé, served from `public/`. */
-  resumeFile: "/TimV_Resume_2026.pdf",
+  /**
+   * The résumé as it should leave the site: the typeset PDF is the print and
+   * download artefact, so every PRINT affordance opens this rather than
+   * printing the HTML page, which is only the readable web version.
+   */
+  resumeFile: "/TimValderrama-ResumePrint.pdf",
   location: "San Mateo, CA",
   citizenship: "US Citizen",
 } as const;
