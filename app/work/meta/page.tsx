@@ -80,8 +80,8 @@ const SECTION_TITLE_CLASS =
 
 /* SECTION_TITLE_CLASS without the balancer, and with the width its two long
    terms need to share a line. The equation's break is part of the argument
-   rather than a rag decision, so the line fills and breaks where the sense
-   does; a balanced rag would always split the second term off instead. */
+   rather than a rag decision, so it is placed by hand in the markup; a
+   balancer here would keep pulling it somewhere else. */
 const EQUATION_TITLE_CLASS =
   "mt-4 max-w-[1200px] font-serif text-[clamp(32px,5.6vw,64px)] font-normal leading-[1.06] tracking-[-0.015em] lg:mt-[18px]";
 
@@ -349,7 +349,26 @@ export default function MetaPage() {
         className={cx(PAGE_PAD, "pt-10 lg:pt-[78px]")}
         style={{ fontFamily: leagueSpartan }}
       >
-        <CaseStudyHeader project={project} />
+        {/* Same words the record carries, with every break set by hand: left
+            to fill, the line strands "beyond" from what it governs, or splits
+            "credit card". From xl the headline holds two lines, the subject
+            over the phrase. Below that the first line can no longer carry the
+            subject at 96px, so it becomes three — one clause each, and the
+            terms that belong together stay together. */}
+        <CaseStudyHeader
+          project={project}
+          headline={
+            <>
+              Moving high-spend
+              <br className="xl:hidden" />{" "}
+              advertisers
+              <br className="hidden xl:inline" />{" "}
+              beyond
+              <br className="xl:hidden" />{" "}
+              credit card limits
+            </>
+          }
+        />
 
         {/* One paragraph under the headline, carrying what the standfirst
             and the role block used to split between them: who I worked
@@ -681,10 +700,14 @@ export default function MetaPage() {
         <ScrollFade once>
           <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>Impact</p>
           <h2 id="meta-impact-title" className={EQUATION_TITLE_CLASS}>
-            {/* Each term of the equation holds together, so a line can only
-                break between them and never inside a clause. */}
+            {/* The break is set by hand after "credit" so the two lines carry
+                even weight; each fragment still holds together, so nothing
+                else can split. Below lg the break lifts and the terms rag
+                between themselves. */}
             <span className="whitespace-nowrap">Increased enrollment =</span>{" "}
-            <span className="whitespace-nowrap">Less Credit Card fees =</span>{" "}
+            <span className="whitespace-nowrap">Less credit</span>
+            <br className="hidden lg:inline" />{" "}
+            <span className="whitespace-nowrap">card fees =</span>{" "}
             <span className="whitespace-nowrap">Greater savings</span>
           </h2>
         </ScrollFade>
