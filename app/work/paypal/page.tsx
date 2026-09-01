@@ -48,7 +48,14 @@ import {
   CASE_STUDY_SUPPORTING_CLASS,
   cx,
 } from "@/components/case-study";
-import { PROJECTS_BY_ID, previewOf } from "@/lib/content";
+import {
+  PAYPAL_IREV_SHARE,
+  PAYPAL_TOTAL_IREV_INCREASE,
+  PAYPAL_TOTAL_IREV_TEXT,
+  PROJECTS_BY_ID,
+  paypalIrevPoints,
+  previewOf,
+} from "@/lib/content";
 import { caseStudyMetadata } from "@/lib/seo";
 
 const project = PROJECTS_BY_ID.paypal;
@@ -58,33 +65,14 @@ const nextSolo = PROJECTS_BY_ID.solo;
 const nextSoloPreview = previewOf(nextSolo);
 
 /* ── iRev ────────────────────────────────────────────────────────────────
-   The work lifted annual incremental revenue by 25.6%, and each product
-   carried a share of that lift. The shares are the authored figures; every
-   iRev percentage on the page is rendered as its slice of the total, so the
-   product sections, the Overall Impact cards and the stated total are all one
-   set of numbers that add up. */
-const ANNUAL_IREV_INCREASE = 25.6;
-
-/** Each product's share of the increase. These sum to 100. */
-const IREV_SHARE = {
-  payMonthly: 21.3,
-  payPalCreditUS: 40.31,
-  payPalMastercard: 29.72,
-  payPalCreditUK: 8.67,
-} as const;
-
-/** A share expressed in points of the annual increase, as it is displayed. */
-const irevPoints = (share: number) =>
-  Number(((ANNUAL_IREV_INCREASE * share) / 100).toFixed(2));
-
-/** The parts exactly as they appear on the page, summed. */
-const TOTAL_IREV_INCREASE = Number(
-  Object.values(IREV_SHARE)
-    .reduce((total, share) => total + irevPoints(share), 0)
-    .toFixed(2),
-);
-
-const TOTAL_IREV_TEXT = `${TOTAL_IREV_INCREASE.toFixed(1)}%`;
+   Every iRev percentage on the page is a slice of one annual increase, and the
+   total is those slices summed. Both live in lib/content.ts, so the product
+   sections, the Overall Impact cards, this page's metadata and the résumé are
+   all reading the same set of numbers. Aliased here for the markup below. */
+const IREV_SHARE = PAYPAL_IREV_SHARE;
+const irevPoints = paypalIrevPoints;
+const TOTAL_IREV_INCREASE = PAYPAL_TOTAL_IREV_INCREASE;
+const TOTAL_IREV_TEXT = PAYPAL_TOTAL_IREV_TEXT;
 
 export const metadata = caseStudyMetadata(
   project,
@@ -950,13 +938,27 @@ export default function PayPal1CaseStudy() {
           </div>
         </div>
 
-        {/* The rule halves the 200px by eye rather than by box. The 25.6%
-            stops about 9px (4px at lg) above the bottom of its line box and
-            the 2023 digits start about 5px (7px at lg) below the top of
-            theirs, so a rule centred on the boxes reads ~21px high. It is
-            lifted by that much: 79px of margin here, and the same amount
-            handed back below, so the 200px to the first bar is unchanged. */}
-        <div className="mt-[79px] lg:mt-[78px] h-px w-full bg-white/25" />
+        {/* What the two kinds of figure above actually measure, stated once
+            under them, so a reader does not add a share to a volume. It hangs
+            off the right edge under the total it qualifies, since the 25.6% is
+            the figure the first sentence is about. */}
+        <p
+          className={cx(
+            CASE_STUDY_SUPPORTING_CLASS,
+            "mt-14 ml-auto max-w-[900px] text-white/60 lg:mt-[64px] lg:text-right",
+          )}
+        >
+          Each iRev figure is that product&rsquo;s share of the {TOTAL_IREV_TEXT} annual
+          increase rather than an independent gain; the TPV figures are payment volume, not
+          revenue. The portfolio rows below measure the 2023 baseline against H1 2024.
+        </p>
+
+        {/* The rule now closes the cards and their note rather than halving a
+            gap, so it takes a plain margin: the note's last line is text, with
+            none of the 96px numeral's overhang the old optical lift corrected
+            for. The 120px below is untouched, so the rule sits nearer what it
+            ends than what it introduces. */}
+        <div className="mt-[64px] h-px w-full bg-white/25" />
 
         {/* The portfolio behind the cards. The cards report what each product
             returned; these two bars report what the whole credit portfolio

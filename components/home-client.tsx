@@ -146,7 +146,7 @@ function PanelResults({ results }: { results: ProjectResult[] }) {
 }
 
 const FACT_LABEL_CLASS =
-  "text-white/45 text-[11px] uppercase tracking-[0.18em] font-sans";
+  "text-white/60 text-[12px] uppercase tracking-[0.18em] font-sans";
 
 /**
  * The copy column beside a rollover image. One class for the three panels whose
@@ -281,7 +281,7 @@ function WorkCard({ project, priority }: { project: Project; priority: boolean }
           <span className="rounded-full bg-black/60 px-3 py-1 text-xs text-white/90 backdrop-blur-md">
             {project.cardLabel}
           </span>
-          <span className="rounded-full border border-white/20 bg-black/45 px-3 py-1 text-[10px] uppercase tracking-[0.14em] text-white/75 backdrop-blur-md">
+          <span className="rounded-full border border-white/20 bg-black/45 px-3 py-1 text-[12px] uppercase tracking-[0.14em] text-white/85 backdrop-blur-md">
             {project.status}
           </span>
         </div>
@@ -289,7 +289,7 @@ function WorkCard({ project, priority }: { project: Project; priority: boolean }
       <div className="p-5 sm:p-6">
         <div className="flex items-end justify-between gap-4">
           <div className="min-w-0 flex-1">
-            <p className="text-white/55 text-[11px] uppercase tracking-[0.18em] font-sans">
+            <p className="text-white/60 text-[12px] uppercase tracking-[0.18em] font-sans">
               {homepageEyebrowText(project)}
             </p>
             <p className="mt-1.5 text-white text-lg sm:text-xl font-light font-sans leading-snug">
@@ -301,7 +301,7 @@ function WorkCard({ project, priority }: { project: Project; priority: boolean }
               <p className="metric-figure text-white font-serif leading-none text-3xl sm:text-4xl">
                 {project.cardResult.value}
               </p>
-              <p className="metric-label mt-3.5 text-white/55 text-[10px] uppercase tracking-[0.15em] font-sans max-w-[12ch]">
+              <p className="metric-label mt-3.5 text-white/60 text-[12px] uppercase tracking-[0.15em] font-sans max-w-[12ch]">
                 {project.cardResult.label}
               </p>
             </div>

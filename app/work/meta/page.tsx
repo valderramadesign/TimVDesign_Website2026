@@ -767,6 +767,15 @@ export default function MetaPage() {
             </p>
           </div>
         </div>
+
+        {/* What the chart is measured against, stated once under it. Three
+            different measures share one scale, and the dollar figure belongs
+            to the first of them rather than to the set. */}
+        <p className={cx(CASE_STUDY_SUPPORTING_CLASS, "mt-14 max-w-[900px] text-white/60 lg:mt-[64px]")}>
+          Each row is a separate measure against its own pre-launch baseline, compared over H1
+          2026. The $11M is attributed to the eligibility expansion alone; the awareness and
+          conversion figures are percentage-point gains, not restatements of it.
+        </p>
       </section>
 
       {/* Behind the work. How the change was led, kept one click off the

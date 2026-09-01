@@ -20,7 +20,14 @@ import {
   cx,
 } from "@/components/case-study";
 import teacherWorkingLate from "@/components/images/Teacher'sApp/TeacherWorkingLate.png";
-import { PROJECTS_BY_ID, imageSrc, previewOf } from "@/lib/content";
+import {
+  PROJECTS_BY_ID,
+  SOLO_ANNUAL_HOURS_SAVED,
+  SOLO_TIME_SAVED_ARITHMETIC,
+  SOLO_TIME_SAVED_BASIS,
+  imageSrc,
+  previewOf,
+} from "@/lib/content";
 import { caseStudyMetadata } from "@/lib/seo";
 import {
   IconDraftedSummary,
@@ -118,8 +125,8 @@ const COMPARE_HEADING_CLASS =
    movie. The year is the one that carries the argument; the daily
    number it is built from is stated in full under Impact. */
 const HERO_METRIC = {
-  value: "~524 hours/year",
-  label: "Estimated annual time saved · 2 hrs/day × 262 work days",
+  value: `~${SOLO_ANNUAL_HOURS_SAVED} hours/year`,
+  label: `Estimated annual time saved · ${SOLO_TIME_SAVED_ARITHMETIC}`,
 };
 
 type PanelRow = { Icon: ComponentType<{ className?: string }>; text: string };
@@ -175,8 +182,8 @@ const IMPACT: { label: string; value: string; note: string }[] = [
   },
   {
     label: "Business Impact",
-    value: "~524 staff hours/year returned",
-    note: "At two hours per workday across 262 days, the MVP could redirect approximately 524 hours annually to classroom care and school operations.*",
+    value: `~${SOLO_ANNUAL_HOURS_SAVED} staff hours/year returned`,
+    note: `At ${SOLO_TIME_SAVED_BASIS.hoursPerDay} hours per workday across ${SOLO_TIME_SAVED_BASIS.workDays} days, the MVP could redirect approximately ${SOLO_ANNUAL_HOURS_SAVED} hours annually to classroom care and school operations.*`,
   },
 ];
 

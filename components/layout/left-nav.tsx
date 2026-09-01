@@ -24,7 +24,7 @@ export default function LeftNav({ onHover }: LeftNavProps) {
       {pills(HOMEPAGE_FLAGSHIPS)}
       {HOMEPAGE_EXPERIMENTS.length > 0 && (
         <>
-          <p className="mt-[18px] text-white/45 text-[11px] uppercase tracking-[0.18em] font-sans">
+          <p className="mt-[18px] text-white/60 text-[12px] uppercase tracking-[0.18em] font-sans">
             Experiments
           </p>
           {pills(HOMEPAGE_EXPERIMENTS)}

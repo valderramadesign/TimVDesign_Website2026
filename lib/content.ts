@@ -273,7 +273,11 @@ const PAYPAL_DE_RATENZAHLUNG_TPV: ProjectResult = {
 const PAYPAL_PAY_IN_4_CONVERSION: ProjectResult = {
   value: "2.08\u00d7",
   label: "Pay in 4 completion vs. baseline",
-  detailLabel: "Pay in 4 application completion vs. pre-redesign baseline",
+  /* The comparison is one phrase, so it breaks as one: bound spaces and a
+     non-breaking hyphen keep "vs. pre-redesign baseline" off the first line
+     rather than letting it split after "pre-". */
+  detailLabel:
+    "Pay in 4 application completion vs.\u00a0pre\u2011redesign\u00a0baseline",
   evidence: "Measured",
 };
 const PAYPAL_PORTFOLIO_CONVERSION: ProjectResult = {
@@ -282,12 +286,48 @@ const PAYPAL_PORTFOLIO_CONVERSION: ProjectResult = {
   detailLabel: "Application conversion across 6 products, 51% → 79%",
   evidence: "Measured",
 };
+/**
+ * Scoped to Pay in 4, not the whole credit portfolio. The résumé surfaces read
+ * it from here so the typeset PDF and the site cannot drift apart again.
+ */
+export const PAYPAL_PAY_IN_4_TPV_INCREASE = "65%";
+
 const PAYPAL_TPV_INCREASE: ProjectResult = {
-  value: "67%",
+  value: PAYPAL_PAY_IN_4_TPV_INCREASE,
   label: "Increase in Pay in 4 monthly TPV",
   detailLabel: "Increase in average monthly Pay in 4 TPV",
   evidence: "Measured",
 };
+
+/* ── PayPal credit iRev ──────────────────────────────────
+   The work lifted annual incremental revenue, and each product carried a share
+   of that lift. The shares are the authored figures; every iRev percentage the
+   site shows is rendered as its slice of the total, and the total is summed
+   back from those same slices. The case study, the résumé and the page
+   metadata all read from here, so a product figure and the total beside it can
+   never come from two different sets of numbers. */
+const PAYPAL_ANNUAL_IREV_INCREASE = 25.6;
+
+/** Each product's share of the increase. These sum to 100. */
+export const PAYPAL_IREV_SHARE = {
+  payMonthly: 21.3,
+  payPalCreditUS: 40.31,
+  payPalMastercard: 29.72,
+  payPalCreditUK: 8.67,
+} as const;
+
+/** A share expressed in points of the annual increase, as it is displayed. */
+export const paypalIrevPoints = (share: number) =>
+  Number(((PAYPAL_ANNUAL_IREV_INCREASE * share) / 100).toFixed(2));
+
+/** The parts exactly as they appear on the page, summed. */
+export const PAYPAL_TOTAL_IREV_INCREASE = Number(
+  Object.values(PAYPAL_IREV_SHARE)
+    .reduce((total, share) => total + paypalIrevPoints(share), 0)
+    .toFixed(2),
+);
+
+export const PAYPAL_TOTAL_IREV_TEXT = `${PAYPAL_TOTAL_IREV_INCREASE.toFixed(1)}%`;
 
 const META_CONVERSION: ProjectResult = {
   value: "97%",
@@ -300,9 +340,27 @@ const META_ANNUAL_SAVINGS: ProjectResult = {
   evidence: "Measured",
 };
 
+/* ── Ms. Sunshine time saved ───────────────────────────────
+   The estimate is authored as the two numbers it is made of, and the annual
+   figure is derived. The case study, the résumé panel, the printable résumé
+   and the page metadata all read from here, so the hours and the workdays
+   behind them stay one calculation. */
+export const SOLO_TIME_SAVED_BASIS = {
+  hoursPerDay: 2,
+  workDays: 262,
+} as const;
+
+/** The estimate itself: hours returned across a year. */
+export const SOLO_ANNUAL_HOURS_SAVED =
+  SOLO_TIME_SAVED_BASIS.hoursPerDay * SOLO_TIME_SAVED_BASIS.workDays;
+
+/** The calculation in words, for any surface that shows its working. */
+export const SOLO_TIME_SAVED_ARITHMETIC =
+  `${SOLO_TIME_SAVED_BASIS.hoursPerDay} hrs/day \u00d7 ${SOLO_TIME_SAVED_BASIS.workDays} work days`;
+
 /** An estimate with its arithmetic attached, so a reader can check it. */
 const SOLO_TIME_SAVED: ProjectResult = {
-  value: "524 hrs",
+  value: `${SOLO_ANNUAL_HOURS_SAVED} hrs`,
   label: "Estimated annual time saved",
   evidence: "Estimated",
 };
@@ -418,7 +476,7 @@ export const PROJECTS: Project[] = [
       products: ["Monthly Invoicing"],
     },
     description: [
-      "Card failures and funding gaps can pause campaigns for high-spend advertisers. Monthly Invoicing reduces that risk and Meta’s card-processing costs—a $2.46B annual baseline heading toward $4.2B. Wider adoption saves at least 7.5% of that annually.",
+      "Card failures and funding gaps can pause campaigns for high-spend advertisers. Monthly Invoicing reduces that risk and the cost of card processing—a line that runs $2.46B a year and is heading toward $4.2B. Wider adoption saves at least 7.5% annually.",
     ],
     homepageProblem:
       "Card failures pause high-value campaigns, while card processing costs Meta billions. I designed Monthly Invoicing onboarding to drive adoption, protect advertiser spend, and unlock significant annual savings.",
@@ -615,6 +673,11 @@ for (const project of HOMEPAGE_FLAGSHIPS) {
   if (!project.cardRole || !project.cardScope) {
     throw new Error(`Flagship "${project.id}" needs cardRole and cardScope.`);
   }
+}
+if (PAYPAL_TOTAL_IREV_INCREASE !== PAYPAL_ANNUAL_IREV_INCREASE) {
+  throw new Error(
+    `PayPal's product iRev shares sum to ${PAYPAL_TOTAL_IREV_INCREASE}%, not the authored ${PAYPAL_ANNUAL_IREV_INCREASE}%.`,
+  );
 }
 for (const project of PROJECTS) {
   if (project.status === "Independent concept" && !project.disclaimer) {

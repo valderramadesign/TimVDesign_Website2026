@@ -2,7 +2,12 @@
 
 import { useEffect } from "react";
 
-import { SITE } from "@/lib/content";
+import {
+  PAYPAL_PAY_IN_4_TPV_INCREASE,
+  SITE,
+  SOLO_ANNUAL_HOURS_SAVED,
+  SOLO_TIME_SAVED_ARITHMETIC,
+} from "@/lib/content";
 
 const jb = "var(--font-jetbrains-mono)";
 
@@ -135,7 +140,7 @@ export default function ResumePrintPage() {
             dates="Feb 2026 – Present"
             bullets={[
               "2025–2026 — Planned career break and professional development: deepened expertise in AI-assisted product design workflows across strategy, interface design, prototyping, and app development.",
-              "Designed and developed an AI-powered preschool activity reporting app for Sunshine Little House of Learning, automating real-time parent updates and end-of-day summaries while returning an estimated 480 hours of staff capacity annually (2 hrs/day × 240 school days).",
+              `Designed and developed an AI-powered preschool activity reporting app for Sunshine Little House of Learning, automating real-time parent updates and end-of-day summaries while returning an estimated ${SOLO_ANNUAL_HOURS_SAVED} hours of staff capacity annually (${SOLO_TIME_SAVED_ARITHMETIC}).`,
             ]}
           />
 
@@ -156,7 +161,7 @@ export default function ResumePrintPage() {
             type="FTE"
             dates="Oct 2016 – Apr 2024"
             bullets={[
-              "Modernized PayPal's installment products (top leadership priority) by migrating to UI 4.0 and the Checkout Product System, lifting Pay in 4 application completion to 208% of its pre-redesign baseline and driving a 67% increase in Pay in 4 average monthly TPV; application conversion across all six US and UK credit products rose from 51% to 79%.",
+              `Modernized PayPal's installment products (top leadership priority) by migrating to UI 4.0 and the Checkout Product System, lifting Pay in 4 application completion to 208% of its pre-redesign baseline and driving a ${PAYPAL_PAY_IN_4_TPV_INCREASE} increase in Pay in 4 average monthly TPV; application conversion across all six US and UK credit products rose from 51% to 79%.`,
               "Led design strategy and end-to-end implementation across all German products, driving a 48.78% increase in monthly TPV and 17.33% in annual iRev for Pay in 30 Days, and 14.92% in monthly TPV and 25.44% in annual iRev for PayPal Ratenzahlung; directly contributed to promotion to Lead Designer for Global Installments.",
               "Provided mentorship and strategic guidance to senior designers, introducing scalable, data-informed solutions and process improvements to elevate team-wide design quality and maturity.",
             ]}

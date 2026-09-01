@@ -1,6 +1,11 @@
 "use client";
 
-import { SITE } from "@/lib/content";
+import {
+  PAYPAL_PAY_IN_4_TPV_INCREASE,
+  SITE,
+  SOLO_ANNUAL_HOURS_SAVED,
+  SOLO_TIME_SAVED_ARITHMETIC,
+} from "@/lib/content";
 
 const jb = "var(--font-jetbrains-mono)";
 
@@ -143,7 +148,7 @@ export default function ResumePanel() {
                   &quot;Designed and developed an{` `}
                   <span style={blueHL}>AI-powered preschool activity reporting app</span>{` `}
                   for Sunshine Little House of Learning, automating real-time parent updates and end-of-day summaries while{` `}
-                  <span style={yellowHL}>returning an estimated 480 hours of staff capacity annually</span> (2 hrs/day × 240 school days).&quot;
+                  <span style={yellowHL}>returning an estimated {SOLO_ANNUAL_HOURS_SAVED} hours of staff capacity annually</span> ({SOLO_TIME_SAVED_ARITHMETIC}).&quot;
                   <span className="text-[#fd0]">{`}`}</span>
                 </p>
               </div>
@@ -194,7 +199,7 @@ export default function ResumePanel() {
                   <span className="text-[#fd0]">{`{`}</span>
                   &quot;Modernized PayPal&apos;s installment products, a top-priority leadership initiative, by migrating to UI 4.0 and the Checkout Product System; used{` `}
                   <span style={blueHL}>Figma, ChatGPT, and Claude for research synthesis, UX writing variants, flow critique, and product narrative development</span>,{` `}
-                  <span style={yellowHL}>lifting Pay in 4 application completion to 208% of its pre-redesign baseline and driving a 67% increase in Pay in 4 average monthly TPV</span>; application conversion across all six US and UK credit products rose from 51% to 79%.&quot;
+                  <span style={yellowHL}>lifting Pay in 4 application completion to 208% of its pre-redesign baseline and driving a {PAYPAL_PAY_IN_4_TPV_INCREASE} increase in Pay in 4 average monthly TPV</span>; application conversion across all six US and UK credit products rose from 51% to 79%.&quot;
                   <span className="text-[#fd0]">{`}`}</span>
                 </p>
                 <p className="mb-0">
