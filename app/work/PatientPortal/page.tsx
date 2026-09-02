@@ -341,7 +341,7 @@ export default function PatientPortalPage() {
                 third circle above, which keeps it clear of Content Design.
                 Mobile: the diagram is far too small to hold text, so the
                 caption drops underneath it. */}
-            <p className="mt-6 text-sm font-light leading-snug text-white/60 lg:absolute lg:left-[74.05%] lg:top-[73.14%] lg:mt-0 lg:w-[25.95%] lg:text-[18px] lg:leading-[1.45] lg:text-white">
+            <p className="mt-6 text-sm font-light leading-snug text-white/60 lg:absolute lg:left-[74.05%] lg:top-[73.14%] lg:mt-0 lg:w-[25.95%] lg:text-[18px] lg:leading-[1.45]">
               Used an AI-assisted workflow to synthesize the current-state review, compare three
               navigation models, and build the task-first booking prototype.
             </p>

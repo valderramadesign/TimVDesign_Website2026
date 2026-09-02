@@ -278,10 +278,10 @@ function WorkCard({ project, priority }: { project: Project; priority: boolean }
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
         <div className="absolute left-5 top-5 flex flex-wrap items-center gap-2">
-          <span className="rounded-full bg-black/60 px-3 py-1 text-xs text-white/90 backdrop-blur-md">
+          <span className="rounded-full bg-black/60 px-3 py-1 text-xs text-white/70 backdrop-blur-md">
             {project.cardLabel}
           </span>
-          <span className="rounded-full border border-white/20 bg-black/45 px-3 py-1 text-[12px] uppercase tracking-[0.14em] text-white/85 backdrop-blur-md">
+          <span className="rounded-full border border-white/20 bg-black/45 px-3 py-1 text-[12px] uppercase tracking-[0.14em] text-white/70 backdrop-blur-md">
             {project.status}
           </span>
         </div>
@@ -315,7 +315,7 @@ function WorkCard({ project, priority }: { project: Project; priority: boolean }
             {facts.map((fact) => (
               <div key={fact.label}>
                 <dt className={FACT_LABEL_CLASS}>{fact.label}</dt>
-                <dd className="mt-1 text-white/80 text-sm font-light font-sans leading-snug">
+                <dd className="mt-1 text-white/70 text-sm font-light font-sans leading-snug">
                   {fact.value}
                 </dd>
               </div>
@@ -814,13 +814,13 @@ export default function HomeClient() {
           <footer className="mt-2 flex flex-col gap-2 border-t border-white/10 pt-6 text-sm text-white/60 font-sans">
             <a
               href={`mailto:${SITE.email}`}
-              className="w-fit text-white/90 underline-offset-4 hover:underline"
+              className="w-fit text-white/70 underline-offset-4 hover:underline"
             >
               {SITE.email}
             </a>
             <Link
               href="/resume/print"
-              className="w-fit text-white/90 underline-offset-4 hover:underline"
+              className="w-fit text-white/70 underline-offset-4 hover:underline"
             >
               View full résumé
             </Link>

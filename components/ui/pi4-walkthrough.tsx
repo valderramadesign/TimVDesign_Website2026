@@ -552,7 +552,7 @@ export default function Pi4Walkthrough({ className }: { className?: string }) {
                 }}
               />
               <p
-                className="whitespace-pre-line text-left leading-[1.35] text-white"
+                className="whitespace-pre-line text-left leading-[1.35] text-white/70"
                 style={{ fontFamily: "var(--font-league-spartan)", fontSize: `${NOTE_FONT}cqw` }}
               >
                 {note.text}

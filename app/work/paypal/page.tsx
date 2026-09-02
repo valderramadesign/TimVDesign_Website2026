@@ -678,14 +678,14 @@ export default function PayPal1CaseStudy() {
             <div className="flex w-full flex-col gap-8 lg:gap-[46px]">
               <div className="flex w-full lg:w-[200px] flex-col gap-[17px] text-white">
                 <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">2.3%</p>
-                <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
+                <p className="metric-label text-sm lg:text-[18px] font-light leading-none text-white/60">
                   Increase in conversion
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
               <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
                 <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">{irevPoints(IREV_SHARE.payMonthly).toFixed(2)}%</p>
-                <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
+                <p className="metric-label text-sm lg:text-[18px] font-light leading-none text-white/60">
                   Contribution to annual iRev increase
                 </p>
               </div>
@@ -729,14 +729,14 @@ export default function PayPal1CaseStudy() {
             <div className="flex w-full flex-col gap-8 lg:gap-[46px]">
               <div className="flex w-full lg:w-[200px] flex-col gap-[17px] text-white">
                 <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">6.3%</p>
-                <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
+                <p className="metric-label text-sm lg:text-[18px] font-light leading-none text-white/60">
                   Increase in conversion
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
               <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
                 <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">{irevPoints(IREV_SHARE.payPalCreditUS).toFixed(2)}%</p>
-                <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
+                <p className="metric-label text-sm lg:text-[18px] font-light leading-none text-white/60">
                   Contribution to annual iRev increase
                 </p>
               </div>
@@ -760,14 +760,14 @@ export default function PayPal1CaseStudy() {
             <div className="flex w-full flex-col gap-8 lg:gap-[46px]">
               <div className="flex w-full lg:w-[200px] flex-col gap-[17px] text-white">
                 <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">3.1%</p>
-                <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
+                <p className="metric-label text-sm lg:text-[18px] font-light leading-none text-white/60">
                   Increase in conversion
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
               <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
                 <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">{irevPoints(IREV_SHARE.payPalMastercard).toFixed(2)}%</p>
-                <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
+                <p className="metric-label text-sm lg:text-[18px] font-light leading-none text-white/60">
                   Contribution to annual iRev increase
                 </p>
               </div>
@@ -811,14 +811,14 @@ export default function PayPal1CaseStudy() {
             <div className="flex w-full flex-col gap-8 lg:gap-[46px]">
               <div className="flex w-full lg:w-[200px] flex-col gap-[17px] text-white">
                 <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">5.3%</p>
-                <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
+                <p className="metric-label text-sm lg:text-[18px] font-light leading-none text-white/60">
                   Increase in conversion
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
               <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
                 <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">{irevPoints(IREV_SHARE.payPalCreditUK).toFixed(2)}%</p>
-                <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
+                <p className="metric-label text-sm lg:text-[18px] font-light leading-none text-white/60">
                   Contribution to annual iRev increase
                 </p>
               </div>
@@ -842,14 +842,14 @@ export default function PayPal1CaseStudy() {
             <div className="flex w-full flex-col gap-8 lg:gap-[46px]">
               <div className="flex w-full lg:w-[200px] flex-col gap-[17px] text-white">
                 <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">78%</p>
-                <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
+                <p className="metric-label text-sm lg:text-[18px] font-light leading-none text-white/60">
                   Increase in conversion
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
               <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
                 <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">37%</p>
-                <p className="metric-label text-sm lg:text-[18px] font-light leading-none">
+                <p className="metric-label text-sm lg:text-[18px] font-light leading-none text-white/60">
                   Increase in average monthly TPV
                 </p>
               </div>

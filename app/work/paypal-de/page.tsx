@@ -126,7 +126,7 @@ export default function PayPalDePage() {
                 below. The measure is capped so it stops widening past a
                 readable line on large displays. Mobile: the diagram is far too
                 small to hold text, so the caption drops underneath it. */}
-            <p className="mt-6 text-sm font-light leading-snug text-white/60 lg:absolute lg:bottom-[9%] lg:right-[1%] lg:mt-0 lg:w-[47%] lg:max-w-[620px] lg:text-[18px] lg:leading-[1.45] lg:text-white">
+            <p className="mt-6 text-sm font-light leading-snug text-white/60 lg:absolute lg:bottom-[9%] lg:right-[1%] lg:mt-0 lg:w-[47%] lg:max-w-[620px] lg:text-[18px] lg:leading-[1.45]">
               AI accelerated discovery synthesis, early concepts, and working prototypes. The
               repeatable system was the shared trust rules, PayPal&rsquo;s UI and checkout
               frameworks, cross-functional review loop, customer testing, and{" "}

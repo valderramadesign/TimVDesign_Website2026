@@ -244,7 +244,7 @@ export default function DoorDashDashboardCaseStudy() {
             style={{ fontFamily: leagueSpartan }}
           >
             <div className="pointer-events-auto flex flex-col gap-6 lg:gap-8">
-              <p className="text-sm lg:text-[18px] font-light">What Changed.</p>
+              <p className="text-sm lg:text-[18px] font-light text-white/60">What Changed.</p>
               <ul className="ml-[24px] flex list-disc flex-col gap-3 lg:gap-[18px] text-base lg:text-[22px] font-light leading-[1.5] lg:leading-[1.4]">
                 <li>
                   Prioritized issues by urgency and impact instead of giving every
@@ -333,7 +333,7 @@ export default function DoorDashDashboardCaseStudy() {
                 third circle above, which keeps it clear of Content Design.
                 Mobile: the diagram is far too small to hold text, so the
                 caption drops underneath it. */}
-            <p className="mt-6 text-sm font-light leading-snug text-white/60 lg:absolute lg:left-[73.62%] lg:top-[73.14%] lg:mt-0 lg:w-[26.38%] lg:text-[clamp(12px,1.23cqw,18px)] lg:leading-[1.45] lg:text-white">
+            <p className="mt-6 text-sm font-light leading-snug text-white/60 lg:absolute lg:left-[73.62%] lg:top-[73.14%] lg:mt-0 lg:w-[26.38%] lg:text-[clamp(12px,1.23cqw,18px)] lg:leading-[1.45]">
               Used ChatGPT to structure discovery, Figma to iterate, and Claude Code to
               prototype&mdash;turning scattered signals into an actionable dashboard.
             </p>

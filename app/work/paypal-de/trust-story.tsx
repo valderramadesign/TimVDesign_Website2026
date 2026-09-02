@@ -1601,7 +1601,9 @@ function ProductImpact({
           {metrics.map((metric) => (
             <div key={metric.label}>
               <p className={cx(CASE_STUDY_METRIC_VALUE_CLASS, "text-white")}>{metric.value}</p>
-              <p className={cx(CASE_STUDY_METRIC_LABEL_CLASS, "text-white/60")}>{metric.label}</p>
+              <p className={cx(CASE_STUDY_METRIC_LABEL_CLASS, "text-white/60")}>
+                {metric.label}
+              </p>
             </div>
           ))}
         </div>
@@ -1687,6 +1689,28 @@ function ImpactSection() {
           ]}
         />
       </div>
+      {/* One note for both products: the four figures are qualified the same
+          way, so it is written once, under the pair. Set like the paragraph
+          under the workflow diagram — supporting scale at white/70, the site's
+          voice for a line that qualifies rather than asserts — and held in the
+          column the phone stands in rather than run across the full width. The
+          spacer mirrors the copy column above it, so the note tracks the phone
+          at every width instead of guessing at an offset. */}
+      <Reveal className="mt-10 flex lg:mt-[46px] lg:gap-[62px]">
+        <div aria-hidden className="hidden lg:block lg:w-[688px] lg:flex-initial" />
+        <aside
+          role="note"
+          aria-label="Measurement context"
+          className={cx(
+            CASE_STUDY_SUPPORTING_CLASS,
+            "w-full min-w-0 text-white/70 lg:min-w-[340px] lg:flex-1",
+          )}
+        >
+          Both products were created from 0→1, so no pre-product baseline exists. The results
+          shown here compare performance following the latest redesign with each product’s
+          preceding live&nbsp;version.
+        </aside>
+      </Reveal>
     </section>
   );
 }

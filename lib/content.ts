@@ -372,7 +372,7 @@ export const PROJECTS: Project[] = [
     caseStudyHeadline: "Building Trust Through Responsible Credit",
     company: "PayPal",
     status: "Shipped",
-    role: "Led the 0→1 design of two German PayPal credit products on one bet: adoption grows when credit is easier to understand and control—not more persuasive. Monthly TPV rose 48.78% for Pay in 30 and 14.92% for Ratenzahlung.",
+    role: "Led the 0→1 design and continued evolution of Pay in 30 Days and PayPal Ratenzahlung—two credit products that did not previously exist at PayPal Germany. Following the latest redesign, monthly TPV increased 48.78% for Pay in 30 Days and 14.92% for Ratenzahlung compared with their previous production versions.",
     scope: {
       platforms: ["Mobile & desktop"],
       products: ["Pay in 30 Days", "PayPal Ratenzahlung"],
