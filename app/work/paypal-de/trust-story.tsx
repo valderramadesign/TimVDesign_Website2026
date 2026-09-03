@@ -483,7 +483,7 @@ const CHAPTERS: Chapter[] = [
     question: "Why did flexibility require four pages?",
     questionLines: ["Why did flexibility", "require four pages?"],
     response:
-      "I consolidated four application pages into one—removing navigation, not essential\u00a0terms.",
+      "I consolidated three application pages into one by aligning with my checkout partner to surface installment options earlier and streamline terms behind\u00a0links.",
   },
   {
     term: "transparency",
