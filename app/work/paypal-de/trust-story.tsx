@@ -30,8 +30,9 @@ import payIn30DaysPhone from "@/components/images/PayPal DE/v1-PayIn30Days/paypa
 import ratenzahlungPhone from "@/components/images/PayPal DE/v1-Ratenzahlung/paypal-ratenzahlung-status-bar-iphone-17-pro-max-deep-blue.png";
 import macbookCheckout from "@/components/images/PayPal DE/v1-Ratenzahlung/macbook-paypal-german-commercial-glass-table-v2-4k.png";
 import legacyApplicationPhoneRow from "@/components/images/PayPal DE/v1-Ratenzahlung/paypal_de_v1_android_s26_ultra_five_phone_row.png";
-import redesignedApplicationPhoneFan from "@/components/images/PayPal DE/v1-Ratenzahlung/paypal_de_v6_iphone17_three_phone_fan.png";
-import transparentCheckoutPhoneFan from "@/components/images/PayPal DE/v1-PayIn30Days/iphone17_checkout_three_phone_fan_v7png.png";
+import redesignedApplicationPhoneFan from "@/components/images/PayPal DE/paypal_de_iphone17_white_three_phone_fan_tight.png";
+import payIn30DaysConfirmPhone from "@/components/images/PayPal DE/v1-PayIn30Days/paypal-pay-in-30-days-confirm-iphone-17-pro-max-cosmic-orange.png";
+import ratenzahlungReviewPhone from "@/components/images/PayPal DE/v1-Ratenzahlung/paypal-ratenzahlung-binding-request-iphone-17-pro-max-deep-blue.png";
 import snoozePaymentPhoneRow from "@/components/images/PayPal DE/v1-PayIn30Days/iphone17_five_phone_row_v6.png";
 import demoCheckout from "@/components/images/PayPal DE/v1-Ratenzahlung/Ratenzahlung Prototype Movie/Clean/Ratenzahlung 0.png";
 import demoTerms from "@/components/images/PayPal DE/v1-Ratenzahlung/Ratenzahlung Prototype Movie/Clean/Ratenzahlung 1.png";
@@ -490,11 +491,6 @@ const CHAPTERS: Chapter[] = [
     question: "What am I agreeing to?",
     response:
       "Customers saw every option and estimated cost in checkout, with full terms before\u00a0commitment.",
-    /* The transparent margin the PNG carries, so the copy ends on the phone's
-       own edge and not on the file's. Below `lg` the figure is measured by the
-       card rather than pinned, so the same inset is stated as its share: 26 of
-       the 555px it draws at. */
-    textClassName: "pr-[4.7%] lg:pr-[26px]",
   },
   {
     term: "control",
@@ -550,18 +546,26 @@ function ChapterFigure({
   registerFrictionImage?: FrictionImageRegistrar;
 }) {
   if (term === "transparency") {
-    /* The box is held to the file's own 555 ÷ 430 ratio — pinned to the size
-       it draws at from `lg`, measured by the card below that — so it never
-       letterboxes and the copy above it has no dead space to guess at. */
+    /* The same two phones the flexibility stop opens on, carried forward to the
+       screen each path ends at: what the money actually costs, stated in full
+       before the button that commits to it. Sized and spaced to match that pair
+       exactly, so the reel reads as one pair of products moving forward rather
+       than a new artefact. */
     return (
-      <div className="relative aspect-[555/430] w-full lg:aspect-auto lg:h-[430px] lg:w-[555px]">
+      <div className="flex items-end gap-4 lg:gap-[24px]">
         <Image
-          src={transparentCheckoutPhoneFan}
-          alt="Three iPhones showing the redesigned PayPal checkout: every payment option and its cost visible before choosing, and the loan terms surfaced at the review step just before confirming."
-          fill
-          sizes="(max-width: 1024px) 560px, 680px"
+          src={payIn30DaysConfirmPhone}
+          alt="The Pay in 30 Days review screen on an iPhone, with the autopay date, the order total, and the loan authorization stated above a button that pays 300,00€ on 27 June 2026."
+          sizes="(max-width: 1024px) 100px, 169px"
           quality={100}
-          className="object-contain"
+          className="block h-auto w-[100px] shrink-0 lg:w-[169px]"
+        />
+        <Image
+          src={ratenzahlungReviewPhone}
+          alt="The PayPal Ratenzahlung review screen on an iPhone, breaking out the monthly installment, the transaction amount, the interest, and the total before the button that makes a binding request."
+          sizes="(max-width: 1024px) 100px, 169px"
+          quality={100}
+          className="block h-auto w-[100px] shrink-0 lg:w-[169px]"
         />
       </div>
     );
@@ -624,7 +628,7 @@ function ChapterFigure({
       <Image
         ref={(node) => registerFrictionImage?.("after", node)}
         src={redesignedApplicationPhoneFan}
-        alt="Three iPhones fanned out, showing the redesigned Ratenzahlung application as a single page."
+        alt="Three iPhones fanned out, showing the redesigned Ratenzahlung application: the offer and its full cost chosen in checkout, one page of details to confirm with the terms and credit check behind links, and the approved loan ready for a binding request."
         fill
         sizes="(max-width: 1024px) 560px, 680px"
         quality={100}
