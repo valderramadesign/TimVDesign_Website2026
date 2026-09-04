@@ -290,7 +290,7 @@ const PAYPAL_PORTFOLIO_CONVERSION: ProjectResult = {
  * Scoped to Pay in 4, not the whole credit portfolio. The résumé surfaces read
  * it from here so the typeset PDF and the site cannot drift apart again.
  */
-export const PAYPAL_PAY_IN_4_TPV_INCREASE = "65%";
+export const PAYPAL_PAY_IN_4_TPV_INCREASE = "67%";
 
 const PAYPAL_TPV_INCREASE: ProjectResult = {
   value: PAYPAL_PAY_IN_4_TPV_INCREASE,
@@ -300,34 +300,17 @@ const PAYPAL_TPV_INCREASE: ProjectResult = {
 };
 
 /* ── PayPal credit iRev ──────────────────────────────────
-   The work lifted annual incremental revenue, and each product carried a share
-   of that lift. The shares are the authored figures; every iRev percentage the
-   site shows is rendered as its slice of the total, and the total is summed
-   back from those same slices. The case study, the résumé and the page
-   metadata all read from here, so a product figure and the total beside it can
-   never come from two different sets of numbers. */
-const PAYPAL_ANNUAL_IREV_INCREASE = 25.6;
-
-/** Each product's share of the increase. These sum to 100. */
-export const PAYPAL_IREV_SHARE = {
-  payMonthly: 21.3,
-  payPalCreditUS: 40.31,
-  payPalMastercard: 29.72,
-  payPalCreditUK: 8.67,
+   Annual incremental revenue for each product, measured against that product's
+   own preceding annual baseline. They are independent product results, not
+   slices of one portfolio figure: they are not shares, and they do not sum to
+   a total. Authored here so the case study, the résumé and the page metadata
+   read the same set of numbers. */
+export const PAYPAL_PRODUCT_IREV = {
+  payMonthly: 5.45,
+  payPalCreditUS: 10.32,
+  payPalMastercard: 7.61,
+  payPalCreditUK: 2.22,
 } as const;
-
-/** A share expressed in points of the annual increase, as it is displayed. */
-export const paypalIrevPoints = (share: number) =>
-  Number(((PAYPAL_ANNUAL_IREV_INCREASE * share) / 100).toFixed(2));
-
-/** The parts exactly as they appear on the page, summed. */
-export const PAYPAL_TOTAL_IREV_INCREASE = Number(
-  Object.values(PAYPAL_IREV_SHARE)
-    .reduce((total, share) => total + paypalIrevPoints(share), 0)
-    .toFixed(2),
-);
-
-export const PAYPAL_TOTAL_IREV_TEXT = `${PAYPAL_TOTAL_IREV_INCREASE.toFixed(1)}%`;
 
 const META_CONVERSION: ProjectResult = {
   value: "97%",
@@ -673,11 +656,6 @@ for (const project of HOMEPAGE_FLAGSHIPS) {
   if (!project.cardRole || !project.cardScope) {
     throw new Error(`Flagship "${project.id}" needs cardRole and cardScope.`);
   }
-}
-if (PAYPAL_TOTAL_IREV_INCREASE !== PAYPAL_ANNUAL_IREV_INCREASE) {
-  throw new Error(
-    `PayPal's product iRev shares sum to ${PAYPAL_TOTAL_IREV_INCREASE}%, not the authored ${PAYPAL_ANNUAL_IREV_INCREASE}%.`,
-  );
 }
 for (const project of PROJECTS) {
   if (project.status === "Independent concept" && !project.disclaimer) {

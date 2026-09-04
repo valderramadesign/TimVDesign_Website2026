@@ -49,11 +49,8 @@ import {
   cx,
 } from "@/components/case-study";
 import {
-  PAYPAL_IREV_SHARE,
-  PAYPAL_TOTAL_IREV_INCREASE,
-  PAYPAL_TOTAL_IREV_TEXT,
+  PAYPAL_PRODUCT_IREV,
   PROJECTS_BY_ID,
-  paypalIrevPoints,
   previewOf,
 } from "@/lib/content";
 import { caseStudyMetadata } from "@/lib/seo";
@@ -65,18 +62,15 @@ const nextSolo = PROJECTS_BY_ID.solo;
 const nextSoloPreview = previewOf(nextSolo);
 
 /* ── iRev ────────────────────────────────────────────────────────────────
-   Every iRev percentage on the page is a slice of one annual increase, and the
-   total is those slices summed. Both live in lib/content.ts, so the product
-   sections, the Overall Impact cards, this page's metadata and the résumé are
-   all reading the same set of numbers. Aliased here for the markup below. */
-const IREV_SHARE = PAYPAL_IREV_SHARE;
-const irevPoints = paypalIrevPoints;
-const TOTAL_IREV_INCREASE = PAYPAL_TOTAL_IREV_INCREASE;
-const TOTAL_IREV_TEXT = PAYPAL_TOTAL_IREV_TEXT;
+   Each product's annual incremental revenue against its own preceding annual
+   baseline. They live in lib/content.ts, so the product sections, the Overall
+   Impact cards and the résumé are all reading the same set of numbers.
+   Aliased here for the markup below. */
+const PRODUCT_IREV = PAYPAL_PRODUCT_IREV;
 
 export const metadata = caseStudyMetadata(
   project,
-  `Redesigning six US and UK PayPal credit products for the new checkout framework — cutting the Pay in 4 funnel from three steps to one and contributing to a ~${TOTAL_IREV_TEXT} increase in annual incremental revenue.`,
+  "Redesigning six US and UK PayPal credit products for the new checkout framework — cutting the Pay in 4 funnel from three steps to one, doubling application completion and lifting conversion across the portfolio from 51% to 79%.",
 );
 
 const leagueSpartan = "var(--font-league-spartan)";
@@ -111,18 +105,18 @@ const CREDIT_PORTFOLIO = [
 /* ── Overall Impact ──────────────────────────────────────────────────────
    The two rows are authored as data and rendered through one shared column
    template, so a UK card always sits under the US card it belongs with. The
-   iRev figures come from IREV_SHARE, so they always add up to the total
-   stated beside them. TPV is volume, not revenue, and stands on its own. */
+   iRev figures come from PRODUCT_IREV, each one measured against that
+   product's own baseline. TPV is volume, not revenue, and stands on its own. */
 const US_CREDIT_IMPACT = [
   { art: cardArtPayIn4, product: "Pay in 4", amount: 67, decimals: 0, label: "TPV" },
-  { art: cardArtPayMonthly, product: "Pay Monthly", amount: irevPoints(IREV_SHARE.payMonthly), decimals: 2, label: "iRev" },
-  { art: cardArtPayPalCredit, product: "PayPal Credit", amount: irevPoints(IREV_SHARE.payPalCreditUS), decimals: 2, label: "iRev" },
-  { art: cardArtPayPalMastercard, product: "PayPal Mastercard", amount: irevPoints(IREV_SHARE.payPalMastercard), decimals: 2, label: "iRev" },
+  { art: cardArtPayMonthly, product: "Pay Monthly", amount: PRODUCT_IREV.payMonthly, decimals: 2, label: "iRev" },
+  { art: cardArtPayPalCredit, product: "PayPal Credit", amount: PRODUCT_IREV.payPalCreditUS, decimals: 2, label: "iRev" },
+  { art: cardArtPayPalMastercard, product: "PayPal Mastercard", amount: PRODUCT_IREV.payPalMastercard, decimals: 2, label: "iRev" },
 ];
 
 const UK_CREDIT_IMPACT = [
   { art: cardArtPayIn3, product: "Pay in 3", amount: 37, decimals: 0, label: "TPV" },
-  { art: cardArtPayPalCredit, product: "PayPal Credit", amount: irevPoints(IREV_SHARE.payPalCreditUK), decimals: 2, label: "iRev" },
+  { art: cardArtPayPalCredit, product: "PayPal Credit", amount: PRODUCT_IREV.payPalCreditUK, decimals: 2, label: "iRev" },
 ];
 
 /*
@@ -684,9 +678,9 @@ export default function PayPal1CaseStudy() {
               </div>
               <div className="h-px w-full bg-white/25" />
               <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
-                <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">{irevPoints(IREV_SHARE.payMonthly).toFixed(2)}%</p>
+                <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">{PRODUCT_IREV.payMonthly.toFixed(2)}%</p>
                 <p className="metric-label text-sm lg:text-[18px] font-light leading-none text-white/60">
-                  Contribution to annual iRev increase
+                  Increase in annual iRev
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
@@ -735,9 +729,9 @@ export default function PayPal1CaseStudy() {
               </div>
               <div className="h-px w-full bg-white/25" />
               <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
-                <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">{irevPoints(IREV_SHARE.payPalCreditUS).toFixed(2)}%</p>
+                <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">{PRODUCT_IREV.payPalCreditUS.toFixed(2)}%</p>
                 <p className="metric-label text-sm lg:text-[18px] font-light leading-none text-white/60">
-                  Contribution to annual iRev increase
+                  Increase in annual iRev
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
@@ -766,9 +760,9 @@ export default function PayPal1CaseStudy() {
               </div>
               <div className="h-px w-full bg-white/25" />
               <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
-                <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">{irevPoints(IREV_SHARE.payPalMastercard).toFixed(2)}%</p>
+                <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">{PRODUCT_IREV.payPalMastercard.toFixed(2)}%</p>
                 <p className="metric-label text-sm lg:text-[18px] font-light leading-none text-white/60">
-                  Contribution to annual iRev increase
+                  Increase in annual iRev
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
@@ -817,9 +811,9 @@ export default function PayPal1CaseStudy() {
               </div>
               <div className="h-px w-full bg-white/25" />
               <div className="flex w-full lg:w-[408px] flex-col gap-[17px] text-white">
-                <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">{irevPoints(IREV_SHARE.payPalCreditUK).toFixed(2)}%</p>
+                <p className="metric-figure font-serif text-[clamp(44px,12vw,72px)] lg:text-[72px] font-normal leading-none">{PRODUCT_IREV.payPalCreditUK.toFixed(2)}%</p>
                 <p className="metric-label text-sm lg:text-[18px] font-light leading-none text-white/60">
-                  Contribution to annual iRev increase
+                  Increase in annual iRev
                 </p>
               </div>
               <div className="h-px w-full bg-white/25" />
@@ -916,41 +910,24 @@ export default function PayPal1CaseStudy() {
                   label={metric.label}
                 />
               ))}
-              {/* Four across, the total takes the last column so it reads under
-                  PayPal Mastercard, level with the cards; two across, it drops
-                  to the column under Pay in 3. Every cell hangs off the row's
-                  bottom edge, so this gap is what lands the label on the same
-                  line as the product names beside it: their figures stand 64px
-                  tall and sit 14px below their label, this one stands 72px and
-                  so needs 6px. A label that wraps in a narrow column then grows
-                  upward off that line instead of pushing the figure down. */}
-              <div className="flex w-full flex-col items-start gap-3 text-white xl:col-start-4 xl:gap-[6px]">
-                <p className={CASE_STUDY_BODY_CLASS}>Total annual iRev increase</p>
-                <CounterNumber
-                  to={TOTAL_IREV_INCREASE}
-                  prefix=""
-                  suffix="%"
-                  decimals={1}
-                  className="font-serif text-[clamp(56px,14vw,96px)] lg:text-[96px] font-normal leading-[1] lg:leading-[72px] tracking-[-0.96px] whitespace-nowrap"
-                />
-              </div>
             </div>
           </div>
         </div>
 
         {/* What the two kinds of figure above actually measure, stated once
-            under them, so a reader does not add a share to a volume. It hangs
-            off the right edge under the total it qualifies, since the 25.6% is
-            the figure the first sentence is about. */}
+            under them, so a reader does not read a volume as revenue or add
+            the cards together. It sets against the left edge under the cards
+            it qualifies, on the same measure as the headings above it. */}
         <p
           className={cx(
             CASE_STUDY_SUPPORTING_CLASS,
-            "mt-14 ml-auto max-w-[900px] text-white/60 lg:mt-[64px] lg:text-right",
+            "mt-14 max-w-[900px] text-white/60 lg:mt-[64px]",
           )}
         >
-          Each iRev figure is that product&rsquo;s share of the {TOTAL_IREV_TEXT} annual
-          increase rather than an independent gain; the TPV figures are payment volume, not
-          revenue. The portfolio rows below measure the 2023 baseline against H1 2024.
+          Every product figure is a change against that product&rsquo;s preceding annual
+          baseline — independent results, not shares of a portfolio total. iRev is annual
+          incremental revenue; TPV is payment volume. The portfolio rows below measure the
+          2023 baseline against H1 2024.
         </p>
 
         {/* The rule now closes the cards and their note rather than halving a
