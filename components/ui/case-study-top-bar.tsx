@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import ContactLine from "@/components/ui/contact-line";
 import Logo from "@/components/ui/logo";
 
 const barClasses =
@@ -49,9 +50,14 @@ export default function CaseStudyTopBar() {
       >
         Home
       </Link>
-      <Link href="/" aria-label="Timothy Valderrama — home">
-        <Logo />
-      </Link>
+      <div className="flex items-center gap-[24px]">
+        <Link href="/" aria-label="Timothy Valderrama — home">
+          <Logo />
+        </Link>
+        {/* Same line the homepage header carries. Below `lg` the bar is only
+            wide enough for the pill and the mark, so the footer takes it. */}
+        <ContactLine className="hidden lg:block" />
+      </div>
     </>
   );
 

@@ -68,6 +68,7 @@ const structuredData = {
       name: SITE.name,
       url: SITE.url,
       email: `mailto:${SITE.email}`,
+      telephone: SITE.phoneTel,
       jobTitle: "Lead Product Designer",
       description: SITE.shortBio,
       address: {

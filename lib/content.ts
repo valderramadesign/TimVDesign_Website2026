@@ -48,6 +48,13 @@ export const SITE = {
   url: "https://tim-ai-design.com",
   email: "valderramadesign@gmail.com",
   /**
+   * Written the way it is read aloud; `phoneTel` is the dialable form a
+   * `tel:` href needs. Both live here so the chrome, the footers and the
+   * structured data quote one number.
+   */
+  phone: "415.685.3878",
+  phoneTel: "+14156853878",
+  /**
    * The résumé as it should leave the site: the typeset PDF is the print and
    * download artefact, so every PRINT affordance opens this rather than
    * printing the HTML page, which is only the readable web version.

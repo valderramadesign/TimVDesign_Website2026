@@ -818,6 +818,12 @@ export default function HomeClient() {
             >
               {SITE.email}
             </a>
+            <a
+              href={`tel:${SITE.phoneTel}`}
+              className="w-fit text-white/70 underline-offset-4 hover:underline"
+            >
+              {SITE.phone}
+            </a>
             <Link
               href="/resume/print"
               className="w-fit text-white/70 underline-offset-4 hover:underline"

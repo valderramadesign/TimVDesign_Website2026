@@ -94,7 +94,7 @@ export default function ResumePrintPage() {
           <div style={{ fontSize: 22, fontWeight: "bold", marginBottom: 4 }}>{SITE.name}</div>
           <div style={{ fontSize: 11, marginBottom: 4 }}>{SITE.resumeTitle}</div>
           <div style={{ fontSize: 10, color: "#444" }}>
-            {SITE.email} &nbsp;·&nbsp; {SITE.url.replace(/^https?:\/\//, "")} &nbsp;·&nbsp; {SITE.location}
+            {SITE.email} &nbsp;·&nbsp; {SITE.phone} &nbsp;·&nbsp; {SITE.url.replace(/^https?:\/\//, "")} &nbsp;·&nbsp; {SITE.location}
           </div>
         </div>
 
