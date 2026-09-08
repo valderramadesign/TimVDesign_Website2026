@@ -42,9 +42,9 @@ export const SITE = {
    * ahead of the practice it supports.
    */
   resumeSummaryLead:
-    "Lead Product Designer with 9+ years of experience turning complex, regulated workflows into scalable products that improve adoption, revenue, and customer trust.",
+    "Lead Product Designer with 9+ years turning complex, regulated workflows into products that grow adoption, revenue, and trust.",
   resumeSummaryDetail:
-    "I lead strategy through delivery, align cross-functional teams, and use AI-assisted workflows to accelerate research, iteration, and prototyping.",
+    "I lead strategy through delivery and use AI-assisted workflows to speed research, iteration, and prototyping.",
   url: "https://tim-ai-design.com",
   email: "valderramadesign@gmail.com",
   /**

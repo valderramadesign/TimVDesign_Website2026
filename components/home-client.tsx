@@ -445,7 +445,7 @@ export default function HomeClient() {
               key="resume-panel"
               className="shrink-0 overflow-hidden"
               initial={{ width: 0 }}
-              animate={{ width: 717 }}
+              animate={{ width: "66.6667vw" }}
               exit={{ width: 0 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             >
