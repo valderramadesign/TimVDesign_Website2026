@@ -24,9 +24,9 @@ export default function Header({ onResumeToggle, resumeOpen }: HeaderProps) {
       </button>
       <div className="flex items-center gap-[24px]">
         <Logo />
-        {/* This header only ever renders in the desktop tree, so the line
-            always has room to sit on one row. */}
-        <ContactLine />
+        {/* Hidden while the résumé is open, since the panel already carries
+            the same contact details. */}
+        {!resumeOpen && <ContactLine />}
       </div>
     </header>
   );

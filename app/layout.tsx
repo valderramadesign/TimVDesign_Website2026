@@ -23,7 +23,7 @@ const ptSerif = PT_Serif({
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "600"],
   variable: "--font-jetbrains-mono",
 });
 
