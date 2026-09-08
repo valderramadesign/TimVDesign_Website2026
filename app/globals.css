@@ -166,6 +166,19 @@ html[data-theme="day"] .theme-site .border-white\/15 { border-color: rgb(9 9 9 /
 html[data-theme="day"] .theme-site .border-white\/12 { border-color: rgb(9 9 9 / 0.12) !important; }
 html[data-theme="day"] .theme-site .border-white\/10 { border-color: var(--day-rule) !important; }
 
+.screen-hairline {
+  --hairline-color: rgb(255 255 255 / 0.1);
+  filter:
+    drop-shadow(1px 0 0 var(--hairline-color))
+    drop-shadow(-1px 0 0 var(--hairline-color))
+    drop-shadow(0 1px 0 var(--hairline-color))
+    drop-shadow(0 -1px 0 var(--hairline-color));
+}
+html[data-theme="day"] .theme-site .screen-hairline { --hairline-color: var(--day-rule) !important; }
+
+html[data-theme="day"] .theme-site .bg-white\/25,
+html[data-theme="day"] .theme-site .bg-white\/15 { background-color: var(--day-rule) !important; }
+
 html[data-theme="day"] .theme-site .bg-white\/\[0\.04\],
 html[data-theme="day"] .theme-site .bg-white\/\[0\.03\],
 html[data-theme="day"] .theme-site .bg-white\/5,

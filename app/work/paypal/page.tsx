@@ -693,7 +693,7 @@ export default function PayPal1CaseStudy() {
               width={1333}
               height={852}
               sizes="(max-width: 1024px) 100vw, 1333px"
-              className="block w-full h-auto lg:w-[1333px]"
+              className="block w-full h-auto screen-hairline lg:w-[1333px]"
             />
           </ScrollFade>
         </div>
@@ -709,7 +709,7 @@ export default function PayPal1CaseStudy() {
               width={1333}
               height={932}
               sizes="(max-width: 1024px) 100vw, 1333px"
-              className="block w-full h-auto lg:w-[1333px]"
+              className="block w-full h-auto screen-hairline lg:w-[1333px]"
             />
           </ScrollFade>
           <ScrollFade
@@ -775,7 +775,7 @@ export default function PayPal1CaseStudy() {
               width={1333}
               height={852}
               sizes="(max-width: 1024px) 100vw, 1333px"
-              className="block w-full h-auto lg:w-[1333px]"
+              className="block w-full h-auto screen-hairline lg:w-[1333px]"
             />
           </ScrollFade>
         </div>
@@ -791,7 +791,7 @@ export default function PayPal1CaseStudy() {
               width={1333}
               height={852}
               sizes="(max-width: 1024px) 100vw, 1333px"
-              className="block w-full h-auto lg:w-[1333px]"
+              className="block w-full h-auto screen-hairline lg:w-[1333px]"
             />
           </ScrollFade>
           <ScrollFade
@@ -857,7 +857,7 @@ export default function PayPal1CaseStudy() {
               width={842}
               height={852}
               sizes="(max-width: 1024px) 100vw, 842px"
-              className="block w-full h-auto lg:w-[842px]"
+              className="block w-full h-auto screen-hairline lg:w-[842px]"
             />
           </ScrollFade>
         </div>
