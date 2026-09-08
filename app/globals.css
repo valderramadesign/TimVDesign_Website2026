@@ -105,6 +105,185 @@ html, body {
  */
 :root {
   --rollover-band: calc(81.5vh - 214px);
+
+  /* Warm day palette shared with Presentation9_2026. */
+  --day-bg: #f5f2eb;
+  --day-paper: #fbf9f5;
+  --day-edge: #e9e4da;
+  --day-ink: #090909;
+  --day-ink-2: #4e4941;
+  --day-ink-3: #8a8477;
+  --day-rule: #d9d3c6;
+  --day-blue: #0070e0;
+  --day-sun: #f2b705;
+  --day-terra: #c25b2b;
+  --day-chartreuse: #b4c615;
+}
+
+html,
+body,
+.theme-site {
+  transition: background-color 260ms ease, color 260ms ease;
+}
+
+html[data-theme="day"] body,
+html[data-theme="day"] .theme-site {
+  background-color: var(--day-bg) !important;
+  color: var(--day-ink) !important;
+}
+
+html[data-theme="day"] .theme-site .bg-black,
+html[data-theme="day"] .theme-site.bg-black {
+  background-color: var(--day-bg) !important;
+}
+
+html[data-theme="day"] .theme-site .text-white,
+html[data-theme="day"] .theme-site.text-white {
+  color: var(--day-ink) !important;
+}
+
+html[data-theme="day"] .theme-site .text-white\/90 { color: rgb(9 9 9 / 0.9) !important; }
+html[data-theme="day"] .theme-site .text-white\/85 { color: rgb(9 9 9 / 0.85) !important; }
+html[data-theme="day"] .theme-site .text-white\/80 { color: rgb(9 9 9 / 0.8) !important; }
+html[data-theme="day"] .theme-site .text-white\/75 { color: rgb(9 9 9 / 0.75) !important; }
+html[data-theme="day"] .theme-site .text-white\/70 { color: rgb(78 73 65 / 0.92) !important; }
+html[data-theme="day"] .theme-site .text-white\/60 { color: var(--day-ink-3) !important; }
+html[data-theme="day"] .theme-site .text-white\/55 { color: rgb(78 73 65 / 0.72) !important; }
+html[data-theme="day"] .theme-site .text-white\/50 { color: rgb(78 73 65 / 0.66) !important; }
+html[data-theme="day"] .theme-site .text-white\/45 { color: rgb(78 73 65 / 0.6) !important; }
+html[data-theme="day"] .theme-site .text-white\/40 { color: rgb(78 73 65 / 0.54) !important; }
+html[data-theme="day"] .theme-site .text-white\/35 { color: rgb(78 73 65 / 0.48) !important; }
+
+html[data-theme="day"] .theme-site .border-white,
+html[data-theme="day"] .theme-site .hover\:border-white:hover {
+  border-color: var(--day-ink) !important;
+}
+html[data-theme="day"] .theme-site .border-white\/30 { border-color: rgb(9 9 9 / 0.3) !important; }
+html[data-theme="day"] .theme-site .border-white\/20 { border-color: rgb(9 9 9 / 0.2) !important; }
+html[data-theme="day"] .theme-site .border-white\/15 { border-color: rgb(9 9 9 / 0.15) !important; }
+html[data-theme="day"] .theme-site .border-white\/12 { border-color: rgb(9 9 9 / 0.12) !important; }
+html[data-theme="day"] .theme-site .border-white\/10 { border-color: var(--day-rule) !important; }
+
+html[data-theme="day"] .theme-site .bg-white\/\[0\.04\],
+html[data-theme="day"] .theme-site .bg-white\/\[0\.03\],
+html[data-theme="day"] .theme-site .bg-white\/5,
+html[data-theme="day"] .theme-site .bg-white\/\[0\.08\] {
+  background-color: var(--day-paper) !important;
+}
+
+html[data-theme="day"] .theme-site .theme-pill {
+  border-color: var(--day-rule) !important;
+  background-color: var(--day-paper) !important;
+  color: var(--day-ink) !important;
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.7);
+}
+
+html[data-theme="day"] .theme-site .theme-pill:hover {
+  border-color: var(--day-ink) !important;
+}
+
+html[data-theme="day"] .theme-site .theme-day-paper {
+  background-color: var(--day-paper) !important;
+  box-shadow: inset 0 1px 0 var(--day-rule), inset 0 -1px 0 var(--day-rule);
+}
+
+/* Labels that sit directly over photography keep their dark-image contrast. */
+html[data-theme="day"] .theme-site .theme-invariant-dark .text-white { color: #fff !important; }
+html[data-theme="day"] .theme-site .theme-invariant-dark .text-white\/70 { color: rgb(255 255 255 / 0.7) !important; }
+html[data-theme="day"] .theme-site .theme-invariant-dark .border-white\/20 { border-color: rgb(255 255 255 / 0.2) !important; }
+
+html[data-theme="day"] .theme-logo {
+  filter: brightness(0);
+}
+
+html[data-theme="day"] .theme-background-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  background: rgb(245 242 235 / 0.78);
+}
+
+html[data-theme="day"] .theme-liquid-metal {
+  filter: invert(1) sepia(0.12) saturate(0.55);
+  opacity: 0.14;
+}
+
+/* The toggle sits in the shared 24px header rhythm immediately before the logo. */
+.theme-toggle {
+  display: grid;
+  flex: none;
+  place-items: center;
+  border-radius: 999px;
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid #00b0d8;
+  outline-offset: 4px;
+}
+
+.theme-toggle__track {
+  position: relative;
+  display: block;
+  width: 58px;
+  height: 34px;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 0.34);
+  border-radius: 999px;
+  background: #262626;
+  color: rgb(255 255 255 / 0.72);
+  transition: border-color 220ms ease, background-color 220ms ease;
+}
+
+.theme-toggle__sun,
+.theme-toggle__moon {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  width: 14px;
+  height: 14px;
+  transform: translateY(-50%);
+}
+
+.theme-toggle__sun { left: 10px; }
+.theme-toggle__moon { right: 10px; }
+
+.theme-toggle__thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  z-index: 2;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #fbf9f5;
+  box-shadow: 0 2px 7px rgb(0 0 0 / 0.32);
+  transition: transform 240ms cubic-bezier(0.2, 0.6, 0.2, 1), background-color 220ms ease;
+}
+
+html[data-theme="day"] .theme-toggle__track {
+  border-color: var(--day-rule);
+  background: var(--day-paper);
+  color: var(--day-ink-3);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.55);
+}
+
+html[data-theme="day"] .theme-toggle__sun { color: var(--day-terra); }
+html[data-theme="day"] .theme-toggle__thumb {
+  background: var(--day-sun);
+  box-shadow: 0 2px 7px rgb(78 73 65 / 0.24);
+  transform: translateX(24px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body,
+  .theme-site,
+  .theme-toggle__track,
+  .theme-toggle__thumb {
+    transition: none;
+  }
 }
 
 /*

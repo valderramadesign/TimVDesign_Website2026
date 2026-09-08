@@ -362,7 +362,7 @@ export default function PayPal1CaseStudy() {
         <h2 id="paypal-hero-title" className="sr-only">
           Why PayPal credit applications needed redesign
         </h2>
-        <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-white/15 lg:aspect-[16/9] lg:rounded-[30px]">
+        <div className="theme-invariant-dark relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-white/15 lg:aspect-[16/9] lg:rounded-[30px]">
           <Image
             src={quantumLeap}
             alt="A customer reviewing PayPal Pay in 4 on a phone beside an ecommerce checkout on a laptop."

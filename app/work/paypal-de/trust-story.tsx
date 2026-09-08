@@ -350,7 +350,7 @@ function OpeningStatement() {
       <h2 id="opening-title" className="sr-only">
         The need behind the trust equation
       </h2>
-      <Reveal className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-white/15 lg:aspect-[16/9] lg:rounded-[30px]">
+      <Reveal className="theme-invariant-dark relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-white/15 lg:aspect-[16/9] lg:rounded-[30px]">
         <Image
           src={womanOnHerPhone}
           alt="A woman inspecting a delivery against the PayPal app on her phone at her kitchen counter."

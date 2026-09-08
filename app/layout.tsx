@@ -32,6 +32,17 @@ const jetbrainsMono = JetBrains_Mono({
 
 const siteTitle = `${SITE.name} — Lead Product Designer`;
 
+const themeInitializer = `
+  try {
+    var savedTheme = localStorage.getItem("tim-v-theme");
+    var theme = savedTheme === "day" ? "day" : "dark";
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme === "day" ? "light" : "dark";
+  } catch (_) {
+    document.documentElement.dataset.theme = "dark";
+  }
+`;
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: siteTitle,
@@ -108,9 +119,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-theme="dark"
       className={`${leagueSpartan.variable} ${jetbrainsMono.variable} ${ptSerif.variable}`}
+      suppressHydrationWarning
     >
-      <body className="bg-black antialiased" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitializer }} />
+      </head>
+      <body className="theme-site bg-black antialiased" suppressHydrationWarning>
         {children}
         <script
           type="application/ld+json"

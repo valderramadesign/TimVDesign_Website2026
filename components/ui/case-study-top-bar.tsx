@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import ContactLine from "@/components/ui/contact-line";
 import Logo from "@/components/ui/logo";
+import ThemeToggle from "@/components/ui/theme-toggle";
 
 const barClasses =
   "flex w-full items-center justify-between shrink-0 px-5 pt-5 pb-5 lg:px-[24px] lg:pt-[24px] lg:pb-[24px]";
@@ -44,12 +45,15 @@ export default function CaseStudyTopBar() {
     <>
       {/* Split padding compensates League Spartan's high ascent so the label
           sits on the pill's midline; total height is unchanged. */}
-      <Link
-        href="/"
-        className="rounded-full border border-transparent bg-[#262626] px-4 pt-[10.28px] pb-[5.72px] text-base font-normal font-sans leading-none whitespace-nowrap text-white transition-colors duration-150 hover:border-white"
-      >
-        Home
-      </Link>
+      <div className="flex items-center gap-[24px]">
+        <Link
+          href="/"
+          className="theme-pill rounded-full border border-transparent bg-[#262626] px-4 pt-[10.28px] pb-[5.72px] text-base font-normal font-sans leading-none whitespace-nowrap text-white transition-colors duration-150 hover:border-white"
+        >
+          Home
+        </Link>
+        <ThemeToggle />
+      </div>
       <div className="flex items-center gap-[24px]">
         <Link href="/" aria-label="Timothy Valderrama — home">
           <Logo />

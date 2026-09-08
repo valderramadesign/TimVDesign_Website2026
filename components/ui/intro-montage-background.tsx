@@ -83,7 +83,7 @@ export default function IntroMontageBackground({
   return (
     <div
       aria-hidden
-      className={`fixed inset-0 z-[-10] bg-black transition-opacity duration-500 ${
+      className={`theme-background-media fixed inset-0 z-[-10] bg-black transition-opacity duration-500 ${
         active ? "opacity-100" : "opacity-0"
       }`}
     >

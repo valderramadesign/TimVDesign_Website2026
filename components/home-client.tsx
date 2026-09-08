@@ -11,6 +11,7 @@ import LeftNav from "@/components/layout/left-nav";
 import Hero from "@/components/sections/hero";
 import ResumePanel from "@/components/ui/resume-panel";
 import Logo from "@/components/ui/logo";
+import ThemeToggle from "@/components/ui/theme-toggle";
 import { AsciiCubes } from "@/components/ui/ascii-cubes";
 import doorDashOldDashboard from "@/components/images/DoorDash Dashboard/DoorDash_OldDashboard 1.png";
 import {
@@ -266,7 +267,7 @@ function WorkCard({ project, priority }: { project: Project; priority: boolean }
       href={project.route}
       className="group block overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] backdrop-blur-sm active:scale-[0.99] transition-transform duration-150"
     >
-      <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] overflow-hidden bg-black/40">
+      <div className="theme-invariant-dark relative w-full aspect-[4/3] sm:aspect-[16/10] overflow-hidden bg-black/40">
         <Image
           src={project.thumbnail.image}
           alt={project.thumbnail.alt}
@@ -437,7 +438,7 @@ export default function HomeClient() {
       {/* ──────────────────────────────────────────────────────────────
           DESKTOP (≥1024px) — original layout, untouched
          ────────────────────────────────────────────────────────────── */}
-      <div className="hidden lg:flex flex-row min-h-screen overflow-x-hidden">
+      <div className="theme-site hidden lg:flex flex-row min-h-screen overflow-x-hidden">
         {/* Resume panel — slides in from the left */}
         <AnimatePresence initial={false}>
           {resumeOpen && (
@@ -459,42 +460,42 @@ export default function HomeClient() {
           {/* Background */}
           <IntroMontageBackground active={!hovered} onFinished={handleMontageFinished} />
           {/* All video/image backgrounds always in the DOM so they preload immediately */}
-          <div className={`absolute inset-0 z-[-10] bg-black ${showPayPalDE ? "opacity-100" : "opacity-0"}`}>
+          <div className={`theme-background-media absolute inset-0 z-[-10] bg-black ${showPayPalDE ? "opacity-100" : "opacity-0"}`}>
             <video
               src="/videos/PayPalDE/TryNowPayLaterVideo.mp4"
               autoPlay loop muted playsInline preload="auto" suppressHydrationWarning
               className="absolute inset-0 w-full h-full object-cover opacity-50"
             />
           </div>
-          <div className={`absolute inset-0 z-[-10] bg-black ${showPayPal ? "opacity-100" : "opacity-0"}`}>
+          <div className={`theme-background-media absolute inset-0 z-[-10] bg-black ${showPayPal ? "opacity-100" : "opacity-0"}`}>
             <video
               src="/WomanPhoneShopping.mp4"
               autoPlay loop muted playsInline preload="auto" suppressHydrationWarning
               className="absolute inset-0 w-full h-full object-cover opacity-50"
             />
           </div>
-          <div className={`absolute inset-0 z-[-10] bg-black ${showMeta ? "opacity-100" : "opacity-0"}`}>
+          <div className={`theme-background-media absolute inset-0 z-[-10] bg-black ${showMeta ? "opacity-100" : "opacity-0"}`}>
             <video
               src="/CreditCardDeclineMOV.mp4"
               autoPlay loop muted playsInline preload="auto" suppressHydrationWarning
               className="absolute inset-0 w-full h-full object-cover opacity-30"
             />
           </div>
-          <div className={`absolute inset-0 z-[-10] bg-black ${showSolo ? "opacity-100" : "opacity-0"}`}>
+          <div className={`theme-background-media absolute inset-0 z-[-10] bg-black ${showSolo ? "opacity-100" : "opacity-0"}`}>
             <video
               src="/videos/TeacherRecordingActivity/TeacherRecordingActivity2.mp4"
               autoPlay loop muted playsInline preload="auto" suppressHydrationWarning
               className="absolute inset-0 w-full h-full object-cover opacity-30"
             />
           </div>
-          <div className={`absolute inset-0 z-[-10] bg-black ${showSutter ? "opacity-100" : "opacity-0"}`}>
+          <div className={`theme-background-media absolute inset-0 z-[-10] bg-black ${showSutter ? "opacity-100" : "opacity-0"}`}>
             <video
               src="/videos/PatientPortal/SickMan_Rollover.mp4"
               autoPlay loop muted playsInline preload="auto" suppressHydrationWarning
               className="absolute inset-0 w-full h-full object-cover opacity-30"
             />
           </div>
-          <div className={`absolute inset-0 z-[-10] bg-black overflow-hidden transition-opacity duration-300 ${showDoorDash ? "opacity-100" : "opacity-0"}`}>
+          <div className={`theme-background-media absolute inset-0 z-[-10] bg-black overflow-hidden transition-opacity duration-300 ${showDoorDash ? "opacity-100" : "opacity-0"}`}>
             {/* Chameleon cube field — scrolls the dashboard and samples its colors */}
             <AsciiCubes
               active={showDoorDash}
@@ -743,20 +744,25 @@ export default function HomeClient() {
       {/* ──────────────────────────────────────────────────────────────
           MOBILE + TABLET (<1024px) — purpose-built layout
          ────────────────────────────────────────────────────────────── */}
-      <div className="lg:hidden relative min-h-[100svh] bg-black text-white overflow-x-hidden">
+      <div className="theme-site lg:hidden relative min-h-[100svh] bg-black text-white overflow-x-hidden">
         <LiquidMetalBackground />
 
         <header className="relative z-20 flex items-center justify-between px-5 pt-5 pb-3 sm:px-6 sm:pt-6">
-          <button
-            type="button"
-            onClick={() => setResumeOpen(true)}
-            aria-expanded={resumeOpen}
-            aria-controls="resume-sheet"
-            className="rounded-full border border-transparent bg-[#262626] px-4 pt-[11.62px] pb-[8.38px] text-sm font-normal leading-none whitespace-nowrap text-white active:scale-[0.98] transition-all duration-150"
-          >
-            Résumé
-          </button>
-          <Logo />
+          <div className="flex items-center gap-[24px]">
+            <button
+              type="button"
+              onClick={() => setResumeOpen(true)}
+              aria-expanded={resumeOpen}
+              aria-controls="resume-sheet"
+              className="theme-pill rounded-full border border-transparent bg-[#262626] px-4 pt-[11.62px] pb-[8.38px] text-sm font-normal leading-none whitespace-nowrap text-white active:scale-[0.98] transition-all duration-150"
+            >
+              Résumé
+            </button>
+            <ThemeToggle />
+          </div>
+          <div className="flex items-center gap-[24px]">
+            <Logo />
+          </div>
         </header>
 
         <main className="relative z-10 flex flex-col gap-10 sm:gap-14 px-5 sm:px-6 pt-6 pb-16">

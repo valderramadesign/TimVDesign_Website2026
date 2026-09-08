@@ -44,6 +44,7 @@ export default function LiquidMetalBackground() {
       scale={1.5}
       offsetX={offset.x}
       offsetY={offset.y}
+      className="theme-liquid-metal"
       style={{ position: "fixed", inset: 0, zIndex: -10 }}
     />
   );

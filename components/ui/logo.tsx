@@ -8,7 +8,7 @@ export default function Logo({ className }: { className?: string }) {
       alt="TiM.V"
       width={69}
       height={29}
-      className={className}
+      className={`theme-logo${className ? ` ${className}` : ""}`}
     />
   );
 }

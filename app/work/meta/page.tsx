@@ -526,7 +526,7 @@ export default function MetaPage() {
            as the device bezels, so it separates without becoming a card.
            Its own edges now do the separating, so it sits closer to the
            sections either side than the open ones do to each other. */
-        className={cx(PAGE_PAD, BAND_GAP, "bg-[#0E0E12] py-[50px]")}
+        className={cx(PAGE_PAD, BAND_GAP, "theme-day-paper bg-[#0E0E12] py-[50px]")}
         style={{ fontFamily: leagueSpartan }}
       >
         <ScrollFade once>
