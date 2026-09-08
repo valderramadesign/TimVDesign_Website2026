@@ -335,6 +335,7 @@ export default function HomeClient() {
   const [showreelStep, setShowreelStep] = useState(0);
   const [showreelUp, setShowreelUp] = useState(false);
   const [montageDone, setMontageDone] = useState(false);
+  const [dayMode, setDayMode] = useState(false);
 
   // Fires once, when the intro montage has played out — see the showreel gate below.
   const handleMontageFinished = useCallback(() => setMontageDone(true), []);
@@ -370,6 +371,17 @@ export default function HomeClient() {
     return () => mq.removeEventListener("change", sync);
   }, []);
 
+  // Day mode hides the intro movie behind a scrim rather than skipping it, so
+  // without this the showreel would still sit idle for the movie's full runtime.
+  useEffect(() => {
+    const root = document.documentElement;
+    const sync = () => setDayMode(root.dataset.theme === "day");
+    sync();
+    const observer = new MutationObserver(sync);
+    observer.observe(root, { attributes: true, attributeFilter: ["data-theme"] });
+    return () => observer.disconnect();
+  }, []);
+
   // The résumé pauses the loop as firmly as a hover does. On desktop the panel
   // only compresses the homepage rather than covering it, so a showreel left
   // running would keep cycling images beside a document someone is reading.
@@ -380,7 +392,7 @@ export default function HomeClient() {
   // gone to black. Hover is deliberately not gated on any of this — the nav
   // answers a pointer from the first frame.
   const showreelPaused =
-    Boolean(hoveredProject) || reducedMotion || resumeOpen || !montageDone;
+    Boolean(hoveredProject) || reducedMotion || resumeOpen || (!montageDone && !dayMode);
 
   // One step of the loop: an empty beat, a fade in, three seconds at full
   // opacity, a fade out. Re-runs per project, and whenever the pointer or the
