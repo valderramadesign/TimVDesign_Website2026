@@ -298,8 +298,8 @@ export default function SoloPage() {
             playsInline
           />
           <div aria-hidden className="absolute inset-0" style={{ background: HERO_FEATHER }} />
-          <div className="absolute bottom-0 right-0 p-6 text-right lg:p-12">
-            <p className={HERO_METRIC_VALUE_CLASS}>{HERO_METRIC.value}</p>
+          <div className="theme-invariant-dark absolute bottom-0 right-0 p-6 text-right lg:p-12">
+            <p className={cx(HERO_METRIC_VALUE_CLASS, "text-white")}>{HERO_METRIC.value}</p>
             <p className={cx(CASE_STUDY_METRIC_LABEL_CLASS, "text-white/60")}>
               {HERO_METRIC.label}
             </p>
@@ -403,7 +403,7 @@ export default function SoloPage() {
                 style={{ background: BEFORE_FEATHER }}
               />
             </div>
-            <figcaption className="mt-7 md:absolute md:right-0 md:top-[9%] md:mt-0 md:w-full md:max-w-[440px] md:px-6 md:text-right lg:max-w-[520px] lg:px-12">
+            <figcaption className="theme-invariant-dark-md mt-7 md:absolute md:right-0 md:top-[9%] md:mt-0 md:w-full md:max-w-[440px] md:px-6 md:text-right lg:max-w-[520px] lg:px-12">
               <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>Before</p>
               <h3 className={COMPARE_HEADING_CLASS}>The day was written up after it ended</h3>
               <p className={cx(CASE_STUDY_SUPPORTING_CLASS, "mt-4 text-white/70 lg:mt-[18px]")}>
@@ -573,7 +573,7 @@ export default function SoloPage() {
         id="next-case-study-section"
         className="relative w-full overflow-hidden bg-black pb-24 lg:pb-[200px] pt-16 lg:pt-[78px] mt-20 md:mt-[110px] lg:mt-[150px]"
       >
-        <NextCaseStudyTicker color={ACCENT} />
+        <NextCaseStudyTicker color={ACCENT} dayColor="#334e4e" />
 
         {/* The pair keeps a 24px gutter to the edge at every width: 437 + 671
             plus both gutters is 1156px, so the gap takes whatever is left over

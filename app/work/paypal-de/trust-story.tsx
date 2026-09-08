@@ -1733,7 +1733,7 @@ function ImpactSection() {
  */
 function ClosingStatement({ prototypeUrl }: { prototypeUrl?: string }) {
   return (
-    <section className="relative -mr-5 mt-24 lg:-mr-[24px] lg:mt-[200px]">
+    <section className="theme-invariant-dark relative -mr-5 mt-24 lg:-mr-[24px] lg:mt-[200px]">
       <div className="relative aspect-[16/9] w-full overflow-hidden rounded-l-2xl lg:rounded-l-[30px]">
         <Image
           src={macbookCheckout}

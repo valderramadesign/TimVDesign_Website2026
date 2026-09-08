@@ -210,7 +210,7 @@ export default function PatientPortalPage() {
               >
                 <h3
                   className="text-[clamp(34px,6.3vw,67px)] lg:text-[67px] leading-[1.04] tracking-[-0.01em]"
-                  style={{ fontFamily: "var(--font-pt-serif)", color: ACCENT_TEXT }}
+                  style={{ fontFamily: "var(--font-pt-serif)", color: `var(--sutter-accent, ${ACCENT_TEXT})` }}
                 >
                   {concept.title}
                 </h3>
@@ -262,7 +262,7 @@ export default function PatientPortalPage() {
 
       {/* Closing — What Changed, set into the closing image the way the
           DoorDash case study carries its own. */}
-      <section className="relative w-full mt-[50px] pb-[100px]">
+      <section className="theme-invariant-dark relative w-full mt-[50px] pb-[100px]">
         <div className="relative">
           <a
             href="https://v-health-patient-portal.vercel.app/"
@@ -354,7 +354,7 @@ export default function PatientPortalPage() {
         id="next-case-study-section"
         className="relative w-full bg-black overflow-hidden pt-16 lg:pt-[78px] pb-24 lg:pb-[200px] mt-20 md:mt-[110px] lg:mt-[150px]"
       >
-        <NextCaseStudyTicker color={ACCENT} />
+        <NextCaseStudyTicker color={ACCENT} dayColor="var(--sutter-accent)" />
 
         {/* Both cards keep their aspect ratio and shrink together rather than
             running under the 24px gutter: at their full 437 + 671 the 200px gap

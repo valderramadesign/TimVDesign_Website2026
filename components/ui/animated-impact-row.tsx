@@ -108,7 +108,7 @@ export function AnimatedImpactRow({
               growth comes out from under. */}
           <div
             ref={baseline}
-            className="theme-invariant-dark absolute left-0 top-0 h-full bg-[#230808] rounded-l-[10px] lg:rounded-l-[20px] flex items-center px-3 lg:px-6 overflow-hidden"
+            className="absolute left-0 top-0 h-full bg-[#230808] rounded-l-[10px] lg:rounded-l-[20px] flex items-center px-3 lg:px-6 overflow-hidden"
             style={{ width: `${todayPct}%` }}
           >
             <span className={cx(IMPACT_VALUE_CLASS, "text-white")}>{todayLabel}</span>

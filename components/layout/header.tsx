@@ -14,7 +14,7 @@ export default function Header({ onResumeToggle, resumeOpen }: HeaderProps) {
     <header className="flex items-center justify-between w-full shrink-0">
       {/* Split padding compensates League Spartan's high ascent so the label
           sits on the pill's midline; total height is unchanged. */}
-      <div className="flex items-center gap-[24px]">
+      <div className="flex items-center gap-[12px]">
         <button
           type="button"
           onClick={onResumeToggle}

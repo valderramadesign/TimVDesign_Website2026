@@ -45,7 +45,7 @@ export default function CaseStudyTopBar() {
     <>
       {/* Split padding compensates League Spartan's high ascent so the label
           sits on the pill's midline; total height is unchanged. */}
-      <div className="flex items-center gap-[24px]">
+      <div className="flex items-center gap-[12px]">
         <Link
           href="/"
           className="theme-pill rounded-full border border-transparent bg-[#262626] px-4 pt-[10.28px] pb-[5.72px] text-base font-normal font-sans leading-none whitespace-nowrap text-white transition-colors duration-150 hover:border-white"

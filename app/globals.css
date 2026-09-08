@@ -118,6 +118,8 @@ html, body {
   --day-sun: #f2b705;
   --day-terra: #c25b2b;
   --day-chartreuse: #b4c615;
+  --day-bar-track: #ece8df;
+  --day-bar-soft: #dbe0ae;
 }
 
 html,
@@ -147,7 +149,7 @@ html[data-theme="day"] .theme-site .text-white\/85 { color: rgb(9 9 9 / 0.85) !i
 html[data-theme="day"] .theme-site .text-white\/80 { color: rgb(9 9 9 / 0.8) !important; }
 html[data-theme="day"] .theme-site .text-white\/75 { color: rgb(9 9 9 / 0.75) !important; }
 html[data-theme="day"] .theme-site .text-white\/70 { color: rgb(78 73 65 / 0.92) !important; }
-html[data-theme="day"] .theme-site .text-white\/60 { color: var(--day-ink-3) !important; }
+html[data-theme="day"] .theme-site .text-white\/60 { color: var(--day-ink-2) !important; }
 html[data-theme="day"] .theme-site .text-white\/55 { color: rgb(78 73 65 / 0.72) !important; }
 html[data-theme="day"] .theme-site .text-white\/50 { color: rgb(78 73 65 / 0.66) !important; }
 html[data-theme="day"] .theme-site .text-white\/45 { color: rgb(78 73 65 / 0.6) !important; }
@@ -187,10 +189,89 @@ html[data-theme="day"] .theme-site .theme-day-paper {
   box-shadow: inset 0 1px 0 var(--day-rule), inset 0 -1px 0 var(--day-rule);
 }
 
-/* Labels that sit directly over photography keep their dark-image contrast. */
+/* Labels that sit directly over photography keep their dark-image contrast.
+   The bare color rule covers descendants with no explicit text-white class
+   (they inherit color instead), matching how -xl below already works. */
+html[data-theme="day"] .theme-site .theme-invariant-dark { color: #fff !important; }
 html[data-theme="day"] .theme-site .theme-invariant-dark .text-white { color: #fff !important; }
 html[data-theme="day"] .theme-site .theme-invariant-dark .text-white\/70 { color: rgb(255 255 255 / 0.7) !important; }
+html[data-theme="day"] .theme-site .theme-invariant-dark .text-white\/60 { color: rgb(255 255 255 / 0.6) !important; }
 html[data-theme="day"] .theme-site .theme-invariant-dark .border-white\/20 { border-color: rgb(255 255 255 / 0.2) !important; }
+html[data-theme="day"] .theme-site .theme-invariant-dark .border-white\/30 { border-color: rgb(255 255 255 / 0.3) !important; }
+
+/* Same treatment, but only past the breakpoint where the element in question
+   is actually pulled out of flow and laid over the photo (e.g. the Meta hero
+   stats, which sit in normal flow below the image until xl). */
+@media (min-width: 1280px) {
+  html[data-theme="day"] .theme-site .theme-invariant-dark-xl { color: #fff !important; }
+  html[data-theme="day"] .theme-site .theme-invariant-dark-xl .text-white\/60 { color: rgb(255 255 255 / 0.6) !important; }
+}
+
+/* Same idea, gated at md — for elements laid over a photo only from md up
+   (e.g. Ms. Sunshine's "Before" figcaption, which sits in normal flow below
+   the photo until md). */
+@media (min-width: 768px) {
+  html[data-theme="day"] .theme-site .theme-invariant-dark-md { color: #fff !important; }
+  html[data-theme="day"] .theme-site .theme-invariant-dark-md .text-white\/70 { color: rgb(255 255 255 / 0.7) !important; }
+  html[data-theme="day"] .theme-site .theme-invariant-dark-md .text-white\/60 { color: rgb(255 255 255 / 0.6) !important; }
+}
+
+/* The reveal-slider's divider and thumb border read as white/grey chrome
+   against the dark theme's black frame, but wash out against day-paper —
+   day mode swaps them for the same blue accent used in the presentation
+   deck (slide 6). Night mode is untouched. */
+html[data-theme="day"] .theme-site .bg-white\/60 { background-color: var(--day-blue) !important; }
+html[data-theme="day"] .theme-site [role="slider"].border-white\/30 { border-color: var(--day-blue) !important; }
+
+/* Case-study brand accents (Meta chartreuse, Ms. Sunshine teal) are tuned for
+   black. On the cream day ground they'd sit near-invisible, so day mode swaps
+   in a darker, desaturated tint of the same hue — same move §2.4 already makes
+   for the "Next Case Study" ticker accents, just carried far enough to clear
+   AAA (7:1) on `--day-bg`/`--day-paper`. */
+html[data-theme="day"] .theme-site .text-\[\#cef252\],
+html[data-theme="day"] .theme-site .text-\[\#CEF252\] {
+  color: #3c4a0b !important;
+}
+
+html[data-theme="day"] .theme-site .text-\[\#91dfdf\] {
+  color: #334e4e !important;
+}
+
+/* Impact-row bar charts (animated-impact-row.tsx): the three raw fill
+   colours are set by inline hex classes with no day equivalent, so day mode
+   never touched them. Swapped for the same track/baseline/gain palette the
+   presentation deck's own bar charts use. */
+html[data-theme="day"] .theme-site .bg-\[rgba\(217\,217\,217\,0\.2\)\] {
+  background-color: var(--day-bar-track) !important;
+}
+
+html[data-theme="day"] .theme-site .bg-\[\#230808\] {
+  background-color: var(--day-bar-soft) !important;
+}
+
+html[data-theme="day"] .theme-site .bg-\[\#cef252\] {
+  background-color: var(--day-chartreuse) !important;
+}
+
+/* Next Case Study ticker (next-case-study-ticker.tsx): its accent colour is
+   set via an inline style prop, which the class-based remaps above can't
+   reach. The component sets both variants as custom properties; day mode
+   just picks the darker one. */
+.next-case-study-ticker-text { color: var(--ticker-dark-color); }
+html[data-theme="day"] .theme-site .next-case-study-ticker-text {
+  color: var(--ticker-day-color) !important;
+}
+
+/* Logo-dot blue (contact-line.tsx), the Sutter concierge-panel teal
+   (PatientPortal/page.tsx), and the DoorDash concept-panel red
+   (DoorDashDashboard/page.tsx) read at 2.29:1, 2.56:1, and 3.31:1 on cream —
+   same darkening move as the brand accents above, applied through the CSS
+   vars their inline styles already read. */
+html[data-theme="day"] .theme-site {
+  --logo-dot-blue: #055466;
+  --sutter-accent: #085f5c;
+  --doordash-accent: #be2406;
+}
 
 html[data-theme="day"] .theme-logo {
   filter: brightness(0);

@@ -404,7 +404,7 @@ export default function MetaPage() {
             />
           </div>
 
-          <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-3 lg:gap-x-[40px] xl:absolute xl:right-[48px] xl:top-[14%] xl:mt-0 xl:w-[54%] xl:max-w-[760px] xl:-translate-y-1/2">
+          <dl className="theme-invariant-dark-xl mt-8 grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-3 lg:gap-x-[40px] xl:absolute xl:right-[48px] xl:top-[14%] xl:mt-0 xl:w-[54%] xl:max-w-[760px] xl:-translate-y-1/2">
             {HERO_FACTS.map((fact) => (
               <div key={fact.label}>
                 <dt className={cx(CASE_STUDY_SUPPORTING_CLASS, "text-white/60")}>{fact.label}</dt>
@@ -805,7 +805,7 @@ export default function MetaPage() {
 
       {/* Next Case Studies */}
       <section id="next-case-study-section" className="relative w-full bg-black overflow-hidden flex flex-col items-center justify-center pb-24 lg:pb-[200px] pt-16 lg:pt-[78px] mt-20 md:mt-[110px] lg:mt-[150px]">
-        <NextCaseStudyTicker color="#CEF252" />
+        <NextCaseStudyTicker color="#CEF252" dayColor="#3c4a0b" />
 
         {/* Same 24px gutter the other case studies keep. At 437 + 437 the full
             200px gap only fits from ~1122px up, so it steps down first. */}

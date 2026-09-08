@@ -324,7 +324,7 @@ export default function RevealSlider({
             aria-valuetext={`${shown}% before, ${100 - shown}% after`}
             onKeyDown={key}
             className={cx(
-              "absolute top-1/2 z-20 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center",
+              "theme-invariant-dark absolute top-1/2 z-20 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center",
               "rounded-full border border-white/30 bg-black/80 text-white backdrop-blur-sm",
               "outline-offset-4 transition-transform duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white",
               dragging ? "scale-110" : "hover:scale-105",

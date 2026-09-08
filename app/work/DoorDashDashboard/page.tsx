@@ -195,7 +195,7 @@ export default function DoorDashDashboardCaseStudy() {
               >
                 <h3
                   className="text-[clamp(34px,6.3vw,67px)] lg:text-[67px] leading-[1.04] tracking-[-0.01em]"
-                  style={{ fontFamily: "var(--font-pt-serif)", color: ACCENT_TEXT }}
+                  style={{ fontFamily: "var(--font-pt-serif)", color: `var(--doordash-accent, ${ACCENT_TEXT})` }}
                 >
                   {concept.title}
                 </h3>
@@ -219,7 +219,7 @@ export default function DoorDashDashboardCaseStudy() {
       </section>
 
       {/* Closing */}
-      <section className="relative w-full mt-[50px]">
+      <section className="theme-invariant-dark relative w-full mt-[50px]">
         <div className="relative">
           <a
             href="https://door-dash-dashboard-amber.vercel.app/"
@@ -245,7 +245,7 @@ export default function DoorDashDashboardCaseStudy() {
           >
             <div className="pointer-events-auto flex flex-col gap-6 lg:gap-8">
               <p className="text-sm lg:text-[18px] font-light text-white/60">What Changed.</p>
-              <ul className="ml-[24px] flex list-disc flex-col gap-3 lg:gap-[18px] text-base lg:text-[22px] font-light leading-[1.5] lg:leading-[1.4]">
+              <ul className="ml-[24px] flex list-disc flex-col gap-3 lg:gap-[18px] text-base lg:text-[22px] font-light leading-[1.5] lg:leading-[1.4] text-white">
                 <li>
                   Prioritized issues by urgency and impact instead of giving every
                   metric equal weight.
@@ -346,7 +346,7 @@ export default function DoorDashDashboardCaseStudy() {
         id="next-case-study-section"
         className="relative w-full overflow-hidden bg-black pb-24 lg:pb-[200px] pt-16 lg:pt-[78px] mt-20 md:mt-[110px] lg:mt-[150px]"
       >
-        <NextCaseStudyTicker color={ACCENT} />
+        <NextCaseStudyTicker color={ACCENT} dayColor="var(--doordash-accent)" />
 
         {/* Both cards keep their aspect ratio and shrink together rather than
             running under the 24px gutter: at their full 437 + 437 the 200px gap

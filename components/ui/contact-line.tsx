@@ -23,7 +23,7 @@ function DottedText({ children }: { children: string }) {
         <Fragment key={index}>
           {part}
           {index < parts.length - 1 && (
-            <span style={{ color: LOGO_DOT_BLUE }}>.</span>
+            <span style={{ color: `var(--logo-dot-blue, ${LOGO_DOT_BLUE})` }}>.</span>
           )}
         </Fragment>
       ))}
