@@ -279,9 +279,11 @@ html[data-theme="day"] .theme-site .next-case-study-ticker-text {
    (PatientPortal/page.tsx), and the DoorDash concept-panel red
    (DoorDashDashboard/page.tsx) read at 2.29:1, 2.56:1, and 3.31:1 on cream —
    same darkening move as the brand accents above, applied through the CSS
-   vars their inline styles already read. */
+   vars their inline styles already read. Logo-dot blue is the PayPal
+   skyBlue iPhone finish (#7DA8D2) lightened and pushed to full saturation
+   so it still reads as clearly blue against cream. */
 html[data-theme="day"] .theme-site {
-  --logo-dot-blue: #055466;
+  --logo-dot-blue: #2b8cee;
   --sutter-accent: #085f5c;
   --doordash-accent: #be2406;
 }
