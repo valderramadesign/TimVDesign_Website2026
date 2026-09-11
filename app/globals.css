@@ -82,29 +82,26 @@ html, body {
 }
 
 /*
- * Vertical room a desktop rollover panel has before it reaches the hero
- * headline. The panels hang from the nav band at the top of the screen and the
- * headline is anchored 50px off the bottom, so the gap between them closes as
- * the viewport shortens — and closes faster than the viewport does, because the
- * headline scales with height as well (see hero.tsx).
+ * Vertical room a desktop rollover panel has: from the lowest panel top (148px)
+ * down to the two-thirds line of the viewport. The panels hang from the nav
+ * band, so this is what lets them grow with the screen — each image sizes to it
+ * until it reaches its own pixel height (see panelSize in home-client.tsx),
+ * and nothing upscales past that.
  *
- * Derived rather than stepped in media queries, so the panels give up size only
- * where they would genuinely collide and their copy keeps its measure. The
- * headline's top is `100vh - 50px - lines * 0.96 * min(77px, 9.6vh)`; subtract
- * the panel's top offset and 16px of clearance. It reduces to one expression in
- * vh because below 9.6vh the headline is height-driven; above it the headline
- * holds at 77px and this under-states the real gap, which is the safe way to be
- * wrong. Panel images cap their height against it.
+ * One band, not one per panel. The tops differ by up to 9px, and a shared
+ * height is what keeps the showreel from resizing its frame on every step; the
+ * higher-hung panels end that little short of the line rather than on it.
  *
- * One band, not one per project. Every panel of an orientation is the same
- * height now, so the figure has to be the room the worst-placed of them has: a
- * two-line hover headline (81.5vh) under the lowest panel top (148px). Three of
- * the six put the headline on one line and could hold ~78px more on their own
- * hover — they give it up so the group stays square with itself. If the panels
- * ever size individually again, that taller band is `calc(90.7vh - 209px)`.
+ * The width is the same room measured across: the viewport less what the rest
+ * of the row takes at the 1280px reference — the nav column, the 350px copy
+ * column and its 40px gutter, the 69px right offset. Only the landscape crops
+ * (536x394) ever reach it. It holds them at that reference size on a 1280px
+ * screen however tall the screen is, so a tall, narrow window cannot push the
+ * copy column into the nav, and lets them grow with the width from there.
  */
 :root {
-  --rollover-band: calc(81.5vh - 214px);
+  --rollover-band: calc(100vh * 2 / 3 - 148px);
+  --rollover-width: calc(100vw - 744px);
 
   /* Warm day palette shared with Presentation9_2026. */
   --day-bg: #f5f2eb;
@@ -380,19 +377,4 @@ html[data-theme="day"] .theme-toggle__thumb {
   .theme-toggle__thumb {
     transition: none;
   }
-}
-
-/*
- * The idle showreel leaves the headline on the name, which is one line for
- * every project where a hover puts three of them on two — so the two-line
- * reduction does not apply here and the coefficient goes back to 90.7vh. What
- * grows is the subtraction: the positioning block under the headline sits at
- * full height instead of collapsed to 12px. Measured, not derived — the block
- * runs 84.5px expanded, 73px more than it holds on hover.
- *
- * The two land within a pixel of each other at 800px tall (438.6 idle, 438.0
- * hover), so a panel does not visibly resize when the pointer arrives.
- */
-.rollover-band-idle {
-  --rollover-band: calc(90.7vh - 287px);
 }

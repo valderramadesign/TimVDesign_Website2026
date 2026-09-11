@@ -1,7 +1,7 @@
 "use client";
 
 import { Fragment, useCallback, useState, useEffect } from "react";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence, type Transition } from "framer-motion";
 import LiquidMetalBackground from "@/components/ui/liquid-metal-background";
@@ -150,50 +150,42 @@ const FACT_LABEL_CLASS =
   "text-white/60 text-[12px] uppercase tracking-[0.18em] font-sans";
 
 /**
- * The copy column beside a rollover image. One class for the three panels whose
- * art outmeasures their copy, so the measure stays identical whatever the image
- * beside it is doing: 350px, the narrowest the columns had grown to, sitting
- * 80px above the image's bottom edge rather than flush with it. The other three
- * take CENTERED_PANEL_COPY_CLASS below.
+ * The copy column beside a rollover image, centered on the image's vertical
+ * midpoint. 350px is the narrowest the columns had grown to, kept so the
+ * measure stays identical whatever the image beside it is doing.
  *
  * Taken out of flow so the image alone sets the panel's height. Bottom-aligned
  * in the flex row the tallest child won, and a long problem statement made that
  * the text — which pushed the image down the screen and ran the whole group into
  * the headline below. Out of flow the image holds its position and the copy
- * grows upward into the empty band beside it. `right: 100% + 40px` puts the
- * column a 40px gutter clear of the image's left edge whatever its width.
+ * sits beside it. `right: 100% + 40px` puts the column a 40px gutter clear of
+ * the image's left edge whatever its width.
+ *
+ * Centered rather than hung a fixed distance above the image's bottom edge: the
+ * images grow with the viewport now (see panelSize), and a fixed offset drifts
+ * the column off the image's middle as they do.
  */
 const PANEL_COPY_CLASS =
-  "absolute bottom-[80px] right-[calc(100%+40px)] w-[350px]";
-
-/**
- * The centered variant, for panels whose copy outgrows the image beside it.
- * The 80px bottom anchor only reads as an alignment while the column is the
- * shorter of the two; past that the text climbs out of the image's top edge and
- * runs at the nav. Centering on the image's vertical midpoint keeps the pair
- * visually tied however far the band clamps the art.
- *
- * Three panels need it, and all three carry the same 362px column — a two-up
- * PanelResults block above a full problem paragraph, which with the 80px anchor
- * wants 442px of image to sit against. Meta's crop is the short, wide "laptop
- * on a desk" one at 394px. PayPal Germany and PayPal both stand 438px once the
- * shared portrait height caps them, four short of the 442.
- */
-const CENTERED_PANEL_COPY_CLASS =
   "absolute top-1/2 -translate-y-1/2 right-[calc(100%+40px)] w-[350px]";
 
 /**
- * One height per orientation, shared by every panel of that shape. The six
- * sources are different crops at different ratios, so their widths still differ —
- * but the showreel steps through them on a timer, and a frame that resized on
- * every step read as a stutter rather than a sequence.
+ * A rollover image's box: the band down to the two-thirds line of the viewport
+ * (`--rollover-band` in globals.css), stopped at the source's own pixel height
+ * so the art grows with the screen but never upscales, and at the width the row
+ * has for it (`--rollover-width`) so a wide crop cannot run the copy column into
+ * the nav. The six sources are different sizes, so on a screen tall enough they
+ * stop growing at different points; below that the band is what every one of
+ * them resolves to, and the showreel steps through frames of one height.
  *
- * The portrait figure is the tallest of the four it replaces (PayPal's 532), so
- * nothing gives up size at viewports tall enough to clear the band; below that
- * the band is what both values resolve to anyway.
+ * `w`/`h` is the crop's aspect ratio, the same pair the old fixed boxes were
+ * drawn at; the width cap is expressed as the height that fills it.
  */
-const PORTRAIT_PANEL_HEIGHT = "min(532px, var(--rollover-band))";
-const LANDSCAPE_PANEL_HEIGHT = "min(394px, var(--rollover-band))";
+function panelSize(image: StaticImageData, w: number, h: number) {
+  return {
+    height: `min(${image.height}px, var(--rollover-band), calc(var(--rollover-width) * ${h} / ${w}))`,
+    aspectRatio: `${w} / ${h}`,
+  };
+}
 
 /** Capability signals, set as one quiet metadata line rather than a section. */
 function CapabilitySignals({ className = "" }: { className?: string }) {
@@ -219,20 +211,17 @@ function cardFacts(project: Project): CardFact[] {
 }
 
 /**
- * Panel copy on the body scale, capped against the same band the art is.
+ * Panel copy on the body scale, sized off the same band the art is.
  *
- * 24px/1.4 is the site's body size, and at the 1280x800 reference it clears the
- * hero headline. It stops clearing it below roughly 780px tall: the headline
- * rises as the viewport shortens, and the results block above this paragraph is
+ * 24px/1.4 is the site's body size. The results block above this paragraph is
  * a fixed 58px figure over an 18px label, so the paragraph is the only part of
- * the column that can give. Scaling it off `--rollover-band` — the derived
- * height PORTRAIT/LANDSCAPE_PANEL_HEIGHT already cap the images with — keeps the
- * whole column inside the same gap, at the same rate.
+ * the column that can give; scaling it off `--rollover-band` — the height the
+ * images take from the two-thirds line — keeps the column in step with the
+ * image beside it, at the same rate.
  *
- * 0.055 is the coefficient that resolves to exactly 24px at the reference, and
- * to 17px at 1280x640 — the shortest viewport the homepage is designed against,
- * where the longest paragraph runs five lines and lands about 9px clear of the
- * headline. The 17px floor is there for viewports shorter than that, where the
+ * 0.055 is the coefficient that holds the paragraph at 24px from about 880px
+ * tall up, where the images stand 436px or more, and resolves to 21px at
+ * 1280x800. The 17px floor takes over below roughly 690px tall, where the
  * headline has already crowded everything else out too.
  */
 const PANEL_COPY_SIZE_CLASS =
@@ -516,11 +505,7 @@ export default function HomeClient() {
             />
           </div>
 
-          <main
-            className={`relative z-10 flex flex-col p-[24px] h-screen ${
-              hoveredProject ? "" : "rollover-band-idle"
-            }`}
-          >
+          <main className="relative z-10 flex flex-col p-[24px] h-screen">
             <div className="shrink-0">
               <Header
                 onResumeToggle={() => setResumeOpen((v) => !v)}
@@ -582,7 +567,7 @@ export default function HomeClient() {
                   {...panelMotion.shell}
                 >
                   <motion.div
-                    className={CENTERED_PANEL_COPY_CLASS}
+                    className={PANEL_COPY_CLASS}
                     {...panelMotion.copy}
                   >
                     <div className="flex flex-col gap-[26px] items-end">
@@ -602,7 +587,7 @@ export default function HomeClient() {
                       exposed. */}
                   <motion.div
                     className="shrink-0 rounded-[30px] overflow-hidden"
-                    style={{ height: PORTRAIT_PANEL_HEIGHT, aspectRatio: "311 / 513" }}
+                    style={panelSize(PAYPAL_DE.thumbnail.image, 311, 513)}
                     {...panelMotion.image}
                   >
                     <Image src={PAYPAL_DE.thumbnail.image} alt="PayPal Germany checkout screen" className="w-full h-full object-cover" priority />
@@ -620,7 +605,7 @@ export default function HomeClient() {
                   {...panelMotion.shell}
                 >
                   <motion.div
-                    className={CENTERED_PANEL_COPY_CLASS}
+                    className={PANEL_COPY_CLASS}
                     {...panelMotion.copy}
                   >
                     <div className="flex flex-col gap-[26px] items-end">
@@ -631,7 +616,7 @@ export default function HomeClient() {
 
                   <motion.div
                     className="shrink-0"
-                    style={{ height: PORTRAIT_PANEL_HEIGHT, aspectRatio: "350 / 532" }}
+                    style={panelSize(PAYPAL.thumbnail.image, 350, 532)}
                     {...panelMotion.image}
                   >
                     <Image src={PAYPAL.thumbnail.image} alt={PAYPAL.thumbnail.alt} className="w-full h-full object-cover" priority />
@@ -649,7 +634,7 @@ export default function HomeClient() {
                   {...panelMotion.shell}
                 >
                   <motion.div
-                    className={CENTERED_PANEL_COPY_CLASS}
+                    className={PANEL_COPY_CLASS}
                     {...panelMotion.copy}
                   >
                     <div className="flex flex-col gap-[26px] items-end">
@@ -660,7 +645,7 @@ export default function HomeClient() {
 
                   <motion.div
                     className="shrink-0 rounded-[30px] overflow-hidden"
-                    style={{ height: LANDSCAPE_PANEL_HEIGHT, aspectRatio: "536 / 394" }}
+                    style={panelSize(META.thumbnail.image, 536, 394)}
                     {...panelMotion.image}
                   >
                     <Image src={META.thumbnail.image} alt={META.thumbnail.alt} className="w-full h-full object-cover" priority />
@@ -689,7 +674,7 @@ export default function HomeClient() {
 
                   <motion.div
                     className="shrink-0 rounded-[30px] overflow-hidden"
-                    style={{ height: PORTRAIT_PANEL_HEIGHT, aspectRatio: "290 / 466" }}
+                    style={panelSize(SOLO.thumbnail.image, 290, 466)}
                     {...panelMotion.image}
                   >
                     <Image src={SOLO.thumbnail.image} alt="Ms. Sunshine App daily reporting screen on phone" className="w-full h-full object-cover" priority />
@@ -715,7 +700,7 @@ export default function HomeClient() {
 
                   <motion.div
                     className="shrink-0 rounded-[30px] overflow-hidden"
-                    style={{ height: PORTRAIT_PANEL_HEIGHT, aspectRatio: "367 / 504" }}
+                    style={panelSize(SUTTER.thumbnail.image, 367, 504)}
                     {...panelMotion.image}
                   >
                     <Image src={SUTTER.thumbnail.image} alt="Sutter Health patient portal app" className="w-full h-full object-cover" priority />
@@ -741,7 +726,7 @@ export default function HomeClient() {
 
                   <motion.div
                     className="shrink-0 rounded-[30px] overflow-hidden"
-                    style={{ height: LANDSCAPE_PANEL_HEIGHT, aspectRatio: "536 / 394" }}
+                    style={panelSize(DOORDASH.thumbnail.image, 536, 394)}
                     {...panelMotion.image}
                   >
                     <Image src={DOORDASH.thumbnail.image} alt="DoorDash Dashboard" className="w-full h-full object-cover" priority />

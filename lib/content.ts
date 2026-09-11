@@ -14,7 +14,7 @@ import paypalDeRollover from "@/components/images/PayPal DE/PayPalDE_RolloverPho
 import paypalRollover from "@/components/images/PayPal1_RolloverImage_WithBackground.png";
 import metaHeroOnTable from "@/components/images/Monthly invoicing Images/MontlyInvoicingHeroScreen_OnTable.png";
 import soloPhoneWithApp from "@/components/images/Teacher'sApp/PhoneWithApp_Rollover.png";
-import patientAppRollover from "@/components/images/Patient Portal/PatientApp_Rollover.png";
+import patientApp from "@/components/images/Patient Portal/PatientApp.png";
 import doorDashRollover from "@/components/images/DoorDash Dashboard/headquarters-laptop-command-center-cropped-1837x953.png";
 
 export const SITE = {
@@ -555,7 +555,7 @@ export const PROJECTS: Project[] = [
     primaryResult: null,
     supportingResults: [],
     thumbnail: {
-      image: patientAppRollover,
+      image: patientApp,
       alt: "Sutter Health patient portal app on phone",
       objectPosition: "top",
     },
