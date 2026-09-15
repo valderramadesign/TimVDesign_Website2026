@@ -11,6 +11,8 @@ import {
 
 const jb = "var(--font-jetbrains-mono)";
 
+const PRESENTATION_URL = "https://tim-v-presentation.vercel.app/#1";
+
 const yellowHL = { background: "rgba(255,180,0,0.3)", borderRadius: "2px" };
 const blueHL = { background: "rgba(0,176,216,0.18)", borderRadius: "2px" };
 
@@ -174,6 +176,37 @@ function Skill({ name, children }: { name: string; children: ReactNode }) {
 }
 
 const EMPTY = <Line />;
+
+/*
+ * The easter egg: a decorated egg drawn to the case studies' icon rules — a
+ * 32-unit grid, currentColor, round caps and joins, and a stroke that stays a
+ * hairline at any rendered size. Three bands of ornament, sized so each reads
+ * at the 28px it renders at.
+ */
+function OrnateEgg({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 32 32"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`[&_*]:[vector-effect:non-scaling-stroke] ${className ?? ""}`}
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d="M16 3c6.5 0 10.5 8 10.5 15.5S21.8 29 16 29 5.5 25 5.5 18.5 9.5 3 16 3Z" />
+      <path d="m9.2 10.6 3.4-2.6 3.4 2.6 3.4-2.6 3.4 2.6" />
+      <path d="M7.7 13.6h16.6" />
+      <circle cx="11" cy="16.8" r="1.2" />
+      <circle cx="16" cy="16.8" r="1.2" />
+      <circle cx="21" cy="16.8" r="1.2" />
+      <path d="M7.2 20h17.6" />
+      <path d="M9.7 24.4c2.1-2.6 4.2 0 4.2 0s2.1 2.6 4.2 0 4.2 0 4.2 0" />
+    </svg>
+  );
+}
 
 export default function ResumePanel() {
   return (
@@ -474,6 +507,23 @@ export default function ResumePanel() {
           research, insight synthesis, checkout experiences, FinTech flows,
           billing systems, credit products, and conversion optimization.
         </Skill>
+
+        {/* Easter egg — centred on the two-digit numerals above it. A numeral
+            pair is 14.4px wide at 12px JetBrains Mono and ends 14px from the
+            gutter's edge, so its centre sits 21.2px in; the 28px egg lands
+            there with a 7.2px right margin. */}
+        <div className="mt-[24px] grid grid-cols-[44px_minmax(0,1fr)] sm:grid-cols-[56px_minmax(0,1fr)]">
+          <a
+            href={PRESENTATION_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open Tim's presentation in a new tab"
+            title="Something extra"
+            className="mr-[7.2px] block justify-self-end rounded-[4px] text-[#b5a47a] transition-colors duration-150 hover:text-black focus-visible:text-black focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-black"
+          >
+            <OrnateEgg className="block h-[28px] w-[28px]" />
+          </a>
+        </div>
       </div>
     </div>
   );
