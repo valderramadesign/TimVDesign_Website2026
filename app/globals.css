@@ -285,6 +285,16 @@ html[data-theme="day"] .theme-site {
   --doordash-accent: #be2406;
 }
 
+/* Behind-the-work process diagram. Night takes a lifted sage so the 1.5px
+   wire and line icons hold on black; day uses the presentation's moss. */
+.process-diagram {
+  --pd-accent: #8dc4a4;
+}
+
+html[data-theme="day"] .theme-site .process-diagram {
+  --pd-accent: #3a6a50;
+}
+
 html[data-theme="day"] .theme-logo {
   filter: brightness(0);
 }

@@ -30,6 +30,9 @@ export type { ProjectDisclaimerProps } from "./project-disclaimer";
 export { SupportingAppendix } from "./supporting-appendix";
 export type { SupportingAppendixProps } from "./supporting-appendix";
 
+export { ProcessDiagram } from "./process-diagram";
+export type { ProcessDiagramProps, ProcessStep, ProcessStepKey } from "./process-diagram";
+
 export { cx } from "./types";
 export type {
   CaseStudyCopy,

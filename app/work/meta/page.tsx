@@ -12,6 +12,8 @@ import { CTA_PILL_SIZE } from "@/components/ui/cta-pill";
 import {
   CaseStudyHeader,
   ProjectFacts,
+  ProcessDiagram,
+  type ProcessDiagramProps,
   SupportingAppendix,
   CASE_STUDY_BODY_CLASS,
   CASE_STUDY_FOCUS_CLASS,
@@ -336,6 +338,30 @@ const REDESIGN_SCREENS: { src: StaticImageData; title: string; alt: string }[] =
     alt: "Page 3: an approval notice confirming an initial credit line and telling the advertiser their active ad accounts can now use it.",
   },
 ];
+
+/* The working loop, told for this case study. */
+const PROCESS_STEPS: ProcessDiagramProps["steps"] = {
+  align: {
+    body: "Product, Data Science, Legal, Finance and Engineering agreed on one strategy: awareness and completion.",
+    ai: "Synthesized data and requirements",
+  },
+  frame: {
+    body: "Audited verified customer data and eligibility rules to set the scope with engineering early.",
+    ai: "Surfaced gaps and edge cases",
+  },
+  design: {
+    body: "Reframed the flow in Figma around preapproval, prefill and quick correction.",
+    ai: "Explored more directions, faster",
+  },
+  build: {
+    body: "Stayed with engineering through the eligibility checks and the nine screens.",
+    ai: "Documentation, states and QA",
+  },
+  launch: {
+    body: "Read awareness, completion and revenue with product and data after launch.",
+    ai: "Found the patterns in the data",
+  },
+};
 
 export default function MetaPage() {
   return (
@@ -800,6 +826,7 @@ export default function MetaPage() {
               </div>
             ))}
           </div>
+          <ProcessDiagram steps={PROCESS_STEPS} className="mt-10 lg:mt-[76px]" />
         </SupportingAppendix>
       </div>
 

@@ -6,6 +6,8 @@ import CaseStudyTopBar from "@/components/ui/case-study-top-bar";
 import {
   CaseStudyHeader,
   ProjectFacts,
+  ProcessDiagram,
+  type ProcessDiagramProps,
   SupportingAppendix,
   CASE_STUDY_LABEL_TIGHT_CLASS,
   CASE_STUDY_SUPPORTING_CLASS,
@@ -21,7 +23,6 @@ import {
   IconOptionsUpfront,
   IconRescheduledPayment,
 } from "./iteration-icons";
-import workflowDiagram from "@/components/images/PayPal DE/PayPalDE_WorkflowDiagram.png";
 import { caseStudyMetadata } from "@/lib/seo";
 import TrustStory from "./trust-story";
 
@@ -83,6 +84,30 @@ const ITERATION_LIST_CLASS = "mt-3 flex flex-col gap-4 lg:mt-4 lg:gap-5";
 const ITERATION_ROW_CLASS = "flex items-center gap-4 lg:gap-5";
 const ITERATION_ICON_CLASS = "h-7 w-7 shrink-0 text-white lg:h-8 lg:w-8";
 
+/* The working loop, told for this case study. */
+const PROCESS_STEPS: ProcessDiagramProps["steps"] = {
+  align: {
+    body: "Checkout, Product, Legal, Risk and Research agreed on shared trust rules across two products.",
+    ai: "Synthesized personas and research",
+  },
+  frame: {
+    body: "Set scope with engineering from business requirements and PayPal's checkout frameworks.",
+    ai: "Drafted the design strategy document",
+  },
+  design: {
+    body: "Iterated Pay in 30 Days and Ratenzahlung in Figma against the same trust principles.",
+    ai: "Early concepts and working prototypes",
+  },
+  build: {
+    body: "Stayed with engineering and UED support through evaluation, QA and development.",
+    ai: "Documentation, states and QA",
+  },
+  launch: {
+    body: "Tested with customers and measured results after launch to make the system repeatable.",
+    ai: "Found the patterns in test feedback",
+  },
+};
+
 export default function PayPalDePage() {
   return (
     <main
@@ -110,29 +135,7 @@ export default function PayPalDePage() {
           title="Behind the Work"
           summary="How the strategy became repeatable across two products"
         >
-          <div className="relative w-full">
-            <Image
-              src={workflowDiagram}
-              alt="The project workflow, left to right: personas, desktop research, and business requirements feed a design strategy document in ChatGPT; then discovery in ChatGPT and Figma Make; iteration in Figma and Claude Code, supported by context engineering and content design; then UER, evaluation and quality assurance, development with UED support, and measuring results."
-              sizes="(max-width: 1024px) 100vw, 1552px"
-              className="block h-auto w-full"
-            />
-            {/* Desktop: parked in the empty quadrant under the tail of the
-                spine, so it reads as part of the drawing rather than a stray
-                note. Anchored from the bottom-right corner rather than the top,
-                because the type is a fixed 18px while the box is a share of the
-                width — the caption takes more lines as the window narrows, and
-                growing upward into empty diagram keeps it off the section
-                below. The measure is capped so it stops widening past a
-                readable line on large displays. Mobile: the diagram is far too
-                small to hold text, so the caption drops underneath it. */}
-            <p className="mt-6 text-sm font-light leading-snug text-white/60 lg:absolute lg:bottom-[9%] lg:right-[1%] lg:mt-0 lg:w-[47%] lg:max-w-[620px] lg:text-[18px] lg:leading-[1.45]">
-              AI accelerated discovery synthesis, early concepts, and working prototypes. The
-              repeatable system was the shared trust rules, PayPal&rsquo;s UI and checkout
-              frameworks, cross-functional review loop, customer testing, and{" "}
-              <span className="whitespace-nowrap">post-launch measurement.</span>
-            </p>
-          </div>
+          <ProcessDiagram steps={PROCESS_STEPS} />
           {/* The diagram ends on its lowest circle, so the iteration columns
               stand off it by a full 100px rather than the appendix's default
               24px gutter — enough that the drawing reads as finished before

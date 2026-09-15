@@ -10,7 +10,6 @@ import CounterNumber from "@/components/ui/counter-number";
 import { ImageMarquee } from "@/components/ui/image-marquee";
 import { AnimatedImpactRow } from "@/components/ui/animated-impact-row";
 import quantumLeap from "@/components/images/PayPalQuantumLeap/PayPalQuantumLeap.png";
-import workflow from "@/components/images/WorkflowDiagram.png";
 import iterations from "@/components/images/PayPalQuantumLeap/Wireframes/Iterations.png";
 import wireframePayIn4 from "@/components/images/PayPalQuantumLeap/Wireframes/Pay in 4 - Wireframe.png";
 import wireframePayMonthly from "@/components/images/PayPalQuantumLeap/Wireframes/Pay Monthly - Wireframe.png";
@@ -40,9 +39,10 @@ import cardArtPayIn3 from "@/components/images/PayIn3_CardArt.png";
 import {
   CaseStudyHeader,
   ProjectFacts,
+  ProcessDiagram,
+  type ProcessDiagramProps,
   SupportingAppendix,
   CASE_STUDY_BODY_CLASS,
-  CASE_STUDY_CAPTION_CLASS,
   CASE_STUDY_LABEL_TIGHT_CLASS,
   CASE_STUDY_STACK_CLASS,
   CASE_STUDY_SUPPORTING_CLASS,
@@ -328,6 +328,30 @@ function DeviceShell({
     </div>
   );
 }
+
+/* The working loop, told for this case study. */
+const PROCESS_STEPS: ProcessDiagramProps["steps"] = {
+  align: {
+    body: "Six product teams and leadership agreed on one shared application pattern.",
+    ai: "Synthesized six funnels and metrics",
+  },
+  frame: {
+    body: "Fixed the core flow, the allowed variants, and the US and UK legal exceptions.",
+    ai: "Surfaced regulatory edge cases",
+  },
+  design: {
+    body: "Carried 40+ iterations through product, legal and design review in Figma.",
+    ai: "Explored more directions, faster",
+  },
+  build: {
+    body: "Stayed with the six teams from requirements through development.",
+    ai: "Documentation, states and QA",
+  },
+  launch: {
+    body: "Measured each product against the shared pattern and fed the gaps back.",
+    ai: "Found the patterns in results",
+  },
+};
 
 export default function PayPal1CaseStudy() {
   return (
@@ -992,45 +1016,7 @@ export default function PayPal1CaseStudy() {
             exceptions. Recurring product, legal, design, and leadership reviews held all six
             teams to it, from requirements through development and measurement.
           </p>
-          {/* The diagram is dense enough that fitting it to a phone would make
-              it unreadable, so below lg it holds a legible width and scrolls
-              inside its own box. The scroll is on the wrapper and the width on
-              the inner area, so it never reaches the page. */}
-          <p className={cx(CASE_STUDY_SUPPORTING_CLASS, "text-white/50 lg:hidden")}>
-            Swipe to explore the workflow.
-          </p>
-          {/* From lg the caption moves alongside the diagram, which buys the
-              diagram breathing room instead of the full column width. Every
-              figure here is a share of the row, so the pairing holds at any
-              width: the diagram is 75% and its locked 1246/895 ratio makes it
-              0.538 of the row tall, and the UX Support circle opens at 0.611 of
-              that height — so the caption's top margin of 32.9% of the row sets
-              its first line on the circle's top edge.
-
-              The appendix already stacks its children 16px apart, 24px from lg,
-              so the margins here are the remainder: 50px above the diagram and
-              100px below it on desktop, both dropping to 64% of that on small
-              screens so the rhythm shrinks with the type rather than dwarfing
-              it. The diagram fills its own box edge to edge, so these gaps are
-              the gaps you see. */}
-          <figure className="mt-4 lg:mt-[26px] min-w-0 lg:flex lg:flex-row lg:items-start lg:gap-[4%]">
-            <div className="w-full overflow-x-auto lg:w-[75%]">
-              <div className="min-w-[1060px] lg:min-w-0">
-                <Image
-                  src={workflow}
-                  alt="The project workflow from requirement kickoff through discovery, ChatGPT and Figma AI iteration, user experience research, development and measurement, with cross-functional, product, legal, design and leadership review loops supporting six US and UK PayPal credit products."
-                  sizes="(max-width: 1024px) 1060px, 75vw"
-                  className="block h-auto w-full"
-                />
-              </div>
-            </div>
-            <figcaption
-              className={cx(CASE_STUDY_CAPTION_CLASS, "mt-3 lg:mt-[32.9%] lg:w-[21%]")}
-            >
-              Where each review entered the build: research before iteration, legal and design
-              through it, leadership at the decision points.
-            </figcaption>
-          </figure>
+          <ProcessDiagram steps={PROCESS_STEPS} className="mt-4 lg:mt-[26px]" />
           <div className={cx(CASE_STUDY_STACK_CLASS, "mt-12 lg:mt-[76px]")}>
             <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>
               Design System Gap &rarr; Build Plan

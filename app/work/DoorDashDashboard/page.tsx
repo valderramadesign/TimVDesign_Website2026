@@ -5,7 +5,6 @@ import NextCaseStudyTicker from "@/components/ui/next-case-study-ticker";
 import CaseStudyTopBar from "@/components/ui/case-study-top-bar";
 import ScrollFade from "@/components/ui/scroll-fade";
 import DashboardAssembleReveal from "@/components/ui/dashboard-assemble-reveal";
-import workflow from "@/components/images/DoorDash Dashboard/WorkflowDiagram.svg";
 import actionFirstDashboard from "@/components/images/DoorDash Dashboard/minimal-action-first-dashboard-negative-transparent.png";
 import decisionBriefDashboard from "@/components/images/DoorDash Dashboard/decision-brief-dashboard-negative-transparent.png";
 import missionControlDashboard from "@/components/images/DoorDash Dashboard/promotion-profitability-console-negative-transparent.png";
@@ -17,6 +16,8 @@ import {
   CaseStudyHeader,
   ProjectFacts,
   ProjectDisclaimer,
+  ProcessDiagram,
+  type ProcessDiagramProps,
   SupportingAppendix,
   CASE_STUDY_BODY_CLASS,
   CASE_STUDY_FACT_VALUE_CLASS,
@@ -96,6 +97,30 @@ const DISCOVERY_CONCEPTS = [
     variant: "console" as const,
   },
 ];
+
+/* The working loop, told for this case study. */
+const PROCESS_STEPS: ProcessDiagramProps["steps"] = {
+  align: {
+    body: "Set the goal for a two-day sprint: surface the day's most urgent marketplace issues first.",
+    ai: "Structured discovery in ChatGPT",
+  },
+  frame: {
+    body: "Three personas and their jobs-to-be-done fixed the scope: ops, merchant, and growth.",
+    ai: "Drafted personas and edge cases",
+  },
+  design: {
+    body: "Iterated three dashboard concepts in Figma, from action-first to decision brief.",
+    ai: "Explored more layouts, faster",
+  },
+  build: {
+    body: "Prototyped the working dashboard in Claude Code from the Figma system.",
+    ai: "States and prototype code",
+  },
+  launch: {
+    body: "Reviewed the concept against each persona's job and noted what to test next.",
+    ai: "Ranked findings against each job",
+  },
+};
 
 export default function DoorDashDashboardCaseStudy() {
   return (
@@ -315,29 +340,7 @@ export default function DoorDashDashboardCaseStudy() {
             </div>
           </div>
 
-          {/* Workflow + commentary */}
-          {/* The diagram runs the full content width, so the caption has to
-              size off the container rather than the viewport — 1.23cqw is 18px
-              at the 1464px container a 1512 screen gives, capped there so it
-              stops growing on very wide displays. */}
-          <div className="@container relative mt-14 w-full lg:mt-[100px]">
-            <div className="relative w-full aspect-[1482/795]">
-              <Image
-                src={workflow}
-                alt="End-to-end AI-assisted design workflow diagram"
-                fill
-                className="object-contain"
-              />
-            </div>
-            {/* Desktop: parked inside the diagram with its left edge on the
-                third circle above, which keeps it clear of Content Design.
-                Mobile: the diagram is far too small to hold text, so the
-                caption drops underneath it. */}
-            <p className="mt-6 text-sm font-light leading-snug text-white/60 lg:absolute lg:left-[73.62%] lg:top-[73.14%] lg:mt-0 lg:w-[26.38%] lg:text-[clamp(12px,1.23cqw,18px)] lg:leading-[1.45]">
-              Used ChatGPT to structure discovery, Figma to iterate, and Claude Code to
-              prototype&mdash;turning scattered signals into an actionable dashboard.
-            </p>
-          </div>
+          <ProcessDiagram steps={PROCESS_STEPS} className="mt-14 lg:mt-[100px]" />
         </SupportingAppendix>
       </div>
 

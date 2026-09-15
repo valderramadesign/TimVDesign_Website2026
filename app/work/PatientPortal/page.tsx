@@ -11,6 +11,8 @@ import {
   CaseStudyHeader,
   ProjectFacts,
   ProjectDisclaimer,
+  ProcessDiagram,
+  type ProcessDiagramProps,
   SupportingAppendix,
   CASE_STUDY_BODY_CLASS,
   CASE_STUDY_FACT_VALUE_CLASS,
@@ -23,7 +25,6 @@ import {
 import wireframeNextBestAction from "@/components/images/Patient Portal/Wireframe Negatives/next-best-action-negative.png";
 import wireframeGuidedConcierge from "@/components/images/Patient Portal/Wireframe Negatives/guided-concierge-negative.png";
 import wireframeCareJourney from "@/components/images/Patient Portal/Wireframe Negatives/patient-care-journey-negative.png";
-import workflowDiagram from "@/components/images/Patient Portal/WorkflowDiagram.svg";
 import closingImage from "@/components/images/Patient Portal/patient-portal-hospital-laptop.png";
 
 import carousel01 from "@/components/images/Patient Portal/Carousel_01.png";
@@ -109,6 +110,30 @@ const carouselItems = [
   { id: 9, src: carousel09, orientation: "landscape" },
   { id: 10, src: carousel10, orientation: "portrait" },
 ] as const;
+
+/* The working loop, told for this case study. */
+const PROCESS_STEPS: ProcessDiagramProps["steps"] = {
+  align: {
+    body: "Set the outcome for a 2.5-day exercise: make booking an appointment the simplest task.",
+    ai: "Synthesized the current-state review",
+  },
+  frame: {
+    body: "Scoped the work to appointment booking and the navigation that gets a patient there.",
+    ai: "Surfaced gaps in the current portal",
+  },
+  design: {
+    body: "Compared three navigation models in Figma: Next Best Action, Care Journey, AI Concierge.",
+    ai: "Explored the three models in parallel",
+  },
+  build: {
+    body: "Built the task-first booking prototype from the chosen model.",
+    ai: "Generated the working prototype",
+  },
+  launch: {
+    body: "Walked the prototype against the booking task and captured what to test with patients.",
+    ai: "Found the gaps in the walkthrough",
+  },
+};
 
 export default function PatientPortalPage() {
   return (
@@ -328,24 +353,7 @@ export default function PatientPortalPage() {
           title="Behind the Work"
           summary="The AI-assisted workflow behind the strategy, the iteration, and the prototype"
         >
-          <div className="relative w-full">
-            <div className="relative w-full aspect-[1468/795]">
-              <Image
-                src={workflowDiagram}
-                alt="End-to-end AI-assisted design workflow diagram"
-                fill
-                className="object-contain"
-              />
-            </div>
-            {/* Desktop: parked inside the diagram with its left edge on the
-                third circle above, which keeps it clear of Content Design.
-                Mobile: the diagram is far too small to hold text, so the
-                caption drops underneath it. */}
-            <p className="mt-6 text-sm font-light leading-snug text-white/60 lg:absolute lg:left-[74.05%] lg:top-[73.14%] lg:mt-0 lg:w-[25.95%] lg:text-[18px] lg:leading-[1.45]">
-              Used an AI-assisted workflow to synthesize the current-state review, compare three
-              navigation models, and build the task-first booking prototype.
-            </p>
-          </div>
+          <ProcessDiagram steps={PROCESS_STEPS} />
         </SupportingAppendix>
       </div>
 
