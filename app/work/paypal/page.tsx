@@ -331,23 +331,27 @@ function DeviceShell({
 
 /* The working loop, told for this case study. */
 const PROCESS_STEPS: ProcessDiagramProps["steps"] = {
-  align: {
-    body: "Six product teams and leadership agreed on one shared application pattern.",
+  ground: {
+    body: "Six funnels, their metrics and the new checkout framework set the baseline.",
     ai: "Synthesized six funnels and metrics",
   },
   frame: {
-    body: "Fixed the core flow, the allowed variants, and the US and UK legal exceptions.",
+    body: "One shared application pattern, with the US and UK legal exceptions named.",
     ai: "Surfaced regulatory edge cases",
   },
-  design: {
+  explore: {
     body: "Carried 40+ iterations through product, legal and design review in Figma.",
-    ai: "Explored more directions, faster",
+    ai: "Expanded and critiqued directions",
+  },
+  decide: {
+    body: "Leadership and six product teams chose the one-step Pay in 4 flow.",
+    ai: "Compared conversion risk by variant",
   },
   build: {
-    body: "Stayed with the six teams from requirements through development.",
+    body: "Stayed with the six teams from requirements through development and QA.",
     ai: "Documentation, states and QA",
   },
-  launch: {
+  learn: {
     body: "Measured each product against the shared pattern and fed the gaps back.",
     ai: "Found the patterns in results",
   },

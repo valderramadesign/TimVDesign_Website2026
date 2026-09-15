@@ -100,23 +100,27 @@ const DISCOVERY_CONCEPTS = [
 
 /* The working loop, told for this case study. */
 const PROCESS_STEPS: ProcessDiagramProps["steps"] = {
-  align: {
-    body: "Set the goal for a two-day sprint: surface the day's most urgent marketplace issues first.",
+  ground: {
+    body: "A two-day sprint to surface the day's most urgent marketplace issues first.",
     ai: "Structured discovery in ChatGPT",
   },
   frame: {
-    body: "Three personas and their jobs-to-be-done fixed the scope: ops, merchant, and growth.",
+    body: "Three personas and their jobs-to-be-done fixed the scope: ops, merchant, growth.",
     ai: "Drafted personas and edge cases",
   },
-  design: {
+  explore: {
     body: "Iterated three dashboard concepts in Figma, from action-first to decision brief.",
-    ai: "Explored more layouts, faster",
+    ai: "Expanded and critiqued layouts",
+  },
+  decide: {
+    body: "Chose the decision brief: prioritized issues with context, role detail secondary.",
+    ai: "Compared the concepts against each job",
   },
   build: {
     body: "Prototyped the working dashboard in Claude Code from the Figma system.",
-    ai: "States and prototype code",
+    ai: "Built states and checked the prototype",
   },
-  launch: {
+  learn: {
     body: "Reviewed the concept against each persona's job and noted what to test next.",
     ai: "Ranked findings against each job",
   },

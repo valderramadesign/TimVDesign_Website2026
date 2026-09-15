@@ -113,23 +113,27 @@ const carouselItems = [
 
 /* The working loop, told for this case study. */
 const PROCESS_STEPS: ProcessDiagramProps["steps"] = {
-  align: {
-    body: "Set the outcome for a 2.5-day exercise: make booking an appointment the simplest task.",
-    ai: "Synthesized the current-state review",
+  ground: {
+    body: "A current\u2011state review of the portal and where booking breaks down.",
+    ai: "Synthesized the current\u2011state review",
   },
   frame: {
-    body: "Scoped the work to appointment booking and the navigation that gets a patient there.",
+    body: "Make booking an appointment the simplest task, in a 2.5\u2011day exercise.",
     ai: "Surfaced gaps in the current portal",
   },
-  design: {
+  explore: {
     body: "Compared three navigation models in Figma: Next Best Action, Care Journey, AI Concierge.",
     ai: "Explored the three models in parallel",
   },
+  decide: {
+    body: "Combined visible priorities, journey context and optional guidance, focused on booking.",
+    ai: "Compared the models against the task",
+  },
   build: {
     body: "Built the task-first booking prototype from the chosen model.",
-    ai: "Generated the working prototype",
+    ai: "Generated and checked the prototype",
   },
-  launch: {
+  learn: {
     body: "Walked the prototype against the booking task and captured what to test with patients.",
     ai: "Found the gaps in the walkthrough",
   },

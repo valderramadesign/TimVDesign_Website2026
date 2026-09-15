@@ -682,7 +682,7 @@ for (const project of PROJECTS) {
  * hundred pixels down. Binding the final pair guarantees the last line carries
  * at least two words at every breakpoint, on the cards as well as the panels.
  */
-function bindLastWord(text: string): string {
+export function bindLastWord(text: string): string {
   return text.replace(/ (\S+)\s*$/, "\u00A0$1");
 }
 

@@ -253,23 +253,27 @@ const BEHIND_THE_WORK: { title: string; body: ReactNode }[] = [
 
 /* The working loop, told for this case study. */
 const PROCESS_STEPS: ProcessDiagramProps["steps"] = {
-  align: {
-    body: "Mapped the school's reporting workflow with the head teacher and agreed on the two hours to win back.",
+  ground: {
+    body: "Mapped the school's reporting workflow with the head teacher and the two hours to win back.",
     ai: "Synthesized the interviews and notes",
   },
   frame: {
-    body: "Turned the competitive analysis and her rules into requirements: logging, feeds, checkout, summaries.",
+    body: "Her rules and the competitive analysis became requirements: logging, feeds, checkout, summaries.",
     ai: "Surfaced gaps across five foundations",
   },
-  design: {
-    body: "Designed the teacher, parent, and checkout flows in Figma around her roles and permissions.",
-    ai: "Explored flows and states, faster",
+  explore: {
+    body: "Designed the teacher, parent and checkout flows in Figma around her roles and permissions.",
+    ai: "Expanded and critiqued the flows",
+  },
+  decide: {
+    body: "The head teacher chose feed-bound privacy: one child, their guardians, nothing else.",
+    ai: "Compared privacy risks and options",
   },
   build: {
     body: "Built the working MVP in three weeks, with privacy enforced by the feed's boundaries.",
     ai: "Prototyping, code and QA",
   },
-  launch: {
+  learn: {
     body: "Put the MVP in the head teacher's hands and logged what stays open, like retention.",
     ai: "Found the patterns in her feedback",
   },

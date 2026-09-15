@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
+import { bindLastWord } from "@/lib/content";
 import { cx } from "./types";
 
-export type ProcessStepKey = "align" | "frame" | "design" | "build" | "launch";
+export type ProcessStepKey = "ground" | "frame" | "explore" | "decide" | "build" | "learn";
 
 export interface ProcessStep {
   /** What happened at this station, in this case study. One or two lines. */
@@ -17,8 +18,8 @@ export interface ProcessDiagramProps {
 
 const STATIONS: { key: ProcessStepKey; title: ReactNode; icon: ReactNode }[] = [
   {
-    key: "align",
-    title: "Align",
+    key: "ground",
+    title: "Ground",
     icon: (
       <>
         <circle cx="11.8" cy="12.4" r="7.4" />
@@ -38,8 +39,8 @@ const STATIONS: { key: ProcessStepKey; title: ReactNode; icon: ReactNode }[] = [
     ),
   },
   {
-    key: "design",
-    title: "Design",
+    key: "explore",
+    title: "Explore",
     icon: (
       <>
         <path d="M8.3 24.5C16.5 24.5 15.5 7.5 23.7 7.5" />
@@ -49,8 +50,23 @@ const STATIONS: { key: ProcessStepKey; title: ReactNode; icon: ReactNode }[] = [
     ),
   },
   {
+    key: "decide",
+    title: "Decide",
+    icon: (
+      <>
+        <circle cx="16" cy="16" r="11.5" />
+        <path d="m10.1 16.4 4 4.1 8-8.6" />
+      </>
+    ),
+  },
+  {
     key: "build",
-    title: "Build",
+    title: (
+      <>
+        Build
+        <br />+ Verify
+      </>
+    ),
     icon: (
       <>
         <rect x="10.25" y="6.5" width="11.5" height="8.5" rx="2" />
@@ -60,13 +76,8 @@ const STATIONS: { key: ProcessStepKey; title: ReactNode; icon: ReactNode }[] = [
     ),
   },
   {
-    key: "launch",
-    title: (
-      <>
-        Launch
-        <br />+ learn
-      </>
-    ),
+    key: "learn",
+    title: "Learn",
     icon: (
       <>
         <rect x="3" y="5" width="26" height="22" rx="3.6" />
@@ -78,19 +89,16 @@ const STATIONS: { key: ProcessStepKey; title: ReactNode; icon: ReactNode }[] = [
 ];
 
 const TOOLS: { name: string; role: string }[] = [
-  { name: "Figma", role: "the shared source of truth for the experience" },
-  {
-    name: "Claude + ChatGPT + Gemini",
-    role: "synthesis, exploration, prototyping, documentation and QA",
-  },
+  { name: "Figma + Code Connect", role: "design intent ↔ production components" },
+  { name: "Figma MCP + AI agents", role: "context, critique, implementation and QA" },
 ];
 
 /* The diagram escapes the page gutter to sit 50px from each screen edge.
-   From lg the five stations share one row, so the icon and title scale with
-   the viewport (64px at 1024, 96px from ~1520) to keep the wire visible
+   From xl the six stations share one row, so the icon and title scale with
+   the viewport (56px at 1280, 80px from ~1600) to keep the wire visible
    between them; the wire's top run sits on the icon's centre line. */
 const FRAME_CLASS =
-  "process-diagram relative mb-[6px] ml-[calc(50%-50vw+50px)] w-[calc(100vw-100px)] font-sans [--pd-icon:64px] lg:[--pd-icon:clamp(64px,6.3vw,96px)]";
+  "process-diagram relative mb-[6px] ml-[calc(50%-50vw+50px)] w-[calc(100vw-100px)] font-sans [--pd-icon:64px] xl:[--pd-icon:clamp(56px,5vw,80px)]";
 
 const WIRE_CLASS =
   "pointer-events-none absolute inset-x-0 top-[calc(var(--pd-icon)/2)] bottom-0 rounded-[24px] border-[1.5px] border-[var(--pd-accent)]";
@@ -100,7 +108,7 @@ const WIRE_CLASS =
 const NODE_CLASS = "-ml-[9px] flex w-max items-center gap-[10px] bg-black pr-[10px]";
 
 /**
- * The working loop behind every case study: five stations on one wire, what
+ * The working loop behind every case study: six stations on one wire, what
  * each one meant here, and what the tools carried. Static; the copy is the
  * only thing that changes between pages.
  */
@@ -109,7 +117,7 @@ export function ProcessDiagram({ steps, className }: ProcessDiagramProps) {
     <div className={cx(FRAME_CLASS, className)}>
       <div className={WIRE_CLASS} aria-hidden="true" />
 
-      <ol className="relative grid grid-cols-1 gap-x-8 gap-y-12 px-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:px-[44px]">
+      <ol className="relative grid grid-cols-1 gap-x-8 gap-y-12 px-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 xl:gap-x-6 xl:px-[44px]">
         {STATIONS.map((station) => {
           const step = steps[station.key];
           return (
@@ -127,23 +135,23 @@ export function ProcessDiagram({ steps, className }: ProcessDiagramProps) {
                 >
                   {station.icon}
                 </svg>
-                <h3 className="font-serif text-[24px] font-normal leading-[1.05] tracking-[-0.012em] text-white lg:text-[clamp(22px,1.85vw,28px)]">
+                <h3 className="font-serif text-[24px] font-normal leading-[1.05] tracking-[-0.012em] text-white xl:text-[clamp(20px,1.5vw,26px)]">
                   {station.title}
                 </h3>
               </div>
-              <p className="mt-4 text-[15px] font-light leading-[1.42] text-white/70 lg:mt-[18px] lg:text-[16px]">
-                {step.body}
+              <p className="mt-4 text-[15px] font-light leading-[1.42] text-white/70 xl:mt-[18px] xl:text-[clamp(14px,0.95vw,16px)]">
+                {bindLastWord(step.body)}
               </p>
-              <p className="mt-3 text-[13px] font-light leading-[1.45] text-white/50 lg:text-[14px]">
+              <p className="mt-3 text-[13px] font-light leading-[1.45] text-white/50 xl:text-[clamp(12.5px,0.85vw,14px)]">
                 <b className="mr-2 text-[10px] font-normal tracking-[0.02em] opacity-80">AI</b>
-                {step.ai}
+                {bindLastWord(step.ai)}
               </p>
             </li>
           );
         })}
       </ol>
 
-      <ul className="relative mt-14 flex flex-wrap items-baseline px-6 pb-16 lg:mt-[100px] lg:px-[44px] lg:pb-[78px]">
+      <ul className="relative mt-14 flex flex-wrap items-baseline px-6 pb-16 xl:mt-[100px] xl:px-[44px] xl:pb-[78px]">
         <li className="pr-[13px] text-[10px] font-normal uppercase tracking-[0.14em] text-white/50">
           Tools
         </li>
@@ -151,7 +159,7 @@ export function ProcessDiagram({ steps, className }: ProcessDiagramProps) {
           <li
             key={tool.name}
             className={cx(
-              "pr-[13px] text-[12.5px] font-light leading-[1.45] text-white/70 lg:text-[13px]",
+              "pr-[13px] text-[12.5px] font-light leading-[1.45] text-white/70 xl:text-[13px]",
               index === 0 ? "pl-[11px]" : "border-l border-white/15 pl-[13px]",
             )}
           >
@@ -162,7 +170,7 @@ export function ProcessDiagram({ steps, className }: ProcessDiagramProps) {
       </ul>
 
       <p className="absolute bottom-0 left-1/2 max-w-[calc(100%-48px)] -translate-x-1/2 translate-y-1/2 bg-black px-4 text-center text-[11px] font-normal leading-none tracking-[0.04em] text-[var(--pd-accent)]">
-        What we learn becomes the next product decision
+        Signals become the next product decision
       </p>
     </div>
   );

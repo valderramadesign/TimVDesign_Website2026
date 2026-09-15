@@ -86,24 +86,28 @@ const ITERATION_ICON_CLASS = "h-7 w-7 shrink-0 text-white lg:h-8 lg:w-8";
 
 /* The working loop, told for this case study. */
 const PROCESS_STEPS: ProcessDiagramProps["steps"] = {
-  align: {
-    body: "Checkout, Product, Legal, Risk and Research agreed on shared trust rules across two products.",
+  ground: {
+    body: "German checkout research, personas and PayPal's checkout frameworks.",
     ai: "Synthesized personas and research",
   },
   frame: {
-    body: "Set scope with engineering from business requirements and PayPal's checkout frameworks.",
+    body: "Shared trust rules across two products, scoped with engineering early.",
     ai: "Drafted the design strategy document",
   },
-  design: {
+  explore: {
     body: "Iterated Pay in 30 Days and Ratenzahlung in Figma against the same trust principles.",
     ai: "Early concepts and working prototypes",
+  },
+  decide: {
+    body: "Checkout, Product, Legal and Risk chose two paths under one trust system.",
+    ai: "Compared risk and research evidence",
   },
   build: {
     body: "Stayed with engineering and UED support through evaluation, QA and development.",
     ai: "Documentation, states and QA",
   },
-  launch: {
-    body: "Tested with customers and measured results after launch to make the system repeatable.",
+  learn: {
+    body: "Tested with customers and measured after launch to make the system repeatable.",
     ai: "Found the patterns in test feedback",
   },
 };

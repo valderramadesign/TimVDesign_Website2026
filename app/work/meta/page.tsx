@@ -341,23 +341,27 @@ const REDESIGN_SCREENS: { src: StaticImageData; title: string; alt: string }[] =
 
 /* The working loop, told for this case study. */
 const PROCESS_STEPS: ProcessDiagramProps["steps"] = {
-  align: {
-    body: "Product, Data Science, Legal, Finance and Engineering agreed on one strategy: awareness and completion.",
+  ground: {
+    body: "Verified customer data, eligibility rules and where the funnel lost people.",
     ai: "Synthesized data and requirements",
   },
   frame: {
-    body: "Audited verified customer data and eligibility rules to set the scope with engineering early.",
+    body: "One strategy across five teams: raise awareness and completion.",
     ai: "Surfaced gaps and edge cases",
   },
-  design: {
+  explore: {
     body: "Reframed the flow in Figma around preapproval, prefill and quick correction.",
-    ai: "Explored more directions, faster",
+    ai: "Expanded and critiqued directions",
+  },
+  decide: {
+    body: "Product, Legal and Finance chose prefill over re-entry, with eligibility checked early.",
+    ai: "Compared risks and evidence",
   },
   build: {
     body: "Stayed with engineering through the eligibility checks and the nine screens.",
     ai: "Documentation, states and QA",
   },
-  launch: {
+  learn: {
     body: "Read awareness, completion and revenue with product and data after launch.",
     ai: "Found the patterns in the data",
   },
