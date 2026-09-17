@@ -295,6 +295,27 @@ html[data-theme="day"] .theme-site .process-diagram {
   --pd-accent: #3a6a50;
 }
 
+/* Meta eligibility workflow (app/work/meta/workflow-diagram.tsx). At night
+   the upstream checks sit on the white ramp and the approved path takes the
+   page's chartreuse. Day recedes the checks onto the day inks and gives
+   the path the same blue the reveal slider takes on paper. The shape fill
+   is a faint radial lift at night and a faint edge shadow on paper. */
+.mi-workflow-diagram {
+  --mi-check: rgb(255 255 255 / 0.5);
+  --mi-check-text: rgb(255 255 255 / 0.85);
+  --mi-path: #cef252;
+  --mi-fill-in: rgb(255 255 255 / 0.07);
+  --mi-fill-out: rgb(255 255 255 / 0.02);
+}
+
+html[data-theme="day"] .theme-site .mi-workflow-diagram {
+  --mi-check: var(--day-ink-3);
+  --mi-check-text: var(--day-ink-2);
+  --mi-path: var(--day-blue);
+  --mi-fill-in: rgb(9 9 9 / 0);
+  --mi-fill-out: rgb(9 9 9 / 0.045);
+}
+
 html[data-theme="day"] .theme-logo {
   filter: brightness(0);
 }

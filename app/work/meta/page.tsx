@@ -5,6 +5,7 @@ import CaseStudyTopBar from "@/components/ui/case-study-top-bar";
 import NextCaseStudyTicker from "@/components/ui/next-case-study-ticker";
 import RevealSlider from "@/components/ui/reveal-slider";
 import LegacyScreenGrid, { type LegacyScreen } from "./legacy-screen-grid";
+import WorkflowDiagram from "./workflow-diagram";
 import ScrollFade from "@/components/ui/scroll-fade";
 import MiMacbookWalkthrough from "@/components/ui/mi-macbook-walkthrough";
 import { AnimatedImpactRow } from "@/components/ui/animated-impact-row";
@@ -48,7 +49,6 @@ import oldScreen8 from "@/components/images/Monthly invoicing Images/MI_Old_Flow
 import newFlowHowItWorks from "@/components/images/Monthly invoicing Images/Mi_New_Flow_Screens/new-flow-1-how-it-works.png";
 import newFlowConfirm from "@/components/images/Monthly invoicing Images/Mi_New_Flow_Screens/new-flow-2-confirm-information.png";
 import newFlowApproved from "@/components/images/Monthly invoicing Images/Mi_New_Flow_Screens/new-flow-3-approved.png";
-import miWorkflowDiagram from "@/components/images/Monthly invoicing Images/Diagram/mi-workflow-diagram.webp";
 import metaHero from "@/components/images/Monthly invoicing Images/Hero/meta-hero.webp";
 import { PROJECTS_BY_ID, imageSrc, previewOf } from "@/lib/content";
 import { caseStudyMetadata } from "@/lib/seo";
@@ -574,12 +574,7 @@ export default function MetaPage() {
 
         <figure className="mt-[50px]">
           <div className={DIAGRAM_FRAME} tabIndex={0}>
-            <Image
-              src={miWorkflowDiagram}
-              alt={DIAGRAM_ALT}
-              sizes="(min-width: 1024px) 100vw, 1040px"
-              className={DIAGRAM_IMAGE}
-            />
+            <WorkflowDiagram label={DIAGRAM_ALT} className={DIAGRAM_IMAGE} />
           </div>
         </figure>
 
