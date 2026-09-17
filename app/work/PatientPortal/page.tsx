@@ -113,29 +113,29 @@ const carouselItems = [
 
 /* The working loop, told for this case study. */
 const PROCESS_STEPS: ProcessDiagramProps["steps"] = {
-  ground: {
-    body: "A current\u2011state review of the portal and where booking breaks down.",
-    ai: "Synthesized the current\u2011state review",
+  empathize: {
+    body: "I audited the current portal and walked the appointment-booking journey end to end.",
+    ai: "Organized context, tagged friction and drafted research questions",
   },
-  frame: {
-    body: "Make booking an appointment the simplest task, in a 2.5\u2011day exercise.",
-    ai: "Surfaced gaps in the current portal",
+  define: {
+    body: "I made appointment booking the primary task within a focused 2.5-day redesign.",
+    ai: "Clustered journey friction, exposed gaps and drafted success criteria",
   },
-  explore: {
-    body: "Compared three navigation models in Figma: Next Best Action, Care Journey, AI Concierge.",
-    ai: "Explored the three models in parallel",
+  ideate: {
+    body: "I explored Next Best Action, Care Journey and Guided AI Concierge in Figma.",
+    ai: "Generated low-fidelity flows, critiqued concepts and produced edge cases",
   },
-  decide: {
-    body: "Combined visible priorities, journey context and optional guidance, focused on booking.",
-    ai: "Compared the models against the task",
+  prototype: {
+    body: "I built a task-first booking prototype from the strongest parts of all three models.",
+    ai: "Added realistic content, unavailable states and focused variants",
   },
-  build: {
-    body: "Built the task-first booking prototype from the chosen model.",
-    ai: "Generated and checked the prototype",
+  test: {
+    body: "I walked every booking state and documented what still needs patient validation.",
+    ai: "Generated task scenarios and ranked gaps from the walkthrough",
   },
-  learn: {
-    body: "Walked the prototype against the booking task and captured what to test with patients.",
-    ai: "Found the gaps in the walkthrough",
+  implement: {
+    body: "I packaged a polished concept with handoff-ready rationale—not a production launch.",
+    ai: "Produced variants, annotations, acceptance criteria and QA cases",
   },
 };
 

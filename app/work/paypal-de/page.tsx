@@ -86,29 +86,29 @@ const ITERATION_ICON_CLASS = "h-7 w-7 shrink-0 text-white lg:h-8 lg:w-8";
 
 /* The working loop, told for this case study. */
 const PROCESS_STEPS: ProcessDiagramProps["steps"] = {
-  ground: {
-    body: "German checkout research, personas and PayPal's checkout frameworks.",
-    ai: "Synthesized personas and research",
+  empathize: {
+    body: "Partnered with PayPal Research to understand German checkout expectations, trust gaps and personas.",
+    ai: "Organized study context, tagged evidence and compared signals across two products",
   },
-  frame: {
-    body: "Shared trust rules across two products, scoped with engineering early.",
-    ai: "Drafted the design strategy document",
+  define: {
+    body: "Turned the evidence into shared trust principles for Pay in 30 Days and Ratenzahlung.",
+    ai: "Clustered themes, exposed contradictions and drafted success signals",
   },
-  explore: {
-    body: "Iterated Pay in 30 Days and Ratenzahlung in Figma against the same trust principles.",
-    ai: "Early concepts and working prototypes",
+  ideate: {
+    body: "Explored both products in Figma with Product, Legal, Risk and Engineering.",
+    ai: "Generated distinct flows, copy options and edge cases anchored to research",
   },
-  decide: {
-    body: "Checkout, Product, Legal and Risk chose two paths under one trust system.",
-    ai: "Compared risk and research evidence",
+  prototype: {
+    body: "Built high-fidelity checkout flows on PayPal's current application framework.",
+    ai: "Added disclosures, unavailable states and focused variants",
   },
-  build: {
-    body: "Stayed with engineering and UED support through evaluation, QA and development.",
-    ai: "Documentation, states and QA",
+  test: {
+    body: "Partnered with PayPal Research for customer testing; I prioritized the design changes.",
+    ai: "Synthesized sessions, separated said-and-did evidence and ranked issues",
   },
-  learn: {
-    body: "Tested with customers and measured after launch to make the system repeatable.",
-    ai: "Found the patterns in test feedback",
+  implement: {
+    body: "Stayed with Engineering and UED through evaluation, QA, launch and measurement.",
+    ai: "Propagated approved changes and drafted specifications and QA cases",
   },
 };
 

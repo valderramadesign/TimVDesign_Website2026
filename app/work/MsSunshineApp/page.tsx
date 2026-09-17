@@ -253,29 +253,29 @@ const BEHIND_THE_WORK: { title: string; body: ReactNode }[] = [
 
 /* The working loop, told for this case study. */
 const PROCESS_STEPS: ProcessDiagramProps["steps"] = {
-  ground: {
-    body: "Mapped the school's reporting workflow with the head teacher and the two hours to win back.",
-    ai: "Synthesized the interviews and notes",
+  empathize: {
+    body: "I interviewed the head teacher and mapped the reporting workflow I needed to replace.",
+    ai: "Drafted the guide, transcribed notes and tagged repeated needs",
   },
-  frame: {
-    body: "Her rules and the competitive analysis became requirements: logging, feeds, checkout, summaries.",
-    ai: "Surfaced gaps across five foundations",
+  define: {
+    body: "I converted the evidence, privacy boundaries and competitive review into MVP requirements.",
+    ai: "Clustered themes, pressure-tested assumptions and exposed gaps",
   },
-  explore: {
-    body: "Designed the teacher, parent and checkout flows in Figma around her roles and permissions.",
-    ai: "Expanded and critiqued the flows",
+  ideate: {
+    body: "I explored teacher, parent and checkout flows around roles, permissions and daily use.",
+    ai: "Generated low-fidelity flows, copy options and edge cases",
   },
-  decide: {
-    body: "The head teacher chose feed-bound privacy: one child, their guardians, nothing else.",
-    ai: "Compared privacy risks and options",
+  prototype: {
+    body: "I designed and built a working MVP in three weeks with realistic school content.",
+    ai: "Added states, accelerated edits and connected design to code",
   },
-  build: {
-    body: "Built the working MVP in three weeks, with privacy enforced by the feed's boundaries.",
-    ai: "Prototyping, code and QA",
+  test: {
+    body: "I ran iterative reviews with the head teacher and observed daily use; wider testing remains open.",
+    ai: "Synthesized feedback, separated requests from behavior and ranked issues",
   },
-  learn: {
-    body: "Put the MVP in the head teacher's hands and logged what stays open, like retention.",
-    ai: "Found the patterns in her feedback",
+  implement: {
+    body: "I launched the MVP for daily use and kept refining the workflow from feedback.",
+    ai: "Propagated approved fixes and drafted acceptance criteria and QA checks",
   },
 };
 

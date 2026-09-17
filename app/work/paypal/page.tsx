@@ -331,29 +331,29 @@ function DeviceShell({
 
 /* The working loop, told for this case study. */
 const PROCESS_STEPS: ProcessDiagramProps["steps"] = {
-  ground: {
-    body: "Six funnels, their metrics and the new checkout framework set the baseline.",
-    ai: "Synthesized six funnels and metrics",
+  empathize: {
+    body: "Partnered with PayPal Research to understand six funnels, customer friction and market differences.",
+    ai: "Organized study context, tagged evidence and compared abandonment signals",
   },
-  frame: {
-    body: "One shared application pattern, with the US and UK legal exceptions named.",
-    ai: "Surfaced regulatory edge cases",
+  define: {
+    body: "Turned research, metrics and checkout constraints into one reusable application problem.",
+    ai: "Clustered journey friction, exposed contradictions and drafted success signals",
   },
-  explore: {
-    body: "Carried 40+ iterations through product, legal and design review in Figma.",
-    ai: "Expanded and critiqued directions",
+  ideate: {
+    body: "Led 40+ iterations across products, markets, legal rules and shared trust patterns.",
+    ai: "Expanded distinct flows, critiqued concepts and generated edge cases",
   },
-  decide: {
-    body: "Leadership and six product teams chose the one-step Pay in 4 flow.",
-    ai: "Compared conversion risk by variant",
+  prototype: {
+    body: "Built high-fidelity Figma flows for six products and their regulatory variants.",
+    ai: "Added realistic content, alternate states and focused variants",
   },
-  build: {
-    body: "Stayed with the six teams from requirements through development and QA.",
-    ai: "Documentation, states and QA",
+  test: {
+    body: "Partnered with PayPal Research on validation; I translated findings into design changes.",
+    ai: "Synthesized sessions, separated said-and-did evidence and ranked issues",
   },
-  learn: {
-    body: "Measured each product against the shared pattern and fed the gaps back.",
-    ai: "Found the patterns in results",
+  implement: {
+    body: "Stayed with six product teams through specifications, development, QA and launch measurement.",
+    ai: "Propagated approved changes and drafted acceptance criteria and QA cases",
   },
 };
 

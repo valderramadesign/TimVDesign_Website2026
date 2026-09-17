@@ -100,29 +100,29 @@ const DISCOVERY_CONCEPTS = [
 
 /* The working loop, told for this case study. */
 const PROCESS_STEPS: ProcessDiagramProps["steps"] = {
-  ground: {
-    body: "A two-day sprint to surface the day's most urgent marketplace issues first.",
-    ai: "Structured discovery in ChatGPT",
+  empathize: {
+    body: "I reviewed marketplace-operations context and mapped urgent decisions for three roles.",
+    ai: "Structured context, drafted hypotheses and surfaced questions—not user findings",
   },
-  frame: {
-    body: "Three personas and their jobs-to-be-done fixed the scope: ops, merchant, growth.",
-    ai: "Drafted personas and edge cases",
+  define: {
+    body: "I framed one goal: put the day's highest-impact marketplace issues first.",
+    ai: "Clustered role needs, exposed conflicts and drafted success criteria",
   },
-  explore: {
-    body: "Iterated three dashboard concepts in Figma, from action-first to decision brief.",
-    ai: "Expanded and critiqued layouts",
+  ideate: {
+    body: "I explored action-first, decision-brief and role-based dashboard models in Figma.",
+    ai: "Generated distinct flows, critiqued concepts and produced edge cases",
   },
-  decide: {
-    body: "Chose the decision brief: prioritized issues with context, role detail secondary.",
-    ai: "Compared the concepts against each job",
+  prototype: {
+    body: "I built the chosen decision-brief dashboard in Claude Code from the Figma system.",
+    ai: "Added realistic states and accelerated implementation and QA",
   },
-  build: {
-    body: "Prototyped the working dashboard in Claude Code from the Figma system.",
-    ai: "Built states and checked the prototype",
+  test: {
+    body: "I reviewed the prototype against each role's job and documented what needs real-user testing.",
+    ai: "Compared flows with the criteria and ranked the remaining gaps",
   },
-  learn: {
-    body: "Reviewed the concept against each persona's job and noted what to test next.",
-    ai: "Ranked findings against each job",
+  implement: {
+    body: "I finished a production-minded prototype and validation plan—not a shipped product.",
+    ai: "Drafted acceptance criteria, annotations and QA cases",
   },
 };
 

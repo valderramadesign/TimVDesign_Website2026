@@ -341,29 +341,29 @@ const REDESIGN_SCREENS: { src: StaticImageData; title: string; alt: string }[] =
 
 /* The working loop, told for this case study. */
 const PROCESS_STEPS: ProcessDiagramProps["steps"] = {
-  ground: {
-    body: "Verified customer data, eligibility rules and where the funnel lost people.",
-    ai: "Synthesized data and requirements",
+  empathize: {
+    body: "Partnered with Research and Data Science to understand advertiser needs, eligibility and funnel loss.",
+    ai: "Organized study context and compared completion signals across segments",
   },
-  frame: {
-    body: "One strategy across five teams: raise awareness and completion.",
-    ai: "Surfaced gaps and edge cases",
+  define: {
+    body: "Framed one problem across five teams: raise awareness and remove avoidable application work.",
+    ai: "Clustered friction, separated eligibility signals and drafted success measures",
   },
-  explore: {
-    body: "Reframed the flow in Figma around preapproval, prefill and quick correction.",
-    ai: "Expanded and critiqued directions",
+  ideate: {
+    body: "Explored preapproval, prefill and quick correction with Product, Legal and Finance.",
+    ai: "Expanded distinct flows, critiqued concepts and generated edge cases",
   },
-  decide: {
-    body: "Product, Legal and Finance chose prefill over re-entry, with eligibility checked early.",
-    ai: "Compared risks and evidence",
+  prototype: {
+    body: "Built the end-to-end Figma flow, reducing nine screens to three.",
+    ai: "Added verified-data states, realistic content and focused variants",
   },
-  build: {
-    body: "Stayed with engineering through the eligibility checks and the nine screens.",
-    ai: "Documentation, states and QA",
+  test: {
+    body: "Partnered with Research on validation and Data Science on performance; I prioritized design action.",
+    ai: "Synthesized evidence, separated behavior from feedback and ranked issues",
   },
-  learn: {
-    body: "Read awareness, completion and revenue with product and data after launch.",
-    ai: "Found the patterns in the data",
+  implement: {
+    body: "Stayed with Engineering through eligibility checks, delivery and post-launch measurement with Data Science.",
+    ai: "Propagated fixes and drafted specifications, analytics events and QA cases",
   },
 };
 
