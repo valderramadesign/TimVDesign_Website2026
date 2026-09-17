@@ -32,7 +32,7 @@ function DottedText({ children }: { children: string }) {
 }
 
 /**
- * Email and phone as they sit beside the logo in the page chrome. Shared by the
+ * Email, phone and LinkedIn as they sit beside the logo in the page chrome. Shared by the
  * homepage header and the case-study top bar so the two can never drift. The
  * line needs a full row of its own, which only the desktop chrome has, so
  * callers hide it below `lg` and the narrow layouts carry the details in their
@@ -53,6 +53,15 @@ export default function ContactLine({ className }: { className?: string }) {
       </a>
       <span className="px-[10px]">|</span>
       <DottedText>{SITE.phone}</DottedText>
+      <span className="px-[10px]">|</span>
+      <a
+        href={SITE.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="rounded-sm transition-opacity duration-150 hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/70"
+      >
+        LinkedIn
+      </a>
     </p>
   );
 }

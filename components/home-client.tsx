@@ -352,6 +352,16 @@ export default function HomeClient() {
     }
   }, [resumeOpen]);
 
+  // Escape closes the résumé, on the desktop panel and the mobile sheet alike.
+  useEffect(() => {
+    if (!resumeOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setResumeOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [resumeOpen]);
+
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     const sync = () => setReducedMotion(mq.matches);
@@ -774,9 +784,6 @@ export default function HomeClient() {
             <p className="text-white font-light font-sans text-xl sm:text-2xl leading-snug tracking-[-0.015em] max-w-[26ch]">
               {SITE.title}
             </p>
-            <p className="text-white/75 font-light font-sans text-base sm:text-lg leading-relaxed max-w-[46ch]">
-              {SITE.supporting} {SITE.practice}
-            </p>
             <CapabilitySignals className="mt-1" />
           </section>
 
@@ -826,6 +833,14 @@ export default function HomeClient() {
               className="w-fit text-white/70 underline-offset-4 hover:underline"
             >
               {SITE.phone}
+            </a>
+            <a
+              href={SITE.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-fit text-white/70 underline-offset-4 hover:underline"
+            >
+              LinkedIn
             </a>
             <Link
               href="/resume/print"

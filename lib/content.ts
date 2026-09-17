@@ -22,10 +22,10 @@ export const SITE = {
   /** Homepage-only wordmark. Kept separate from `name` so metadata, structured data, and the résumé keep the legal name. */
   homeName: "Tim Valderrama",
   /** Primary positioning line. Used on the homepage, in metadata, and in structured data. */
-  title: "I solve complex product problems, simplify systems, and deliver measurable results—accelerated by AI.",
-  /** Supporting positioning line. */
+  title: "Lead Product Designer who solves complex product problems, simplifies systems, and delivers measurable results—accelerated by AI.",
+  /** Supporting positioning line. Not rendered on the homepage at present; kept for re-placement. */
   supporting: "Former PayPal design lead and Meta FinTech consultant.",
-  /** Closing positioning sentence. Rendered directly after `supporting`. */
+  /** Closing positioning sentence. Reads directly after `supporting` when the pair is placed. */
   practice:
     "I turn ambiguous, multi-market workflows into scalable products that improve conversion, revenue and customer trust.",
   shortBio:
@@ -54,6 +54,8 @@ export const SITE = {
    */
   phone: "415.685.3878",
   phoneTel: "+14156853878",
+  /** Profile linked from the homepage contact line, after the phone number. */
+  linkedin: "https://linkedin.com/in/tvalderrama",
   /**
    * The résumé as it should leave the site: the typeset PDF is the print and
    * download artefact, so every PRINT affordance opens this rather than
@@ -279,7 +281,7 @@ const PAYPAL_DE_RATENZAHLUNG_TPV: ProjectResult = {
  */
 const PAYPAL_PAY_IN_4_CONVERSION: ProjectResult = {
   value: "2.08\u00d7",
-  label: "Pay in 4 completion vs. baseline",
+  label: "Pay in 4 completion vs.\u00a0baseline",
   /* The comparison is one phrase, so it breaks as one: bound spaces and a
      non-breaking hyphen keep "vs. pre-redesign baseline" off the first line
      rather than letting it split after "pre-". */

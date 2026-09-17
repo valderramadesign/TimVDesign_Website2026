@@ -799,7 +799,8 @@ export default function MetaPage() {
         <p className={cx(CASE_STUDY_SUPPORTING_CLASS, "mt-14 max-w-[900px] text-white/60 lg:mt-[64px]")}>
           Each row is a separate measure against its own pre-launch baseline, compared over H1
           2026. The $11M is attributed to the eligibility expansion alone; the awareness and
-          conversion figures are percentage-point gains, not restatements of it.
+          conversion figures are percentage-point gains, not restatements of it. Results shared
+          by the Meta team after launch.
         </p>
       </section>
 

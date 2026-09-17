@@ -94,7 +94,7 @@ export default function ResumePrintPage() {
           <div style={{ fontSize: 22, fontWeight: "bold", marginBottom: 4 }}>{SITE.name}</div>
           <div style={{ fontSize: 11, marginBottom: 4 }}>{SITE.resumeTitle}</div>
           <div style={{ fontSize: 10, color: "#444" }}>
-            {SITE.email} &nbsp;·&nbsp; {SITE.phone} &nbsp;·&nbsp; {SITE.url.replace(/^https?:\/\//, "")} &nbsp;·&nbsp; {SITE.location}
+            {SITE.email} &nbsp;·&nbsp; {SITE.phone} &nbsp;·&nbsp; {SITE.url.replace(/^https?:\/\//, "")} &nbsp;·&nbsp; {SITE.location} &nbsp;·&nbsp; Citizenship: USA
           </div>
         </div>
 
@@ -139,10 +139,15 @@ export default function ResumePrintPage() {
             type="Freelance"
             dates="Feb 2026 – Present"
             bullets={[
-              "2025–2026 — Planned career break and professional development: deepened expertise in AI-assisted product design workflows across strategy, interface design, prototyping, and app development.",
+              "Professional development, deepening expertise in AI-assisted product design workflows across strategy, interface design, prototyping, and app development.",
               `Designed and developed an AI-powered preschool activity reporting app for Sunshine Little House of Learning, automating real-time parent updates and end-of-day summaries while returning an estimated ${SOLO_ANNUAL_HOURS_SAVED} hours of staff capacity annually (${SOLO_TIME_SAVED_ARITHMETIC}).`,
             ]}
           />
+
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 14 }}>
+            <span style={{ fontSize: 10, color: "#444" }}>Medical leave — fully recovered</span>
+            <span style={{ fontSize: 10, color: "#555" }}>Sep 2025 – Feb 2026</span>
+          </div>
 
           <Job
             company="Meta FinTech"

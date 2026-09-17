@@ -271,12 +271,12 @@ export default function ResumePanel() {
             </a>
             <span>
               <span className="text-[#7c8896]">{`<`}</span>
-              {SITE.url.replace(/^https?:\/\//, "")}
+              {SITE.location}
               <span className="text-[#7c8896]">{`>`}</span>
             </span>
             <span>
-              <span className="text-[#7c8896]">{`<`}</span>
-              {SITE.location}
+              <span className="text-[#7c8896]">{`<citizenship: `}</span>
+              USA
               <span className="text-[#7c8896]">{`>`}</span>
             </span>
           </span>
@@ -337,6 +337,15 @@ export default function ResumePanel() {
             </>,
           ]}
         />
+        {EMPTY}
+        <Line>
+          <span className="flex flex-wrap items-baseline gap-x-[16px] text-[14px] leading-[21px]">
+            <span className="text-black">Medical leave — fully recovered</span>
+            <span className="whitespace-nowrap text-[#7c8896] sm:ml-auto">
+              {`// Sep 2025 – Feb 2026`}
+            </span>
+          </span>
+        </Line>
         {EMPTY}
         <Job
           company="Meta FinTech"
