@@ -55,7 +55,8 @@ export const SITE = {
   phone: "415.685.3878",
   phoneTel: "+14156853878",
   /** Profile linked from the homepage contact line, after the phone number. */
-  linkedin: "https://linkedin.com/in/tvalderrama",
+  linkedin:
+    "https://www.linkedin.com/in/timothy-valderrama-8955448/details/recommendations/?detailScreenTabIndex=0",
   /**
    * The résumé as it should leave the site: the typeset PDF is the print and
    * download artefact, so every PRINT affordance opens this rather than
