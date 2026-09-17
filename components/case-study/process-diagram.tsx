@@ -19,6 +19,10 @@ export interface ProcessStep {
 
 export interface ProcessDiagramProps {
   steps: Record<ProcessStepKey, ProcessStep>;
+  /** The case study's colour — the same one its Next Case Study ticker takes. */
+  accent: string;
+  /** Darker day-mode variant, matching the ticker's `dayColor`. Falls back to `accent`. */
+  dayAccent?: string;
   className?: string;
 }
 
@@ -153,12 +157,19 @@ function nodeStyle(ink: number) {
 /**
  * The AI-powered UX loop from presentation slide 2. Every case study keeps
  * the same six stations, tools and return signal; only the project-specific
- * human work and AI assistance below each station changes. All six stations
- * render together, with no step animation.
+ * human work and AI assistance below each station changes, and the wire and
+ * icons take the case study's own colour. All six stations render together,
+ * with no step animation.
  */
-export function ProcessDiagram({ steps, className }: ProcessDiagramProps) {
+export function ProcessDiagram({ steps, accent, dayAccent, className }: ProcessDiagramProps) {
   return (
-    <div className={cx(FRAME_CLASS, className)}>
+    <div
+      className={cx(FRAME_CLASS, className)}
+      style={{
+        ["--pd-accent-dark" as string]: accent,
+        ["--pd-accent-day" as string]: dayAccent ?? accent,
+      }}
+    >
       <div className={WIRE_CLASS} aria-hidden="true" />
 
       <ol className="relative grid grid-cols-1 gap-x-8 gap-y-12 px-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 xl:gap-x-6 xl:px-[44px]">

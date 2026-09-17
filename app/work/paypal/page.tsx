@@ -1020,7 +1020,7 @@ export default function PayPal1CaseStudy() {
             exceptions. Recurring product, legal, design, and leadership reviews held all six
             teams to it, from requirements through development and measurement.
           </p>
-          <ProcessDiagram steps={PROCESS_STEPS} className="mt-4 lg:mt-[26px]" />
+          <ProcessDiagram steps={PROCESS_STEPS} accent="#4d2d8d" className="mt-4 lg:mt-[26px]" />
           <div className={cx(CASE_STUDY_STACK_CLASS, "mt-12 lg:mt-[76px]")}>
             <p className={CASE_STUDY_LABEL_TIGHT_CLASS}>
               Design System Gap &rarr; Build Plan

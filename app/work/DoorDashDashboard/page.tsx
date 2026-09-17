@@ -344,7 +344,12 @@ export default function DoorDashDashboardCaseStudy() {
             </div>
           </div>
 
-          <ProcessDiagram steps={PROCESS_STEPS} className="mt-14 lg:mt-[100px]" />
+          <ProcessDiagram
+            steps={PROCESS_STEPS}
+            accent={ACCENT}
+            dayAccent="var(--doordash-accent)"
+            className="mt-14 lg:mt-[100px]"
+          />
         </SupportingAppendix>
       </div>
 

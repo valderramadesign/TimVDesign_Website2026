@@ -285,14 +285,15 @@ html[data-theme="day"] .theme-site {
   --doordash-accent: #be2406;
 }
 
-/* Behind-the-work process diagram. Night takes a lifted sage so the 1.5px
-   wire and line icons hold on black; day uses the presentation's moss. */
+/* Behind-the-work process diagram (process-diagram.tsx). Each case study
+   passes the colour its Next Case Study ticker takes, night and day, through
+   the same pair of custom properties; this just picks the one for the theme. */
 .process-diagram {
-  --pd-accent: #8dc4a4;
+  --pd-accent: var(--pd-accent-dark);
 }
 
 html[data-theme="day"] .theme-site .process-diagram {
-  --pd-accent: #3a6a50;
+  --pd-accent: var(--pd-accent-day);
 }
 
 /* Meta eligibility workflow (app/work/meta/workflow-diagram.tsx). At night

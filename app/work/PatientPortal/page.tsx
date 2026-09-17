@@ -357,7 +357,7 @@ export default function PatientPortalPage() {
           title="Behind the Work"
           summary="The AI-assisted workflow behind the strategy, the iteration, and the prototype"
         >
-          <ProcessDiagram steps={PROCESS_STEPS} />
+          <ProcessDiagram steps={PROCESS_STEPS} accent={ACCENT} dayAccent="var(--sutter-accent)" />
         </SupportingAppendix>
       </div>
 

@@ -825,7 +825,12 @@ export default function MetaPage() {
               </div>
             ))}
           </div>
-          <ProcessDiagram steps={PROCESS_STEPS} className="mt-10 lg:mt-[76px]" />
+          <ProcessDiagram
+            steps={PROCESS_STEPS}
+            accent="#CEF252"
+            dayAccent="#3c4a0b"
+            className="mt-10 lg:mt-[76px]"
+          />
         </SupportingAppendix>
       </div>
 

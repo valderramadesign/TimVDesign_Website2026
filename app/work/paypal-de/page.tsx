@@ -139,7 +139,7 @@ export default function PayPalDePage() {
           title="Behind the Work"
           summary="How the strategy became repeatable across two products"
         >
-          <ProcessDiagram steps={PROCESS_STEPS} />
+          <ProcessDiagram steps={PROCESS_STEPS} accent="#00B0D8" />
           {/* The diagram ends on its lowest circle, so the iteration columns
               stand off it by a full 100px rather than the appendix's default
               24px gutter — enough that the drawing reads as finished before
