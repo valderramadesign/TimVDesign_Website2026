@@ -2,12 +2,7 @@
 
 import { useEffect } from "react";
 
-import {
-  PAYPAL_PAY_IN_4_TPV_INCREASE,
-  SITE,
-  SOLO_ANNUAL_HOURS_SAVED,
-  SOLO_TIME_SAVED_ARITHMETIC,
-} from "@/lib/content";
+import { PAYPAL_PAY_IN_4_TPV_INCREASE, SITE } from "@/lib/content";
 
 const jb = "var(--font-jetbrains-mono)";
 
@@ -94,7 +89,7 @@ export default function ResumePrintPage() {
           <div style={{ fontSize: 22, fontWeight: "bold", marginBottom: 4 }}>{SITE.name}</div>
           <div style={{ fontSize: 11, marginBottom: 4 }}>{SITE.resumeTitle}</div>
           <div style={{ fontSize: 10, color: "#444" }}>
-            {SITE.email} &nbsp;·&nbsp; {SITE.phone} &nbsp;·&nbsp; {SITE.url.replace(/^https?:\/\//, "")} &nbsp;·&nbsp; {SITE.location} &nbsp;·&nbsp; Citizenship: USA
+            {SITE.email} &nbsp;·&nbsp; {SITE.phone} &nbsp;·&nbsp; {SITE.url.replace(/^https?:\/\//, "")} &nbsp;·&nbsp; {SITE.location} &nbsp;·&nbsp; {SITE.citizenship}
           </div>
         </div>
 
@@ -135,12 +130,11 @@ export default function ResumePrintPage() {
 
           <Job
             company="Valderrama Design"
-            title="Principal Product Designer"
-            type="Freelance"
+            title="Independent Product Designer"
             dates="Feb 2026 – Present"
             bullets={[
-              "Professional development, deepening expertise in AI-assisted product design workflows across strategy, interface design, prototyping, and app development.",
-              `Designed and developed an AI-powered preschool activity reporting app for Sunshine Little House of Learning, automating real-time parent updates and end-of-day summaries while returning an estimated ${SOLO_ANNUAL_HOURS_SAVED} hours of staff capacity annually (${SOLO_TIME_SAVED_ARITHMETIC}).`,
+              "Designed, built, and shipped an AI-powered activity reporting app for Sunshine Little House of Learning, a preschool, from research through working code. It automates real-time parent updates and end-of-day summaries and returns about 500 staff hours a year.",
+              "Independent practice focused on AI-assisted product design: strategy, interface design, prototyping, and design-to-code with Claude, ChatGPT, Figma AI, and Google Stitch.",
             ]}
           />
 
@@ -151,12 +145,12 @@ export default function ResumePrintPage() {
 
           <Job
             company="Meta FinTech"
-            title="Product Designer V, Staff-level"
+            title="Staff Product Designer"
             type="Consultant"
             dates="Dec 2024 – Aug 2025"
             bullets={[
-              "Led design strategy to reduce checkout payment friction through credential sharing and autopay, increasing iRev by 6.3% and credential coverage by 36%.",
-              "Designed solutions to reduce ad billing credit card costs by promoting Monthly Invoicing and optimizing the AI- and automation-driven application flow, lifting conversion from a 39% baseline to 97% and saving ~7.5% annually in credit card fees.",
+              "Led design strategy to cut checkout payment friction with credential sharing and autopay, using AI for research synthesis, product framing, and opportunity analysis. Grew incremental revenue 6.3% and stored-payment coverage 36%.",
+              "Redesigned the Monthly Invoicing application for ad billing with AI- and automation-driven steps to move advertisers off credit cards. Lifted conversion from 39% to 97% and cut card fees about 7.5% a year.",
             ]}
           />
 
@@ -166,9 +160,10 @@ export default function ResumePrintPage() {
             type="FTE"
             dates="Oct 2016 – Apr 2024"
             bullets={[
-              `Modernized PayPal's installment products (top leadership priority) by migrating to UI 4.0 and the Checkout Product System, lifting Pay in 4 application completion to 208% of its pre-redesign baseline and driving a ${PAYPAL_PAY_IN_4_TPV_INCREASE} increase in Pay in 4 average monthly TPV; application conversion across all six US and UK credit products rose from 51% to 79%.`,
-              "Led design strategy and end-to-end implementation across all German products, driving a 48.78% increase in monthly TPV and 17.33% in annual iRev for Pay in 30 Days, and 14.92% in monthly TPV and 25.44% in annual iRev for PayPal Ratenzahlung; directly contributed to promotion to Lead Designer for Global Installments.",
-              "Provided mentorship and strategic guidance to senior designers, introducing scalable, data-informed solutions and process improvements to elevate team-wide design quality and maturity.",
+              "Most senior designer on the credit team. Owned end-to-end design for merchant and consumer credit products in the US, UK, and Germany, from application to checkout, funding, and loan servicing.",
+              `Partnered with Checkout product, design, and engineering leads to place credit offers inside purchase flows. Simplified applications across six US and UK products, raising conversion from 51% to 79% and Pay in 4 monthly payment volume ${PAYPAL_PAY_IN_4_TPV_INCREASE}.`,
+              "Led all installment products in credit-averse Germany and monetized offerings that had earned no revenue. Grew Pay in 30 Days monthly payment volume 49% and PayPal Ratenzahlung annual incremental revenue 25%.",
+              "Mentored senior designers, unblocked stalled projects, and raised design quality through critique, shared patterns, and tighter product and engineering alignment.",
             ]}
           />
 
@@ -178,9 +173,8 @@ export default function ResumePrintPage() {
             type="Design Consultant"
             dates="Feb 2015 – Sep 2016"
             bullets={[
-              "Drove end-to-end design for Cisco's premier mobile app, modernizing the experience with updated accessibility and UI standards and delivering a 43% increase in user comprehension.",
-              "Partnered in developing a scalable UI component library and UX standards that standardized and improved Cisco's intranet navigation.",
-              "Served as a UX advisor in the Cisco UE Clinic, delivering twice-weekly design guidance to departments seeking support for their web pages and applications.",
+              "Led end-to-end design for Cisco's flagship mobile app. Modernized it to current accessibility and UI standards, raising user comprehension 43%.",
+              "Co-built a scalable UI component library and UX standards for Cisco's intranet, and advised departments twice weekly in the Cisco UE Clinic.",
             ]}
           />
         </div>
@@ -192,7 +186,7 @@ export default function ResumePrintPage() {
             {[
               [
                 "Nielsen Norman Group",
-                "Master Certificate, Human Computer Interaction, AI assisted design and product strategy for AI experiences",
+                "Master Certificate, Human Computer Interaction. Focus on AI-assisted design and product strategy for AI experiences",
               ],
               ["Academy of Art University", "Bachelor of Fine Arts, Graphic Design"],
               ["De La Salle University", "Bachelor of Arts and Science, Business Marketing"],

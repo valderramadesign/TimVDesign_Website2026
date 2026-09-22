@@ -2,12 +2,7 @@
 
 import { Fragment, type ReactNode } from "react";
 
-import {
-  PAYPAL_PAY_IN_4_TPV_INCREASE,
-  SITE,
-  SOLO_ANNUAL_HOURS_SAVED,
-  SOLO_TIME_SAVED_ARITHMETIC,
-} from "@/lib/content";
+import { PAYPAL_PAY_IN_4_TPV_INCREASE, SITE } from "@/lib/content";
 
 const jb = "var(--font-jetbrains-mono)";
 
@@ -98,7 +93,7 @@ function Job({
 }: {
   company: string;
   title: string;
-  type: string;
+  type?: string;
   dates: string;
   bullets: ReactNode[];
 }) {
@@ -114,7 +109,8 @@ function Job({
       </Line>
       <Line>
         <span className="block pl-[2ch] text-[14px] leading-[21px]">
-          <span className="text-[#e5652a]">{title}</span> <Tag>{type}</Tag>
+          <span className="text-[#e5652a]">{title}</span>
+          {type ? <> <Tag>{type}</Tag></> : null}
         </span>
       </Line>
       <ul>
@@ -269,14 +265,19 @@ export default function ResumePanel() {
               {SITE.phone}
               <span className="text-[#7c8896]">{`>`}</span>
             </a>
+            <a href={SITE.url} className="hover:underline">
+              <span className="text-[#7c8896]">{`<`}</span>
+              {SITE.url.replace(/^https?:\/\//, "")}
+              <span className="text-[#7c8896]">{`>`}</span>
+            </a>
             <span>
               <span className="text-[#7c8896]">{`<`}</span>
               {SITE.location}
               <span className="text-[#7c8896]">{`>`}</span>
             </span>
             <span>
-              <span className="text-[#7c8896]">{`<citizenship: `}</span>
-              USA
+              <span className="text-[#7c8896]">{`<`}</span>
+              {SITE.citizenship}
               <span className="text-[#7c8896]">{`>`}</span>
             </span>
           </span>
@@ -292,48 +293,29 @@ export default function ResumePanel() {
           </span>
         </Line>
         {EMPTY}
-        <Line as="p">
-          <span className="block text-[14px] leading-[21px] text-black">
-            <span className="text-[#7c8896]">next_role:</span> Seeking a lead
-            product design role owning end-to-end UX initiatives that drive
-            business impact and elevate product quality, using{" "}
-            <span style={blueHL}>
-              AI-assisted workflows to accelerate research, prototyping, and
-              execution
-            </span>
-            .
-          </span>
-        </Line>
-
-        {EMPTY}
         {EMPTY}
 
         {/* Experience */}
         <SectionHeader label="Experience" />
         <Job
           company="Valderrama Design"
-          title="Principal Product Designer"
-          type="Freelance"
+          title="Independent Product Designer"
           dates="Feb 2026 – Present"
           bullets={[
             <>
-              Professional development, deepening expertise in{" "}
-              <span style={blueHL}>AI-assisted product design workflows</span>{" "}
-              across strategy, interface design, prototyping, and app
-              development.
+              Designed, built, and shipped an{" "}
+              <span style={blueHL}>AI-powered activity reporting app</span> for
+              Sunshine Little House of Learning, a preschool, from research
+              through working code. It automates real-time parent updates and
+              end-of-day summaries and{" "}
+              <span style={yellowHL}>returns about 500 staff hours a year</span>
+              .
             </>,
             <>
-              Designed and developed an{" "}
-              <span style={blueHL}>
-                AI-powered preschool activity reporting app
-              </span>{" "}
-              for Sunshine Little House of Learning, automating real-time parent
-              updates and end-of-day summaries while{" "}
-              <span style={yellowHL}>
-                returning an estimated {SOLO_ANNUAL_HOURS_SAVED} hours of staff
-                capacity annually
-              </span>{" "}
-              ({SOLO_TIME_SAVED_ARITHMETIC}).
+              Independent practice focused on{" "}
+              <span style={blueHL}>AI-assisted product design</span>: strategy,
+              interface design, prototyping, and design-to-code with Claude,
+              ChatGPT, Figma AI, and Google Stitch.
             </>,
           ]}
         />
@@ -349,35 +331,32 @@ export default function ResumePanel() {
         {EMPTY}
         <Job
           company="Meta FinTech"
-          title="Product Designer V, Staff-level"
+          title="Staff Product Designer"
           type="Consultant"
           dates="Dec 2024 – Aug 2025"
           bullets={[
             <>
-              Led design strategy to reduce checkout payment friction through
+              Led design strategy to cut checkout payment friction with
               credential sharing and autopay, using{" "}
               <span style={blueHL}>
-                Metamate AI for research synthesis, product framing, and
-                opportunity analysis
+                AI for research synthesis, product framing, and opportunity
+                analysis
               </span>
-              ;{" "}
+              .{" "}
               <span style={yellowHL}>
-                increased iRev by 6.3% and boosted credential coverage by 36%
+                Grew incremental revenue 6.3% and stored-payment coverage 36%
               </span>
               .
             </>,
             <>
-              Designed solutions to reduce ad billing credit card costs by
-              promoting Monthly Invoicing and optimizing the{" "}
-              <span style={blueHL}>
-                AI- and automation-driven application flow
-              </span>
-              ;{" "}
+              Redesigned the Monthly Invoicing application for ad billing with{" "}
+              <span style={blueHL}>AI- and automation-driven steps</span> to
+              move advertisers off credit cards.{" "}
               <span style={yellowHL}>
-                lifting conversion from a 39% baseline to 97% and saving ~7.5%
-                annually
-              </span>{" "}
-              in credit card fees.
+                Lifted conversion from 39% to 97% and cut card fees about 7.5% a
+                year
+              </span>
+              .
             </>,
           ]}
         />
@@ -389,53 +368,34 @@ export default function ResumePanel() {
           dates="Oct 2016 – Apr 2024"
           bullets={[
             <>
-              Modernized PayPal&apos;s installment products, a top-priority
-              leadership initiative, by migrating to UI 4.0 and the Checkout
-              Product System; used{" "}
-              <span style={blueHL}>
-                Figma, ChatGPT, and Claude for research synthesis, UX writing
-                variants, flow critique, and product narrative development
-              </span>
-              ,{" "}
-              <span style={yellowHL}>
-                lifting Pay in 4 application completion to 208% of its
-                pre-redesign baseline and driving a{" "}
-                {PAYPAL_PAY_IN_4_TPV_INCREASE} increase in Pay in 4 average
-                monthly TPV
-              </span>
-              ; application conversion across all six US and UK credit products
-              rose from 51% to 79%.
+              Most senior designer on the credit team. Owned end-to-end design
+              for merchant and consumer credit products in the US, UK, and
+              Germany, from application to checkout, funding, and loan
+              servicing.
             </>,
             <>
-              Led design strategy and end-to-end implementation across all
-              German installment products, translating complex regulatory,
-              customer, and business requirements into scalable product
-              experiences that{" "}
+              Partnered with Checkout product, design, and engineering leads to
+              place credit offers inside purchase flows. Simplified applications
+              across six US and UK products,{" "}
               <span style={yellowHL}>
-                drove a 48.78% increase in monthly TPV and 17.33% in annual iRev
-                for Pay in 30 Days, and 14.92% in monthly TPV and 25.44% in
-                annual iRev for PayPal Ratenzahlung
+                raising conversion from 51% to 79% and Pay in 4 monthly payment
+                volume {PAYPAL_PAY_IN_4_TPV_INCREASE}
               </span>
               .
             </>,
             <>
-              Advanced global installment design quality through Figma design
-              systems,{" "}
-              <span style={blueHL}>
-                AI-assisted competitive pattern analysis, rapid UX copy
-                refinement
+              Led all installment products in credit-averse Germany and
+              monetized offerings that had earned no revenue.{" "}
+              <span style={yellowHL}>
+                Grew Pay in 30 Days monthly payment volume 49% and PayPal
+                Ratenzahlung annual incremental revenue 25%
               </span>
-              , structured critique, and data-informed decision-making across
-              markets.
+              .
             </>,
             <>
-              Mentored senior designers and improved team-wide design maturity
-              by introducing practical{" "}
-              <span style={blueHL}>
-                AI workflows for research synthesis, divergent ideation, UX
-                writing, critique, stakeholder storytelling
-              </span>
-              , and faster alignment with product and engineering partners.
+              Mentored senior designers, unblocked stalled projects, and raised
+              design quality through critique, shared patterns, and tighter
+              product and engineering alignment.
             </>,
           ]}
         />
@@ -447,20 +407,14 @@ export default function ResumePanel() {
           dates="Feb 2015 – Sep 2016"
           bullets={[
             <>
-              Drove end-to-end design for Cisco&apos;s premier mobile app,
-              modernizing the experience with updated accessibility and UI
-              standards and delivering a{" "}
-              <span style={yellowHL}>43% increase in user comprehension</span>.
+              Led end-to-end design for Cisco&apos;s flagship mobile app.
+              Modernized it to current accessibility and UI standards,{" "}
+              <span style={yellowHL}>raising user comprehension 43%</span>.
             </>,
             <>
-              Partnered in developing a scalable UI component library and UX
-              standards that standardized and improved Cisco&apos;s intranet
-              navigation.
-            </>,
-            <>
-              Served as a UX advisor in the Cisco UE Clinic, delivering
-              twice-weekly design guidance to departments seeking support for
-              their web pages and applications.
+              Co-built a scalable UI component library and UX standards for
+              Cisco&apos;s intranet, and advised departments twice weekly in the
+              Cisco UE Clinic.
             </>,
           ]}
         />
@@ -473,7 +427,7 @@ export default function ResumePanel() {
         <School
           school="Nielsen Norman Group"
           degree="Master Certificate"
-          field="Human Computer Interaction, AI assisted design and product strategy for AI experiences"
+          field="Human Computer Interaction, focus on AI-assisted design and product strategy for AI experiences"
         />
         {EMPTY}
         <School
@@ -493,28 +447,25 @@ export default function ResumePanel() {
 
         {/* Skills */}
         <SectionHeader label="Skills" />
-        <Skill name="leadership">
-          Product vision, design strategy, platform-scale systems, complex
-          problem framing, decision-making, prioritization, stakeholder
-          influence, executive storytelling, mentorship, and cross-functional
-          leadership.
+        <Skill name="domains">
+          Credit and lending, checkout and payments, billing and invoicing,
+          regulated FinTech flows, and conversion optimization.
         </Skill>
         {EMPTY}
         <Skill name="ai_workflow">
-          Research synthesis, opportunity framing, divergent ideation, UX
-          writing, edge-case analysis, rapid prototyping, structured critique,
-          design-to-code exploration, and stakeholder storytelling using{" "}
+          Research synthesis, opportunity framing, UX writing, edge-case
+          analysis, rapid prototyping, structured critique, and design-to-code
+          with{" "}
           <span style={blueHL}>
-            ChatGPT, Claude, Figma AI-tools, Google Stitch, and Metamate AI
+            Claude, ChatGPT, Figma AI, and Google Stitch
           </span>
           .
         </Skill>
         {EMPTY}
         <Skill name="ux_craft">
-          Figma, mobile and web systems thinking, interaction design, visual
-          design, design systems, component libraries, accessibility, user
-          research, insight synthesis, checkout experiences, FinTech flows,
-          billing systems, credit products, and conversion optimization.
+          Figma, design systems and component libraries, interaction and visual
+          design, mobile and web systems thinking, accessibility, user research,
+          and insight synthesis.
         </Skill>
 
         {/* Easter egg — centred on the two-digit numerals above it. A numeral

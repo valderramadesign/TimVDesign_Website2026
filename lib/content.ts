@@ -37,14 +37,15 @@ export const SITE = {
    */
   resumeTitle: "Lead Product Designer",
   /**
-   * Two sentences: what the work is, then how it runs. Certifications are
-   * evidence and stay in Education — leading with them put the credential
-   * ahead of the practice it supports.
+   * The claim, then the proof, then how the work runs. Quoted verbatim from
+   * `resumeFile` so the sleeve, the web page and the PDF read alike.
+   * Certifications are evidence and stay in Education — leading with them put
+   * the credential ahead of the practice it supports.
    */
   resumeSummaryLead:
-    "Lead Product Designer with 9+ years turning complex, regulated workflows into products that grow adoption, revenue, and trust.",
+    "Lead Product Designer with 10+ years turning regulated, high-friction flows into revenue.",
   resumeSummaryDetail:
-    "I lead strategy through delivery and use AI-assisted workflows to speed research, iteration, and prototyping.",
+    "Lifted application conversion from 51% to 79% at PayPal and 39% to 97% at Meta. I lead strategy through delivery and use AI to speed research, prototyping, and code.",
   url: "https://tim-ai-design.com",
   email: "valderramadesign@gmail.com",
   /**
