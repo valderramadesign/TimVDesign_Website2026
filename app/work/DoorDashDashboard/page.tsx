@@ -214,7 +214,10 @@ export default function DoorDashDashboardCaseStudy() {
                 image={concept.image}
                 alt={concept.alt}
                 variant={concept.variant}
-                className="relative w-full lg:w-[54%] shrink-0 overflow-hidden rounded-2xl lg:rounded-[24px] bg-white/5"
+                /* These PNGs are white linework on transparency, so the card
+                   stays black in day mode — the Patient Portal wireframes
+                   carry the same black in their own pixels. */
+                className="relative w-full lg:w-[54%] shrink-0 overflow-hidden rounded-2xl lg:rounded-[24px] bg-[#000]"
                 style={{ aspectRatio: `${concept.image.width} / ${concept.image.height}` }}
               />
               <ScrollFade
